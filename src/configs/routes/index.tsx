@@ -1,5 +1,7 @@
 import { createBrowserRouter, RouteObject } from "react-router-dom";
 import App from "../../App";
+import CategoryPage from "../../pages/CategoryPage";
+import ProductPage from "../../pages/ProductPage";
 
 const categoryRouteObjects: RouteObject[] = [
   {
@@ -7,7 +9,7 @@ const categoryRouteObjects: RouteObject[] = [
     children: [
       {
         index: true,
-        element: <div>category</div>,
+        element: <CategoryPage />,
       },
     ],
   },
@@ -19,7 +21,7 @@ const productRouteObjects: RouteObject[] = [
     children: [
       {
         index: true,
-        element: <div>product</div>,
+        element: <ProductPage />,
       },
       { path: ":id", element: <div>12345</div> },
     ],
