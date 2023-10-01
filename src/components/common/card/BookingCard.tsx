@@ -1,11 +1,10 @@
 import styled from "styled-components";
 
 const BookingCardStyle = styled.div`
-  min-height: 30vh;
-  width: 100%;
   background-color: white;
-  border-radius: 10px;
+  border-radius: 13px;
   border: 1px solid black;
+  min-height: 35vh;
 `;
 
 const BookingCard = ({ children }: { children: React.ReactNode }) => {

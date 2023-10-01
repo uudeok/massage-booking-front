@@ -8,7 +8,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       <main
         style={{
           width: "80%",
-          border: "1px solid blue",
+          // border: "1px solid blue",
           margin: "0 auto",
           display: "flex",
           flexDirection: "column",
