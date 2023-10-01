@@ -2,6 +2,7 @@ import { createBrowserRouter, RouteObject } from "react-router-dom";
 import App from "../../App";
 import CategoryPage from "../../pages/CategoryPage";
 import ProductPage from "../../pages/ProductPage";
+import HomePage from "../../pages/HomePage";
 
 const categoryRouteObjects: RouteObject[] = [
   {
@@ -32,6 +33,10 @@ export const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-    children: [...categoryRouteObjects, ...productRouteObjects],
+    children: [
+      { index: true, element: <HomePage /> },
+      ...categoryRouteObjects,
+      ...productRouteObjects,
+    ],
   },
 ]);

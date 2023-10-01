@@ -23,7 +23,7 @@ const Header = () => {
             </HeaderMenuListStyle>
           </HeaderMenuInnerBoxStyle>
         </HeaderMenuBoxStyle>
-        <HeaderLoginBoxStyle>login</HeaderLoginBoxStyle>
+        <HeaderLoginBoxStyle>로그인</HeaderLoginBoxStyle>
       </HeaderInnerContainerStyle>
     </HeaderContainerStyle>
   );
