@@ -43,20 +43,19 @@ const BookingForm = () => {
 export default BookingForm;
 
 const FormContainerStyle = styled.form`
-  border: 1px solid black;
-  width: 95%;
+  width: 100%;
   margin: 0 auto;
   display: flex;
   flex-direction: row;
-  padding: 1rem;
+  justify-content: center;
 `;
 
 const FormSelectItemStyle = styled.div`
-  border: 1px solid black;
-  margin: 1rem;
+  /* border: 1px solid red; */
   display: flex;
   flex-direction: column;
-  width: 20rem;
+  width: 100%;
+  margin: 1rem;
 `;
 
 const FormItemListStyle = styled.ul`

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import BookingList from "./BookingList";
+import BookingTab from "./BookingTab";
 
 const BookingContainerStyle = styled.div`
   width: 100%;
@@ -13,7 +13,7 @@ const BookingContainerStyle = styled.div`
 const Booking = () => {
   return (
     <BookingContainerStyle>
-      <BookingList />
+      <BookingTab />
     </BookingContainerStyle>
   );
 };
