@@ -5,26 +5,21 @@ import {
   FooterRightBoxStyle,
   FooterLogoItemStyle,
 } from "./Footer.style";
+import { FOOTER_INFO } from "../../../const/footer";
 
 const Footer = () => {
   return (
     <FooterContainerStyle>
       <FooterInnerContainerStyle>
         <FooterLeftBoxStyle>
-          <div>
-            <span>자연치유 쉼</span>
-            <span>자연치유 쉼</span>
-            <span>자연치유 쉼</span>
-            <span>자연치유 쉼</span>
-            <span>자연치유 쉼</span>
-          </div>
-          <div>
-            <span>사업자등록번호 : 12345</span>
-            <span>사업자등록번호 : 12345</span>
-            <span>사업자등록번호 : 12345</span>
-            <span>사업자등록번호 : 12345</span>
-            <span>사업자등록번호 : 12345</span>
-          </div>
+          <h3>자연치유 쉼</h3>
+          <ul>
+            {FOOTER_INFO.map((item) => (
+              <li key={item.key}>
+                {item.key} : {item.value}
+              </li>
+            ))}
+          </ul>
         </FooterLeftBoxStyle>
         <FooterRightBoxStyle>
           <FooterLogoItemStyle>로고1</FooterLogoItemStyle>

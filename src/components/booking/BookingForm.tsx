@@ -2,6 +2,7 @@ import Calendar from "../common/calendar/Calendar";
 import { useState } from "react";
 import styled from "styled-components";
 import { TIME_TABLE } from "../../const/booking";
+import { DEVISE_SIZE } from "../../const/devise";
 
 const BookingForm = () => {
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
@@ -48,14 +49,21 @@ const FormContainerStyle = styled.form`
   display: flex;
   flex-direction: row;
   justify-content: center;
+
+  @media only screen and (max-width: ${DEVISE_SIZE.tabletMin}) {
+    flex-direction: column;
+  }
 `;
 
 const FormSelectItemStyle = styled.div`
-  /* border: 1px solid red; */
   display: flex;
   flex-direction: column;
-  width: 100%;
-  margin: 1rem;
+  width: 33.333%;
+  padding: 1rem;
+
+  @media only screen and (max-width: ${DEVISE_SIZE.tabletMin}) {
+    width: 100%;
+  }
 `;
 
 const FormItemListStyle = styled.ul`

@@ -11,12 +11,21 @@ const TAB_LIST = [
 
 const BookingTab = () => {
   const [tabNum, setTabNum] = useState(0);
+  const [isActive] = useState(true);
+
+  console.log(isActive);
 
   return (
     <>
       <BookingTabContainerStyle>
         {TAB_LIST.map((item, index) => (
-          <BookingTabItemStyle key={item.key} onClick={() => setTabNum(index)}>
+          <BookingTabItemStyle
+            isActive={index === tabNum && isActive}
+            key={item.key}
+            onClick={() => {
+              setTabNum(index);
+            }}
+          >
             {item.key}
           </BookingTabItemStyle>
         ))}
@@ -30,21 +39,22 @@ export default BookingTab;
 
 const BookingTabContainerStyle = styled.ul`
   width: 100%;
-  /* border: 1px solid black; */
   display: flex;
   margin: 0 auto;
+  overflow: hidden;
 `;
 
-const BookingTabItemStyle = styled.li`
+const BookingTabItemStyle = styled.li<{ isActive: boolean }>`
   width: 33%;
-  border: 1px solid black;
   margin: 0 auto;
-  border-top-right-radius: 10px;
-  border-top-left-radius: 10px;
-  border-bottom: none;
   height: 35px;
   display: flex;
   justify-content: center;
   align-items: center;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+
   cursor: pointer;
+
+  background-color: ${({ isActive }) => (isActive ? "white" : "aliceblue")};
 `;

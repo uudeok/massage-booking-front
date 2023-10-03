@@ -1,10 +1,15 @@
 import styled from "styled-components";
+import { DEVISE_SIZE } from "../../../const/devise";
 
 export const HeaderContainerStyle = styled.header`
   width: 100%;
   border-bottom: 1px solid black;
   min-height: 100px;
   display: flex;
+
+  @media only screen and (max-width: ${DEVISE_SIZE.notebookMin}) {
+    margin-bottom: 1rem;
+  }
 `;
 
 export const HeaderInnerContainerStyle = styled.div`
@@ -26,6 +31,10 @@ export const HeaderMenuInnerBoxStyle = styled.div`
   width: 80%;
   margin: auto;
   display: flex;
+
+  @media only screen and (max-width: ${DEVISE_SIZE.tabletMax}) {
+    display: none;
+  }
 `;
 
 export const HeaderMenuListStyle = styled.ul`
