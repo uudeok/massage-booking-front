@@ -1,6 +1,6 @@
+import "swiper/css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import styled from "styled-components";
-import "swiper/css";
 import { Autoplay } from "swiper/modules";
 import { MASSAGE_LIST } from "../../const/massage";
 
