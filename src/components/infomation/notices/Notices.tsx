@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 import NoticesList from "./NoticesList";
 import { Link } from "react-router-dom";

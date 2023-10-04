@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Notices from "./notices/Notices";
 import Introduction from "./introduction/Introduction";
+import { DEVISE_SIZE } from "../../const/devise";
 
 const Information = () => {
   return (
@@ -22,18 +23,30 @@ export default Information;
 const InformationContainerStyle = styled.div`
   width: 100%;
   min-height: 40vh;
-  background-color: beige;
+  /* background-color: beige; */
 `;
 
 const InformationInnerStyle = styled.div`
   display: flex;
   width: 100%;
+
+  @media only screen and (max-width: ${DEVISE_SIZE.tabletMax}) {
+    flex-direction: column;
+  }
 `;
 
 const InformationLeftBox = styled.div`
   width: 55%;
+
+  @media only screen and (max-width: ${DEVISE_SIZE.tabletMax}) {
+    width: 100%;
+  }
 `;
 
 const InformationRightBox = styled.div`
   width: 45%;
+
+  @media only screen and (max-width: ${DEVISE_SIZE.tabletMax}) {
+    width: 100%;
+  }
 `;
