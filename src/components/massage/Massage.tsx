@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import MassageList from "./MassageList";
 
 const MassageContainerStyle = styled.div`
   width: 100%;
@@ -9,7 +10,7 @@ const MassageContainerStyle = styled.div`
 const Massage = () => {
   return (
     <MassageContainerStyle>
-      <div>massage 구역</div>
+      <MassageList />
     </MassageContainerStyle>
   );
 };
