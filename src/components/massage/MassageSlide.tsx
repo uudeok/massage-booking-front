@@ -1,26 +1,20 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper/modules";
 import styled from "styled-components";
 import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
+import { Autoplay } from "swiper/modules";
+import { MASSAGE_LIST } from "../../const/massage";
 
-const MASSAGE_LIST = [
-  { img: "noimg.gif", content: "마사지 입니다1" },
-  { img: "noimg.gif", content: "마사지 입니다2" },
-  { img: "noimg.gif", content: "마사지 입니다3" },
-  { img: "noimg.gif", content: "마사지 입니다4" },
-  { img: "noimg.gif", content: "마사지 입니다5" },
-];
-
-const MassageList = () => {
+const MassageSlide = () => {
   return (
     <Swiper
+      modules={[Autoplay]}
       spaceBetween={10}
       slidesPerView={1}
-      modules={[Pagination]}
-      pagination={{ clickable: true }}
-      navigation
+      autoplay={{
+        delay: 5000,
+        disableOnInteraction: false,
+        pauseOnMouseEnter: true,
+      }}
       breakpoints={{
         1279: { slidesPerView: 3 },
         768: { slidesPerView: 2 },
@@ -38,7 +32,7 @@ const MassageList = () => {
   );
 };
 
-export default MassageList;
+export default MassageSlide;
 
 const MassageItemContainerStyle = styled.div`
   /* border: 1px solid black; */
