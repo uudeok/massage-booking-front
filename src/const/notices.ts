@@ -13,8 +13,20 @@ export const NOTICE_LIST = [
   },
   {
     title: "기타 안내",
-    date: "2023-09-26",
+    date: "2023-08-18",
     category: "기타안내",
+    content: "기타사항 ",
+  },
+  {
+    title: "긴급공지 9/21일 휴무안내",
+    date: "2023-09-20",
+    category: "영업시간",
+    content: "기타사항",
+  },
+  {
+    title: "재오픈 이벤트",
+    date: "2023-09-26",
+    category: "이벤트",
     content: "기타사항 ",
   },
 ];

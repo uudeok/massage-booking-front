@@ -39,8 +39,13 @@ const MassageItemContainerStyle = styled.div`
   display: flex;
   flex-direction: column;
   text-align: center;
+  cursor: pointer;
+
+  :hover {
+    scale: calc(1.02);
+  }
 `;
 
 const MassageItemContentStyle = styled.div`
-  margin-top: 1rem;
+  padding: 1rem;
 `;

@@ -13,10 +13,14 @@ export const HeaderContainerStyle = styled.header`
 `;
 
 export const HeaderInnerContainerStyle = styled.div`
-  width: 80%;
+  width: 70%;
   margin: 0 auto;
   display: flex;
   align-items: end;
+
+  @media only screen and (max-width: ${DEVISE_SIZE.notebookMax}) {
+    width: 80%;
+  }
 `;
 
 export const HeaderLogoBoxStyle = styled.div`

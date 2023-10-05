@@ -22,10 +22,19 @@ const NoticeHeaderBoxStyle = styled.div`
   display: flex;
   flex-direction: row;
   padding: 1rem;
+
+  a {
+    text-decoration: none;
+    color: black;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
 `;
 
 const NoticeHeaderStyle = styled.h1`
   font-size: 2rem;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
   flex: 1;
 `;

@@ -37,6 +37,7 @@ const InformationInnerStyle = styled.div`
 
 const InformationLeftBox = styled.div`
   width: 55%;
+  margin-top: 1rem;
 
   @media only screen and (max-width: ${DEVISE_SIZE.tabletMax}) {
     width: 100%;
