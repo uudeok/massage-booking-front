@@ -6,13 +6,13 @@ export const NOTICE_LIST = [
     content: "영업시간을 아래와 같이 변경 되었음을 안내드립니다. ",
   },
   {
-    title: "추석 이벤트 20% 할인",
+    title: "추석 이벤트 20% 할인 이벤트",
     date: "2023-10-01",
     category: "이벤트",
     content: "추석연휴 동안 쌓인 피로 풀고가세요",
   },
   {
-    title: "기타",
+    title: "기타 안내",
     date: "2023-09-26",
     category: "기타안내",
     content: "기타사항 ",

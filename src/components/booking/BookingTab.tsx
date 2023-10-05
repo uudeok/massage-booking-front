@@ -38,21 +38,24 @@ export default BookingTab;
 const BookingTabContainerStyle = styled.ul`
   width: 100%;
   display: flex;
-  margin: 0 auto;
+  /* margin: 0 auto; */
   overflow: hidden;
 `;
 
 const BookingTabItemStyle = styled.li<{ $isActive: boolean }>`
-  width: 33%;
-  margin: 0 auto;
-  height: 35px;
+  width: 33.3%;
+  /* margin: 0 auto; */
+  height: 3rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-top-right-radius: 10px;
-  border-top-left-radius: 10px;
-
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
   cursor: pointer;
 
-  background-color: ${({ $isActive }) => ($isActive ? "white" : "aliceblue")};
+  background-color: ${({ $isActive }) =>
+    $isActive ? "whitesmoke" : "#7994a7"};
+  color: ${({ $isActive }) => ($isActive ? "black" : "white")};
+  text-decoration: ${({ $isActive }) => ($isActive ? "underline" : "none")};
+  z-index: ${({ $isActive }) => ($isActive ? "1" : "")};
 `;
