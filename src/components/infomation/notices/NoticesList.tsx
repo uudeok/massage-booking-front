@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 const NoticesList = () => {
   return (
-    <ul style={{ borderTop: "1px solid black" }}>
+    <ul style={{ borderTop: "1px solid black", marginBottom: "1rem" }}>
       {NOTICE_LIST.map((item) => (
         <NoticeItemBoxStyle key={item.date}>
           <NoticeItem item={item} />

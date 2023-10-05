@@ -3,29 +3,35 @@ import {
   FooterInnerContainerStyle,
   FooterLeftBoxStyle,
   FooterRightBoxStyle,
+  FooterSymbolBoxStyle,
+  FooterInfoListStyle,
+  FooterInfoItemStyle,
   FooterLogoItemStyle,
 } from "./Footer.style";
-import { FOOTER_INFO } from "../../../const/footer";
+import { FOOTER_INFO, FOOTER_LOGO } from "../../../const/footer";
 
 const Footer = () => {
   return (
     <FooterContainerStyle>
       <FooterInnerContainerStyle>
         <FooterLeftBoxStyle>
-          <h3>자연치유 쉼</h3>
-          <ul>
+          <FooterSymbolBoxStyle>
+            <strong>자연치유 쉼 | 대표 : 홍길동 </strong>
+          </FooterSymbolBoxStyle>
+          <FooterInfoListStyle>
             {FOOTER_INFO.map((item) => (
-              <li key={item.key}>
+              <FooterInfoItemStyle key={item.key}>
                 {item.key} : {item.value}
-              </li>
+              </FooterInfoItemStyle>
             ))}
-          </ul>
+          </FooterInfoListStyle>
         </FooterLeftBoxStyle>
         <FooterRightBoxStyle>
-          <FooterLogoItemStyle>로고1</FooterLogoItemStyle>
-          <FooterLogoItemStyle>로고2</FooterLogoItemStyle>
-          <FooterLogoItemStyle>로고3</FooterLogoItemStyle>
-          <FooterLogoItemStyle>로고4</FooterLogoItemStyle>
+          {FOOTER_LOGO.map((item) => (
+            <FooterLogoItemStyle key={item.key}>
+              {item.value}
+            </FooterLogoItemStyle>
+          ))}
         </FooterRightBoxStyle>
       </FooterInnerContainerStyle>
     </FooterContainerStyle>
