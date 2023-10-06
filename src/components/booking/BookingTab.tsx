@@ -38,13 +38,11 @@ export default BookingTab;
 const BookingTabContainerStyle = styled.ul`
   width: 100%;
   display: flex;
-  /* margin: 0 auto; */
   overflow: hidden;
 `;
 
 const BookingTabItemStyle = styled.li<{ $isActive: boolean }>`
   width: 33.3%;
-  /* margin: 0 auto; */
   height: 3rem;
   display: flex;
   justify-content: center;
