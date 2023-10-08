@@ -1,17 +1,13 @@
 import styled from "styled-components";
 import { DEVISE_SIZE } from "../../const/devise";
-import BookingList from "./BookingList";
+import BookingItemList from "./BookingItemList";
 
 const BookingForm = () => {
   return (
     <BookingFormContainerStyle>
       <BookingFormSectionStyle>
-        <h2>1. 마사지 선택</h2>
-        <BookingList />
+        <BookingItemList />
       </BookingFormSectionStyle>
-
-      <BookingFormSectionStyle>2</BookingFormSectionStyle>
-      <BookingFormSectionStyle>3</BookingFormSectionStyle>
     </BookingFormContainerStyle>
   );
 };
@@ -19,8 +15,6 @@ const BookingForm = () => {
 export default BookingForm;
 
 const BookingFormContainerStyle = styled.div`
-  /* border: 1px solid black; */
-  padding: 1rem;
   width: 100%;
   display: flex;
 
@@ -33,11 +27,12 @@ const BookingFormContainerStyle = styled.div`
 const BookingFormSectionStyle = styled.div`
   display: flex;
   flex-direction: column;
-  width: 33.33%;
-  padding: 1rem;
-  text-align: center;
+  width: 100%;
+  padding: 0.5rem;
+
+  /* border: 1px solid black; */
 
   @media only screen and (max-width: ${DEVISE_SIZE.tabletMin}) {
-    width: 100%;
+    height: 100%;
   }
 `;

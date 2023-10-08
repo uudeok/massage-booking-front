@@ -4,6 +4,7 @@ import { DEVISE_SIZE } from "../../../const/devise";
 export const FooterContainerStyle = styled.footer`
   width: 100%;
   border: 1px solid black;
+  /* background-color: #ecf2ea; */
 `;
 
 export const FooterInnerContainerStyle = styled.div`
@@ -40,9 +41,5 @@ export const FooterInfoListStyle = styled.ul`
 `;
 
 export const FooterInfoItemStyle = styled.li`
-  padding: 1rem;
-`;
-
-export const FooterLogoItemStyle = styled.span`
   padding: 1rem;
 `;

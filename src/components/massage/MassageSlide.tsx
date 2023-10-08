@@ -35,7 +35,6 @@ const MassageSlide = () => {
 export default MassageSlide;
 
 const MassageItemContainerStyle = styled.div`
-  /* border: 1px solid black; */
   display: flex;
   flex-direction: column;
   text-align: center;

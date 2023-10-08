@@ -6,32 +6,29 @@ import {
   FooterSymbolBoxStyle,
   FooterInfoListStyle,
   FooterInfoItemStyle,
-  FooterLogoItemStyle,
 } from "./Footer.style";
-import { FOOTER_INFO, FOOTER_LOGO } from "../../../const/footer";
+import { FOOTER_BUSINESS } from "../../../const/footer";
 
 const Footer = () => {
   return (
     <FooterContainerStyle>
       <FooterInnerContainerStyle>
         <FooterLeftBoxStyle>
-          <FooterSymbolBoxStyle>
-            <strong>자연치유 쉼 | 대표 : 홍길동 </strong>
-          </FooterSymbolBoxStyle>
+          <FooterSymbolBoxStyle>자연치유 쉼</FooterSymbolBoxStyle>
           <FooterInfoListStyle>
-            {FOOTER_INFO.map((item) => (
-              <FooterInfoItemStyle key={item.key}>
-                {item.key} : {item.value}
+            {FOOTER_BUSINESS.map((info) => (
+              <FooterInfoItemStyle key={info.id}>
+                {info.key} : {info.value}
               </FooterInfoItemStyle>
             ))}
           </FooterInfoListStyle>
         </FooterLeftBoxStyle>
         <FooterRightBoxStyle>
-          {FOOTER_LOGO.map((item) => (
+          {/* {FOOTER_SNS.map((item) => (
             <FooterLogoItemStyle key={item.key}>
               {item.value}
             </FooterLogoItemStyle>
-          ))}
+          ))} */}
         </FooterRightBoxStyle>
       </FooterInnerContainerStyle>
     </FooterContainerStyle>

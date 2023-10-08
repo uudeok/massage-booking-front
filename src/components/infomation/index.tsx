@@ -21,8 +21,9 @@ const Information = () => {
 export default Information;
 
 const InformationContainerStyle = styled.div`
-  width: 100%;
+  width: 70%;
   min-height: 40vh;
+  margin: 0 auto;
   /* background-color: beige; */
 `;
 

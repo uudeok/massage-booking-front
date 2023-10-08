@@ -16,13 +16,12 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 export default Layout;
 
 const MainLayoutStyled = styled.main`
-  width: 70%;
-  margin: 0 auto;
+  width: 100%;
   display: flex;
   flex-direction: column;
   flex: 1;
 
-  @media only screen and (max-width: ${DEVISE_SIZE.notebookMax}) {
+  /* @media only screen and (max-width: ${DEVISE_SIZE.notebookMax}) {
     width: 80%;
-  }
+  } */
 `;

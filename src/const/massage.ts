@@ -1,7 +1,7 @@
 export const MASSAGE_LIST = [
-  { img: "noimg.gif", content: "마사지 입니다1" },
-  { img: "noimg.gif", content: "마사지 입니다2" },
-  { img: "noimg.gif", content: "마사지 입니다3" },
-  { img: "noimg.gif", content: "마사지 입니다4" },
-  { img: "noimg.gif", content: "마사지 입니다5" },
+  { img: "건식.jpg", content: "건식 마사지" },
+  { img: "습식.jpg", content: "오일 마사지" },
+  { img: "교정.jpg", content: "체형 교정" },
+  { img: "청소년.jpg", content: "청소년 마사지" },
+  { img: "피부.jpg", content: "피부 마사지" },
 ];

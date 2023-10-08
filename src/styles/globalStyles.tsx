@@ -7,6 +7,8 @@ const GlobalStyles = createGlobalStyle`
     * {
         box-sizing: border-box;
     }
+    
+
 
     ol, ul {
         list-style: none;
