@@ -7,12 +7,15 @@ import {
   HeaderMenuListStyle,
   HeaderLoginBoxStyle,
 } from "./Header.style";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
     <HeaderContainerStyle>
       <HeaderInnerContainerStyle>
-        <HeaderLogoBoxStyle>자연치유 쉼</HeaderLogoBoxStyle>
+        <HeaderLogoBoxStyle>
+          <Link to="/">자연치유 쉼</Link>
+        </HeaderLogoBoxStyle>
         <HeaderMenuBoxStyle>
           <HeaderMenuInnerBoxStyle>
             <HeaderMenuListStyle>

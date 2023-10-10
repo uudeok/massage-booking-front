@@ -1,91 +1,41 @@
-import { BOOKING_MASSAGE_TABLE, BOOKING_ITEM } from "../../const/booking";
-import { useState } from "react";
+import { BOOKING_MASSAGE_TABLE } from "../../const/book";
+import BookingItem from "./BookingItem";
 import styled from "styled-components";
+import { ITabHandler } from "../../@types/book";
 
-const BookingItemList = () => {
-  const [tabNum, setTabNum] = useState(0);
+const BookingItemList = ({ changeTabHandler }: ITabHandler) => {
+  // api 호출해서 마사지 리스트를 가져온다
 
   return (
-    <BookingListContainerStyle>
-      <BookingListLeftBoxStyle>
-        <BookingListStyle>
-          {BOOKING_MASSAGE_TABLE.map((massage, index) => (
-            <BookingListItemStyle
-              key={massage.id}
-              onClick={() => setTabNum(index)}
-              $isActive={index === tabNum}
-            >
-              {BOOKING_ITEM[massage.item]}
-            </BookingListItemStyle>
-          ))}
-        </BookingListStyle>
-      </BookingListLeftBoxStyle>
-
-      <BookingListRightBoxStyle>
-        <span>{BOOKING_MASSAGE_TABLE[tabNum].content}</span>
-      </BookingListRightBoxStyle>
-    </BookingListContainerStyle>
+    <BookingItemListStyle>
+      {BOOKING_MASSAGE_TABLE.map((masg) => (
+        <BookingItemStyle key={masg.id}>
+          <BookingItem
+            key={masg.id}
+            massage={masg}
+            changeTabHandler={changeTabHandler}
+          />
+        </BookingItemStyle>
+      ))}
+    </BookingItemListStyle>
   );
 };
 
 export default BookingItemList;
 
-const BookingListContainerStyle = styled.div`
+const BookingItemListStyle = styled.ul`
   display: flex;
-  height: 100%;
-  width: 100%;
-  border: 1px dotted green;
+  justify-content: flex-start;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 1200px;
 `;
 
-const BookingListLeftBoxStyle = styled.div`
-  width: 30%;
-  overflow-y: auto;
-  border-right: none;
-`;
-
-const BookingListRightBoxStyle = styled.div`
-  width: 70%;
+const BookingItemStyle = styled.li`
+  width: 500px;
+  height: 500px;
   padding: 1rem;
-  background-color: #ecf2ea;
-`;
-
-const BookingListStyle = styled.ul`
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  height: 100%;
-`;
-
-const BookingListItemStyle = styled.li<{ $isActive: boolean }>`
-  cursor: pointer;
-  height: 100%;
-  display: inherit;
-  justify-content: center;
-  align-items: center;
-
-  color: ${({ $isActive }) => ($isActive ? "#195B35" : "black")};
-  background-color: ${({ $isActive }) =>
-    $isActive ? "#ecf2ea" : "whitesmoke"};
-
-  &:hover {
-    color: #195b35;
-  }
-`;
-
-const BookingListTypeListStyle = styled.ul`
-  padding: 1rem;
-  height: 60%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  margin: 45px;
   text-align: center;
-  margin-top: 1rem;
-  /* border: 1px solid red; */
-`;
-
-const BookingListButtonStyle = styled.button`
-  border: none;
-  background-color: #ecf2ea;
-  cursor: pointer;
-  font-size: 15px;
+  box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
 `;

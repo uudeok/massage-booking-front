@@ -1,17 +1,27 @@
 import { useState } from "react";
-import BookingForm from "./BookingForm";
-import BookingCard from "../common/card/BookingCard";
 import styled from "styled-components";
-import { DEVISE_SIZE } from "../../const/devise";
-
-const TAB_LIST = [
-  { key: "마사지 선택", content: <BookingForm /> },
-  { key: "날짜 및 시간 선택", content: "내용2" },
-  { key: "예약하기", content: "내용3" },
-];
+import BookingItemList from "./BookingItemList";
+import BookingDetail from "./BookingDetail";
 
 const BookingTab = () => {
   const [tabNum, setTabNum] = useState(0);
+
+  const changeTabHandler = (number: number) => {
+    setTabNum(number);
+  };
+
+  const TAB_LIST = [
+    {
+      key: "마사지 선택",
+      content: <BookingItemList changeTabHandler={changeTabHandler} />,
+    },
+    {
+      key: "시간 선택",
+      content: <BookingDetail changeTabHandler={changeTabHandler} />,
+    },
+    { key: "날짜 선택", content: "날짜 및 시간 선택" },
+    { key: "결제하기", content: "최종 내용정리 및 결제" },
+  ];
 
   return (
     <>
@@ -28,7 +38,9 @@ const BookingTab = () => {
           </BookingTabItemStyle>
         ))}
       </BookingTabContainerStyle>
-      <BookingCard>{TAB_LIST[tabNum].content}</BookingCard>
+      <BookingContentContainerStyle>
+        {TAB_LIST[tabNum].content}
+      </BookingContentContainerStyle>
     </>
   );
 };
@@ -42,22 +54,21 @@ const BookingTabContainerStyle = styled.ul`
 
 const BookingTabItemStyle = styled.li<{ $isActive: boolean }>`
   width: 33.3%;
-  height: 3rem;
+  height: 5rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  border-top-right-radius: 15px;
-  border-top-left-radius: 15px;
   cursor: pointer;
-  margin-top: 3rem;
+  font-size: 20px;
 
   background-color: ${({ $isActive }) =>
-    $isActive ? "whitesmoke" : "#93c47d"};
-  color: ${({ $isActive }) => ($isActive ? "black" : "white")};
-  text-decoration: ${({ $isActive }) => ($isActive ? "underline" : "none")};
+    $isActive ? "#819977" : "whitesmoke"};
+  color: ${({ $isActive }) => ($isActive ? "white" : "black")};
   z-index: ${({ $isActive }) => ($isActive ? "1" : "")};
+`;
 
-  /* @media only screen and (max-width: ${DEVISE_SIZE.notebookMax}) {
-    margin-top: 3rem;
-  } */
+const BookingContentContainerStyle = styled.div`
+  justify-content: center;
+  display: flex;
+  margin-top: 3rem;
 `;

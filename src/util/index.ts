@@ -1,4 +1,4 @@
-export const getMinuteUnit = (minute: number) => {
+export const addMinutesUnit = (minute: number) => {
   return minute + "분";
 };
 

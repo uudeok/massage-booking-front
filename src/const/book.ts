@@ -1,4 +1,9 @@
-export const BOOKING_ITEM = {
+import { IMassageTable } from "../@types/book";
+
+interface IBookingItem {
+  [key: string]: string;
+}
+export const BOOKING_ITEM: IBookingItem = {
   DRY_MASSAGE: "건식 마사지",
   OIL_MASSAGE: "습식 마사지",
   MANUAL_THERAPY: "체형교정 마사지",
@@ -6,7 +11,7 @@ export const BOOKING_ITEM = {
   SKIN_THERAPY: "피부 마사지",
 };
 
-export const BOOKING_MASSAGE_TABLE = [
+export const BOOKING_MASSAGE_TABLE: IMassageTable[] = [
   {
     img: "건식.jpg",
     item: "DRY_MASSAGE",
@@ -60,4 +65,4 @@ export const BOOKING_MASSAGE_TABLE = [
       { time: 90, price: 90000, id: 2 },
     ],
   },
-] as const;
+];

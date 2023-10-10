@@ -3,13 +3,9 @@ import { DEVISE_SIZE } from "../../../const/devise";
 
 export const HeaderContainerStyle = styled.header`
   width: 100%;
-  border-bottom: 1px solid black;
+  /* border-bottom: 1px solid black; */
   min-height: 100px;
   display: flex;
-
-  @media only screen and (max-width: ${DEVISE_SIZE.notebookMin}) {
-    margin-bottom: 1rem;
-  }
 `;
 
 export const HeaderInnerContainerStyle = styled.div`

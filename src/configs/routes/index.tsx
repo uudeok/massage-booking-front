@@ -1,16 +1,16 @@
 import { createBrowserRouter, RouteObject } from "react-router-dom";
 import App from "../../App";
-import CategoryPage from "../../pages/CategoryPage";
 import ProductPage from "../../pages/ProductPage";
 import HomePage from "../../pages/HomePage";
+import BookPage from "../../pages/BookPage";
 
 const categoryRouteObjects: RouteObject[] = [
   {
-    path: "/category",
+    path: "/book",
     children: [
       {
         index: true,
-        element: <CategoryPage />,
+        element: <BookPage />,
       },
     ],
   },
