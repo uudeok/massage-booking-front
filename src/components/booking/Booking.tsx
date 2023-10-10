@@ -23,8 +23,8 @@ const BookingContainerStyle = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
-    url("h.jpg");
+  /* background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
+    url("h.jpg"); */
   background-size: 100% 100%;
   background-repeat: no-repeat;
   opacity: 0.8;
@@ -64,6 +64,7 @@ const BookingClickBoxStyle = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: "KBO-Dia-Gothic_bold";
 
   &:hover {
     background-color: #819977;
