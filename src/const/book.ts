@@ -18,9 +18,9 @@ export const BOOKING_MASSAGE_TABLE: IMassageTable[] = [
     id: 1,
     content: "오일을 사용하지 않은 지압식 마사지",
     detail: [
-      { time: 60, price: 60000, id: 1 },
-      { time: 90, price: 80000, id: 2 },
-      { time: 120, price: 100000, id: 3 },
+      { time: 60, price: 60000, id: 1, massageId: 1 },
+      { time: 90, price: 80000, id: 2, massageId: 1 },
+      { time: 120, price: 100000, id: 3, massageId: 1 },
     ],
   },
   {
@@ -29,8 +29,8 @@ export const BOOKING_MASSAGE_TABLE: IMassageTable[] = [
     id: 2,
     content: "피로 회복과 피부 탄력에 좋은 힐링식 아로마 마사지",
     detail: [
-      { time: 60, price: 60000, id: 1 },
-      { time: 90, price: 80000, id: 2 },
+      { time: 60, price: 60000, id: 1, massageId: 2 },
+      { time: 90, price: 80000, id: 2, massageId: 2 },
     ],
   },
   {
@@ -39,9 +39,9 @@ export const BOOKING_MASSAGE_TABLE: IMassageTable[] = [
     id: 3,
     content: "마사지와 체형 교정을 한번에 받을 수 있는 체형교정 마사지",
     detail: [
-      { time: 60, price: 70000, id: 1 },
-      { time: 90, price: 90000, id: 2 },
-      { time: 120, price: 110000, id: 3 },
+      { time: 60, price: 70000, id: 1, massageId: 3 },
+      { time: 90, price: 90000, id: 2, massageId: 3 },
+      { time: 120, price: 110000, id: 3, massageId: 3 },
     ],
   },
   {
@@ -50,8 +50,8 @@ export const BOOKING_MASSAGE_TABLE: IMassageTable[] = [
     id: 4,
     content: "학업에 지친 아이들, 거북목 및 체형 교정",
     detail: [
-      { time: 60, price: 50000, id: 1 },
-      { time: 90, price: 70000, id: 2 },
+      { time: 60, price: 50000, id: 1, massageId: 4 },
+      { time: 90, price: 70000, id: 2, massageId: 4 },
     ],
   },
   {
@@ -60,8 +60,8 @@ export const BOOKING_MASSAGE_TABLE: IMassageTable[] = [
     id: 5,
     content: "피부 테라피에 초점을 맞춘 마사지",
     detail: [
-      { time: 60, price: 70000, id: 1 },
-      { time: 90, price: 90000, id: 2 },
+      { time: 60, price: 70000, id: 1, massageId: 5 },
+      { time: 90, price: 90000, id: 2, massageId: 5 },
     ],
   },
 ];

@@ -4,21 +4,21 @@ import styled from "styled-components";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        minHeight: "100%",
-      }}
-    >
+    <LayoutWrapperStyle>
       <Header />
       <MainLayoutStyle>{children}</MainLayoutStyle>
       <Footer />
-    </div>
+    </LayoutWrapperStyle>
   );
 };
 
 export default Layout;
+
+const LayoutWrapperStyle = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+`;
 
 const MainLayoutStyle = styled.main`
   display: flex;

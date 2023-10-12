@@ -1,9 +1,9 @@
 import { useState } from "react";
 import styled from "styled-components";
 import BookingItemList from "./BookingItemList";
-import BookingDetail from "./BookingDetail";
 import BookingDate from "./BookingDate";
 import { DEVISE_SIZE } from "../../const/devise";
+import BookingDetailList from "./BookingDetailList";
 
 const BookingTab = () => {
   const [tabNum, setTabNum] = useState(0);
@@ -19,20 +19,20 @@ const BookingTab = () => {
     },
     {
       key: "시간 선택",
-      content: <BookingDetail changeTabHandler={changeTabHandler} />,
+      content: <BookingDetailList changeTabHandler={changeTabHandler} />,
     },
     {
       key: "날짜 선택",
-      content: <BookingDate />,
+      content: <BookingDate changeTabHandler={changeTabHandler} />,
     },
     { key: "결제하기", content: "최종 내용정리 및 결제" },
   ];
 
   return (
     <>
-      <BookingTabListStyle>
+      <TabListStyle>
         {TAB_LIST.map((item, index) => (
-          <BookingTabButtonStyle
+          <TabButtonStyle
             disabled={index !== tabNum}
             key={item.key}
             $isActive={index === tabNum}
@@ -41,43 +41,45 @@ const BookingTab = () => {
             }}
           >
             <li>{item.key}</li>
-          </BookingTabButtonStyle>
+          </TabButtonStyle>
         ))}
-      </BookingTabListStyle>
+      </TabListStyle>
 
-      <BookingContentContainerStyle>
-        {TAB_LIST[tabNum].content}
-      </BookingContentContainerStyle>
+      <ContentContainerStyle>{TAB_LIST[tabNum].content}</ContentContainerStyle>
     </>
   );
 };
 
 export default BookingTab;
 
-const BookingTabListStyle = styled.ul`
+const TabListStyle = styled.ul`
   width: 100%;
   display: flex;
   flex-direction: row;
   height: 5rem;
+  margin-top: 5rem;
 `;
 
-const BookingTabButtonStyle = styled.button<{ $isActive: boolean }>`
+const TabButtonStyle = styled.button<{ $isActive: boolean }>`
   width: 30%;
   height: 100%;
   cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${({ $isActive }) =>
-    $isActive ? "#2CC185" : "whitesmoke"};
-  color: ${({ $isActive }) => ($isActive ? "white" : "grey")};
   border: none;
   font-size: 20px;
+  font-family: "Pretendard-Regular";
+
+  background-color: ${({ $isActive }) =>
+    $isActive ? "#97a393" : "whitesmoke"};
+  color: ${({ $isActive }) => ($isActive ? "white" : "grey")};
 `;
 
-const BookingContentContainerStyle = styled.div`
+const ContentContainerStyle = styled.div`
   display: flex;
   width: 100%;
+  margin-top: 3rem;
 
   /* @media only screen and (max-width: ${DEVISE_SIZE.notebookMax}) {
     margin: auto;

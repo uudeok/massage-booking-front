@@ -3,6 +3,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { ICalendar } from "../../../@types/common";
 import dayjs from "dayjs";
 import "./Calendar.style.css";
+import { ko } from "date-fns/esm/locale";
 
 const Calendar = ({ changeDateHandler, selectedDate }: ICalendar) => {
   const date = new Date();
@@ -16,8 +17,7 @@ const Calendar = ({ changeDateHandler, selectedDate }: ICalendar) => {
       maxDate={new Date(addOneMonth)} // maxDate 이후 날짜 선택 불가
       selected={selectedDate}
       onChange={changeDateHandler}
-      showTimeSelect
-      timeFormat="HH:mm"
+      locale={ko}
     />
   );
 };

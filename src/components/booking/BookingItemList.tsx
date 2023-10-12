@@ -27,6 +27,7 @@ const BookingItemListStyle = styled.ul`
   flex-wrap: wrap;
   width: 1200px;
   margin: auto;
+  font-family: "Pretendard-Regular";
 `;
 
 const BookingItemStyle = styled.li`

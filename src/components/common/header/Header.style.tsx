@@ -3,9 +3,9 @@ import { DEVISE_SIZE } from "../../../const/devise";
 
 export const HeaderContainerStyle = styled.div`
   width: 100%;
-  border-bottom: 1px solid black;
   height: 100px;
   display: flex;
+  font-family: "Pretendard-Regular";
 `;
 
 export const HeaderInnerContainerStyle = styled.header`

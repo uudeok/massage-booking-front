@@ -24,10 +24,10 @@ const BookingContainerStyle = styled.div`
   flex-direction: column;
   justify-content: center;
   /* background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)),
-    url("h.jpg"); */
+    url(".jpg");
   background-size: 100% 100%;
   background-repeat: no-repeat;
-  opacity: 0.8;
+  opacity: 0.8; */
 
   @media only screen and (max-width: ${DEVISE_SIZE.notebookMax}) {
     width: 100%;
@@ -60,7 +60,7 @@ const BookingClickBoxStyle = styled.div`
   margin-right: 3.3rem;
   font-weight: bold;
   color: white;
-  background-color: #7e8d4f;
+  background-color: #97a393;
   display: flex;
   justify-content: center;
   align-items: center;

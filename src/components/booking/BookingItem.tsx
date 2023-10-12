@@ -64,7 +64,6 @@ const BookingItemContentBoxStyle = styled.div`
 
   span {
     flex: 1;
-    font-family: "KBO-Dia-Gothic_medium";
     padding: 0.5rem;
     font-size: 15px;
   }
@@ -75,7 +74,7 @@ const BookingItemContentBoxStyle = styled.div`
     cursor: pointer;
 
     &:hover {
-      background-color: #2cc185;
+      background-color: #97a393;
       color: white;
       border: none;
     }

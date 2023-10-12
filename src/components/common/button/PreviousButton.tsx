@@ -1,15 +1,14 @@
 import styled from "styled-components";
 
 interface IProps {
-  children: React.ReactNode;
   changeTabHandler: (number: number) => void;
   tabNum: number;
 }
 
-const PreviousButton = ({ children, changeTabHandler, tabNum }: IProps) => {
+const PreviousButton = ({ changeTabHandler, tabNum }: IProps) => {
   return (
     <ButtonStyle onClick={() => changeTabHandler(tabNum)}>
-      {children}
+      이전단계로
     </ButtonStyle>
   );
 };
@@ -24,7 +23,6 @@ const ButtonStyle = styled.button`
   cursor: pointer;
 
   &:hover {
-    color: white;
-    background-color: #2cc185;
+    color: #97a393;
   }
 `;

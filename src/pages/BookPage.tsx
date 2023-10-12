@@ -3,11 +3,9 @@ import Layout from "../layout/Layout";
 
 const BookPage = () => {
   return (
-    <>
-      <Layout>
-        <BookingTab />
-      </Layout>
-    </>
+    <Layout>
+      <BookingTab />
+    </Layout>
   );
 };
 
