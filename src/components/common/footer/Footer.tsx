@@ -2,7 +2,6 @@ import {
   FooterContainerStyle,
   FooterInnerContainerStyle,
   FooterLeftBoxStyle,
-  FooterRightBoxStyle,
   FooterSymbolBoxStyle,
   FooterInfoListStyle,
   FooterInfoItemStyle,
@@ -23,13 +22,6 @@ const Footer = () => {
             ))}
           </FooterInfoListStyle>
         </FooterLeftBoxStyle>
-        <FooterRightBoxStyle>
-          {/* {FOOTER_SNS.map((item) => (
-            <FooterLogoItemStyle key={item.key}>
-              {item.value}
-            </FooterLogoItemStyle>
-          ))} */}
-        </FooterRightBoxStyle>
       </FooterInnerContainerStyle>
     </FooterContainerStyle>
   );

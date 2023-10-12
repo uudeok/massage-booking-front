@@ -2,6 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import BookingItemList from "./BookingItemList";
 import BookingDetail from "./BookingDetail";
+import BookingDate from "./BookingDate";
 
 const BookingTab = () => {
   const [tabNum, setTabNum] = useState(0);
@@ -19,13 +20,16 @@ const BookingTab = () => {
       key: "시간 선택",
       content: <BookingDetail changeTabHandler={changeTabHandler} />,
     },
-    { key: "날짜 선택", content: "날짜 및 시간 선택" },
+    {
+      key: "날짜 선택",
+      content: <BookingDate />,
+    },
     { key: "결제하기", content: "최종 내용정리 및 결제" },
   ];
 
   return (
-    <>
-      <BookingTabContainerStyle>
+    <div>
+      <BookingTabListStyle>
         {TAB_LIST.map((item, index) => (
           <BookingTabItemStyle
             $isActive={index === tabNum}
@@ -34,22 +38,24 @@ const BookingTab = () => {
               setTabNum(index);
             }}
           >
-            {item.key}
+            <button disabled={index !== tabNum}>{item.key}</button>
           </BookingTabItemStyle>
         ))}
-      </BookingTabContainerStyle>
+      </BookingTabListStyle>
+
       <BookingContentContainerStyle>
         {TAB_LIST[tabNum].content}
       </BookingContentContainerStyle>
-    </>
+    </div>
   );
 };
 
 export default BookingTab;
 
-const BookingTabContainerStyle = styled.ul`
+const BookingTabListStyle = styled.ul`
   width: 100%;
   display: flex;
+  flex-direction: row;
 `;
 
 const BookingTabItemStyle = styled.li<{ $isActive: boolean }>`
@@ -58,17 +64,20 @@ const BookingTabItemStyle = styled.li<{ $isActive: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
-  cursor: pointer;
-  font-size: 20px;
+
+  button {
+    cursor: pointer;
+    background-color: ${({ $isActive }) =>
+      $isActive ? "#2CC185" : "whitesmoke"};
+    color: ${({ $isActive }) => ($isActive ? "white" : "grey")};
+    border: none;
+    font-size: 20px;
+    font-family: "KBO-Dia-Gothic_medium";
+  }
 
   background-color: ${({ $isActive }) =>
-    $isActive ? "#819977" : "whitesmoke"};
-  color: ${({ $isActive }) => ($isActive ? "white" : "black")};
+    $isActive ? "#2CC185" : "whitesmoke"};
   z-index: ${({ $isActive }) => ($isActive ? "1" : "")};
 `;
 
-const BookingContentContainerStyle = styled.div`
-  justify-content: center;
-  display: flex;
-  margin-top: 3rem;
-`;
+const BookingContentContainerStyle = styled.div``;

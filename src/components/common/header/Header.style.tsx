@@ -1,14 +1,14 @@
 import styled from "styled-components";
 import { DEVISE_SIZE } from "../../../const/devise";
 
-export const HeaderContainerStyle = styled.header`
+export const HeaderContainerStyle = styled.div`
   width: 100%;
   /* border-bottom: 1px solid black; */
   min-height: 100px;
   display: flex;
 `;
 
-export const HeaderInnerContainerStyle = styled.div`
+export const HeaderInnerContainerStyle = styled.header`
   width: 70%;
   margin: 0 auto;
   display: flex;

@@ -16,8 +16,7 @@ export const BOOKING_MASSAGE_TABLE: IMassageTable[] = [
     img: "건식.jpg",
     item: "DRY_MASSAGE",
     id: 1,
-    content:
-      "오일을 사용하지 않은 지압식 마사지로 뭉친 근육을 시원하게 풀어드립니다.",
+    content: "오일을 사용하지 않은 지압식 마사지",
     detail: [
       { time: 60, price: 60000, id: 1 },
       { time: 90, price: 80000, id: 2 },
@@ -49,7 +48,7 @@ export const BOOKING_MASSAGE_TABLE: IMassageTable[] = [
     img: "청소년.jpg",
     item: "YOUTH_MASSAGE",
     id: 4,
-    content: "학업에 지친 아이들, 거북목 및 체형 교정으로 숨은 키를 찾아드려요",
+    content: "학업에 지친 아이들, 거북목 및 체형 교정",
     detail: [
       { time: 60, price: 50000, id: 1 },
       { time: 90, price: 70000, id: 2 },

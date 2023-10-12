@@ -1,17 +1,16 @@
 import styled from "styled-components";
 import { DEVISE_SIZE } from "../../../const/devise";
 
-export const FooterContainerStyle = styled.footer`
+export const FooterContainerStyle = styled.div`
   width: 100%;
-  border: 1px solid black;
-  /* background-color: #ecf2ea; */
+  display: flex;
+  color: white;
+  background-color: #313131;
 `;
 
-export const FooterInnerContainerStyle = styled.div`
+export const FooterInnerContainerStyle = styled.footer`
   width: 80%;
   margin: 0 auto;
-  display: flex;
-  flex-direction: row;
 
   @media only screen and (max-width: ${DEVISE_SIZE.notebookMax}) {
     flex-direction: column;
@@ -23,12 +22,8 @@ export const FooterLeftBoxStyle = styled.div`
   flex: 1;
 
   @media only screen and (max-width: ${DEVISE_SIZE.notebookMax}) {
-    display: inline-block;
+    flex-direction: column;
   }
-`;
-
-export const FooterRightBoxStyle = styled.div`
-  display: flex;
 `;
 
 export const FooterSymbolBoxStyle = styled.div`
@@ -38,8 +33,16 @@ export const FooterSymbolBoxStyle = styled.div`
 export const FooterInfoListStyle = styled.ul`
   display: flex;
   font-size: 13px;
+
+  @media only screen and (max-width: ${DEVISE_SIZE.notebookMax}) {
+    flex-wrap: wrap;
+  }
 `;
 
 export const FooterInfoItemStyle = styled.li`
   padding: 1rem;
+
+  @media only screen and (max-width: ${DEVISE_SIZE.notebookMax}) {
+    padding: 0.3rem;
+  }
 `;

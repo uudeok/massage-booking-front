@@ -10,11 +10,7 @@ const BookingItemList = ({ changeTabHandler }: ITabHandler) => {
     <BookingItemListStyle>
       {BOOKING_MASSAGE_TABLE.map((masg) => (
         <BookingItemStyle key={masg.id}>
-          <BookingItem
-            key={masg.id}
-            massage={masg}
-            changeTabHandler={changeTabHandler}
-          />
+          <BookingItem massage={masg} changeTabHandler={changeTabHandler} />
         </BookingItemStyle>
       ))}
     </BookingItemListStyle>
@@ -29,6 +25,7 @@ const BookingItemListStyle = styled.ul`
   flex-direction: row;
   flex-wrap: wrap;
   width: 1200px;
+  margin: auto;
 `;
 
 const BookingItemStyle = styled.li`

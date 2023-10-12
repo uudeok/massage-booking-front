@@ -6,6 +6,11 @@ const GlobalStyles = createGlobalStyle`
     
     * {
         box-sizing: border-box;
+      
+    }
+    
+    html, body { 
+        height: 100%;
     }
     
     a {
@@ -22,8 +27,9 @@ const GlobalStyles = createGlobalStyle`
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/KBO-Dia-Gothic_bold.woff') format('woff');
     font-weight: 700;
     font-style: normal;
-}
+    }
 
+   
 
 `;
 

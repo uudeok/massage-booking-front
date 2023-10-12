@@ -1,6 +1,8 @@
 import { IMassageTable } from "../../@types/book";
 import styled from "styled-components";
 import { BOOKING_ITEM } from "../../const/book";
+import { useDispatch } from "react-redux";
+import { getMassageDetail, getMassageTime } from "../../stores/massageSlice";
 
 interface IProps {
   massage: IMassageTable;
@@ -8,10 +10,13 @@ interface IProps {
 }
 
 const BookingItem = ({ massage, changeTabHandler }: IProps) => {
+  const dispatch = useDispatch();
+
   const fetchDetailTime = async (id: number) => {
-    /// 마사지 id 를 받아서 api 호출, 마사지 detail 시간 가져오기
+    /// 마사지를 선택하면 해당 id 로 api 호출, 마사지 detail 시간 가져오기
     // 그러고나서 props 로 받은 함수 호출해서 tab 이동
-    await console.log(id);
+    await dispatch(getMassageDetail(id));
+    await dispatch(getMassageTime(id));
     changeTabHandler(1);
   };
 
@@ -46,7 +51,7 @@ const BookingItemContentBoxStyle = styled.div`
   height: 30%;
   display: flex;
   flex-direction: column;
-  padding: 1rem;
+  padding: 0.8rem;
 
   h3 {
     margin-bottom: 0.5rem;
@@ -54,6 +59,9 @@ const BookingItemContentBoxStyle = styled.div`
 
   span {
     flex: 1;
+    font-family: "KBO-Dia-Gothic_medium";
+    padding: 0.5rem;
+    font-size: 15px;
   }
 
   button {
@@ -62,7 +70,7 @@ const BookingItemContentBoxStyle = styled.div`
     cursor: pointer;
 
     &:hover {
-      background-color: #8fa784;
+      background-color: #2cc185;
       color: white;
       border: none;
     }
