@@ -3,8 +3,8 @@ import { DEVISE_SIZE } from "../../../const/devise";
 
 export const HeaderContainerStyle = styled.div`
   width: 100%;
-  /* border-bottom: 1px solid black; */
-  min-height: 100px;
+  border-bottom: 1px solid black;
+  height: 100px;
   display: flex;
 `;
 
@@ -21,6 +21,12 @@ export const HeaderInnerContainerStyle = styled.header`
 
 export const HeaderLogoBoxStyle = styled.div`
   width: 20%;
+  font-size: 30px;
+
+  @media only screen and (max-width: ${DEVISE_SIZE.notebookMax}) {
+    width: 60%;
+    font-size: 27px;
+  }
 `;
 
 export const HeaderMenuBoxStyle = styled.div`

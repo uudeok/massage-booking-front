@@ -2,6 +2,7 @@ import { BOOKING_MASSAGE_TABLE } from "../../const/book";
 import BookingItem from "./BookingItem";
 import styled from "styled-components";
 import { ITabHandler } from "../../@types/book";
+import { DEVISE_SIZE } from "../../const/devise";
 
 const BookingItemList = ({ changeTabHandler }: ITabHandler) => {
   // api 호출해서 마사지 리스트를 가져온다
@@ -35,4 +36,10 @@ const BookingItemStyle = styled.li`
   margin: 45px;
   text-align: center;
   box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
+
+  @media only screen and (max-width: ${DEVISE_SIZE.notebookMax}) {
+    width: 450px;
+    margin: 15px;
+    margin-top: 3rem;
+  }
 `;

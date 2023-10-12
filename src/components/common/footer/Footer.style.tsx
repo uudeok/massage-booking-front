@@ -2,14 +2,14 @@ import styled from "styled-components";
 import { DEVISE_SIZE } from "../../../const/devise";
 
 export const FooterContainerStyle = styled.div`
-  width: 100%;
   display: flex;
+  width: 100%;
+  min-height: 60px;
   color: white;
   background-color: #313131;
 `;
 
 export const FooterInnerContainerStyle = styled.footer`
-  width: 80%;
   margin: 0 auto;
 
   @media only screen and (max-width: ${DEVISE_SIZE.notebookMax}) {

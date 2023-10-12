@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { BOOKING_ITEM } from "../../const/book";
 import { useDispatch } from "react-redux";
 import { getMassageDetail, getMassageTime } from "../../stores/massageSlice";
+import { DEVISE_SIZE } from "../../const/devise";
 
 interface IProps {
   massage: IMassageTable;
@@ -23,7 +24,7 @@ const BookingItem = ({ massage, changeTabHandler }: IProps) => {
   return (
     <BookingItemBoxStyle>
       <BookingItemImgBoxStyle>
-        <img src={massage.img} alt={massage.item} width="100%" />
+        <img src={massage.img} alt={massage.item} width="100%" height="100%" />
       </BookingItemImgBoxStyle>
       <BookingItemContentBoxStyle>
         <h3>{BOOKING_ITEM[massage.item]}</h3>
@@ -45,6 +46,10 @@ const BookingItemBoxStyle = styled.div`
 
 const BookingItemImgBoxStyle = styled.div`
   height: 70%;
+
+  @media only screen and (max-width: ${DEVISE_SIZE.notebookMax}) {
+    height: 75%;
+  }
 `;
 
 const BookingItemContentBoxStyle = styled.div`

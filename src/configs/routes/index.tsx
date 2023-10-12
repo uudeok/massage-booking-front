@@ -4,7 +4,7 @@ import ProductPage from "../../pages/ProductPage";
 import HomePage from "../../pages/HomePage";
 import BookPage from "../../pages/BookPage";
 
-const categoryRouteObjects: RouteObject[] = [
+const bookRouteObjects: RouteObject[] = [
   {
     path: "/book",
     children: [
@@ -35,7 +35,7 @@ export const router = createBrowserRouter([
     element: <App />,
     children: [
       { index: true, element: <HomePage /> },
-      ...categoryRouteObjects,
+      ...bookRouteObjects,
       ...productRouteObjects,
     ],
   },

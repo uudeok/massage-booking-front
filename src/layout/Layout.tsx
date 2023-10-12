@@ -14,8 +14,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
 
 export default Layout;
 
-const MainLayoutStyle = styled.div`
+const MainLayoutStyle = styled.main`
   display: flex;
   flex-direction: column;
-  flex: 1;
 `;
