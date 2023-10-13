@@ -21,3 +21,31 @@ export interface IPreviousButton {
   changeTabHandler: (number: number) => void;
   tabNum: number;
 }
+
+export interface ITimeTable {
+  startTime: string;
+  endTime: string;
+  type: string;
+  date: Date;
+  id: number;
+}
+
+/// Component props type ///
+
+export interface IBookingItem {
+  massage: IMassageTable;
+  changeTabHandler: (number: number) => void;
+  tabNum: number;
+}
+
+export interface IBookingDetail {
+  detail: IMassageDetail;
+  changeTabHandler: (number: number) => void;
+  tabNum: number;
+}
+
+export interface IBookingAvailableTime {
+  data: ITimeTable;
+  changeTabHandler: (number: number) => void;
+  tabNum: number;
+}

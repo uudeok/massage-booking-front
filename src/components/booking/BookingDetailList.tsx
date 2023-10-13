@@ -1,23 +1,28 @@
-import { ITabHandler } from "../../@types/book";
 import { useSelector } from "react-redux/es/hooks/useSelector";
-import { getMassageTimeList } from "../../stores/massageSlice";
+import { getMassageList } from "../../stores/massageSlice";
 import styled from "styled-components";
 import PreviousButton from "../common/button/PreviousButton";
 import BookingDetail from "./BookingDetail";
 import { DEVISE_SIZE } from "../../const/devise";
+import { IPreviousButton } from "../../@types/book";
 
-const BookingDetailList = ({ changeTabHandler }: ITabHandler) => {
-  const massageTime = useSelector(getMassageTimeList);
+const BookingDetailList = ({ changeTabHandler, tabNum }: IPreviousButton) => {
+  const massageItem = useSelector(getMassageList);
+  const massageDetail = massageItem.map((item) => item.detail);
 
   return (
     <ContainerStyle>
       <InnerBoxStyle>
-        <PreviousButton changeTabHandler={changeTabHandler} tabNum={0} />
-        {massageTime.map((detail) => (
+        <PreviousButton
+          changeTabHandler={changeTabHandler}
+          tabNum={tabNum - 1}
+        />
+        {massageDetail[0].map((detail) => (
           <BookingDetail
             key={detail.id}
             detail={detail}
             changeTabHandler={changeTabHandler}
+            tabNum={tabNum}
           />
         ))}
       </InnerBoxStyle>

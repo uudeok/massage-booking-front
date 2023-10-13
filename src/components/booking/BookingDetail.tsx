@@ -1,4 +1,4 @@
-import { IMassageDetail } from "../../@types/book";
+import { IBookingDetail } from "../../@types/book";
 import styled from "styled-components";
 import BookingCard from "../common/card/BookingCard";
 import { useSelector } from "react-redux/es/hooks/useSelector";
@@ -7,22 +7,21 @@ import { BOOKING_ITEM } from "../../const/book";
 import { addComma, addMinutesUnit } from "../../util";
 import { DEVISE_SIZE } from "../../const/devise";
 
-interface IProps {
-  detail: IMassageDetail;
-  changeTabHandler: (number: number) => void;
-}
-
-const BookingDetail = ({ detail, changeTabHandler }: IProps) => {
+const BookingDetail = ({
+  detail,
+  changeTabHandler,
+  tabNum,
+}: IBookingDetail) => {
   const massageDetail = useSelector(getMassageList);
   const item = massageDetail[0].item;
   const description = massageDetail[0].content;
 
   const fetchAvailableTime = async (massageId: number, id: number) => {
     // 어떤 마사지의 몇분을 선택했는지 id 로 api 호출
-    // 가능한 날짜와 시간을 응답 받는다
+    // 예를들어 workingday/?from=오늘날짜&to=오늘날짜&products=선택한 마사지&category=마사지시간
     // 그리고 나서 tab 이동
     console.log(massageId, id);
-    changeTabHandler(2);
+    changeTabHandler(tabNum + 1);
   };
 
   return (

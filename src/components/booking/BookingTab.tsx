@@ -15,17 +15,26 @@ const BookingTab = () => {
   const TAB_LIST = [
     {
       key: "마사지 선택",
-      content: <BookingItemList changeTabHandler={changeTabHandler} />,
+      content: (
+        <BookingItemList changeTabHandler={changeTabHandler} tabNum={tabNum} />
+      ),
     },
     {
       key: "시간 선택",
-      content: <BookingDetailList changeTabHandler={changeTabHandler} />,
+      content: (
+        <BookingDetailList
+          changeTabHandler={changeTabHandler}
+          tabNum={tabNum}
+        />
+      ),
     },
     {
       key: "날짜 선택",
-      content: <BookingDate changeTabHandler={changeTabHandler} />,
+      content: (
+        <BookingDate changeTabHandler={changeTabHandler} tabNum={tabNum} />
+      ),
     },
-    { key: "결제하기", content: "최종 내용정리 및 결제" },
+    { key: "결제하기", content: "계산하는곳" },
   ];
 
   return (

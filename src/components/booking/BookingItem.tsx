@@ -1,50 +1,45 @@
-import { IMassageTable } from "../../@types/book";
+import { IBookingItem } from "../../@types/book";
 import styled from "styled-components";
 import { BOOKING_ITEM } from "../../const/book";
 import { useDispatch } from "react-redux";
-import { getMassageDetail, getMassageTime } from "../../stores/massageSlice";
+import { getMassageDetail } from "../../stores/massageSlice";
 import { DEVISE_SIZE } from "../../const/devise";
 
-interface IProps {
-  massage: IMassageTable;
-  changeTabHandler: (number: number) => void;
-}
-
-const BookingItem = ({ massage, changeTabHandler }: IProps) => {
+const BookingItem = ({ massage, changeTabHandler, tabNum }: IBookingItem) => {
   const dispatch = useDispatch();
 
   const fetchDetailTime = async (id: number) => {
-    /// 마사지를 선택하면 해당 id 로 api 호출, 마사지 detail 시간 가져오기
+    /// 마사지를 선택하면 id 로 api 호출, 마사지 디테일 및 정보가 응답으로 온다.
     // 그러고나서 props 로 받은 함수 호출해서 tab 이동
+
     await dispatch(getMassageDetail(id));
-    await dispatch(getMassageTime(id));
-    changeTabHandler(1);
+    changeTabHandler(tabNum + 1);
   };
 
   return (
-    <BookingItemBoxStyle>
-      <BookingItemImgBoxStyle>
+    <ItemBoxStyle>
+      <ItemImgBoxStyle>
         <img src={massage.img} alt={massage.item} width="100%" height="100%" />
-      </BookingItemImgBoxStyle>
-      <BookingItemContentBoxStyle>
+      </ItemImgBoxStyle>
+      <ItemContentBoxStyle>
         <h3>{BOOKING_ITEM[massage.item]}</h3>
         <span>{massage.content}</span>
         <button onClick={() => fetchDetailTime(massage.id)}>예약하기</button>
-      </BookingItemContentBoxStyle>
-    </BookingItemBoxStyle>
+      </ItemContentBoxStyle>
+    </ItemBoxStyle>
   );
 };
 
 export default BookingItem;
 
-const BookingItemBoxStyle = styled.div`
+const ItemBoxStyle = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
   height: 100%;
 `;
 
-const BookingItemImgBoxStyle = styled.div`
+const ItemImgBoxStyle = styled.div`
   height: 70%;
 
   @media only screen and (max-width: ${DEVISE_SIZE.notebookMax}) {
@@ -52,7 +47,7 @@ const BookingItemImgBoxStyle = styled.div`
   }
 `;
 
-const BookingItemContentBoxStyle = styled.div`
+const ItemContentBoxStyle = styled.div`
   height: 30%;
   display: flex;
   flex-direction: column;

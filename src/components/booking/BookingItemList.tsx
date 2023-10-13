@@ -1,26 +1,30 @@
 import { BOOKING_MASSAGE_TABLE } from "../../const/book";
 import BookingItem from "./BookingItem";
 import styled from "styled-components";
-import { ITabHandler } from "../../@types/book";
+import { IPreviousButton } from "../../@types/book";
 import { DEVISE_SIZE } from "../../const/devise";
 
-const BookingItemList = ({ changeTabHandler }: ITabHandler) => {
-  // api 호출해서 마사지 리스트를 가져온다
+const BookingItemList = ({ changeTabHandler, tabNum }: IPreviousButton) => {
+  // api 호출해서 마사지 리스트를 가져온다.
 
   return (
-    <BookingItemListStyle>
-      {BOOKING_MASSAGE_TABLE.map((masg) => (
-        <BookingItemStyle key={masg.id}>
-          <BookingItem massage={masg} changeTabHandler={changeTabHandler} />
+    <WrapperStyle>
+      {BOOKING_MASSAGE_TABLE.map((massage) => (
+        <BookingItemStyle key={massage.id}>
+          <BookingItem
+            massage={massage}
+            changeTabHandler={changeTabHandler}
+            tabNum={tabNum}
+          />
         </BookingItemStyle>
       ))}
-    </BookingItemListStyle>
+    </WrapperStyle>
   );
 };
 
 export default BookingItemList;
 
-const BookingItemListStyle = styled.ul`
+const WrapperStyle = styled.ul`
   display: flex;
   justify-content: flex-start;
   flex-direction: row;
