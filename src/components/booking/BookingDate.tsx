@@ -65,7 +65,7 @@ const ContainerStyle = styled.div`
 
 const InnerBoxStyle = styled.div`
   margin: auto;
-  width: 70%;
+  width: 50rem;
 
   @media only screen and (max-width: ${DEVISE_SIZE.notebookMax}) {
     width: 100%;
@@ -74,7 +74,7 @@ const InnerBoxStyle = styled.div`
 
 const CalendarBoxStyle = styled.div`
   padding: 1.5rem;
-  width: 100%;
+  width: 50rem;
   margin: 2rem auto;
   display: flex;
   height: 5rem;

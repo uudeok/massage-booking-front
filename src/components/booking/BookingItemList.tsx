@@ -3,9 +3,12 @@ import BookingItem from "./BookingItem";
 import styled from "styled-components";
 import { IPreviousButton } from "../../@types/book";
 import { DEVISE_SIZE } from "../../const/devise";
+import { useEffect } from "react";
 
 const BookingItemList = ({ changeTabHandler, tabNum }: IPreviousButton) => {
-  // api 호출해서 마사지 리스트를 가져온다.
+  useEffect(() => {
+    console.log("컴포넌트가 렌더링되면 마사지 리스트를 가져온다");
+  }, []);
 
   return (
     <WrapperStyle>
