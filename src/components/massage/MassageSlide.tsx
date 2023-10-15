@@ -3,6 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import styled from "styled-components";
 import { Autoplay } from "swiper/modules";
 import { MASSAGE_LIST } from "../../const/massage";
+import { DEVISE_SIZE } from "../../const/devise";
 
 const MassageSlide = () => {
   return (
@@ -21,12 +22,12 @@ const MassageSlide = () => {
       }}
     >
       {MASSAGE_LIST.map((item) => (
-        <SwiperSlide key={item.content}>
-          <MassageItemContainerStyle>
+        <SlideStyle key={item.content}>
+          <ContainerStyle>
             <img src={`${item.img}`} alt={item.content} />
-            <MassageItemContentStyle>{item.content}</MassageItemContentStyle>
-          </MassageItemContainerStyle>
-        </SwiperSlide>
+            <ItemContentStyle>{item.content}</ItemContentStyle>
+          </ContainerStyle>
+        </SlideStyle>
       ))}
     </Swiper>
   );
@@ -34,17 +35,27 @@ const MassageSlide = () => {
 
 export default MassageSlide;
 
-const MassageItemContainerStyle = styled.div`
+const SlideStyle = styled(SwiperSlide)`
+  @media only screen and (max-width: ${DEVISE_SIZE.notebookMax}) {
+    margin-top: 1rem;
+  }
+`;
+
+const ContainerStyle = styled.div`
   display: flex;
   flex-direction: column;
   text-align: center;
   cursor: pointer;
+  height: 100%;
+  justify-content: center;
 
   :hover {
     scale: calc(1.02);
   }
 `;
 
-const MassageItemContentStyle = styled.div`
+const ItemContentStyle = styled.div`
   padding: 1rem;
+  font-family: "Pretendard-Regular";
+  font-size: 20px;
 `;

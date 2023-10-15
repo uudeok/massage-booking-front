@@ -4,20 +4,20 @@ import { Link } from "react-router-dom";
 
 const Booking = () => {
   return (
-    <BookingContainerStyle>
-      <BookingInnerBoxStyle>
-        <BookingClickBoxStyle>오시는 길</BookingClickBoxStyle>
+    <ContainerStyle>
+      <InnerBoxStyle>
+        <ButtonBoxStyle>오시는 길</ButtonBoxStyle>
         <Link to="/book">
-          <BookingClickBoxStyle>예약하기</BookingClickBoxStyle>
+          <ButtonBoxStyle>예약하기</ButtonBoxStyle>
         </Link>
-      </BookingInnerBoxStyle>
-    </BookingContainerStyle>
+      </InnerBoxStyle>
+    </ContainerStyle>
   );
 };
 
 export default Booking;
 
-const BookingContainerStyle = styled.div`
+const ContainerStyle = styled.div`
   width: 100%;
   min-height: 45vh;
   display: flex;
@@ -40,7 +40,7 @@ const BookingContainerStyle = styled.div`
   }
 `;
 
-const BookingInnerBoxStyle = styled.div`
+const InnerBoxStyle = styled.div`
   width: 70%;
   margin: auto;
   display: flex;
@@ -49,9 +49,13 @@ const BookingInnerBoxStyle = styled.div`
   a {
     color: black;
   }
+
+  @media only screen and (max-width: ${DEVISE_SIZE.notebookMax}) {
+    width: 100%;
+  }
 `;
 
-const BookingClickBoxStyle = styled.div`
+const ButtonBoxStyle = styled.div`
   width: 17rem;
   height: 3.5rem;
   font-size: 2rem;
@@ -81,7 +85,7 @@ const BookingClickBoxStyle = styled.div`
   }
 
   @media only screen and (max-width: ${DEVISE_SIZE.mobileWidthMax}) {
-    width: 9rem;
+    width: 8rem;
     font-size: 1rem;
     margin-right: 2rem;
     height: 3rem;

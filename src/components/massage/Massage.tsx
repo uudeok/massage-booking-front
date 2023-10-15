@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import MassageSlide from "./MassageSlide";
+import { DEVISE_SIZE } from "../../const/devise";
 
 const Massage = () => {
   return (
@@ -19,11 +20,21 @@ const MassageContainerStyle = styled.div`
   /* background-color: #ecf2ea; */
   background-color: whitesmoke;
   display: flex;
+
+  @media only screen and (max-width: ${DEVISE_SIZE.tabletMax}) {
+    min-height: 25vh;
+  }
 `;
 
 const MassageInnerBoxStyle = styled.div`
   width: 70%;
-  min-height: 40vh;
+  height: 35vh;
   margin: auto;
   justify-content: center;
+  align-items: center;
+  display: flex;
+
+  @media only screen and (max-width: ${DEVISE_SIZE.tabletMax}) {
+    min-height: 15vh;
+  }
 `;

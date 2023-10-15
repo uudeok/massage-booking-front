@@ -5,29 +5,33 @@ import { DEVISE_SIZE } from "../../const/devise";
 
 const Information = () => {
   return (
-    <InformationContainerStyle>
-      <InformationInnerStyle>
-        <InformationLeftBox>
+    <ContainerStyle>
+      <InnerBoxStyle>
+        <LeftBoxStyle>
           <Notices />
-        </InformationLeftBox>
-        <InformationRightBox>
+        </LeftBoxStyle>
+        <RightBoxStyle>
           <Introduction />
-        </InformationRightBox>
-      </InformationInnerStyle>
-    </InformationContainerStyle>
+        </RightBoxStyle>
+      </InnerBoxStyle>
+    </ContainerStyle>
   );
 };
 
 export default Information;
 
-const InformationContainerStyle = styled.div`
+const ContainerStyle = styled.div`
   width: 70%;
   min-height: 40vh;
   margin: 0 auto;
-  /* background-color: beige; */
+  font-family: "Pretendard-Regular";
+
+  @media only screen and (max-width: ${DEVISE_SIZE.tabletMax}) {
+    width: 100%;
+  }
 `;
 
-const InformationInnerStyle = styled.div`
+const InnerBoxStyle = styled.div`
   display: flex;
   width: 100%;
 
@@ -36,7 +40,7 @@ const InformationInnerStyle = styled.div`
   }
 `;
 
-const InformationLeftBox = styled.div`
+const LeftBoxStyle = styled.div`
   width: 55%;
   margin-top: 1rem;
 
@@ -45,7 +49,7 @@ const InformationLeftBox = styled.div`
   }
 `;
 
-const InformationRightBox = styled.div`
+const RightBoxStyle = styled.div`
   width: 45%;
 
   @media only screen and (max-width: ${DEVISE_SIZE.tabletMax}) {

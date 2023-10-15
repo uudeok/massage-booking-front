@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import NoticesList from "./NoticesList";
 import { Link } from "react-router-dom";
+import { DEVISE_SIZE } from "../../../const/devise";
 
 const Notices = () => {
   return (
@@ -37,4 +38,8 @@ const NoticeHeaderStyle = styled.h1`
   font-size: 2rem;
   margin-bottom: 2rem;
   flex: 1;
+
+  @media only screen and (max-width: ${DEVISE_SIZE.tabletMax}) {
+    font-size: 1.8rem;
+  }
 `;
