@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { DEVISE_SIZE } from "../../../const/devise";
 
 interface IProps {
   changeTabHandler: (number: number) => void;
@@ -24,5 +25,9 @@ const ButtonStyle = styled.button`
 
   &:hover {
     color: #97a393;
+  }
+
+  @media only screen and (max-width: ${DEVISE_SIZE.notebookMax}) {
+    width: 7rem;
   }
 `;

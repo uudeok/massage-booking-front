@@ -17,7 +17,8 @@ const BookingCardStyle = styled.div`
 
   @media only screen and (max-width: ${DEVISE_SIZE.notebookMax}) {
     height: 20rem;
-    width: 30rem;
+    width: 21rem;
     margin: 2rem auto;
+    padding: 0.5rem;
   }
 `;

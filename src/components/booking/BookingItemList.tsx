@@ -43,7 +43,8 @@ const BookingItemStyle = styled.li`
   box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
 
   @media only screen and (max-width: ${DEVISE_SIZE.notebookMax}) {
-    width: 450px;
+    width: 330px;
+    height: 450px;
     margin: 15px;
     margin-top: 3rem;
   }

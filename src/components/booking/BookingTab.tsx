@@ -70,19 +70,23 @@ const TabListStyle = styled.ul`
 `;
 
 const TabButtonStyle = styled.button<{ $isActive: boolean }>`
-  width: 30%;
+  width: 100%;
   height: 100%;
   cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
   border: none;
-  font-size: 20px;
+  font-size: 1.5rem;
   font-family: "Pretendard-Regular";
 
   background-color: ${({ $isActive }) =>
     $isActive ? "#97a393" : "whitesmoke"};
   color: ${({ $isActive }) => ($isActive ? "white" : "grey")};
+
+  @media only screen and (max-width: ${DEVISE_SIZE.notebookMax}) {
+    font-size: 1rem;
+  }
 `;
 
 const ContentContainerStyle = styled.div`

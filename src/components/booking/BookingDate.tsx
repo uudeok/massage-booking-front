@@ -4,6 +4,7 @@ import { IPreviousButton } from "../../@types/book";
 import Calendar from "../common/calendar/Calendar";
 import BookingAvailableTimeList from "./BookingAvailableTimeList";
 import { useState } from "react";
+import { DEVISE_SIZE } from "../../const/devise";
 
 const BookingDate = ({ changeTabHandler, tabNum }: IPreviousButton) => {
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
@@ -24,18 +25,22 @@ const BookingDate = ({ changeTabHandler, tabNum }: IPreviousButton) => {
         />
 
         <CalendarBoxStyle>
-          <PreviousBoxStyle>
-            <SideButtonStyle>« 이전 날짜</SideButtonStyle>
-          </PreviousBoxStyle>
+          <ArrowBoxStyle>
+            <span>«</span>
+            <ArrowButtonStyle>이전 날짜</ArrowButtonStyle>
+          </ArrowBoxStyle>
+
           <CalendarMiddleBoxStyle>
             <Calendar
               changeDateHandler={changeDateHandler}
               selectedDate={selectedDate}
             />
           </CalendarMiddleBoxStyle>
-          <NextBoxStyle>
-            <SideButtonStyle>다음 날짜 »</SideButtonStyle>
-          </NextBoxStyle>
+
+          <ArrowBoxStyle>
+            <ArrowButtonStyle>다음 날짜</ArrowButtonStyle>
+            <span>»</span>
+          </ArrowBoxStyle>
         </CalendarBoxStyle>
 
         <TimeListBoxStyle>
@@ -53,26 +58,46 @@ export default BookingDate;
 
 const ContainerStyle = styled.div`
   display: flex;
-  /* border: 1px solid black; */
   width: 70%;
-  margin: auto;
+  margin: 2rem auto;
 `;
 
 const InnerBoxStyle = styled.div`
   margin: auto;
-  padding: 1rem;
+  width: 70%;
 
-  /* border: 1px solid blue; */
+  @media only screen and (max-width: ${DEVISE_SIZE.notebookMax}) {
+    width: 100%;
+  }
 `;
 
 const CalendarBoxStyle = styled.div`
-  /* border: 1px solid black; */
+  border: 1px solid black;
   padding: 1.5rem;
-  width: 55rem;
+  width: 100%;
   margin: 2rem auto;
   display: flex;
   height: 5rem;
   align-items: center;
+
+  @media only screen and (max-width: ${DEVISE_SIZE.notebookMax}) {
+    width: 100%;
+  }
+`;
+
+const ArrowBoxStyle = styled.div`
+  /* border: 2px solid #586d2c; */
+  padding: 0.3rem;
+  height: 2rem;
+`;
+
+const ArrowButtonStyle = styled.button`
+  border: none;
+  background-color: white;
+
+  @media only screen and (max-width: ${DEVISE_SIZE.mobileWidthMax}) {
+    display: none;
+  }
 `;
 
 const CalendarMiddleBoxStyle = styled.div`
@@ -83,23 +108,4 @@ const CalendarMiddleBoxStyle = styled.div`
 const TimeListBoxStyle = styled.div`
   margin-top: 1rem;
   box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
-`;
-
-const SideButtonStyle = styled.button`
-  border: none;
-  background-color: white;
-  cursor: pointer;
-  font-size: 14px;
-`;
-
-const PreviousBoxStyle = styled.div`
-  border: 2px solid #586d2c;
-  padding: 0.3rem;
-  height: 2rem;
-`;
-
-const NextBoxStyle = styled.div`
-  border: 2px solid #586d2c;
-  padding: 0.3rem;
-  height: 2rem;
 `;

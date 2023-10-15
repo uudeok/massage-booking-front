@@ -15,7 +15,7 @@ export const HeaderInnerContainerStyle = styled.header`
   align-items: end;
 
   @media only screen and (max-width: ${DEVISE_SIZE.notebookMax}) {
-    width: 80%;
+    width: 100%;
   }
 `;
 

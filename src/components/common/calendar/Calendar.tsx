@@ -33,6 +33,6 @@ const StyledDatePicker = styled(DatePicker)`
   width: 10rem;
   padding: 1rem;
   text-align: center;
-  border: 2px solid #586d2c;
+  /* border: 2px solid #586d2c; */
   cursor: pointer;
 `;
