@@ -46,6 +46,11 @@ export interface IBookingDetail {
 
 export interface IBookingAvailableTime {
   data: ITimeTable;
-  changeTabHandler: (number: number) => void;
-  tabNum: number;
+  fetchPayment: (timeId: number) => void;
+}
+
+export interface IBookingCalendar {
+  changeDateHandler: (date: Date | null) => void;
+  setSelectedDate: React.Dispatch<React.SetStateAction<Date | null>>;
+  selectedDate: Date | null;
 }

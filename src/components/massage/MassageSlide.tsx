@@ -3,7 +3,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import styled from "styled-components";
 import { Autoplay } from "swiper/modules";
 import { MASSAGE_LIST } from "../../const/massage";
-import { DEVISE_SIZE } from "../../const/devise";
 
 const MassageSlide = () => {
   return (
@@ -22,24 +21,18 @@ const MassageSlide = () => {
       }}
     >
       {MASSAGE_LIST.map((item) => (
-        <SlideStyle key={item.content}>
+        <SwiperSlide key={item.content}>
           <ContainerStyle>
             <img src={`${item.img}`} alt={item.content} />
             <ItemContentStyle>{item.content}</ItemContentStyle>
           </ContainerStyle>
-        </SlideStyle>
+        </SwiperSlide>
       ))}
     </Swiper>
   );
 };
 
 export default MassageSlide;
-
-const SlideStyle = styled(SwiperSlide)`
-  @media only screen and (max-width: ${DEVISE_SIZE.notebookMax}) {
-    margin-top: 1rem;
-  }
-`;
 
 const ContainerStyle = styled.div`
   display: flex;

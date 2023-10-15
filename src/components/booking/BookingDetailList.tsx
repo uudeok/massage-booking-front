@@ -45,7 +45,6 @@ const ContainerStyle = styled.div`
 const InnerBoxStyle = styled.div`
   margin: auto;
   padding: 1rem;
-  border: 1px solid black;
 
   @media only screen and (max-width: ${DEVISE_SIZE.notebookMax}) {
     width: 100%;

@@ -31,8 +31,8 @@ export default Calendar;
 const StyledDatePicker = styled(DatePicker)`
   height: 2rem;
   width: 10rem;
-  padding: 1rem;
   text-align: center;
-  /* border: 2px solid #586d2c; */
+  border: 2px solid #586d2c;
+  /* border: none; */
   cursor: pointer;
 `;

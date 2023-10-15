@@ -22,6 +22,7 @@ const ButtonStyle = styled.button`
   padding: 1rem;
   width: 10rem;
   cursor: pointer;
+  color: black;
 
   &:hover {
     color: #97a393;
