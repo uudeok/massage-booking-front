@@ -18,13 +18,15 @@ const BookingItem = ({ massage, changeTabHandler, tabNum }: IBookingItem) => {
 
   return (
     <ItemBoxStyle>
-      <ItemImgBoxStyle>
+      <ImgBoxStyle>
         <img src={massage.img} alt={massage.item} width="100%" height="100%" />
-      </ItemImgBoxStyle>
+      </ImgBoxStyle>
       <ItemContentBoxStyle>
         <h3>{BOOKING_ITEM[massage.item]}</h3>
         <span>{massage.content}</span>
-        <button onClick={() => fetchDetailTime(massage.id)}>예약하기</button>
+        <ButtonStyle onClick={() => fetchDetailTime(massage.id)}>
+          예약하기
+        </ButtonStyle>
       </ItemContentBoxStyle>
     </ItemBoxStyle>
   );
@@ -39,12 +41,12 @@ const ItemBoxStyle = styled.div`
   height: 100%;
 `;
 
-const ItemImgBoxStyle = styled.div`
+const ImgBoxStyle = styled.div`
   height: 70%;
 
-  @media only screen and (max-width: ${DEVISE_SIZE.notebookMax}) {
-    height: 75%;
-  }
+  /* @media only screen and (max-width: ${DEVISE_SIZE.notebookMax}) {
+    height: 80%;
+  } */
 `;
 
 const ItemContentBoxStyle = styled.div`
@@ -62,16 +64,16 @@ const ItemContentBoxStyle = styled.div`
     padding: 0.5rem;
     font-size: 15px;
   }
+`;
 
-  button {
-    background-color: white;
-    padding: 0.7rem;
-    cursor: pointer;
+const ButtonStyle = styled.button`
+  background-color: white;
+  padding: 0.7rem;
+  cursor: pointer;
 
-    &:hover {
-      background-color: #97a393;
-      color: white;
-      border: none;
-    }
+  &:hover {
+    background-color: #97a393;
+    color: white;
+    border: none;
   }
 `;

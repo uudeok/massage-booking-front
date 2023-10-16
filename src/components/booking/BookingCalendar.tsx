@@ -15,9 +15,9 @@ const BookingCalendar = ({
   return (
     <>
       <ArrowBoxStyle>
-        <span>«</span>
         <ArrowButtonStyle onClick={() => setSelectedDate(new Date(subOneDay))}>
-          이전 날짜
+          <span>«</span>
+          <KoreanButtonStyle>이전 날짜</KoreanButtonStyle>
         </ArrowButtonStyle>
       </ArrowBoxStyle>
 
@@ -30,9 +30,9 @@ const BookingCalendar = ({
 
       <ArrowBoxStyle>
         <ArrowButtonStyle onClick={() => setSelectedDate(new Date(addOneDay))}>
-          다음 날짜
+          <KoreanButtonStyle>다음 날짜</KoreanButtonStyle>
+          <span>»</span>
         </ArrowButtonStyle>
-        <span>»</span>
       </ArrowBoxStyle>
     </>
   );
@@ -49,7 +49,10 @@ const ArrowBoxStyle = styled.div`
 const ArrowButtonStyle = styled.button`
   border: none;
   background-color: white;
+  cursor: pointer;
+`;
 
+const KoreanButtonStyle = styled.span`
   @media only screen and (max-width: ${DEVISE_SIZE.mobileWidthMax}) {
     display: none;
   }

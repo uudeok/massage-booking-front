@@ -17,12 +17,12 @@ const PreviousButton = ({ changeTabHandler, tabNum }: IProps) => {
 export default PreviousButton;
 
 const ButtonStyle = styled.button`
-  border: 1px dotted black;
   background-color: white;
   padding: 1rem;
   width: 10rem;
   cursor: pointer;
   color: black;
+  border: none;
 
   &:hover {
     color: #97a393;

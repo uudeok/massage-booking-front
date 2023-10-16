@@ -36,11 +36,11 @@ const BookingDetail = ({
         </MiddleStyle>
         <BottomStyle>
           <h3>{addMinutesUnit(detail.time)}</h3>
-          <button
+          <ButtonStyle
             onClick={() => fetchAvailableTime(detail.massageId, detail.id)}
           >
             선택하기
-          </button>
+          </ButtonStyle>
         </BottomStyle>
       </ContainerStyle>
     </BookingCard>
@@ -51,7 +51,7 @@ export default BookingDetail;
 
 const ContainerStyle = styled.div`
   width: 100%;
-  border: 1px dotted black;
+  /* border: 1px dotted black; */
   padding: 1rem;
   font-family: "Pretendard-Regular";
 
@@ -110,13 +110,6 @@ const BottomStyle = styled.div`
     font-weight: bold;
   }
 
-  button {
-    width: 8rem;
-    height: 2.5rem;
-    cursor: pointer;
-    background-color: white;
-  }
-
   @media only screen and (max-width: ${DEVISE_SIZE.notebookMax}) {
     display: flex;
     flex-direction: column;
@@ -124,10 +117,17 @@ const BottomStyle = styled.div`
     h3 {
       font-size: 1.3rem;
     }
+  }
+`;
 
-    button {
-      width: 100%;
-      margin-top: 1rem;
-    }
+const ButtonStyle = styled.button`
+  width: 8rem;
+  height: 2.5rem;
+  cursor: pointer;
+  background-color: white;
+
+  @media only screen and (max-width: ${DEVISE_SIZE.notebookMax}) {
+    width: 100%;
+    margin-top: 1rem;
   }
 `;

@@ -40,7 +40,7 @@ const BookingDate = ({ changeTabHandler, tabNum }: IPreviousButton) => {
             selectedDate={selectedDate}
           />
         </CalendarBoxStyle>
-
+        <hr></hr>
         <TimeListBoxStyle>
           {TIME_TABLE.map((item) => (
             <BookingAvailableTime
@@ -79,7 +79,7 @@ const CalendarBoxStyle = styled.div`
   display: flex;
   height: 5rem;
   align-items: center;
-  box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
+  /* box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2); */
 
   @media only screen and (max-width: ${DEVISE_SIZE.notebookMax}) {
     width: 100%;
@@ -96,6 +96,6 @@ const TimeListBoxStyle = styled.div`
   flex-wrap: wrap;
 
   @media only screen and (max-width: ${DEVISE_SIZE.notebookMax}) {
-    width: 90%;
+    width: 100%;
   }
 `;
