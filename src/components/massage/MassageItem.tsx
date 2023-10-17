@@ -18,13 +18,13 @@ const MassageItem = ({ massage }: { massage: IMassageTable }) => {
       <ContentBoxStyle>
         <ContentTitleStyle>{BOOKING_ITEM[massage.item]}</ContentTitleStyle>
         <ContentStyle>{massage.content}</ContentStyle>
-        <PriceListStyle>
+        <ContentPriceListStyle>
           {massage.detail.map((item) => (
-            <div>
+            <div key={item.id}>
               {addMinutesUnit(item.time)} : {addComma(item.price)}
             </div>
           ))}
-        </PriceListStyle>
+        </ContentPriceListStyle>
       </ContentBoxStyle>
     </div>
   );
@@ -48,7 +48,7 @@ const ContentStyle = styled.div`
   margin-bottom: 0.5rem;
 `;
 
-const PriceListStyle = styled.div`
+const ContentPriceListStyle = styled.div`
   display: flex;
   justify-content: center;
   gap: 1rem;

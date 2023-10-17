@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import NoticesList from "./NoticesList";
+import NoticesMainList from "./NoticesMainList";
 import { Link } from "react-router-dom";
 import { DEVISE_SIZE } from "../../../const/devise";
 
@@ -8,11 +8,11 @@ const Notices = () => {
     <>
       <NoticeHeaderBoxStyle>
         <NoticeHeaderStyle>알려드립니다</NoticeHeaderStyle>
-        <Link to="/">
+        <Link to="/notice">
           <div>목록보기</div>
         </Link>
       </NoticeHeaderBoxStyle>
-      <NoticesList />
+      <NoticesMainList />
     </>
   );
 };

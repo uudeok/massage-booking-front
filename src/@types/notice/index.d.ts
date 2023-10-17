@@ -3,4 +3,5 @@ export interface INotice {
   date: string;
   category: string;
   content: string;
+  id: number;
 }
