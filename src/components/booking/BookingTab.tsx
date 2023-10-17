@@ -87,11 +87,15 @@ const TabButtonStyle = styled.button<{ $isActive: boolean }>`
   font-family: "Pretendard-Regular";
 
   background-color: ${({ $isActive }) =>
-    $isActive ? "#97a393" : "whitesmoke"};
+    $isActive ? "#9ac488" : "whitesmoke"};
   color: ${({ $isActive }) => ($isActive ? "white" : "grey")};
 
   @media only screen and (max-width: ${DEVISE_SIZE.notebookMax}) {
     font-size: 1rem;
+  }
+
+  @media only screen and (max-width: ${DEVISE_SIZE.mobileWidthMax}) {
+    font-size: 0.8rem;
   }
 `;
 

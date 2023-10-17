@@ -1,8 +1,9 @@
 import { createBrowserRouter, RouteObject } from "react-router-dom";
 import App from "../../App";
-import ProductPage from "../../pages/ProductPage";
+
 import HomePage from "../../pages/HomePage";
 import BookPage from "../../pages/BookPage";
+import MassagePage from "../../pages/MassagePage";
 
 const bookRouteObjects: RouteObject[] = [
   {
@@ -18,11 +19,11 @@ const bookRouteObjects: RouteObject[] = [
 
 const productRouteObjects: RouteObject[] = [
   {
-    path: "/product",
+    path: "/massage",
     children: [
       {
         index: true,
-        element: <ProductPage />,
+        element: <MassagePage />,
       },
       { path: ":id", element: <div>12345</div> },
     ],

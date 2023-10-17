@@ -41,6 +41,10 @@ const BookingDate = ({ changeTabHandler, tabNum }: IPreviousButton) => {
           />
         </CalendarBoxStyle>
         <hr></hr>
+        <AvailableBox>
+          <div></div>
+          <span>- 가능한 시간</span>
+        </AvailableBox>
         <TimeListBoxStyle>
           {TIME_TABLE.map((item) => (
             <BookingAvailableTime
@@ -97,5 +101,20 @@ const TimeListBoxStyle = styled.div`
 
   @media only screen and (max-width: ${DEVISE_SIZE.notebookMax}) {
     width: 100%;
+  }
+`;
+
+const AvailableBox = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+  padding: 0.5rem;
+
+  div {
+    width: 15px;
+    height: 15px;
+    background-color: #9ac488;
+    border-radius: 50%;
+    margin-right: 0.5rem;
   }
 `;

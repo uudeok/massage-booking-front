@@ -43,10 +43,12 @@ const BookingItemStyle = styled.li`
   padding: 1rem;
   margin: 45px;
   text-align: center;
-  box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
+  border: 1px solid lightgrey;
+  border-radius: 10px;
+  /* box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2); */
 
-  @media only screen and (max-width: ${DEVISE_SIZE.notebookMax}) {
-    width: 340px;
+  @media only screen and (max-width: ${DEVISE_SIZE.mobileWidthMin}) {
+    width: 345px;
     height: 450px;
     margin: 15px;
     margin-top: 3rem;

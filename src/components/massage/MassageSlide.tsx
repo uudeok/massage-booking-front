@@ -3,6 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import styled from "styled-components";
 import { Autoplay } from "swiper/modules";
 import { MASSAGE_LIST } from "../../const/massage";
+import { Link } from "react-router-dom";
 
 const MassageSlide = () => {
   return (
@@ -22,10 +23,12 @@ const MassageSlide = () => {
     >
       {MASSAGE_LIST.map((item) => (
         <SwiperSlide key={item.content}>
-          <ContainerStyle>
-            <img src={`${item.img}`} alt={item.content} />
-            <ItemContentStyle>{item.content}</ItemContentStyle>
-          </ContainerStyle>
+          <Link to="/massage">
+            <ContainerStyle>
+              <img src={`${item.img}`} alt={item.content} />{" "}
+              <ItemContentStyle>{item.content}</ItemContentStyle>
+            </ContainerStyle>
+          </Link>
         </SwiperSlide>
       ))}
     </Swiper>

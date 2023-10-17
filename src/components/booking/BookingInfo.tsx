@@ -8,7 +8,7 @@ const BookingInfo = () => {
   return (
     <>
       <BookingInfoHeaderStyle>
-        선택하신 마사지는 {BOOKING_ITEM[bookingData[0].item]} 입니다.
+        {BOOKING_ITEM[bookingData[0].item]}
       </BookingInfoHeaderStyle>
       <BookingInfoStyle>
         <span>날짜</span>
@@ -22,10 +22,10 @@ const BookingInfo = () => {
         <span>금액</span>
         <span>60,000원</span>
       </BookingInfoStyle>
-      <hr></hr>
+      <hr style={{ marginTop: "2rem" }}></hr>
       <BookingAgreementBoxStyle>
         <input type="checkbox" required />
-        <p>선택한 내용과 금액이 모두 일치합니다.</p>
+        <p>예약한 내용을 확인 하였습니다.</p>
       </BookingAgreementBoxStyle>
     </>
   );

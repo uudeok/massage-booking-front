@@ -25,8 +25,8 @@ const BookingDetail = ({
   };
 
   return (
-    <BookingCard>
-      <ContainerStyle>
+    <ContainerStyle>
+      <InnerBoxStyle>
         <TopStyle>
           <h3>{BOOKING_ITEM[item]}</h3>
           <div>{addComma(detail.price)}</div>
@@ -42,16 +42,31 @@ const BookingDetail = ({
             선택하기
           </ButtonStyle>
         </BottomStyle>
-      </ContainerStyle>
-    </BookingCard>
+      </InnerBoxStyle>
+    </ContainerStyle>
   );
 };
 
 export default BookingDetail;
 
 const ContainerStyle = styled.div`
+  margin: 2rem auto;
+  border-radius: 6px;
+  background-color: whitesmoke;
+  padding: 1rem;
+  width: 45rem;
+  height: 12rem;
+
+  @media only screen and (max-width: ${DEVISE_SIZE.notebookMax}) {
+    height: 20rem;
+    width: 21rem;
+    margin: 2rem auto;
+    padding: 0.5rem;
+  }
+`;
+
+const InnerBoxStyle = styled.div`
   width: 100%;
-  /* border: 1px dotted black; */
   padding: 1rem;
   font-family: "Pretendard-Regular";
 
@@ -73,7 +88,7 @@ const TopStyle = styled.div`
   div {
     border-radius: 30px;
     padding: 0.5rem 1.5rem;
-    background-color: #706f6f;
+    background-color: #404e38;
     color: white;
     font-size: 1.5rem;
   }
@@ -121,10 +136,14 @@ const BottomStyle = styled.div`
 `;
 
 const ButtonStyle = styled.button`
-  width: 8rem;
+  width: 8.5rem;
   height: 2.5rem;
   cursor: pointer;
-  background-color: white;
+  /* background-color: #9ac488; */
+  /* border: none; */
+  color: black;
+  font-size: 1rem;
+  font-family: "Pretendard-Regular";
 
   @media only screen and (max-width: ${DEVISE_SIZE.notebookMax}) {
     width: 100%;

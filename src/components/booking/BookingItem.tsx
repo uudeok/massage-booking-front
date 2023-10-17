@@ -67,12 +67,15 @@ const ItemContentBoxStyle = styled.div`
 `;
 
 const ButtonStyle = styled.button`
-  background-color: white;
+  background-color: #9ac488;
   padding: 0.7rem;
   cursor: pointer;
+  color: white;
+  border: none;
+  border-radius: 5px;
 
   &:hover {
-    background-color: #97a393;
+    background-color: #8ab278;
     color: white;
     border: none;
   }

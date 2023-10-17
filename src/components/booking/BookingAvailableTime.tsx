@@ -33,10 +33,10 @@ const ButtonStyle = styled.button<{ $isBooked: boolean }>`
 
   color: ${({ $isBooked }) => ($isBooked ? "lightgrey" : "white")};
   background-color: ${({ $isBooked }) =>
-    $isBooked ? "whitesmoke" : "#83927e"};
+    $isBooked ? "whitesmoke" : "#9ac488"};
 
   @media only screen and (max-width: ${DEVISE_SIZE.tabletMin}) {
-    width: 70px;
+    width: 80px;
     margin: 20px 7px;
   }
 `;

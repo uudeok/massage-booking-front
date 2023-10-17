@@ -2,7 +2,7 @@ import styled from "styled-components";
 import PreviousButton from "../common/button/PreviousButton";
 import { IPreviousButton } from "../../@types/book";
 import BookingInfo from "./BookingInfo";
-import BookingForm from "./BookingForm";
+import BookingMemberTab from "./BookingMemberTab";
 
 const BookingPayment = ({ changeTabHandler, tabNum }: IPreviousButton) => {
   return (
@@ -13,7 +13,7 @@ const BookingPayment = ({ changeTabHandler, tabNum }: IPreviousButton) => {
           <BookingInfo />
         </LeftBoxStyle>
         <RightBoxStyle>
-          <BookingForm />
+          <BookingMemberTab />
         </RightBoxStyle>
       </InnerBoxStyle>
     </ContainerStyle>
@@ -29,7 +29,6 @@ const ContainerStyle = styled.div`
   height: 30rem;
   /* border: 1px solid black; */
   margin: 0 auto;
-  font-family: "Pretendard-Regular";
 `;
 
 const InnerBoxStyle = styled.div`
@@ -39,6 +38,7 @@ const InnerBoxStyle = styled.div`
   margin: 2rem auto;
   display: flex;
   flex-direction: row;
+
   box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
 `;
 
