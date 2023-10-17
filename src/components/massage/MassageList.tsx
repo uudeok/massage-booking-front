@@ -1,4 +1,4 @@
-import { BOOKING_MASSAGE_TABLE } from "../../const/book";
+import { BOOKING_MASSAGE_TABLE } from "../../const/massage";
 import MassageItem from "./MassageItem";
 import styled from "styled-components";
 import { MEDIA_QUERY } from "../../const/devise";
@@ -33,12 +33,12 @@ const InnerBoxStyle = styled.ul`
   margin: auto;
   padding: 3rem;
 
-  @media only screen and (max-width: ${MEDIA_QUERY.bitNotebookWidth}) {
+  @media only screen and (max-width: ${MEDIA_QUERY.bigNotebookWidth}) {
     width: 60%;
   }
 
   @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
-    width: 70%;
+    width: 100%;
   }
 `;
 
@@ -54,8 +54,4 @@ const TitleStyle = styled.h1`
 const ItemBoxStyle = styled.li`
   text-align: center;
   padding: 1rem;
-
-  @media only screen and (max-width: ${MEDIA_QUERY.bigMobileWidth}) {
-    text-align: left;
-  }
 `;

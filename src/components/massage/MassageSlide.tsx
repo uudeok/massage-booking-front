@@ -2,8 +2,8 @@ import "swiper/css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import styled from "styled-components";
 import { Autoplay } from "swiper/modules";
-import { MASSAGE_LIST } from "../../const/massage";
 import { Link } from "react-router-dom";
+import { BOOKING_MASSAGE_TABLE, BOOKING_ITEM } from "../../const/massage";
 
 const MassageSlide = () => {
   return (
@@ -21,12 +21,12 @@ const MassageSlide = () => {
         768: { slidesPerView: 2 },
       }}
     >
-      {MASSAGE_LIST.map((item) => (
-        <SwiperSlide key={item.content}>
+      {BOOKING_MASSAGE_TABLE.map((massage) => (
+        <SwiperSlide key={massage.content}>
           <Link to="/massage">
             <ContainerStyle>
-              <img src={`${item.img}`} alt={item.content} />{" "}
-              <ItemContentStyle>{item.content}</ItemContentStyle>
+              <img src={massage.img} alt={massage.content} />
+              <ItemContentStyle>{BOOKING_ITEM[massage.item]}</ItemContentStyle>
             </ContainerStyle>
           </Link>
         </SwiperSlide>

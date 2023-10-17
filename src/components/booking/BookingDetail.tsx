@@ -3,7 +3,7 @@ import styled from "styled-components";
 import BookingCard from "../common/card/BookingCard";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import { getMassageList } from "../../stores/massageSlice";
-import { BOOKING_ITEM } from "../../const/book";
+import { BOOKING_ITEM } from "../../const/massage";
 import { addComma, addMinutesUnit } from "../../util";
 import { DEVISE_SIZE } from "../../const/devise";
 

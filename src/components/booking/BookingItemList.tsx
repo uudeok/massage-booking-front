@@ -1,4 +1,4 @@
-import { BOOKING_MASSAGE_TABLE } from "../../const/book";
+import { BOOKING_MASSAGE_TABLE } from "../../const/massage";
 import BookingItem from "./BookingItem";
 import styled from "styled-components";
 import { IPreviousButton } from "../../@types/book";

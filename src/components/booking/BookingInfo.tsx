@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { getMassageList } from "../../stores/massageSlice";
-import { BOOKING_ITEM } from "../../const/book";
+import { BOOKING_ITEM } from "../../const/massage";
 import styled from "styled-components";
 
 const BookingInfo = () => {

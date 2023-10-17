@@ -1,6 +1,6 @@
 import { IBookingItem } from "../../@types/book";
 import styled from "styled-components";
-import { BOOKING_ITEM } from "../../const/book";
+import { BOOKING_ITEM } from "../../const/massage";
 import { useDispatch } from "react-redux";
 import { getMassageDetail } from "../../stores/massageSlice";
 import { DEVISE_SIZE } from "../../const/devise";

@@ -14,5 +14,5 @@ export const MEDIA_QUERY = {
   bigMobileWidth: "425px",
   tabletWidth: "768px",
   notebookWidth: "1024px",
-  bitNotebookWidth: "1440px",
+  bigNotebookWidth: "1440px",
 };

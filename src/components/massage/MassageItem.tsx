@@ -1,22 +1,30 @@
 import { IMassageTable } from "../../@types/book";
 import styled from "styled-components";
-import { BOOKING_ITEM } from "../../const/book";
+import { BOOKING_ITEM } from "../../const/massage";
+import { addMinutesUnit, addComma } from "../../util";
 import { MEDIA_QUERY } from "../../const/devise";
 
 const MassageItem = ({ massage }: { massage: IMassageTable }) => {
   return (
     <div>
-      <div>
+      <ImgBoxStyle>
         <img
           src={massage.img}
           alt={massage.item}
           width="100%"
           height="300rem"
         />
-      </div>
+      </ImgBoxStyle>
       <ContentBoxStyle>
         <ContentTitleStyle>{BOOKING_ITEM[massage.item]}</ContentTitleStyle>
-        <div>{massage.content}</div>
+        <ContentStyle>{massage.content}</ContentStyle>
+        <PriceListStyle>
+          {massage.detail.map((item) => (
+            <div>
+              {addMinutesUnit(item.time)} : {addComma(item.price)}
+            </div>
+          ))}
+        </PriceListStyle>
       </ContentBoxStyle>
     </div>
   );
@@ -24,10 +32,29 @@ const MassageItem = ({ massage }: { massage: IMassageTable }) => {
 
 export default MassageItem;
 
+const ImgBoxStyle = styled.div`
+  opacity: 0.8;
+`;
+
 const ContentBoxStyle = styled.div`
-  margin-top: 1rem;
+  padding: 1rem;
 `;
 
 const ContentTitleStyle = styled.div`
   margin-bottom: 1rem;
+`;
+
+const ContentStyle = styled.div`
+  margin-bottom: 0.5rem;
+`;
+
+const PriceListStyle = styled.div`
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+
+  @media only screen and (max-width: ${MEDIA_QUERY.bigNotebookWidth}) {
+    flex-direction: column;
+    margin-top: 1rem;
+  }
 `;

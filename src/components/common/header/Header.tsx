@@ -9,6 +9,12 @@ import {
 } from "./Header.style";
 import { Link } from "react-router-dom";
 
+const MENU_LIST = [
+  { key: "massage", value: "프로그램 안내", id: 1 },
+  { key: "membership", value: "회원권 안내", id: 2 },
+  { key: "information", value: "공지사항", id: 3 },
+];
+
 const Header = () => {
   return (
     <HeaderContainerStyle>
@@ -19,10 +25,11 @@ const Header = () => {
         <HeaderMenuBoxStyle>
           <HeaderMenuInnerBoxStyle>
             <HeaderMenuListStyle>
-              <li>메뉴1</li>
-              <li>메뉴2</li>
-              <li>메뉴3</li>
-              <li>메뉴4</li>
+              {MENU_LIST.map((item) => (
+                <li key={item.id}>
+                  <Link to={`/${item.key}`}>{item.value}</Link>
+                </li>
+              ))}
             </HeaderMenuListStyle>
           </HeaderMenuInnerBoxStyle>
         </HeaderMenuBoxStyle>

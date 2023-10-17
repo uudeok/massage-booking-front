@@ -17,7 +17,7 @@ const bookRouteObjects: RouteObject[] = [
   },
 ];
 
-const productRouteObjects: RouteObject[] = [
+const massageRouteObjects: RouteObject[] = [
   {
     path: "/massage",
     children: [
@@ -37,7 +37,7 @@ export const router = createBrowserRouter([
     children: [
       { index: true, element: <HomePage /> },
       ...bookRouteObjects,
-      ...productRouteObjects,
+      ...massageRouteObjects,
     ],
   },
 ]);

@@ -4,7 +4,7 @@ import { IPreviousButton } from "../../@types/book";
 import { useState, useEffect } from "react";
 import { DEVISE_SIZE } from "../../const/devise";
 import BookingCalendar from "./BookingCalendar";
-import { TIME_TABLE } from "../../const/book";
+import { TIME_TABLE } from "../../const/massage";
 import BookingAvailableTime from "./BookingAvailableTime";
 
 const BookingDate = ({ changeTabHandler, tabNum }: IPreviousButton) => {
