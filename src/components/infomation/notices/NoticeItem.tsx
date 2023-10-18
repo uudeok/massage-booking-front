@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { INotice } from "../../../@types/notice";
 import { NOTICE_CATEGORIES } from "../../../const/notices";
 import { Link } from "react-router-dom";
+import { MEDIA_QUERY } from "../../../const/devise";
 
 const NoticeItem = ({ notice }: { notice: INotice[] }) => {
   return (
@@ -37,6 +38,10 @@ const HeaderStyle = styled.div`
   text-align: center;
   padding: 1rem;
   border-bottom: 1px solid black;
+
+  @media only screen and (max-width: ${MEDIA_QUERY.mobileWidth}) {
+    display: none;
+  }
 `;
 
 const SortStyle = styled.div`
@@ -56,8 +61,6 @@ const ViewStyle = styled.div`
 `;
 
 const ContentBoxStyle = styled.div`
-  border: 1px solid black;
-  border-top: none;
   display: flex;
   flex-direction: column;
   padding: 0.5rem;
@@ -72,6 +75,10 @@ const ContentStyle = styled.div`
 
 const ContentSortStyle = styled.div`
   width: 20%;
+
+  @media only screen and (max-width: ${MEDIA_QUERY.mobileWidth}) {
+    display: none;
+  }
 `;
 
 const ContentTitleStyle = styled.div`
@@ -80,14 +87,29 @@ const ContentTitleStyle = styled.div`
   &:hover {
     text-decoration: underline;
   }
+
+  @media only screen and (max-width: ${MEDIA_QUERY.mobileWidth}) {
+    text-align: left;
+    font-size: 0.9rem;
+  }
 `;
 
 const ContentDateStyle = styled.div`
   width: 10%;
   font-size: 0.8rem;
+
+  @media only screen and (max-width: ${MEDIA_QUERY.mobileWidth}) {
+    text-align: right;
+    width: 20%;
+    font-size: 0.5rem;
+  }
 `;
 
 const ContentViewStyle = styled.div`
   width: 10%;
   font-size: 0.8rem;
+
+  @media only screen and (max-width: ${MEDIA_QUERY.mobileWidth}) {
+    display: none;
+  }
 `;

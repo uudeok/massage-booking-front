@@ -1,26 +1,27 @@
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
+import { NOTICE_LIST } from "../../../const/notices";
+import Notice from "./Notice";
 
 const NoticeDetail = () => {
+  const params = useParams();
+  const noticeId = params.id;
+
+  /// 게시글 id 로 API 요청해서 가져오기
+
+  const fetchDetailData = NOTICE_LIST.filter(
+    (item) => item.id === Number(noticeId)
+  );
+
   return (
     <ContainerStyle>
       <InnerBoxStyle>
-        <NoticeStyle>
+        <NoticeBoxStyle>
           <TitleStyle>공지사항</TitleStyle>
-        </NoticeStyle>
-        <div>
-          <div>
-            <span>제목</span>
-            <span></span>
-          </div>
-          <div>
-            <span>작성자</span>
-            <span></span>
-          </div>
-          <div>
-            <span>작성일</span>
-            <span></span>
-          </div>
-        </div>
+        </NoticeBoxStyle>
+        {fetchDetailData.map((detail) => (
+          <Notice key={detail.id} detail={detail} />
+        ))}
       </InnerBoxStyle>
     </ContainerStyle>
   );
@@ -40,7 +41,7 @@ const InnerBoxStyle = styled.div`
   padding: 3rem;
 `;
 
-const NoticeStyle = styled.div`
+const NoticeBoxStyle = styled.div`
   display: flex;
   padding: 1rem;
   margin-top: 3rem;
@@ -49,4 +50,13 @@ const NoticeStyle = styled.div`
 
 const TitleStyle = styled.h1`
   font-size: 2rem;
+`;
+
+const HeaderBoxStyle = styled.div`
+  border: 1px solid black;
+`;
+
+const TitleBoxStyle = styled.div`
+  display: flex;
+  border: 1px solid red;
 `;

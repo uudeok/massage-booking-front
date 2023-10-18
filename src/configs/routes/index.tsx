@@ -5,6 +5,7 @@ import BookPage from "../../pages/BookPage";
 import MassagePage from "../../pages/MassagePage";
 import NoticesPage from "../../pages/NoticesPage";
 import NoticeDetailPage from "../../pages/NoticeDetailPage";
+import NoticeRootLayoutPage from "../../pages/NoticeRootLayoutPage";
 
 const bookRouteObjects: RouteObject[] = [
   {
@@ -33,6 +34,7 @@ const massageRouteObjects: RouteObject[] = [
 const noticeRouteObjects: RouteObject[] = [
   {
     path: "/notice",
+    element: <NoticeRootLayoutPage />,
     children: [
       { index: true, element: <NoticesPage /> },
       { path: "/notice/:id", element: <NoticeDetailPage /> },

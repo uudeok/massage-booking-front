@@ -7,7 +7,7 @@ const NoticeMainItem = ({ item }: { item: INotice }) => {
   return (
     <>
       <NoticeItemTitleStyle>
-        <Link to="/">{item.title}</Link>
+        <Link to={`/notice/${item.id}`}>{item.title}</Link>
       </NoticeItemTitleStyle>
       <NoticeItemDateStyle>{item.date}</NoticeItemDateStyle>
     </>

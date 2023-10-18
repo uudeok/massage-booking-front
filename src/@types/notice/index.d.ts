@@ -4,4 +4,5 @@ export interface INotice {
   category: string;
   content: string;
   id: number;
+  auth: string;
 }

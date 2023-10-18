@@ -3,6 +3,7 @@ import { NOTICE_LIST, NOTICE_CATEGORIES } from "../../../const/notices";
 import NoticeItem from "./NoticeItem";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { MEDIA_QUERY } from "../../../const/devise";
 
 const NoticesList = () => {
   const [category, setCategory] = useState("ALL");
@@ -58,6 +59,10 @@ const InnerBoxStyle = styled.div`
   width: 65rem;
   margin: auto;
   padding: 3rem;
+
+  @media only screen and (max-width: ${MEDIA_QUERY.mobileWidth}) {
+    width: 24rem;
+  }
 `;
 
 const HeaderStyle = styled.div`
@@ -69,8 +74,11 @@ const HeaderStyle = styled.div`
 
 const TitleStyle = styled.h1`
   font-size: 2rem;
-
   flex: 1;
+
+  @media only screen and (max-width: ${MEDIA_QUERY.mobileWidth}) {
+    font-size: 1.5rem;
+  }
 `;
 
 const CategoryListStyle = styled.select`
