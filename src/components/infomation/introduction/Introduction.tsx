@@ -1,30 +1,71 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { MEDIA_QUERY } from "../../../const/devise";
 
 const Introduction = () => {
   return (
-    <IntroductionBoxStyle>
-      <Link to="/">
-        <IntroductionImgBoxStyle>
-          <img src="noimg.gif" alt="자연치유쉼" width="100%" height="100%" />
-        </IntroductionImgBoxStyle>
-      </Link>
-    </IntroductionBoxStyle>
+    <ContainerStyle>
+      <ImgBoxStyle>
+        <img src="leaf.jpg" alt="자연치유 쉼" width="100%" height="100%" />
+        <ContentStyle>
+          <span>또 찾고 싶은 곳 자연치유 쉼</span>
+          <Link to="/membership">
+            <button>회원제 알아보기</button>
+          </Link>
+        </ContentStyle>
+      </ImgBoxStyle>
+    </ContainerStyle>
   );
 };
 
 export default Introduction;
 
-const IntroductionBoxStyle = styled.div`
-  /* border: 1px solid black; */
-  padding: 2rem;
-  height: 100%;
+const ContainerStyle = styled.div`
+  width: 100%;
+  height: 25rem;
+  padding: 1rem;
+  opacity: 0.7;
 `;
 
-const IntroductionImgBoxStyle = styled.div`
+const ImgBoxStyle = styled.div`
+  /* border: 1px solid black; */
+  border-radius: 15px;
+  overflow: hidden;
   height: 100%;
+  cursor: pointer;
+  z-index: 0;
 
-  :hover {
-    border: 1px solid lightgray;
+  &:hover {
+    border: 2px solid lightgrey;
+  }
+
+  @media only screen and (max-width: ${MEDIA_QUERY.notebookWidth}) {
+    height: 100%;
+  }
+`;
+
+const ContentStyle = styled.div`
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  bottom: 15rem;
+  color: white;
+  font-size: 1.5rem;
+  z-index: 1;
+  font-family: "Pretendard-Regular";
+  left: 2rem;
+  font-weight: 900;
+
+  button {
+    width: 10rem;
+    padding: 0.7rem;
+    margin-top: 1.5rem;
+    background-color: inherit;
+    cursor: pointer;
+    border: 2px solid white;
+    color: white;
+    font-family: "Pretendard-Regular";
+    font-weight: bold;
+    font-size: 1rem;
   }
 `;

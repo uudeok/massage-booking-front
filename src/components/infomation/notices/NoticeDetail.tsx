@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { NOTICE_LIST } from "../../../const/notices";
 import Notice from "./Notice";
+import { MEDIA_QUERY } from "../../../const/devise";
 
 const NoticeDetail = () => {
   const params = useParams();
@@ -39,6 +40,11 @@ const InnerBoxStyle = styled.div`
   width: 65rem;
   margin: auto;
   padding: 3rem;
+
+  @media only screen and (max-width: ${MEDIA_QUERY.mobileWidth}) {
+    width: 21rem;
+    padding: 1rem;
+  }
 `;
 
 const NoticeBoxStyle = styled.div`
@@ -46,17 +52,16 @@ const NoticeBoxStyle = styled.div`
   padding: 1rem;
   margin-top: 3rem;
   border-bottom: 2px solid black;
+
+  @media only screen and (max-width: ${MEDIA_QUERY.mobileWidth}) {
+    justify-content: center;
+  }
 `;
 
 const TitleStyle = styled.h1`
   font-size: 2rem;
-`;
 
-const HeaderBoxStyle = styled.div`
-  border: 1px solid black;
-`;
-
-const TitleBoxStyle = styled.div`
-  display: flex;
-  border: 1px solid red;
+  @media only screen and (max-width: ${MEDIA_QUERY.mobileWidth}) {
+    font-size: 1.8rem;
+  }
 `;

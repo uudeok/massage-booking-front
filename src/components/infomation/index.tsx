@@ -43,6 +43,7 @@ const InnerBoxStyle = styled.div`
 const LeftBoxStyle = styled.div`
   width: 55%;
   margin-top: 1rem;
+  margin-right: 1rem;
 
   @media only screen and (max-width: ${DEVISE_SIZE.tabletMax}) {
     width: 100%;
@@ -51,6 +52,7 @@ const LeftBoxStyle = styled.div`
 
 const RightBoxStyle = styled.div`
   width: 45%;
+  margin-top: 1rem;
 
   @media only screen and (max-width: ${DEVISE_SIZE.tabletMax}) {
     width: 100%;

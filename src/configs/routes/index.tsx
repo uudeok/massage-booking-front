@@ -6,6 +6,7 @@ import MassagePage from "../../pages/MassagePage";
 import NoticesPage from "../../pages/NoticesPage";
 import NoticeDetailPage from "../../pages/NoticeDetailPage";
 import NoticeRootLayoutPage from "../../pages/NoticeRootLayoutPage";
+import MembershipPage from "../../pages/MembershipPage";
 
 const bookRouteObjects: RouteObject[] = [
   {
@@ -42,6 +43,13 @@ const noticeRouteObjects: RouteObject[] = [
   },
 ];
 
+const membershipRouteObjects: RouteObject[] = [
+  {
+    path: "/membership",
+    children: [{ index: true, element: <MembershipPage /> }],
+  },
+];
+
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -51,6 +59,7 @@ export const router = createBrowserRouter([
       ...bookRouteObjects,
       ...massageRouteObjects,
       ...noticeRouteObjects,
+      ...membershipRouteObjects,
     ],
   },
 ]);

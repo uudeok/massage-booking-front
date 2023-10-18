@@ -61,7 +61,8 @@ const InnerBoxStyle = styled.div`
   padding: 3rem;
 
   @media only screen and (max-width: ${MEDIA_QUERY.mobileWidth}) {
-    width: 24rem;
+    width: 21rem;
+    padding: 1rem;
   }
 `;
 

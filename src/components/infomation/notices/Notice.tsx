@@ -1,6 +1,7 @@
 import { INotice } from "../../../@types/notice";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import { MEDIA_QUERY } from "../../../const/devise";
 
 const Notice = ({ detail }: { detail: INotice }) => {
   const navigate = useNavigate();
@@ -47,6 +48,14 @@ const HeaderItemStyle = styled.div`
 
   span:first-child {
     width: 10%;
+  }
+
+  @media only screen and (max-width: ${MEDIA_QUERY.mobileWidth}) {
+    padding: 0.3rem;
+
+    span:first-child {
+      width: 18%;
+    }
   }
 `;
 

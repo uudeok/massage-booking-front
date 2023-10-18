@@ -25,6 +25,6 @@ const NoticeBoxStyle = styled.ul`
 
 const NoticeItemBoxStyle = styled.li`
   border-bottom: 1px solid grey;
-  padding: 1rem;
+  padding: 1.2rem;
   display: flex;
 `;

@@ -12,6 +12,9 @@ export const NOTICE_CATEGORIES: INoticeCategory = {
   RULES: "운영방침",
 };
 
+/// 조회수도 넣을 예정
+/// auth 는 관리자
+
 export const NOTICE_LIST: INotice[] = [
   {
     title: "영업시간 변경안내",
