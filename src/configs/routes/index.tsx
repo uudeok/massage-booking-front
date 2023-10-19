@@ -7,10 +7,11 @@ import NoticesPage from "../../pages/NoticesPage";
 import NoticeDetailPage from "../../pages/NoticeDetailPage";
 import NoticeRootLayoutPage from "../../pages/NoticeRootLayoutPage";
 import MembershipPage from "../../pages/MembershipPage";
+import ContactPage from "../../pages/ContactPage";
 
 const bookRouteObjects: RouteObject[] = [
   {
-    path: "/book",
+    path: "book",
     children: [
       {
         index: true,
@@ -20,9 +21,20 @@ const bookRouteObjects: RouteObject[] = [
   },
 ];
 
-const massageRouteObjects: RouteObject[] = [
+const noticeRouteObjects: RouteObject[] = [
   {
-    path: "/massage",
+    path: "notice",
+    element: <NoticeRootLayoutPage />,
+    children: [
+      { index: true, element: <NoticesPage /> },
+      { path: ":id", element: <NoticeDetailPage /> },
+    ],
+  },
+];
+
+const programRouteObjects: RouteObject[] = [
+  {
+    path: "program",
     children: [
       {
         index: true,
@@ -32,21 +44,13 @@ const massageRouteObjects: RouteObject[] = [
   },
 ];
 
-const noticeRouteObjects: RouteObject[] = [
+const informationRouteObjects: RouteObject[] = [
   {
-    path: "/notice",
-    element: <NoticeRootLayoutPage />,
+    path: "information",
     children: [
-      { index: true, element: <NoticesPage /> },
-      { path: "/notice/:id", element: <NoticeDetailPage /> },
+      { index: true, element: <MembershipPage /> },
+      { path: "contact", element: <ContactPage /> },
     ],
-  },
-];
-
-const membershipRouteObjects: RouteObject[] = [
-  {
-    path: "/membership",
-    children: [{ index: true, element: <MembershipPage /> }],
   },
 ];
 
@@ -57,9 +61,9 @@ export const router = createBrowserRouter([
     children: [
       { index: true, element: <HomePage /> },
       ...bookRouteObjects,
-      ...massageRouteObjects,
+      ...programRouteObjects,
       ...noticeRouteObjects,
-      ...membershipRouteObjects,
+      ...informationRouteObjects,
     ],
   },
 ]);

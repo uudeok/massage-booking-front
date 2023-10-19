@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { DEVISE_SIZE } from "../../../const/devise";
+import { MEDIA_QUERY } from "../../../const/devise";
 
 export const ContainerStyle = styled.div`
   width: 100%;
@@ -14,7 +14,7 @@ export const InnerContainerStyle = styled.header`
   display: flex;
   align-items: end;
 
-  @media only screen and (max-width: ${DEVISE_SIZE.notebookMax}) {
+  @media only screen and (max-width: ${MEDIA_QUERY.notebookWidth}) {
     width: 100%;
   }
 `;
@@ -23,9 +23,9 @@ export const LogoBoxStyle = styled.div`
   width: 20%;
   font-size: 30px;
 
-  @media only screen and (max-width: ${DEVISE_SIZE.notebookMax}) {
-    width: 60%;
+  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
     font-size: 27px;
+    width: 100%;
   }
 `;
 
@@ -38,7 +38,7 @@ export const MenuInnerBoxStyle = styled.div`
   margin: auto;
   display: flex;
 
-  @media only screen and (max-width: ${DEVISE_SIZE.tabletMax}) {
+  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
     display: none;
   }
 `;

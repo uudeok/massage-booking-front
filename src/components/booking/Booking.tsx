@@ -6,7 +6,9 @@ const Booking = () => {
   return (
     <ContainerStyle>
       <InnerBoxStyle>
-        <ButtonBoxStyle>오시는 길</ButtonBoxStyle>
+        <Link to="/information/contact">
+          <ButtonBoxStyle>오시는 길</ButtonBoxStyle>
+        </Link>
         <Link to="/book">
           <ButtonBoxStyle>예약하기</ButtonBoxStyle>
         </Link>

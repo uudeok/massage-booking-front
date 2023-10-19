@@ -3,33 +3,34 @@ import styled from "styled-components";
 const MembershipList = () => {
   return (
     <>
-      <ContainerStyle>
+      <ImgBoxStyle>
+        <img src="/membership.jpg" alt="배너사진" width="100%" height="100%" />
         <BannerBoxStyle>
           <BannerTitleStyle>자연치유 쉼 멤버쉽 할인</BannerTitleStyle>
-          <span>자연치유 쉼의 회원권으로</span>
+          <span>자연치유 쉼 회원권으로</span>
           <span>합리적인 가격으로 마사지를 받아보세요.</span>
         </BannerBoxStyle>
-      </ContainerStyle>
+      </ImgBoxStyle>
     </>
   );
 };
 
 export default MembershipList;
 
-const ContainerStyle = styled.div`
+const ImgBoxStyle = styled.div`
   width: 100%;
   height: 450px;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.1)),
-    url("a.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  opacity: 0.8;
   margin-top: 1rem;
+
+  img {
+    object-fit: cover;
+    opacity: 0.8;
+    filter: brightness(0.8);
+    z-index: 0;
+  }
 `;
 
 const BannerBoxStyle = styled.div`
-  /* border: 1px solid whitesmoke; */
   display: flex;
   flex-direction: column;
   font-family: "Pretendard-Regular";
@@ -37,7 +38,7 @@ const BannerBoxStyle = styled.div`
   width: 25rem;
   position: relative;
   left: 60%;
-  top: 8rem;
+  bottom: 21rem;
   padding: 1rem;
   font-size: 1.2rem;
 

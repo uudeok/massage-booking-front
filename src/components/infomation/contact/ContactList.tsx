@@ -1,0 +1,143 @@
+import styled from "styled-components";
+import { Map, MapMarker } from "react-kakao-maps-sdk";
+import { MEDIA_QUERY } from "../../../const/devise";
+
+const CONTACT_INFO = [
+  { key: "주소", value: "경기도 파주시 가람로 134번길 53" },
+  { key: "전화번호", value: "010-1234-5678" },
+  { key: "영업시간", value: "월-토 : AM 10:00 ~ PM 21:00" },
+];
+
+const ContactList = () => {
+  return (
+    <>
+      <ImgBoxStyle>
+        <img src="/contact.jpg" alt="마사지" width="100%" height="100%" />
+        <BannerBoxStyle>
+          <BannerTitleStyle>자연치유 쉼</BannerTitleStyle>
+          <span>뻐근한 목과 어깨, 콕콕 쑤시는 허리</span>
+          <span>단순히 뭉친 근육을 풀어주는 것이 아닌</span>
+          <span>체형 교정을 통해 밸런스를 잡아드려요</span>
+        </BannerBoxStyle>
+      </ImgBoxStyle>
+      <ContentBoxStyle>
+        <LeftBoxStyle>
+          <h3>자연치유 쉼</h3>
+          <h4>오시는 길</h4>
+        </LeftBoxStyle>
+        <RightBoxStyle>
+          {CONTACT_INFO.map((item, index) => (
+            <div key={index}>
+              <span>{item.key}</span>
+              <span>{item.value}</span>
+            </div>
+          ))}
+        </RightBoxStyle>
+        <MapBoxStyle>
+          <MapStyle
+            center={{ lat: 37.737494352893385, lng: 126.76590421100259 }}
+          >
+            <MapMarker
+              position={{ lat: 37.737494352893385, lng: 126.76590421100259 }}
+            ></MapMarker>
+          </MapStyle>
+        </MapBoxStyle>
+      </ContentBoxStyle>
+    </>
+  );
+};
+
+export default ContactList;
+
+const ImgBoxStyle = styled.div`
+  width: 100%;
+  height: 450px;
+  margin-top: 1rem;
+  font-family: "Pretendard-Regular";
+
+  img {
+    object-fit: cover;
+    opacity: 0.8;
+    filter: brightness(0.8);
+    z-index: 0;
+  }
+`;
+
+const BannerBoxStyle = styled.div`
+  display: flex;
+  flex-direction: column;
+  color: white;
+  width: 25rem;
+  position: relative;
+  left: 60%;
+  bottom: 21rem;
+  padding: 1rem;
+  font-size: 1.3rem;
+  z-index: 10;
+
+  span {
+    padding: 0.3rem;
+  }
+`;
+
+const BannerTitleStyle = styled.h2`
+  font-size: 2rem;
+  margin-bottom: 1rem;
+`;
+
+const ContentBoxStyle = styled.div`
+  border-top: 1px solid grey;
+  border-bottom: 1px solid grey;
+  width: 80%;
+  margin: 2rem auto;
+  padding: 3rem;
+  display: flex;
+  font-family: "Pretendard-Regular";
+
+  @media only screen and (max-width: ${MEDIA_QUERY.notebookWidth}) {
+    flex-direction: column;
+  }
+`;
+
+const LeftBoxStyle = styled.div`
+  width: 25%;
+  padding: 1rem;
+  font-size: 2rem;
+
+  @media only screen and (max-width: ${MEDIA_QUERY.notebookWidth}) {
+    width: 100%;
+  }
+`;
+
+const RightBoxStyle = styled.div`
+  width: 30%;
+  padding: 1rem;
+
+  div {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem;
+  }
+
+  span {
+    padding: 0.25rem;
+  }
+
+  @media only screen and (max-width: ${MEDIA_QUERY.notebookWidth}) {
+    width: 100%;
+  }
+`;
+
+const MapBoxStyle = styled.div`
+  width: 45%;
+
+  @media only screen and (max-width: ${MEDIA_QUERY.notebookWidth}) {
+    width: 100%;
+  }
+`;
+
+const MapStyle = styled(Map)`
+  width: 100%;
+  height: 360px;
+  padding: 1rem;
+`;

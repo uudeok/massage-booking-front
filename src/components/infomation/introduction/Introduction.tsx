@@ -9,7 +9,7 @@ const Introduction = () => {
         <img src="leaf.jpg" alt="자연치유 쉼" width="100%" height="100%" />
         <ContentStyle>
           <span>또 찾고 싶은 곳 자연치유 쉼</span>
-          <Link to="/membership">
+          <Link to="/information">
             <button>회원제 알아보기</button>
           </Link>
         </ContentStyle>

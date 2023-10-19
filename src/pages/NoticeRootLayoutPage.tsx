@@ -7,9 +7,9 @@ const NoticeRootLayoutPage = () => {
   return (
     <WrapperStyle>
       <Header />
-      <main style={{ flex: "1" }}>
+      <MainStyle>
         <Outlet />
-      </main>
+      </MainStyle>
       <Footer />
     </WrapperStyle>
   );
@@ -21,4 +21,8 @@ const WrapperStyle = styled.div`
   display: flex;
   flex-direction: column;
   min-height: 100%;
+`;
+
+const MainStyle = styled.main`
+  flex: 1;
 `;
