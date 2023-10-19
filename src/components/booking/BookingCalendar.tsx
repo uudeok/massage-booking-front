@@ -13,11 +13,11 @@ const BookingCalendar = ({
   const addOneDay = dayjs(selectedDate).add(1, "day").format();
 
   return (
-    <>
+    <ContainerStyle>
       <ArrowBoxStyle>
         <ArrowButtonStyle onClick={() => setSelectedDate(new Date(subOneDay))}>
           <span>«</span>
-          <KoreanButtonStyle>이전 날짜</KoreanButtonStyle>
+          <KoreanButtonStyle> 이전 날짜</KoreanButtonStyle>
         </ArrowButtonStyle>
       </ArrowBoxStyle>
 
@@ -30,15 +30,20 @@ const BookingCalendar = ({
 
       <ArrowBoxStyle>
         <ArrowButtonStyle onClick={() => setSelectedDate(new Date(addOneDay))}>
-          <KoreanButtonStyle>다음 날짜</KoreanButtonStyle>
+          <KoreanButtonStyle>다음 날짜 </KoreanButtonStyle>
           <span>»</span>
         </ArrowButtonStyle>
       </ArrowBoxStyle>
-    </>
+    </ContainerStyle>
   );
 };
 
 export default BookingCalendar;
+
+const ContainerStyle = styled.div`
+  display: flex;
+  width: 100%;
+`;
 
 const ArrowBoxStyle = styled.div`
   /* border: 2px solid #586d2c; */

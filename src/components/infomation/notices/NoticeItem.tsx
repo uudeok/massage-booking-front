@@ -39,7 +39,7 @@ const HeaderStyle = styled.div`
   padding: 1rem;
   border-bottom: 1px solid black;
 
-  @media only screen and (max-width: ${MEDIA_QUERY.mobileWidth}) {
+  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
     display: none;
   }
 `;
@@ -71,12 +71,16 @@ const ContentStyle = styled.div`
   display: flex;
   flex-direction: row;
   padding: 1rem;
+
+  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+    border-bottom: 1px solid lightgrey;
+  }
 `;
 
 const ContentSortStyle = styled.div`
   width: 20%;
 
-  @media only screen and (max-width: ${MEDIA_QUERY.mobileWidth}) {
+  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
     display: none;
   }
 `;
@@ -88,7 +92,7 @@ const ContentTitleStyle = styled.div`
     text-decoration: underline;
   }
 
-  @media only screen and (max-width: ${MEDIA_QUERY.mobileWidth}) {
+  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
     text-align: left;
     font-size: 0.9rem;
   }
@@ -98,7 +102,7 @@ const ContentDateStyle = styled.div`
   width: 10%;
   font-size: 0.8rem;
 
-  @media only screen and (max-width: ${MEDIA_QUERY.mobileWidth}) {
+  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
     text-align: right;
     width: 20%;
     font-size: 0.5rem;
@@ -109,7 +113,7 @@ const ContentViewStyle = styled.div`
   width: 10%;
   font-size: 0.8rem;
 
-  @media only screen and (max-width: ${MEDIA_QUERY.mobileWidth}) {
+  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
     display: none;
   }
 `;

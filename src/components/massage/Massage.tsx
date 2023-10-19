@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import MassageSlide from "./MassageSlide";
+import { MEDIA_QUERY } from "../../const/devise";
 
 const Massage = () => {
   return (
@@ -19,6 +20,10 @@ const MassageContainerStyle = styled.div`
   /* background-color: #ecf2ea; */
   background-color: whitesmoke;
   display: flex;
+
+  @media only screen and (max-width: ${MEDIA_QUERY.mobileWidth}) {
+    min-height: 40vh;
+  }
 `;
 
 const MassageInnerBoxStyle = styled.div`

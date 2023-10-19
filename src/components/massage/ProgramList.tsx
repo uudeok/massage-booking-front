@@ -1,9 +1,9 @@
 import { BOOKING_MASSAGE_TABLE } from "../../const/massage";
-import MassageItem from "./MassageItem";
+import ProgramItem from "./ProgramItem";
 import styled from "styled-components";
 import { MEDIA_QUERY } from "../../const/devise";
 
-const MassageList = () => {
+const ProgramList = () => {
   return (
     <ContainerStyle>
       <InnerBoxStyle>
@@ -11,7 +11,7 @@ const MassageList = () => {
         <hr style={{ marginBottom: "2rem" }}></hr>
         {BOOKING_MASSAGE_TABLE.map((massage) => (
           <ItemBoxStyle key={massage.id}>
-            <MassageItem massage={massage} />
+            <ProgramItem massage={massage} />
           </ItemBoxStyle>
         ))}
       </InnerBoxStyle>
@@ -19,7 +19,7 @@ const MassageList = () => {
   );
 };
 
-export default MassageList;
+export default ProgramList;
 
 const ContainerStyle = styled.div`
   /* border-top: 1px solid black; */

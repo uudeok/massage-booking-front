@@ -50,11 +50,15 @@ const HeaderItemStyle = styled.div`
     width: 10%;
   }
 
-  @media only screen and (max-width: ${MEDIA_QUERY.mobileWidth}) {
+  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
     padding: 0.3rem;
 
     span:first-child {
       width: 18%;
+    }
+
+    span {
+      font-size: 0.8rem;
     }
   }
 `;
@@ -62,6 +66,10 @@ const HeaderItemStyle = styled.div`
 const ContentBoxStyle = styled.div`
   padding: 1rem;
   border-bottom: 1px solid grey;
+
+  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+    font-size: 0.8rem;
+  }
 `;
 
 const ButtonBoxStyle = styled.div`
@@ -74,4 +82,5 @@ const ButtonStyle = styled.button`
   border: 1px solid grey;
   cursor: pointer;
   width: 5rem;
+  color: black;
 `;

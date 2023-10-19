@@ -10,7 +10,7 @@ export const FooterContainerStyle = styled.div`
 `;
 
 export const FooterInnerContainerStyle = styled.footer`
-  margin: 0 auto;
+  margin: auto;
 
   @media only screen and (max-width: ${DEVISE_SIZE.notebookMax}) {
     flex-direction: column;

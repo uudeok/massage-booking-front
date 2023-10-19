@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { MEDIA_QUERY } from "../../../const/devise";
 
 const MembershipList = () => {
   return (
@@ -45,9 +46,18 @@ const BannerBoxStyle = styled.div`
   span {
     padding: 0.3rem;
   }
+
+  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+    left: 40%;
+    font-size: 0.8rem;
+  }
 `;
 
 const BannerTitleStyle = styled.h2`
   font-size: 2rem;
   margin-bottom: 1rem;
+
+  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+    font-size: 1.2rem;
+  }
 `;

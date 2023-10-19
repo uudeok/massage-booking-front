@@ -4,7 +4,7 @@ import { BOOKING_ITEM } from "../../const/massage";
 import { addMinutesUnit, addComma } from "../../util";
 import { MEDIA_QUERY } from "../../const/devise";
 
-const MassageItem = ({ massage }: { massage: IMassageTable }) => {
+const ProgramItem = ({ massage }: { massage: IMassageTable }) => {
   return (
     <div>
       <ImgBoxStyle>
@@ -19,9 +19,9 @@ const MassageItem = ({ massage }: { massage: IMassageTable }) => {
         <ContentTitleStyle>{BOOKING_ITEM[massage.item]}</ContentTitleStyle>
         <ContentStyle>{massage.content}</ContentStyle>
         <ContentPriceListStyle>
-          {massage.detail.map((item) => (
-            <div key={item.id}>
-              {addMinutesUnit(item.time)} : {addComma(item.price)}
+          {massage.detail.map((massage) => (
+            <div key={massage.id}>
+              {addMinutesUnit(massage.time)} : {addComma(massage.price)}
             </div>
           ))}
         </ContentPriceListStyle>
@@ -30,7 +30,7 @@ const MassageItem = ({ massage }: { massage: IMassageTable }) => {
   );
 };
 
-export default MassageItem;
+export default ProgramItem;
 
 const ImgBoxStyle = styled.div`
   opacity: 0.8;

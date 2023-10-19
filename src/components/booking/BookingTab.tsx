@@ -36,7 +36,7 @@ const BookingTab = () => {
       ),
     },
     {
-      key: "결제하기",
+      key: "결제 하기",
       content: (
         <BookingPayment changeTabHandler={changeTabHandler} tabNum={tabNum} />
       ),
@@ -47,16 +47,19 @@ const BookingTab = () => {
     <>
       <TabListStyle>
         {TAB_LIST.map((item, index) => (
-          <TabButtonStyle
-            disabled={index !== tabNum}
-            key={item.key}
-            $isActive={index === tabNum}
-            onClick={() => {
-              setTabNum(index);
-            }}
-          >
-            <li>{item.key}</li>
-          </TabButtonStyle>
+          <>
+            <TabButtonStyle
+              disabled={index !== tabNum}
+              key={item.key}
+              $isActive={index === tabNum}
+              onClick={() => {
+                setTabNum(index);
+              }}
+            >
+              {item.key}
+            </TabButtonStyle>
+            <ArrowBoxStyle $isActive={index === tabNum}></ArrowBoxStyle>
+          </>
         ))}
       </TabListStyle>
 
@@ -67,7 +70,7 @@ const BookingTab = () => {
 
 export default BookingTab;
 
-const TabListStyle = styled.ul`
+const TabListStyle = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -76,7 +79,7 @@ const TabListStyle = styled.ul`
 `;
 
 const TabButtonStyle = styled.button<{ $isActive: boolean }>`
-  width: 100%;
+  width: 95%;
   height: 100%;
   cursor: pointer;
   display: flex;
@@ -87,15 +90,30 @@ const TabButtonStyle = styled.button<{ $isActive: boolean }>`
   font-family: "Pretendard-Regular";
 
   background-color: ${({ $isActive }) =>
-    $isActive ? "#9ac488" : "whitesmoke"};
+    $isActive ? "#819977" : "whitesmoke"};
   color: ${({ $isActive }) => ($isActive ? "white" : "grey")};
 
   @media only screen and (max-width: ${DEVISE_SIZE.notebookMax}) {
-    font-size: 1rem;
+    font-size: 1.2rem;
   }
 
   @media only screen and (max-width: ${DEVISE_SIZE.mobileWidthMax}) {
-    font-size: 0.8rem;
+    font-size: 1rem;
+    width: 100%;
+  }
+`;
+
+const ArrowBoxStyle = styled.div<{ $isActive: boolean }>`
+  width: 5%;
+  border-top: ${({ $isActive }) =>
+    $isActive ? "40px solid whitesmoke" : "40px solid whitesmoke"};
+  border-bottom: ${({ $isActive }) =>
+    $isActive ? "40px solid whitesmoke" : "40px solid whitesmoke"};
+  border-left: ${({ $isActive }) =>
+    $isActive ? "40px solid #819977" : "40px solid whitesmoke"};
+
+  @media only screen and (max-width: ${DEVISE_SIZE.mobileWidthMax}) {
+    display: none;
   }
 `;
 
@@ -103,8 +121,4 @@ const ContentContainerStyle = styled.div`
   display: flex;
   width: 100%;
   margin-top: 3rem;
-
-  /* @media only screen and (max-width: ${DEVISE_SIZE.notebookMax}) {
-    margin: auto;
-  } */
 `;

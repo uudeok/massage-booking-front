@@ -18,15 +18,13 @@ export default PreviousButton;
 
 const ButtonStyle = styled.button`
   background-color: white;
-  padding: 1rem;
+  border: 1px solid black;
   width: 10rem;
   cursor: pointer;
   color: black;
-  border: none;
-
-  &:hover {
-    color: #97a393;
-  }
+  padding: 1rem;
+  font-family: "Pretendard-Regular";
+  font-size: 1rem;
 
   @media only screen and (max-width: ${DEVISE_SIZE.notebookMax}) {
     width: 7rem;

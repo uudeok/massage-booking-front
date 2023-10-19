@@ -22,6 +22,7 @@ const Calendar = ({ changeDateHandler, selectedDate }: IProps) => {
       selected={selectedDate}
       onChange={changeDateHandler}
       locale={ko}
+      showIcon
     />
   );
 };
@@ -32,7 +33,6 @@ const StyledDatePicker = styled(DatePicker)`
   height: 2rem;
   width: 10rem;
   text-align: center;
-  border: none;
-  /* border-bottom: 1px dotted #586d2c; */
+  /* border: none; */
   cursor: pointer;
 `;

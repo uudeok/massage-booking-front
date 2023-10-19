@@ -9,6 +9,7 @@ import BookingAvailableTime from "./BookingAvailableTime";
 
 const BookingDate = ({ changeTabHandler, tabNum }: IPreviousButton) => {
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
+  console.log("@", selectedDate);
 
   useEffect(() => {
     // 예를들어 workingday/?from=선택한날짜&to=선택한날짜&products=선택한 마사지&category=마사지시간
@@ -40,11 +41,11 @@ const BookingDate = ({ changeTabHandler, tabNum }: IPreviousButton) => {
             selectedDate={selectedDate}
           />
         </CalendarBoxStyle>
-        <hr></hr>
-        <AvailableBox>
-          <div></div>
-          <span>- 가능한 시간</span>
-        </AvailableBox>
+
+        <AvailableBoxStyle>
+          <AvailableCircleStyle></AvailableCircleStyle>
+          <span> - 가능한 시간</span>
+        </AvailableBoxStyle>
         <TimeListBoxStyle>
           {TIME_TABLE.map((item) => (
             <BookingAvailableTime
@@ -65,6 +66,7 @@ const ContainerStyle = styled.div`
   display: flex;
   width: 70%;
   margin: 2rem auto;
+  font-family: "Pretendard-Regular";
 `;
 
 const InnerBoxStyle = styled.div`
@@ -81,9 +83,9 @@ const CalendarBoxStyle = styled.div`
   width: 50rem;
   margin: 2rem auto;
   display: flex;
-  height: 5rem;
+  height: 6rem;
   align-items: center;
-  /* box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2); */
+  box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
 
   @media only screen and (max-width: ${DEVISE_SIZE.notebookMax}) {
     width: 100%;
@@ -93,28 +95,29 @@ const CalendarBoxStyle = styled.div`
 const TimeListBoxStyle = styled.div`
   margin-top: 1rem;
   width: 700px;
-  margin: auto;
+  margin: 1rem auto;
   display: flex;
   justify-content: flex-start;
   flex-direction: row;
   flex-wrap: wrap;
+  border: 1px solid black;
 
   @media only screen and (max-width: ${DEVISE_SIZE.notebookMax}) {
     width: 100%;
   }
 `;
 
-const AvailableBox = styled.div`
+const AvailableBoxStyle = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: right;
   padding: 0.5rem;
+`;
 
-  div {
-    width: 15px;
-    height: 15px;
-    background-color: #9ac488;
-    border-radius: 50%;
-    margin-right: 0.5rem;
-  }
+const AvailableCircleStyle = styled.div`
+  width: 15px;
+  height: 15px;
+  background-color: #9ac488;
+  border-radius: 50%;
+  margin-right: 0.5rem;
 `;

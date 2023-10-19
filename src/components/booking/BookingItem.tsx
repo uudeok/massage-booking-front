@@ -3,7 +3,6 @@ import styled from "styled-components";
 import { BOOKING_ITEM } from "../../const/massage";
 import { useDispatch } from "react-redux";
 import { getMassageDetail } from "../../stores/massageSlice";
-import { DEVISE_SIZE } from "../../const/devise";
 
 const BookingItem = ({ massage, changeTabHandler, tabNum }: IBookingItem) => {
   const dispatch = useDispatch();
@@ -43,10 +42,6 @@ const ItemBoxStyle = styled.div`
 
 const ImgBoxStyle = styled.div`
   height: 70%;
-
-  /* @media only screen and (max-width: ${DEVISE_SIZE.notebookMax}) {
-    height: 80%;
-  } */
 `;
 
 const ItemContentBoxStyle = styled.div`
@@ -67,15 +62,17 @@ const ItemContentBoxStyle = styled.div`
 `;
 
 const ButtonStyle = styled.button`
-  background-color: #9ac488;
+  background-color: #819977;
   padding: 0.7rem;
   cursor: pointer;
   color: white;
   border: none;
   border-radius: 5px;
+  font-family: "Pretendard-Regular";
+  font-size: 1rem;
 
   &:hover {
-    background-color: #8ab278;
+    background-color: #86a27b;
     color: white;
     border: none;
   }

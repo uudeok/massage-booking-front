@@ -2,7 +2,7 @@ import { createBrowserRouter, RouteObject } from "react-router-dom";
 import App from "../../App";
 import HomePage from "../../pages/HomePage";
 import BookPage from "../../pages/BookPage";
-import MassagePage from "../../pages/MassagePage";
+import ProgramPage from "../../pages/ProgramPage";
 import NoticesPage from "../../pages/NoticesPage";
 import NoticeDetailPage from "../../pages/NoticeDetailPage";
 import NoticeRootLayoutPage from "../../pages/NoticeRootLayoutPage";
@@ -38,7 +38,7 @@ const programRouteObjects: RouteObject[] = [
     children: [
       {
         index: true,
-        element: <MassagePage />,
+        element: <ProgramPage />,
       },
     ],
   },

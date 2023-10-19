@@ -23,7 +23,7 @@ const MassageSlide = () => {
     >
       {BOOKING_MASSAGE_TABLE.map((massage) => (
         <SwiperSlide key={massage.content}>
-          <Link to="/massage">
+          <Link to="/program">
             <ContainerStyle>
               <img src={massage.img} alt={massage.content} />
               <ItemContentStyle>{BOOKING_ITEM[massage.item]}</ItemContentStyle>

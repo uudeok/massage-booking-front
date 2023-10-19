@@ -41,7 +41,7 @@ const InnerBoxStyle = styled.div`
   margin: auto;
   padding: 3rem;
 
-  @media only screen and (max-width: ${MEDIA_QUERY.mobileWidth}) {
+  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
     width: 21rem;
     padding: 1rem;
   }
@@ -53,7 +53,7 @@ const NoticeBoxStyle = styled.div`
   margin-top: 3rem;
   border-bottom: 2px solid black;
 
-  @media only screen and (max-width: ${MEDIA_QUERY.mobileWidth}) {
+  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
     justify-content: center;
   }
 `;
@@ -61,7 +61,7 @@ const NoticeBoxStyle = styled.div`
 const TitleStyle = styled.h1`
   font-size: 2rem;
 
-  @media only screen and (max-width: ${MEDIA_QUERY.mobileWidth}) {
-    font-size: 1.8rem;
+  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+    font-size: 1.5rem;
   }
 `;

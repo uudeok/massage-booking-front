@@ -2,16 +2,13 @@ import { BOOKING_MASSAGE_TABLE } from "../../const/massage";
 import BookingItem from "./BookingItem";
 import styled from "styled-components";
 import { IPreviousButton } from "../../@types/book";
-import { DEVISE_SIZE } from "../../const/devise";
-import { useEffect } from "react";
+import { MEDIA_QUERY } from "../../const/devise";
 
 const BookingItemList = ({ changeTabHandler, tabNum }: IPreviousButton) => {
-  useEffect(() => {
-    console.log("컴포넌트가 렌더링되면 마사지 리스트를 가져온다");
-  }, []);
+  /// 마사지 리스트를 가져오는 API 요청
 
   return (
-    <WrapperStyle>
+    <ContainerStyle>
       {BOOKING_MASSAGE_TABLE.map((massage) => (
         <BookingItemStyle key={massage.id}>
           <BookingItem
@@ -21,13 +18,13 @@ const BookingItemList = ({ changeTabHandler, tabNum }: IPreviousButton) => {
           />
         </BookingItemStyle>
       ))}
-    </WrapperStyle>
+    </ContainerStyle>
   );
 };
 
 export default BookingItemList;
 
-const WrapperStyle = styled.ul`
+const ContainerStyle = styled.ul`
   display: flex;
   justify-content: flex-start;
   flex-direction: row;
@@ -41,14 +38,20 @@ const BookingItemStyle = styled.li`
   width: 500px;
   height: 500px;
   padding: 1rem;
-  margin: 45px;
+  margin: 40px;
   text-align: center;
   border: 1px solid lightgrey;
   border-radius: 10px;
-  /* box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2); */
 
-  @media only screen and (max-width: ${DEVISE_SIZE.mobileWidthMin}) {
-    width: 345px;
+  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+    width: 360px;
+    height: 450px;
+    margin: 10px;
+    margin-top: 3rem;
+  }
+
+  @media only screen and (max-width: ${MEDIA_QUERY.mobileWidth}) {
+    width: 335px;
     height: 450px;
     margin: 15px;
     margin-top: 3rem;

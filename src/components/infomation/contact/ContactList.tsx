@@ -78,6 +78,11 @@ const BannerBoxStyle = styled.div`
   span {
     padding: 0.3rem;
   }
+
+  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+    left: 40%;
+    font-size: 0.8rem;
+  }
 `;
 
 const BannerTitleStyle = styled.h2`
@@ -94,8 +99,9 @@ const ContentBoxStyle = styled.div`
   display: flex;
   font-family: "Pretendard-Regular";
 
-  @media only screen and (max-width: ${MEDIA_QUERY.notebookWidth}) {
+  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
     flex-direction: column;
+    width: 100%;
   }
 `;
 
@@ -104,7 +110,7 @@ const LeftBoxStyle = styled.div`
   padding: 1rem;
   font-size: 2rem;
 
-  @media only screen and (max-width: ${MEDIA_QUERY.notebookWidth}) {
+  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
     width: 100%;
   }
 `;
@@ -123,16 +129,18 @@ const RightBoxStyle = styled.div`
     padding: 0.25rem;
   }
 
-  @media only screen and (max-width: ${MEDIA_QUERY.notebookWidth}) {
+  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
     width: 100%;
+    font-size: 0.7rem;
   }
 `;
 
 const MapBoxStyle = styled.div`
   width: 45%;
 
-  @media only screen and (max-width: ${MEDIA_QUERY.notebookWidth}) {
+  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
     width: 100%;
+    border: 1px solid black;
   }
 `;
 
@@ -140,4 +148,9 @@ const MapStyle = styled(Map)`
   width: 100%;
   height: 360px;
   padding: 1rem;
+
+  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+    padding: 0;
+    height: 300px;
+  }
 `;

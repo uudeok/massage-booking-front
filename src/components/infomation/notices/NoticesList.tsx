@@ -1,13 +1,15 @@
 import styled from "styled-components";
 import { NOTICE_LIST, NOTICE_CATEGORIES } from "../../../const/notices";
 import NoticeItem from "./NoticeItem";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { MEDIA_QUERY } from "../../../const/devise";
 
 const NoticesList = () => {
   const [category, setCategory] = useState("ALL");
   const navigate = useNavigate();
+
+  // category 값이 바뀔 때마다 API 요청
 
   let filteredList;
 
@@ -21,11 +23,6 @@ const NoticesList = () => {
     setCategory(e.target.value);
     navigate(`/notice/?category=${e.target.value}`);
   };
-
-  useEffect(() => {
-    /// category 가 바뀔때마다 API 요청
-    /// category?=${category}
-  }, [category]);
 
   return (
     <ContainerStyle>
@@ -60,7 +57,7 @@ const InnerBoxStyle = styled.div`
   margin: auto;
   padding: 3rem;
 
-  @media only screen and (max-width: ${MEDIA_QUERY.mobileWidth}) {
+  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
     width: 21rem;
     padding: 1rem;
   }
@@ -77,7 +74,7 @@ const TitleStyle = styled.h1`
   font-size: 2rem;
   flex: 1;
 
-  @media only screen and (max-width: ${MEDIA_QUERY.mobileWidth}) {
+  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
     font-size: 1.5rem;
   }
 `;

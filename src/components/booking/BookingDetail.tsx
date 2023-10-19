@@ -1,6 +1,5 @@
 import { IBookingDetail } from "../../@types/book";
 import styled from "styled-components";
-import BookingCard from "../common/card/BookingCard";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import { getMassageList } from "../../stores/massageSlice";
 import { BOOKING_ITEM } from "../../const/massage";
@@ -88,7 +87,7 @@ const TopStyle = styled.div`
   div {
     border-radius: 30px;
     padding: 0.5rem 1.5rem;
-    background-color: #404e38;
+    background-color: #565050;
     color: white;
     font-size: 1.5rem;
   }
