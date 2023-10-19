@@ -25,10 +25,10 @@ const ContainerStyle = styled.div`
   height: 25rem;
   padding: 1rem;
   opacity: 0.7;
+  filter: brightness(0.95);
 `;
 
 const ImgBoxStyle = styled.div`
-  /* border: 1px solid black; */
   border-radius: 15px;
   overflow: hidden;
   height: 100%;
@@ -36,7 +36,7 @@ const ImgBoxStyle = styled.div`
   z-index: 0;
 
   &:hover {
-    border: 2px solid lightgrey;
+    border: 2px solid whitesmoke;
   }
 
   @media only screen and (max-width: ${MEDIA_QUERY.notebookWidth}) {
@@ -50,7 +50,7 @@ const ContentStyle = styled.div`
   position: relative;
   bottom: 15rem;
   color: white;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   z-index: 1;
   font-family: "Pretendard-Regular";
   left: 2rem;
@@ -67,5 +67,9 @@ const ContentStyle = styled.div`
     font-family: "Pretendard-Regular";
     font-weight: bold;
     font-size: 1rem;
+  }
+
+  @media only screen and (max-width: ${MEDIA_QUERY.notebookWidth}) {
+    font-size: 1.3rem;
   }
 `;

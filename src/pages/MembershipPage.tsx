@@ -1,10 +1,10 @@
-import IntroductionList from "../components/infomation/introduction/IntroductionList";
+import MembershipList from "../components/infomation/introduction/MembershipList";
 import Layout from "../layout/Layout";
 
 const MembershipPage = () => {
   return (
     <Layout>
-      <IntroductionList />
+      <MembershipList />
     </Layout>
   );
 };

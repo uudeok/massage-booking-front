@@ -1,11 +1,11 @@
 import {
-  HeaderContainerStyle,
-  HeaderInnerContainerStyle,
-  HeaderLogoBoxStyle,
-  HeaderMenuBoxStyle,
-  HeaderMenuInnerBoxStyle,
-  HeaderMenuListStyle,
-  HeaderLoginBoxStyle,
+  ContainerStyle,
+  InnerContainerStyle,
+  LogoBoxStyle,
+  MenuBoxStyle,
+  MenuInnerBoxStyle,
+  MenuListStyle,
+  LoginBoxStyle,
 } from "./Header.style";
 import { Link } from "react-router-dom";
 
@@ -17,25 +17,25 @@ const MENU_LIST = [
 
 const Header = () => {
   return (
-    <HeaderContainerStyle>
-      <HeaderInnerContainerStyle>
-        <HeaderLogoBoxStyle>
+    <ContainerStyle>
+      <InnerContainerStyle>
+        <LogoBoxStyle>
           <Link to="/">자연치유 쉼</Link>
-        </HeaderLogoBoxStyle>
-        <HeaderMenuBoxStyle>
-          <HeaderMenuInnerBoxStyle>
-            <HeaderMenuListStyle>
+        </LogoBoxStyle>
+        <MenuBoxStyle>
+          <MenuInnerBoxStyle>
+            <MenuListStyle>
               {MENU_LIST.map((item) => (
                 <li key={item.id}>
                   <Link to={`/${item.key}`}>{item.value}</Link>
                 </li>
               ))}
-            </HeaderMenuListStyle>
-          </HeaderMenuInnerBoxStyle>
-        </HeaderMenuBoxStyle>
-        <HeaderLoginBoxStyle>로그인</HeaderLoginBoxStyle>
-      </HeaderInnerContainerStyle>
-    </HeaderContainerStyle>
+            </MenuListStyle>
+          </MenuInnerBoxStyle>
+        </MenuBoxStyle>
+        <LoginBoxStyle>로그인</LoginBoxStyle>
+      </InnerContainerStyle>
+    </ContainerStyle>
   );
 };
 
