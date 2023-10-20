@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Map, MapMarker } from "react-kakao-maps-sdk";
 import { MEDIA_QUERY } from "../../../const/devise";
+import Banner from "../../common/banner/Banner";
 
 const CONTACT_INFO = [
   { key: "주소", value: "경기도 파주시 가람로 134번길 53" },
@@ -11,15 +12,12 @@ const CONTACT_INFO = [
 const ContactList = () => {
   return (
     <>
-      <ImgBoxStyle>
-        <img src="/contact.jpg" alt="마사지" width="100%" height="100%" />
-        <BannerBoxStyle>
-          <BannerTitleStyle>자연치유 쉼</BannerTitleStyle>
-          <span>뻐근한 목과 어깨, 콕콕 쑤시는 허리</span>
-          <span>단순히 뭉친 근육을 풀어주는 것이 아닌</span>
-          <span>체형 교정을 통해 밸런스를 잡아드려요</span>
-        </BannerBoxStyle>
-      </ImgBoxStyle>
+      <Banner img="contact.jpg">
+        <BannerTitleStyle>자연치유 쉼</BannerTitleStyle>
+        <span>뻐근한 목과 어깨, 콕콕 쑤시는 허리</span>
+        <span>단순히 뭉친 근육을 풀어주는 것이 아닌</span>
+        <span>체형 교정을 통해 밸런스를 잡아드려요</span>
+      </Banner>
       <ContentBoxStyle>
         <LeftBoxStyle>
           <h3>자연치유 쉼</h3>
@@ -48,42 +46,6 @@ const ContactList = () => {
 };
 
 export default ContactList;
-
-const ImgBoxStyle = styled.div`
-  width: 100%;
-  height: 450px;
-  margin-top: 1rem;
-  font-family: "Pretendard-Regular";
-
-  img {
-    object-fit: cover;
-    opacity: 0.8;
-    filter: brightness(0.8);
-    z-index: 0;
-  }
-`;
-
-const BannerBoxStyle = styled.div`
-  display: flex;
-  flex-direction: column;
-  color: white;
-  width: 25rem;
-  position: relative;
-  left: 60%;
-  bottom: 21rem;
-  padding: 1rem;
-  font-size: 1.3rem;
-  z-index: 10;
-
-  span {
-    padding: 0.3rem;
-  }
-
-  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
-    left: 40%;
-    font-size: 0.8rem;
-  }
-`;
 
 const BannerTitleStyle = styled.h2`
   font-size: 2rem;

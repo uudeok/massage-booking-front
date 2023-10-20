@@ -16,21 +16,24 @@ export default Massage;
 
 const MassageContainerStyle = styled.div`
   width: 100%;
-  min-height: 45vh;
-  /* background-color: #ecf2ea; */
+  height: 45vh;
   background-color: whitesmoke;
   display: flex;
 
   @media only screen and (max-width: ${MEDIA_QUERY.mobileWidth}) {
-    min-height: 40vh;
+    height: 40vh;
   }
 `;
 
 const MassageInnerBoxStyle = styled.div`
   width: 70%;
-  height: 35vh;
+  height: 40vh;
   margin: auto;
   justify-content: center;
   align-items: center;
   display: flex;
+
+  @media only screen and (max-width: ${MEDIA_QUERY.mobileWidth}) {
+    height: 35vh;
+  }
 `;

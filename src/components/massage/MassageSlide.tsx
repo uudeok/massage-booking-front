@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { Autoplay } from "swiper/modules";
 import { Link } from "react-router-dom";
 import { BOOKING_MASSAGE_TABLE, BOOKING_ITEM } from "../../const/massage";
+import { MEDIA_QUERY } from "../../const/devise";
 
 const MassageSlide = () => {
   return (
@@ -22,10 +23,15 @@ const MassageSlide = () => {
       }}
     >
       {BOOKING_MASSAGE_TABLE.map((massage) => (
-        <SwiperSlide key={massage.content}>
+        <SwiperSlide key={massage.id}>
           <Link to="/program">
             <ContainerStyle>
-              <img src={massage.img} alt={massage.content} />
+              <img
+                src={massage.img}
+                alt={massage.content}
+                width="100%"
+                height="100%"
+              />
               <ItemContentStyle>{BOOKING_ITEM[massage.item]}</ItemContentStyle>
             </ContainerStyle>
           </Link>
@@ -42,15 +48,26 @@ const ContainerStyle = styled.div`
   flex-direction: column;
   text-align: center;
   cursor: pointer;
-  height: 100%;
+  height: 40vh;
   justify-content: center;
+  padding: 1rem;
 
-  :hover {
+  &:hover {
     scale: calc(1.02);
+  }
+
+  img {
+    height: 80%;
+    opacity: 0.9;
+  }
+
+  @media only screen and (max-width: ${MEDIA_QUERY.mobileWidth}) {
+    height: 30vh;
   }
 `;
 
 const ItemContentStyle = styled.div`
+  height: 20%;
   padding: 1rem;
   font-family: "Pretendard-Regular";
   font-size: 20px;

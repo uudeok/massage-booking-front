@@ -58,6 +58,8 @@ const ArrowButtonStyle = styled.button`
 `;
 
 const KoreanButtonStyle = styled.span`
+  font-family: "Pretendard-Regular";
+  font-size: 1rem;
   @media only screen and (max-width: ${DEVISE_SIZE.mobileWidthMax}) {
     display: none;
   }

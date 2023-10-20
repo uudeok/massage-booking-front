@@ -46,7 +46,7 @@ export interface IBookingDetail {
 
 export interface IBookingAvailableTime {
   data: ITimeTable;
-  fetchPayment: (timeId: number) => void;
+  fetchReservation: (timeId: number) => void;
 }
 
 export interface IBookingCalendar {

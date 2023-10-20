@@ -4,6 +4,7 @@ import styled from "styled-components";
 import DatePicker from "react-datepicker";
 import dayjs from "dayjs";
 import { ko } from "date-fns/esm/locale";
+import { getDay } from "date-fns";
 
 interface IProps {
   changeDateHandler: (date: Date | null) => void;
@@ -12,6 +13,11 @@ interface IProps {
 
 const Calendar = ({ changeDateHandler, selectedDate }: IProps) => {
   const addOneMonth = dayjs().add(1, "month").format();
+
+  const isOffDay = (date: Date | number) => {
+    const day = getDay(date);
+    return day !== 0;
+  };
 
   return (
     <StyledDatePicker
@@ -22,7 +28,8 @@ const Calendar = ({ changeDateHandler, selectedDate }: IProps) => {
       selected={selectedDate}
       onChange={changeDateHandler}
       locale={ko}
-      showIcon
+      filterDate={isOffDay} // 쉬는 요일 선택 불가
+      excludeDates={[]} // 특정 날 선택 불가??
     />
   );
 };
@@ -33,6 +40,8 @@ const StyledDatePicker = styled(DatePicker)`
   height: 2rem;
   width: 10rem;
   text-align: center;
-  /* border: none; */
+  border: none;
   cursor: pointer;
+  font-family: "Pretendard-Regular";
+  font-size: 1rem;
 `;

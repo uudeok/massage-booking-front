@@ -4,7 +4,7 @@ import BookingItemList from "./BookingItemList";
 import BookingDate from "./BookingDate";
 import { DEVISE_SIZE } from "../../const/devise";
 import BookingDetailList from "./BookingDetailList";
-import BookingPayment from "./BookingPayment";
+import BookingReservation from "./BookingReservation";
 
 const BookingTab = () => {
   const [tabNum, setTabNum] = useState(0);
@@ -38,7 +38,10 @@ const BookingTab = () => {
     {
       key: "결제 하기",
       content: (
-        <BookingPayment changeTabHandler={changeTabHandler} tabNum={tabNum} />
+        <BookingReservation
+          changeTabHandler={changeTabHandler}
+          tabNum={tabNum}
+        />
       ),
     },
   ];
