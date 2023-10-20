@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import BookingItemList from "./BookingItemList";
 import BookingDate from "./BookingDate";
@@ -50,10 +50,9 @@ const BookingTab = () => {
     <>
       <TabListStyle>
         {TAB_LIST.map((item, index) => (
-          <>
+          <React.Fragment key={index}>
             <TabButtonStyle
               disabled={index !== tabNum}
-              key={item.key}
               $isActive={index === tabNum}
               onClick={() => {
                 setTabNum(index);
@@ -62,7 +61,7 @@ const BookingTab = () => {
               {item.key}
             </TabButtonStyle>
             <ArrowBoxStyle $isActive={index === tabNum}></ArrowBoxStyle>
-          </>
+          </React.Fragment>
         ))}
       </TabListStyle>
 

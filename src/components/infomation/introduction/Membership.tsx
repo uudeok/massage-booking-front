@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { MEDIA_QUERY } from "../../../const/devise";
 
-const Introduction = () => {
+const Membership = () => {
   return (
     <ContainerStyle>
       <ImgBoxStyle>
@@ -18,7 +18,7 @@ const Introduction = () => {
   );
 };
 
-export default Introduction;
+export default Membership;
 
 const ContainerStyle = styled.div`
   width: 100%;

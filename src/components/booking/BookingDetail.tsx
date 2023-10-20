@@ -15,11 +15,11 @@ const BookingDetail = ({
   const item = massageDetail[0].item;
   const description = massageDetail[0].content;
 
-  const fetchAvailableTime = async (massageId: number, id: number) => {
+  const fetchAvailableTime = async (massageId: number, massageTime: number) => {
     // 어떤 마사지의 몇분을 선택했는지 id 로 api 호출
-    // 예를들어 workingday/?from=오늘날짜&to=오늘날짜&products=선택한 마사지&category=마사지시간
+    // 예를들어 workingday/?from=오늘날짜&to=오늘날짜&products=선택한 마사지(massageId)&category=마사지시간(detail.time) 아니면 detailId
     // 그리고 나서 tab 이동
-    console.log(massageId, id);
+    console.log(massageId, massageTime);
     changeTabHandler(tabNum + 1);
   };
 
@@ -36,7 +36,7 @@ const BookingDetail = ({
         <BottomStyle>
           <h3>{addMinutesUnit(detail.time)}</h3>
           <ButtonStyle
-            onClick={() => fetchAvailableTime(detail.massageId, detail.id)}
+            onClick={() => fetchAvailableTime(detail.massageId, detail.time)}
           >
             선택하기
           </ButtonStyle>

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Notices from "./notices/Notices";
-import Introduction from "./introduction/Introduction";
+import Membership from "./introduction/Membership";
 import { DEVISE_SIZE } from "../../const/devise";
 
 const Information = () => {
@@ -11,7 +11,7 @@ const Information = () => {
           <Notices />
         </LeftBoxStyle>
         <RightBoxStyle>
-          <Introduction />
+          <Membership />
         </RightBoxStyle>
       </InnerBoxStyle>
     </ContainerStyle>

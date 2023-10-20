@@ -13,7 +13,7 @@ export const BOOKING_ITEM: IBookingItem = {
 
 export const BOOKING_MASSAGE_TABLE: IMassageTable[] = [
   {
-    img: "건식.jpg",
+    img: "dry.jpg",
     item: "DRY_MASSAGE",
     id: 1,
     content: "오일을 사용하지 않은 지압식 마사지",
@@ -24,7 +24,7 @@ export const BOOKING_MASSAGE_TABLE: IMassageTable[] = [
     ],
   },
   {
-    img: "습식.jpg",
+    img: "oil.jpg",
     item: "OIL_MASSAGE",
     id: 2,
     content: "피로 회복과 피부 탄력에 좋은 힐링식 아로마 마사지",
@@ -34,7 +34,7 @@ export const BOOKING_MASSAGE_TABLE: IMassageTable[] = [
     ],
   },
   {
-    img: "교정.jpg",
+    img: "manual.jpg",
     item: "MANUAL_THERAPY",
     id: 3,
     content: "마사지와 체형 교정을 한번에 받을 수 있는 체형교정 마사지",
@@ -45,7 +45,7 @@ export const BOOKING_MASSAGE_TABLE: IMassageTable[] = [
     ],
   },
   {
-    img: "청소년.jpg",
+    img: "youth.jpg",
     item: "YOUTH_MASSAGE",
     id: 4,
     content: "학업에 지친 아이들, 거북목 및 체형 교정",
@@ -55,7 +55,7 @@ export const BOOKING_MASSAGE_TABLE: IMassageTable[] = [
     ],
   },
   {
-    img: "피부.jpg",
+    img: "skin.jpg",
     item: "SKIN_THERAPY",
     id: 5,
     content: "피부 테라피에 초점을 맞춘 마사지",

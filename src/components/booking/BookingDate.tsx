@@ -23,7 +23,8 @@ const BookingDate = ({ changeTabHandler, tabNum }: IPreviousButton) => {
   const fetchReservation = async (timeId: number) => {
     // BookingAvailableTime 컴포넌트에서 고객이 시간을 클릭하면 클릭한 시간대의 id 를 받아옴
     // 그래서 고른 날짜와 시간대를 확인
-    await console.log(selectedDate, timeId);
+    console.log(selectedDate, timeId);
+
     changeTabHandler(tabNum + 1);
   };
 
