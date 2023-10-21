@@ -69,7 +69,8 @@ const ButtonStyle = styled.button`
   border: none;
   border-radius: 5px;
   font-family: "Pretendard-Regular";
-  font-size: 1rem;
+  font-size: 1.2rem;
+  height: 3rem;
 
   &:hover {
     background-color: #86a27b;

@@ -43,6 +43,7 @@ export default BookingCalendar;
 const ContainerStyle = styled.div`
   display: flex;
   width: 100%;
+  justify-content: center;
 `;
 
 const ArrowBoxStyle = styled.div`
@@ -55,6 +56,7 @@ const ArrowButtonStyle = styled.button`
   border: none;
   background-color: white;
   cursor: pointer;
+  color: black;
 `;
 
 const KoreanButtonStyle = styled.span`

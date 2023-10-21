@@ -6,7 +6,7 @@ const Booking = () => {
   return (
     <ContainerStyle>
       <ImgBoxStyle>
-        <img src="/main.jpg" alt="메인사진" width="100%" height="100%" />
+        <img src="/green.jpg" alt="메인사진" width="100%" height="100%" />
         <InnerBoxStyle>
           <Link to="/information/contact">
             <ButtonBoxStyle>오시는 길</ButtonBoxStyle>
@@ -72,7 +72,7 @@ const ButtonBoxStyle = styled.div`
   font-size: 2rem;
   border-radius: 50px;
   text-align: center;
-  margin-right: 3.3rem;
+  margin-right: 3.2rem;
   color: white;
   background-color: #97a393;
   display: flex;
@@ -95,9 +95,9 @@ const ButtonBoxStyle = styled.div`
   }
 
   @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
-    width: 8rem;
+    width: 9rem;
     font-size: 1rem;
-    margin-right: 2rem;
+    margin-right: 0.8rem;
     height: 3rem;
   }
 `;

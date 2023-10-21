@@ -26,6 +26,7 @@ export const LogoBoxStyle = styled.div`
   @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
     font-size: 27px;
     width: 100%;
+    margin-left: 0.5rem;
   }
 `;
 
@@ -53,4 +54,8 @@ export const MenuListStyle = styled.ul`
 export const LoginBoxStyle = styled.div`
   width: 20%;
   text-align: right;
+
+  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+    width: 100%;
+  }
 `;

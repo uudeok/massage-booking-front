@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import BookingItemList from "./BookingItemList";
 import BookingDate from "./BookingDate";
-import { DEVISE_SIZE } from "../../const/devise";
+import { MEDIA_QUERY } from "../../const/devise";
 import BookingDetailList from "./BookingDetailList";
 import BookingReservation from "./BookingReservation";
 
@@ -95,11 +95,11 @@ const TabButtonStyle = styled.button<{ $isActive: boolean }>`
     $isActive ? "#819977" : "whitesmoke"};
   color: ${({ $isActive }) => ($isActive ? "white" : "grey")};
 
-  @media only screen and (max-width: ${DEVISE_SIZE.notebookMax}) {
+  @media only screen and (max-width: ${MEDIA_QUERY.notebookWidth}) {
     font-size: 1.2rem;
   }
 
-  @media only screen and (max-width: ${DEVISE_SIZE.mobileWidthMax}) {
+  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
     font-size: 1rem;
     width: 100%;
   }
@@ -114,7 +114,7 @@ const ArrowBoxStyle = styled.div<{ $isActive: boolean }>`
   border-left: ${({ $isActive }) =>
     $isActive ? "40px solid #819977" : "40px solid whitesmoke"};
 
-  @media only screen and (max-width: ${DEVISE_SIZE.mobileWidthMax}) {
+  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
     display: none;
   }
 `;

@@ -17,7 +17,7 @@ export default Massage;
 const MassageContainerStyle = styled.div`
   width: 100%;
   height: 45vh;
-  background-color: whitesmoke;
+  /* background-color: whitesmoke; */
   display: flex;
 
   @media only screen and (max-width: ${MEDIA_QUERY.mobileWidth}) {

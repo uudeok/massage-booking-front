@@ -21,7 +21,7 @@ const Calendar = ({ changeDateHandler, selectedDate }: IProps) => {
 
   return (
     <StyledDatePicker
-      dateFormat="yyyy년 MM월 dd일" // 날짜 형태
+      dateFormat="yyyy-MM-dd" // 날짜 형태
       shouldCloseOnSelect // 날짜를 선택하면 자동으로 닫힘
       minDate={new Date()} // minDate 이전 날짜 선택 불가
       maxDate={new Date(addOneMonth)} // maxDate 이후 날짜 선택 불가
@@ -29,7 +29,7 @@ const Calendar = ({ changeDateHandler, selectedDate }: IProps) => {
       onChange={changeDateHandler}
       locale={ko}
       filterDate={isOffDay} // 쉬는 요일 선택 불가
-      excludeDates={[]} // 특정 날 선택 불가??
+      excludeDates={[]} // 특정 날 선택 불가?? 어드민에서 어떻게 제어할건지
     />
   );
 };

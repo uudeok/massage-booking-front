@@ -4,7 +4,7 @@ import { useSelector } from "react-redux/es/hooks/useSelector";
 import { getMassageList } from "../../stores/massageSlice";
 import { BOOKING_ITEM } from "../../const/massage";
 import { addComma, addMinutesUnit } from "../../util";
-import { DEVISE_SIZE } from "../../const/devise";
+import { DEVISE_SIZE, MEDIA_QUERY } from "../../const/devise";
 
 const BookingDetail = ({
   detail,
@@ -52,12 +52,13 @@ const ContainerStyle = styled.div`
   margin: 2rem auto;
   border-radius: 6px;
   background-color: whitesmoke;
+  box-shadow: 0 0 0.5rem 0 rgba(0, 0, 0, 0.2);
   padding: 1rem;
   width: 45rem;
   height: 12rem;
 
-  @media only screen and (max-width: ${DEVISE_SIZE.notebookMax}) {
-    height: 20rem;
+  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+    height: 18rem;
     width: 21rem;
     margin: 2rem auto;
     padding: 0.5rem;
@@ -69,7 +70,7 @@ const InnerBoxStyle = styled.div`
   padding: 1rem;
   font-family: "Pretendard-Regular";
 
-  @media only screen and (max-width: ${DEVISE_SIZE.notebookMax}) {
+  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
     height: 100%;
   }
 `;
@@ -87,14 +88,14 @@ const TopStyle = styled.div`
   div {
     border-radius: 30px;
     padding: 0.5rem 1.5rem;
-    background-color: #565050;
+    background-color: #666161;
     color: white;
     font-size: 1.5rem;
   }
 
-  @media only screen and (max-width: ${DEVISE_SIZE.notebookMax}) {
-    display: flex;
-    flex-direction: column;
+  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+    /* display: flex;
+    flex-direction: column; */
 
     div {
       font-size: 1.3rem;
@@ -106,7 +107,7 @@ const TopStyle = styled.div`
 const MiddleStyle = styled.div`
   padding: 0.5rem 0;
 
-  @media only screen and (max-width: ${DEVISE_SIZE.notebookMax}) {
+  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
     display: flex;
     flex-direction: column;
     margin-top: 1rem;
@@ -124,7 +125,7 @@ const BottomStyle = styled.div`
     font-weight: bold;
   }
 
-  @media only screen and (max-width: ${DEVISE_SIZE.notebookMax}) {
+  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
     display: flex;
     flex-direction: column;
 
@@ -138,14 +139,14 @@ const ButtonStyle = styled.button`
   width: 8.5rem;
   height: 2.5rem;
   cursor: pointer;
-  /* background-color: #9ac488; */
+  /* background-color: #819977; */
   /* border: none; */
   color: black;
   font-size: 1rem;
   font-family: "Pretendard-Regular";
 
-  @media only screen and (max-width: ${DEVISE_SIZE.notebookMax}) {
+  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
     width: 100%;
-    margin-top: 1rem;
+    margin-top: 2rem;
   }
 `;

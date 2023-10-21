@@ -18,7 +18,7 @@ export default PreviousButton;
 
 const ButtonStyle = styled.button`
   background-color: white;
-  border: 1px solid black;
+  border: 1px solid lightgrey;
   width: 10rem;
   cursor: pointer;
   color: black;
@@ -28,5 +28,6 @@ const ButtonStyle = styled.button`
 
   @media only screen and (max-width: ${DEVISE_SIZE.notebookMax}) {
     width: 7rem;
+    padding: 0.5rem;
   }
 `;

@@ -74,6 +74,7 @@ const LeftBoxStyle = styled.div`
 
   @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
     width: 100%;
+    font-size: 1.5rem;
   }
 `;
 

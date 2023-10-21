@@ -5,13 +5,30 @@ import { useSelector } from "react-redux";
 import { getMassageList } from "../../stores/massageSlice";
 import { BOOKING_ITEM } from "../../const/massage";
 import { MEDIA_QUERY } from "../../const/devise";
+import { useState } from "react";
+import Modal from "../common/UI/Modal";
+import LoginForm from "../auth/Login";
 
 const BookingReservation = ({ changeTabHandler, tabNum }: IPreviousButton) => {
   const bookingData = useSelector(getMassageList);
   const item = bookingData[0].item;
+  const [loginIsShown, setLoginIsShown] = useState(false);
+
+  const showLoginHandler = () => {
+    setLoginIsShown(true);
+  };
+
+  const hideLoginHandler = () => {
+    setLoginIsShown(false);
+  };
 
   return (
     <ContainerStyle>
+      {loginIsShown && (
+        <Modal onClose={hideLoginHandler}>
+          <LoginForm />
+        </Modal>
+      )}
       <PreviousButton changeTabHandler={changeTabHandler} tabNum={tabNum - 1} />
       <HeaderStyle>예약 주문서 확인</HeaderStyle>
       <SummaryBoxStyle>
@@ -39,7 +56,9 @@ const BookingReservation = ({ changeTabHandler, tabNum }: IPreviousButton) => {
         </CheckBoxStyle>
         <ButtonBoxStyle>
           <NonMemberButtonStyle>비회원으로 진행</NonMemberButtonStyle>
-          <MemberButtonStyle>회원으로 진행</MemberButtonStyle>
+          <MemberButtonStyle onClick={showLoginHandler}>
+            회원으로 진행
+          </MemberButtonStyle>
         </ButtonBoxStyle>
       </ConfirmBoxStyle>
     </ContainerStyle>
@@ -75,10 +94,9 @@ const SummaryBoxStyle = styled.div`
   margin: 2rem auto;
   display: flex;
   flex-direction: row;
-  box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 0.5rem 0 rgba(0, 0, 0, 0.2);
   text-align: center;
   border-radius: 10px;
-  border: 1px solid black;
   /* border: 2px solid #76916a; */
 
   @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
@@ -87,7 +105,7 @@ const SummaryBoxStyle = styled.div`
 `;
 
 const TimeBoxStyle = styled.div`
-  width: 40%;
+  width: 30%;
   padding: 3rem;
   display: flex;
   flex-direction: column;
@@ -98,16 +116,21 @@ const TimeBoxStyle = styled.div`
     margin-bottom: 1rem;
   }
 
+  span:last-child {
+    color: #76916a;
+  }
+
   @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
     width: 100%;
     border-right: none;
     border-bottom: 1px solid lightgrey;
     font-size: 1rem;
+    padding: 1rem;
   }
 `;
 
 const ItemBoxStyle = styled.div`
-  width: 20%;
+  width: 24%;
   border-right: 1px solid lightgrey;
   padding: 3rem;
   display: flex;
@@ -118,11 +141,16 @@ const ItemBoxStyle = styled.div`
     margin-bottom: 1rem;
   }
 
+  span:last-child {
+    color: #76916a;
+  }
+
   @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
     width: 100%;
     border-right: none;
     border-bottom: 1px solid lightgrey;
     font-size: 1rem;
+    padding: 1rem;
   }
 `;
 
@@ -137,17 +165,26 @@ const LastItemBoxStyle = styled.div`
     margin-bottom: 1rem;
   }
 
+  span:last-child {
+    color: #76916a;
+  }
+
   @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
     width: 100%;
     border-right: none;
     border-bottom: 1px solid lightgrey;
     font-size: 1rem;
+    padding: 1rem;
   }
 `;
 
 const ConfirmBoxStyle = styled.div`
   text-align: right;
   padding: 0.5rem;
+
+  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+    text-align: center;
+  }
 `;
 
 const CheckBoxStyle = styled.div`
@@ -155,6 +192,10 @@ const CheckBoxStyle = styled.div`
   justify-content: right;
   font-size: 1rem;
   margin-bottom: 3rem;
+
+  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+    justify-content: center;
+  }
 `;
 
 const ButtonBoxStyle = styled.div`
@@ -176,6 +217,7 @@ const NonMemberButtonStyle = styled.button`
   font-size: 1rem;
   border: none;
   cursor: pointer;
+  color: black;
 
   &:hover {
     border: 2px solid #76916a;
@@ -184,6 +226,10 @@ const NonMemberButtonStyle = styled.button`
   @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
     padding: 0.5rem;
     font-size: 0.95rem;
+
+    &:hover {
+      border: 1px solid #76916a;
+    }
   }
 `;
 
@@ -206,5 +252,9 @@ const MemberButtonStyle = styled.button`
   @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
     padding: 0.5rem;
     font-size: 0.9rem;
+
+    &:hover {
+      border: 1px solid white;
+    }
   }
 `;

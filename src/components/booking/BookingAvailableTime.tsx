@@ -37,6 +37,6 @@ const ButtonStyle = styled.button<{ $isBooked: boolean }>`
 
   @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
     width: 70px;
-    margin: 20px 7px;
+    margin: 15px 7px;
   }
 `;
