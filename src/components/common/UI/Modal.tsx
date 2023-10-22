@@ -60,8 +60,8 @@ const ModalStyle = styled.div`
   animation: slide-down 300ms ease-out forwards;
 
   @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
-    width: 40rem;
-    left: calc(50% - 20rem);
+    width: 35rem;
+    left: calc(50% - 18rem);
   }
 
   @media only screen and (max-width: ${MEDIA_QUERY.mobileWidth}) {

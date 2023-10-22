@@ -5,17 +5,17 @@ import styled from "styled-components";
 const LoginPage = () => {
   return (
     <Layout>
-      <LoginBoxStyle>
+      <LoginLayoutStyle>
         <LoginForm />
-      </LoginBoxStyle>
+      </LoginLayoutStyle>
     </Layout>
   );
 };
 
 export default LoginPage;
 
-const LoginBoxStyle = styled.div`
-  width: 40rem;
+const LoginLayoutStyle = styled.main`
+  width: 30rem;
   margin: 5rem auto;
   padding: 1rem;
 `;

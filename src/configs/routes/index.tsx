@@ -9,6 +9,7 @@ import NoticeRootLayoutPage from "../../pages/NoticeRootLayoutPage";
 import MembershipPage from "../../pages/MembershipPage";
 import ContactPage from "../../pages/ContactPage";
 import LoginPage from "../../pages/auth/LoginPage";
+import JoinPage from "../../pages/auth/JoinPage";
 
 const bookRouteObjects: RouteObject[] = [
   {
@@ -57,6 +58,7 @@ const informationRouteObjects: RouteObject[] = [
 
 const authRouteObjects: RouteObject[] = [
   { path: "login", element: <LoginPage /> },
+  { path: "join", element: <JoinPage /> },
 ];
 
 export const router = createBrowserRouter([
