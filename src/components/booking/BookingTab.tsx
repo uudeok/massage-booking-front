@@ -4,7 +4,7 @@ import BookingItemList from "./BookingItemList";
 import BookingDate from "./BookingDate";
 import { MEDIA_QUERY } from "../../const/devise";
 import BookingDetailList from "./BookingDetailList";
-import BookingReservation from "./BookingReservation";
+import BookingForm from "./BookingForm";
 
 const BookingTab = () => {
   const [tabNum, setTabNum] = useState(0);
@@ -36,12 +36,9 @@ const BookingTab = () => {
       ),
     },
     {
-      key: "결제 하기",
+      key: "예약하기",
       content: (
-        <BookingReservation
-          changeTabHandler={changeTabHandler}
-          tabNum={tabNum}
-        />
+        <BookingForm changeTabHandler={changeTabHandler} tabNum={tabNum} />
       ),
     },
   ];
@@ -60,7 +57,6 @@ const BookingTab = () => {
             >
               {item.key}
             </TabButtonStyle>
-            <ArrowBoxStyle $isActive={index === tabNum}></ArrowBoxStyle>
           </React.Fragment>
         ))}
       </TabListStyle>
@@ -77,11 +73,11 @@ const TabListStyle = styled.div`
   display: flex;
   flex-direction: row;
   height: 5rem;
-  margin-top: 5rem;
+  margin-top: 3rem;
 `;
 
 const TabButtonStyle = styled.button<{ $isActive: boolean }>`
-  width: 95%;
+  width: 100%;
   height: 100%;
   cursor: pointer;
   display: flex;
@@ -89,10 +85,10 @@ const TabButtonStyle = styled.button<{ $isActive: boolean }>`
   align-items: center;
   border: none;
   font-size: 1.5rem;
-  font-family: "Pretendard-Regular";
+  font-family: "GmarketSansMedium";
 
   background-color: ${({ $isActive }) =>
-    $isActive ? "#819977" : "whitesmoke"};
+    $isActive ? "#afc9a4" : "whitesmoke"};
   color: ${({ $isActive }) => ($isActive ? "white" : "grey")};
 
   @media only screen and (max-width: ${MEDIA_QUERY.notebookWidth}) {
@@ -102,20 +98,6 @@ const TabButtonStyle = styled.button<{ $isActive: boolean }>`
   @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
     font-size: 1rem;
     width: 100%;
-  }
-`;
-
-const ArrowBoxStyle = styled.div<{ $isActive: boolean }>`
-  width: 5%;
-  border-top: ${({ $isActive }) =>
-    $isActive ? "40px solid whitesmoke" : "40px solid whitesmoke"};
-  border-bottom: ${({ $isActive }) =>
-    $isActive ? "40px solid whitesmoke" : "40px solid whitesmoke"};
-  border-left: ${({ $isActive }) =>
-    $isActive ? "40px solid #819977" : "40px solid whitesmoke"};
-
-  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
-    display: none;
   }
 `;
 

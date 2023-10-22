@@ -3,6 +3,11 @@ export interface ICalendar {
   selectedDate: Date | null;
 }
 
-export interface IModalProps {
-  modalHandler: () => void;
+export interface IBackDrop {
+  onClose: () => void;
+}
+
+interface IModal {
+  onClose: () => void;
+  children: React.ReactNode;
 }

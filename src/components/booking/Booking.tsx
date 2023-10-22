@@ -6,7 +6,7 @@ const Booking = () => {
   return (
     <ContainerStyle>
       <ImgBoxStyle>
-        <img src="/green.jpg" alt="메인사진" width="100%" height="100%" />
+        <img src="/5.jpg" alt="메인사진" width="100%" height="100%" />
         <InnerBoxStyle>
           <Link to="/information/contact">
             <ButtonBoxStyle>오시는 길</ButtonBoxStyle>
@@ -74,14 +74,14 @@ const ButtonBoxStyle = styled.div`
   text-align: center;
   margin-right: 3.2rem;
   color: white;
-  background-color: #97a393;
+  background-color: #819977;
   display: flex;
   justify-content: center;
   align-items: center;
   font-family: "KBO-Dia-Gothic_bold";
 
   &:hover {
-    background-color: #819977;
+    background-color: #97a393;
   }
 
   @media only screen and (max-width: ${MEDIA_QUERY.bigNotebookWidth}) {

@@ -8,6 +8,7 @@ import NoticeDetailPage from "../../pages/NoticeDetailPage";
 import NoticeRootLayoutPage from "../../pages/NoticeRootLayoutPage";
 import MembershipPage from "../../pages/MembershipPage";
 import ContactPage from "../../pages/ContactPage";
+import LoginPage from "../../pages/auth/LoginPage";
 
 const bookRouteObjects: RouteObject[] = [
   {
@@ -54,6 +55,10 @@ const informationRouteObjects: RouteObject[] = [
   },
 ];
 
+const authRouteObjects: RouteObject[] = [
+  { path: "login", element: <LoginPage /> },
+];
+
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -64,6 +69,7 @@ export const router = createBrowserRouter([
       ...programRouteObjects,
       ...noticeRouteObjects,
       ...informationRouteObjects,
+      ...authRouteObjects,
     ],
   },
 ]);

@@ -22,6 +22,7 @@ export const InnerContainerStyle = styled.header`
 export const LogoBoxStyle = styled.div`
   width: 20%;
   font-size: 30px;
+  font-family: "GmarketSansMedium";
 
   @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
     font-size: 27px;
@@ -57,5 +58,16 @@ export const LoginBoxStyle = styled.div`
 
   @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
     width: 100%;
+  }
+`;
+
+export const LogoutBoxStyle = styled.div`
+  button {
+    margin-left: 1rem;
+    border: none;
+    background-color: white;
+    font-family: "Pretendard-Regular";
+    font-size: 1rem;
+    cursor: pointer;
   }
 `;

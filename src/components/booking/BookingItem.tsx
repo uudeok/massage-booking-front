@@ -62,19 +62,20 @@ const ItemContentBoxStyle = styled.div`
 `;
 
 const ButtonStyle = styled.button`
-  background-color: #819977;
+  background-color: white;
   padding: 0.7rem;
   cursor: pointer;
-  color: white;
-  border: none;
+  color: black;
+  border: 2px solid black;
   border-radius: 5px;
   font-family: "Pretendard-Regular";
-  font-size: 1.2rem;
+  font-size: 1rem;
   height: 3rem;
 
   &:hover {
-    background-color: #86a27b;
+    background-color: #afc9a4;
     color: white;
     border: none;
+    transition: all 0.326s ease-in-out;
   }
 `;

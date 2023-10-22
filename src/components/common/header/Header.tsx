@@ -6,8 +6,10 @@ import {
   MenuInnerBoxStyle,
   MenuListStyle,
   LoginBoxStyle,
+  LogoutBoxStyle,
 } from "./Header.style";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { getAuthUser, logout } from "../../../util";
 
 const MENU_LIST = [
   { key: "program", value: "프로그램 안내", id: 1 },
@@ -16,6 +18,13 @@ const MENU_LIST = [
 ];
 
 const Header = () => {
+  const getAuth = getAuthUser();
+  const navigate = useNavigate();
+  const logoutHandler = () => {
+    logout();
+    navigate("/");
+  };
+
   return (
     <ContainerStyle>
       <InnerContainerStyle>
@@ -33,7 +42,15 @@ const Header = () => {
             </MenuListStyle>
           </MenuInnerBoxStyle>
         </MenuBoxStyle>
-        <LoginBoxStyle>로그인</LoginBoxStyle>
+        <LoginBoxStyle>
+          {!getAuth && <Link to="/login">로그인</Link>}
+          {getAuth && (
+            <LogoutBoxStyle>
+              <button>내정보</button>
+              <button onClick={logoutHandler}>로그아웃</button>
+            </LogoutBoxStyle>
+          )}
+        </LoginBoxStyle>
       </InnerContainerStyle>
     </ContainerStyle>
   );

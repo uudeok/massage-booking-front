@@ -1,9 +1,38 @@
 import styled from "styled-components";
 import { MEDIA_QUERY } from "../../const/devise";
+import { useInput } from "../../hooks/useInput";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
+  const navigate = useNavigate();
+
+  const [error, setError] = useState("");
+  const { inputValue, changeInputHandler } = useInput({
+    email: "",
+    password: "",
+  });
+
+  const { email, password } = inputValue;
+
+  const isValidEmail = email.includes("@") && email.trim().length > 5;
+  const isValidPassword = password.trim().length >= 7;
+
+  const onLoginHandler = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    if (!isValidEmail || !isValidPassword) {
+      setError("이메일 또는 비밀번호가 올바르지 않습니다");
+      return;
+    }
+
+    // valid 검증 후, 로그인 API 요청
+    localStorage.setItem("email", email);
+    navigate("/");
+  };
+
   return (
-    <FormLayoutStyle>
+    <FormStyle onChange={changeInputHandler} onSubmit={onLoginHandler}>
       <HeaderStyle>로그인</HeaderStyle>
       <LabelStyle htmlFor="email">이메일</LabelStyle>
       <InputStyle
@@ -12,6 +41,7 @@ const LoginForm = () => {
         placeholder="이메일 주소를 입력해주세요"
         id="email"
         name="email"
+        defaultValue={email}
       />
       <LabelStyle htmlFor="password">비밀번호</LabelStyle>
       <InputStyle
@@ -20,7 +50,9 @@ const LoginForm = () => {
         placeholder="비밀번호를 입력해주세요"
         id="password"
         name="password"
+        defaultValue={password}
       />
+      {error && <ErrorMessageStyle>{error}</ErrorMessageStyle>}
       <LoginButtonStyle>로그인</LoginButtonStyle>
       <BottomBoxStyle>
         <span>다른 계정으로 로그인</span>
@@ -32,13 +64,13 @@ const LoginForm = () => {
       <JoinBoxStyle>
         <JoinButtonStyle>회원가입</JoinButtonStyle>
       </JoinBoxStyle>
-    </FormLayoutStyle>
+    </FormStyle>
   );
 };
 
 export default LoginForm;
 
-const FormLayoutStyle = styled.form`
+const FormStyle = styled.form`
   width: 80%;
   padding: 1rem;
   margin: auto;
@@ -77,7 +109,7 @@ const LoginButtonStyle = styled.button`
   height: 2.5rem;
 
   &:hover {
-    border: 2px solid whitesmoke;
+    border: 1px solid whitesmoke;
   }
 `;
 
@@ -86,6 +118,13 @@ const BottomBoxStyle = styled.div`
   border-top: 1px solid lightgrey;
   padding: 1rem;
   text-align: center;
+
+  div {
+    @media only screen and (max-width: ${MEDIA_QUERY.mobileWidth}) {
+      display: flex;
+      flex-direction: column;
+    }
+  }
 `;
 
 const BottomButtonStyle = styled.button`
@@ -103,8 +142,7 @@ const BottomButtonStyle = styled.button`
   }
 
   @media only screen and (max-width: ${MEDIA_QUERY.mobileWidth}) {
-    width: 40%;
-    padding: 0;
+    width: 100%;
   }
 `;
 
@@ -119,12 +157,12 @@ const JoinButtonStyle = styled.button`
   padding: 1rem;
   border: none;
   cursor: pointer;
-  background-color: #afc9a4;
-  color: white;
-  font-weight: bold;
+  /* background-color: #afc9a4; */
+  color: black;
   border-radius: 5px;
+`;
 
-  &:hover {
-    border: 2px solid whitesmoke;
-  }
+const ErrorMessageStyle = styled.span`
+  color: red;
+  font-size: 0.9rem;
 `;
