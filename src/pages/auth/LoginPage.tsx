@@ -1,6 +1,7 @@
 import LoginForm from "../../components/auth/Login";
 import Layout from "../../layout/Layout";
 import styled from "styled-components";
+import { MEDIA_QUERY } from "../../const/devise";
 
 const LoginPage = () => {
   return (
@@ -18,4 +19,12 @@ const LoginLayoutStyle = styled.main`
   width: 30rem;
   margin: 5rem auto;
   padding: 1rem;
+
+  @media only screen and (max-width: ${MEDIA_QUERY.bigMobileWidth}) {
+    width: 26rem;
+  }
+
+  @media only screen and (max-width: ${MEDIA_QUERY.mobileWidth}) {
+    width: 22rem;
+  }
 `;

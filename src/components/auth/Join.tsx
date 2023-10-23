@@ -71,6 +71,7 @@ const KakaoButtonStyle = styled.button`
   font-size: 17px;
   cursor: pointer;
   margin-top: 1rem;
+  color: black;
 `;
 
 const MiddleBannerStyle = styled.div`
@@ -107,4 +108,5 @@ const JoinButtonStyle = styled.button`
   cursor: pointer;
   margin-top: 1rem;
   font-family: "Pretendard-Regular";
+  color: black;
 `;

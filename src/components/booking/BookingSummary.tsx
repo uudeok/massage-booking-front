@@ -47,11 +47,18 @@ const SummaryBoxStyle = styled.div`
   margin: 2rem auto;
   display: flex;
   flex-direction: row;
-  box-shadow: 0 0 0.5rem 0 rgba(0, 0, 0, 0.2);
+  /* box-shadow: 0 0 0.5rem 0 rgba(0, 0, 0, 0.2); */
   text-align: center;
   border-radius: 10px;
-  /* border: 2px solid #76916a; */
+  border: 1px solid lightgrey;
   font-family: "GmarketSansMedium";
+
+  div {
+    &:hover {
+      scale: calc(1.1);
+    }
+  }
+
   @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
     flex-direction: column;
   }

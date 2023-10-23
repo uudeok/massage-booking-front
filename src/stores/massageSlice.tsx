@@ -74,5 +74,6 @@ export const massageSlice = createSlice({
 });
 
 export const getMassage = (state: RootState) => state.massage.massage;
+
 export const { getMassageItem } = massageSlice.actions;
 export default massageSlice.reducer;

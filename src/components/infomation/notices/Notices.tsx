@@ -7,7 +7,7 @@ const Notices = () => {
   return (
     <ContainerStyle>
       <HeaderBoxStyle>
-        <HeaderStyle>📢알려드립니다</HeaderStyle>
+        <HeaderStyle>알려드립니다📢</HeaderStyle>
         <Link to="/notice">
           <div>목록보기</div>
         </Link>

@@ -89,10 +89,9 @@ const ButtonBoxStyle = styled.div`
 
 const NonMemberButtonStyle = styled.button`
   background-color: whitesmoke;
-  width: 13rem;
   height: 3.5rem;
   padding: 1rem;
-  margin-left: 1rem;
+
   border-radius: 5px;
   font-size: 1rem;
   border: none;
@@ -104,8 +103,8 @@ const NonMemberButtonStyle = styled.button`
   }
 
   @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+    font-size: 0.8rem;
     padding: 0.5rem;
-    font-size: 0.95rem;
 
     &:hover {
       border: 1px solid #76916a;
@@ -115,7 +114,6 @@ const NonMemberButtonStyle = styled.button`
 
 const MemberButtonStyle = styled.button`
   background-color: #76916a;
-  width: 13rem;
   height: 3.5rem;
   padding: 1rem;
   margin-left: 1rem;
@@ -130,8 +128,8 @@ const MemberButtonStyle = styled.button`
   }
 
   @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+    font-size: 0.8rem;
     padding: 0.5rem;
-    font-size: 0.9rem;
 
     &:hover {
       border: 1px solid white;

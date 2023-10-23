@@ -3,10 +3,11 @@ import { MEDIA_QUERY } from "../../const/devise";
 import { useInput } from "../../hooks/useInput";
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import { getAuthUser } from "../../util";
 
 const LoginForm = () => {
   const navigate = useNavigate();
-
+  const userInfo = getAuthUser();
   const [error, setError] = useState("");
   const { inputValue, changeInputHandler } = useInput({
     email: "",
@@ -18,6 +19,10 @@ const LoginForm = () => {
   const isValidEmail = email.includes("@") && email.trim().length > 5;
   const isValidPassword = password.trim().length >= 7;
 
+  if (userInfo !== null) {
+    navigate("/mypage");
+  }
+
   const onLoginHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -26,16 +31,16 @@ const LoginForm = () => {
       return;
     }
 
+    navigate("/mypage");
+
     // valid 검증 후, 로그인 API 요청
     // 1. 로그인 화면에서 로그인할 경우 로그인 후 메인으로가기
     // 2. 예약 화면에서 로그인할 경우 로그인 후 나의정보 화면으로 가기
-
-    localStorage.setItem("email", email);
-    navigate("/");
+    // 3. 이미 로그인이 되어있는 경우 나의정보 화면으로 가기
   };
 
   return (
-    <ContainerStyle>
+    <>
       <FormStyle onChange={changeInputHandler} onSubmit={onLoginHandler}>
         <HeaderStyle>로그인</HeaderStyle>
         <LabelStyle htmlFor="email">이메일</LabelStyle>
@@ -62,21 +67,15 @@ const LoginForm = () => {
       <BottomBoxStyle>
         <span>다른 계정으로 로그인</span>
         <BottomButtonStyle>카카오톡 로그인</BottomButtonStyle>
-      </BottomBoxStyle>
-      <JoinBoxStyle>
         <JoinButtonStyle>
           <Link to="/join">회원가입 하러가기</Link>
         </JoinButtonStyle>
-      </JoinBoxStyle>
-    </ContainerStyle>
+      </BottomBoxStyle>
+    </>
   );
 };
 
 export default LoginForm;
-
-const ContainerStyle = styled.div`
-  padding: 1rem;
-`;
 
 const FormStyle = styled.form`
   /* width: 30rem; */
@@ -85,7 +84,11 @@ const FormStyle = styled.form`
   display: flex;
   flex-direction: column;
 
-  @media only screen and (max-width: ${MEDIA_QUERY.mobileWidth}) {
+  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+    width: 90%;
+  }
+
+  @media only screen and (max-width: ${MEDIA_QUERY.bigMobileWidth}) {
     width: 100%;
   }
 `;
@@ -130,6 +133,15 @@ const BottomBoxStyle = styled.div`
   border-top: 1px solid lightgrey;
   padding: 1rem;
   text-align: center;
+
+  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+    width: 90%;
+    margin: auto;
+  }
+
+  @media only screen and (max-width: ${MEDIA_QUERY.bigMobileWidth}) {
+    width: 100%;
+  }
 `;
 
 const BottomButtonStyle = styled.button`
@@ -146,11 +158,8 @@ const BottomButtonStyle = styled.button`
   cursor: pointer;
   margin-top: 1rem;
   width: 100%;
-`;
-
-const JoinBoxStyle = styled.div`
-  text-align: center;
-  padding: 1rem;
+  color: black;
+  margin-bottom: 1rem;
 `;
 
 const JoinButtonStyle = styled.button`
@@ -159,7 +168,7 @@ const JoinButtonStyle = styled.button`
   padding: 1rem;
   border: none;
   cursor: pointer;
-  color: black;
+  color: grey;
   border-radius: 10px;
   font-family: "Pretendard-Regular";
 `;

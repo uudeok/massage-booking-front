@@ -27,8 +27,8 @@ const HeaderStyle = styled.h2`
   flex-basis: 100%;
   align-items: center;
   color: rgba(0, 0, 0, 0.35);
-  margin: 2rem auto;
-  width: 80%;
+  margin: 1rem auto;
+  width: 75%;
 
   &::before,
   &::after {

@@ -7,9 +7,9 @@ import { getMassageItem } from "../../stores/massageSlice";
 const BookingItem = ({ massage, changeTabHandler, tabNum }: IBookingItem) => {
   const dispatch = useDispatch();
 
-  const fetchDetailTime = async (id: number) => {
-    /// 마사지를 선택하면 id 로 api 호출, 마사지 디테일 및 정보가 응답으로 온다.
-    // 그러고나서 props 로 받은 함수 호출해서 tab 이동
+  const fetchMassageItem = async (id: number) => {
+    /// 마사지 id 로 api 호출, 마사지 디테일 정보가 응답으로 온다.
+    // 그러고 나서 tab 이동
 
     await dispatch(getMassageItem(id));
     changeTabHandler(tabNum + 1);
@@ -23,7 +23,7 @@ const BookingItem = ({ massage, changeTabHandler, tabNum }: IBookingItem) => {
       <ItemContentBoxStyle>
         <h3>{BOOKING_ITEM[massage.item]}</h3>
         <span>{massage.content}</span>
-        <ButtonStyle onClick={() => fetchDetailTime(massage.id)}>
+        <ButtonStyle onClick={() => fetchMassageItem(massage.id)}>
           예약하기
         </ButtonStyle>
       </ItemContentBoxStyle>

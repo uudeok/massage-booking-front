@@ -66,6 +66,9 @@ export const BOOKING_MASSAGE_TABLE: IMassageTable[] = [
   },
 ];
 
+/// 60, 90, 120분에 따라 startTime 과 endTime 을 어떻게 분기 칠것인지
+/// date 는 오늘날짜 기준 한달동안의 정보를 가지고 있어야함
+
 export const TIME_TABLE = [
   {
     startTime: "09:00:00",
@@ -81,6 +84,7 @@ export const TIME_TABLE = [
     type: "free",
     date: new Date(),
     id: 2,
+    massageId: 1,
   },
   {
     startTime: "11:00:00",
@@ -88,6 +92,7 @@ export const TIME_TABLE = [
     type: "book",
     date: new Date(),
     id: 3,
+    massageId: 1,
   },
   {
     startTime: "12:00:00",
@@ -95,6 +100,7 @@ export const TIME_TABLE = [
     type: "free",
     date: new Date(),
     id: 4,
+    massageId: 1,
   },
   {
     startTime: "13:00:00",
@@ -102,6 +108,7 @@ export const TIME_TABLE = [
     type: "free",
     date: new Date(),
     id: 5,
+    massageId: 1,
   },
   {
     startTime: "14:00:00",
@@ -109,6 +116,7 @@ export const TIME_TABLE = [
     type: "book",
     date: new Date(),
     id: 6,
+    massageId: 1,
   },
   {
     startTime: "15:00:00",
@@ -116,6 +124,7 @@ export const TIME_TABLE = [
     type: "free",
     date: new Date(),
     id: 7,
+    massageId: 1,
   },
   {
     startTime: "16:00:00",
@@ -123,6 +132,7 @@ export const TIME_TABLE = [
     type: "free",
     date: new Date(),
     id: 8,
+    massageId: 1,
   },
   {
     startTime: "17:00:00",
@@ -130,6 +140,7 @@ export const TIME_TABLE = [
     type: "book",
     date: new Date(),
     id: 9,
+    massageId: 1,
   },
   {
     startTime: "18:00:00",
@@ -137,6 +148,7 @@ export const TIME_TABLE = [
     type: "free",
     date: new Date(),
     id: 10,
+    massageId: 1,
   },
   {
     startTime: "19:00:00",
@@ -144,6 +156,7 @@ export const TIME_TABLE = [
     type: "free",
     date: new Date(),
     id: 11,
+    massageId: 1,
   },
   {
     startTime: "20:00:00",
@@ -151,5 +164,6 @@ export const TIME_TABLE = [
     type: "free",
     date: new Date(),
     id: 12,
+    massageId: 1,
   },
 ];

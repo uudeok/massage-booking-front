@@ -6,14 +6,10 @@ import Modal from "../common/UI/Modal";
 import LoginForm from "../auth/Login";
 import BookingSummary from "./BookingSummary";
 import BookingConfirm from "./BookingConfirm";
-import { useSelector } from "react-redux";
-import { getMassage } from "../../stores/massageSlice";
 
 const BookingForm = ({ changeTabHandler, tabNum }: IPreviousButton) => {
-  const bookingData = useSelector(getMassage);
   const [loginIsShown, setLoginIsShown] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
-  console.log(bookingData);
 
   const changeCheckedHandler = () => {
     setIsChecked((prev) => !prev);

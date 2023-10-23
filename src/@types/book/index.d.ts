@@ -28,6 +28,7 @@ export interface ITimeTable {
   type: string;
   date: Date | string;
   id: number;
+  massageId: number;
 }
 
 /// Component props type ///

@@ -57,12 +57,12 @@ const ContainerStyle = styled.div`
   }
 
   img {
-    height: 80%;
+    height: 100%;
     opacity: 0.9;
   }
 
   @media only screen and (max-width: ${MEDIA_QUERY.mobileWidth}) {
-    height: 30vh;
+    height: 35vh;
   }
 `;
 

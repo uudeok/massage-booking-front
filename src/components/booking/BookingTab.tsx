@@ -96,7 +96,7 @@ const TabButtonStyle = styled.button<{ $isActive: boolean }>`
   }
 
   @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
-    font-size: 1rem;
+    font-size: 0.8rem;
     width: 100%;
   }
 `;

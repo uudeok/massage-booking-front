@@ -16,16 +16,12 @@ const BookingDate = ({ changeTabHandler, tabNum }: IPreviousButton) => {
     console.log("날짜가 바뀔때마다 api 호출");
   }, [selectedDate]);
 
-  console.log(selectedDate);
-
   const changeDateHandler = (date: Date | null) => {
     setSelectedDate(date);
   };
 
   const fetchReservation = async (timeId: number) => {
-    // BookingAvailableTime 컴포넌트에서 고객이 시간을 클릭하면 클릭한 시간대의 id 를 받아옴
-    // 그래서 고른 날짜와 시간대를 확인
-    console.log(selectedDate, timeId);
+    // BookingAvailableTime 컴포넌트에서 시간을 클릭하면 클릭한 시간대의 id 를 받아옴
 
     changeTabHandler(tabNum + 1);
   };

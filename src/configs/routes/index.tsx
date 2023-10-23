@@ -10,6 +10,7 @@ import MembershipPage from "../../pages/MembershipPage";
 import ContactPage from "../../pages/ContactPage";
 import LoginPage from "../../pages/auth/LoginPage";
 import JoinPage from "../../pages/auth/JoinPage";
+import MyPage from "../../pages/user/MyPage";
 
 const bookRouteObjects: RouteObject[] = [
   {
@@ -60,6 +61,10 @@ const informationRouteObjects: RouteObject[] = [
   },
 ];
 
+const userRouteObjects: RouteObject[] = [
+  { path: "mypage", element: <MyPage /> },
+];
+
 const authRouteObjects: RouteObject[] = [
   { path: "login", element: <LoginPage /> },
   { path: "join", element: <JoinPage /> },
@@ -72,6 +77,7 @@ export const router = createBrowserRouter([
     children: [
       { index: true, element: <HomePage /> },
       ...authRouteObjects,
+      ...userRouteObjects,
       ...bookRouteObjects,
       ...programRouteObjects,
       ...noticeRouteObjects,
