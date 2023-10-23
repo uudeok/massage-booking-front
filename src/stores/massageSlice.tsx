@@ -65,7 +65,7 @@ export const massageSlice = createSlice({
   name: "massage",
   initialState,
   reducers: {
-    getMassageDetail(state, action) {
+    getMassageItem(state, action) {
       state.massage = state.massage.filter(
         (masg) => masg.id === action.payload
       );
@@ -73,6 +73,6 @@ export const massageSlice = createSlice({
   },
 });
 
-export const getMassageList = (state: RootState) => state.massage.massage;
-export const { getMassageDetail } = massageSlice.actions;
+export const getMassage = (state: RootState) => state.massage.massage;
+export const { getMassageItem } = massageSlice.actions;
 export default massageSlice.reducer;

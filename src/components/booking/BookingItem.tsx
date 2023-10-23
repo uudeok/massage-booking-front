@@ -2,7 +2,7 @@ import { IBookingItem } from "../../@types/book";
 import styled from "styled-components";
 import { BOOKING_ITEM } from "../../const/massage";
 import { useDispatch } from "react-redux";
-import { getMassageDetail } from "../../stores/massageSlice";
+import { getMassageItem } from "../../stores/massageSlice";
 
 const BookingItem = ({ massage, changeTabHandler, tabNum }: IBookingItem) => {
   const dispatch = useDispatch();
@@ -11,7 +11,7 @@ const BookingItem = ({ massage, changeTabHandler, tabNum }: IBookingItem) => {
     /// 마사지를 선택하면 id 로 api 호출, 마사지 디테일 및 정보가 응답으로 온다.
     // 그러고나서 props 로 받은 함수 호출해서 tab 이동
 
-    await dispatch(getMassageDetail(id));
+    await dispatch(getMassageItem(id));
     changeTabHandler(tabNum + 1);
   };
 
@@ -48,7 +48,7 @@ const ItemContentBoxStyle = styled.div`
   height: 30%;
   display: flex;
   flex-direction: column;
-  padding: 0.8rem;
+  padding: 1rem;
 
   h3 {
     margin-bottom: 0.5rem;

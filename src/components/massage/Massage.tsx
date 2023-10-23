@@ -4,20 +4,52 @@ import { MEDIA_QUERY } from "../../const/devise";
 
 const Massage = () => {
   return (
-    <MassageContainerStyle>
-      <MassageInnerBoxStyle>
-        <MassageSlide />
-      </MassageInnerBoxStyle>
-    </MassageContainerStyle>
+    <>
+      <HeaderStyle>Program</HeaderStyle>
+      <MassageContainerStyle>
+        <MassageInnerBoxStyle>
+          <MassageSlide />
+        </MassageInnerBoxStyle>
+      </MassageContainerStyle>
+    </>
   );
 };
 
 export default Massage;
 
+const HeaderStyle = styled.h2`
+  text-align: center;
+  padding: 1rem;
+  font-size: 3rem;
+  font-family: "Times New Roman", Times, serif;
+  font-style: italic;
+  display: flex;
+  flex-basis: 100%;
+  align-items: center;
+  color: rgba(0, 0, 0, 0.35);
+  margin: 2rem auto;
+  width: 80%;
+
+  &::before,
+  &::after {
+    content: "";
+    flex-grow: 1;
+    background: rgba(0, 0, 0, 0.35);
+    height: 1px;
+    font-size: 0px;
+    line-height: 0px;
+    margin: 0px 16px;
+  }
+
+  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+    font-size: 2.5rem;
+    margin: 1rem auto;
+  }
+`;
+
 const MassageContainerStyle = styled.div`
   width: 100%;
   height: 45vh;
-  /* background-color: whitesmoke; */
   display: flex;
 
   @media only screen and (max-width: ${MEDIA_QUERY.mobileWidth}) {

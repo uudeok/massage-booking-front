@@ -7,10 +7,10 @@ import LoginForm from "../auth/Login";
 import BookingSummary from "./BookingSummary";
 import BookingConfirm from "./BookingConfirm";
 import { useSelector } from "react-redux";
-import { getMassageList } from "../../stores/massageSlice";
+import { getMassage } from "../../stores/massageSlice";
 
 const BookingForm = ({ changeTabHandler, tabNum }: IPreviousButton) => {
-  const bookingData = useSelector(getMassageList);
+  const bookingData = useSelector(getMassage);
   const [loginIsShown, setLoginIsShown] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
   console.log(bookingData);

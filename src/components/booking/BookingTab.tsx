@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState, Fragment } from "react";
 import styled from "styled-components";
 import BookingItemList from "./BookingItemList";
 import BookingDate from "./BookingDate";
@@ -47,7 +47,7 @@ const BookingTab = () => {
     <>
       <TabListStyle>
         {TAB_LIST.map((item, index) => (
-          <React.Fragment key={index}>
+          <Fragment key={index}>
             <TabButtonStyle
               disabled={index !== tabNum}
               $isActive={index === tabNum}
@@ -57,7 +57,7 @@ const BookingTab = () => {
             >
               {item.key}
             </TabButtonStyle>
-          </React.Fragment>
+          </Fragment>
         ))}
       </TabListStyle>
 

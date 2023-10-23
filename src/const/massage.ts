@@ -73,6 +73,7 @@ export const TIME_TABLE = [
     type: "free",
     date: new Date(),
     id: 1,
+    massageId: 1,
   },
   {
     startTime: "10:00:00",

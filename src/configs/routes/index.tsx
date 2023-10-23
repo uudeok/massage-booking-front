@@ -34,6 +34,10 @@ const noticeRouteObjects: RouteObject[] = [
   },
 ];
 
+// element 마다 Layout 으로 감싸줘야 하는 불편함이 있었음
+// notice 는 header 와 footer 레이아웃이 고정으로 필요한 컴포넌트이므로 NoticeRootLayout 페이지를
+// 만들어서 부모에서 한번만 감싸주는 형태로 바꿈
+
 const programRouteObjects: RouteObject[] = [
   {
     path: "program",
@@ -67,11 +71,11 @@ export const router = createBrowserRouter([
     element: <App />,
     children: [
       { index: true, element: <HomePage /> },
+      ...authRouteObjects,
       ...bookRouteObjects,
       ...programRouteObjects,
       ...noticeRouteObjects,
       ...informationRouteObjects,
-      ...authRouteObjects,
     ],
   },
 ]);

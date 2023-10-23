@@ -9,23 +9,31 @@ export const ContainerStyle = styled.div`
 `;
 
 export const InnerContainerStyle = styled.header`
-  width: 70%;
+  width: 90%;
   margin: 0 auto;
   display: flex;
   align-items: end;
 
   @media only screen and (max-width: ${MEDIA_QUERY.notebookWidth}) {
+    width: 95%;
+  }
+
+  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
     width: 100%;
   }
 `;
 
 export const LogoBoxStyle = styled.div`
   width: 20%;
-  font-size: 30px;
+  font-size: 1.8rem;
   font-family: "GmarketSansMedium";
 
+  @media only screen and (max-width: ${MEDIA_QUERY.notebookWidth}) {
+    font-size: 1.6rem;
+  }
+
   @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
-    font-size: 27px;
+    font-size: 1.5rem;
     width: 100%;
     margin-left: 0.5rem;
   }
@@ -33,12 +41,7 @@ export const LogoBoxStyle = styled.div`
 
 export const MenuBoxStyle = styled.div`
   width: 60%;
-`;
-
-export const MenuInnerBoxStyle = styled.div`
-  width: 80%;
-  margin: auto;
-  display: flex;
+  /* border: 1px solid black; */
 
   @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
     display: none;
@@ -47,14 +50,21 @@ export const MenuInnerBoxStyle = styled.div`
 
 export const MenuListStyle = styled.ul`
   display: flex;
-  width: 100%;
+  width: 60%;
+  margin: auto;
   justify-content: space-around;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
+
+  @media only screen and (max-width: ${MEDIA_QUERY.notebookWidth}) {
+    font-size: 1rem;
+    width: 80%;
+  }
 `;
 
 export const LoginBoxStyle = styled.div`
   width: 20%;
   text-align: right;
+  font-family: "GmarketSansMedium";
 
   @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
     width: 100%;
@@ -69,5 +79,13 @@ export const LogoutBoxStyle = styled.div`
     font-family: "Pretendard-Regular";
     font-size: 1rem;
     cursor: pointer;
+
+    @media only screen and (max-width: ${MEDIA_QUERY.notebookWidth}) {
+      font-size: 0.8rem;
+    }
+
+    @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+      font-size: 0.9rem;
+    }
   }
 `;

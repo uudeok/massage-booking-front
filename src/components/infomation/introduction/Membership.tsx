@@ -52,7 +52,7 @@ const ContentStyle = styled.div`
   color: white;
   font-size: 1.6rem;
   z-index: 1;
-  font-family: "Pretendard-Regular";
+  font-family: "GmarketSansMedium";
   left: 2rem;
   font-weight: 900;
 
@@ -64,7 +64,7 @@ const ContentStyle = styled.div`
     cursor: pointer;
     border: 2px solid white;
     color: white;
-    font-family: "Pretendard-Regular";
+    font-family: "GmarketSansMedium";
     font-weight: bold;
     font-size: 1rem;
   }

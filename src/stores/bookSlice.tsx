@@ -170,21 +170,14 @@ export const bookSlice = createSlice({
         (masg) => masg.id === action.payload
       );
     },
-    getMassageDetailTime(state, action) {
-      state.detail = state.detail.filter(
-        (item) =>
-          item.massageId === action.payload.massageId &&
-          item.time === action.payload.massageTime
-      );
-    },
+
     getAvailableDate(state, action) {
       state.availableTime = state.availableTime.filter(
-        (item) => item.id === action.payload
+        (item) => item.date === action.payload
       );
     },
   },
 });
 
-export const { getMassageItem, getMassageDetailTime, getAvailableDate } =
-  bookSlice.actions;
+export const { getMassageItem, getAvailableDate } = bookSlice.actions;
 export default bookSlice.reducer;

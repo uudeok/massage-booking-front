@@ -35,7 +35,7 @@ const LoginForm = () => {
   };
 
   return (
-    <>
+    <ContainerStyle>
       <FormStyle onChange={changeInputHandler} onSubmit={onLoginHandler}>
         <HeaderStyle>로그인</HeaderStyle>
         <LabelStyle htmlFor="email">이메일</LabelStyle>
@@ -68,15 +68,18 @@ const LoginForm = () => {
           <Link to="/join">회원가입 하러가기</Link>
         </JoinButtonStyle>
       </JoinBoxStyle>
-    </>
+    </ContainerStyle>
   );
 };
 
 export default LoginForm;
 
+const ContainerStyle = styled.div`
+  padding: 1rem;
+`;
+
 const FormStyle = styled.form`
   /* width: 30rem; */
-  padding: 1rem;
   margin: 1rem auto;
   font-family: "Pretendard-Regular";
   display: flex;

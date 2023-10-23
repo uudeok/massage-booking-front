@@ -69,6 +69,6 @@ const ContainerStyle = styled.div`
 const ItemContentStyle = styled.div`
   height: 20%;
   padding: 1rem;
-  font-family: "Pretendard-Regular";
-  font-size: 20px;
+  font-family: "GmarketSansMedium";
+  font-size: 1rem;
 `;

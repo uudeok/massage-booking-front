@@ -1,12 +1,8 @@
 import styled from "styled-components";
-import { DEVISE_SIZE } from "../../../const/devise";
+import { MEDIA_QUERY } from "../../../const/devise";
+import { IPreviousButton } from "../../../@types/book";
 
-interface IProps {
-  changeTabHandler: (number: number) => void;
-  tabNum: number;
-}
-
-const PreviousButton = ({ changeTabHandler, tabNum }: IProps) => {
+const PreviousButton = ({ changeTabHandler, tabNum }: IPreviousButton) => {
   return (
     <ButtonStyle onClick={() => changeTabHandler(tabNum)}>
       이전단계로
@@ -26,7 +22,7 @@ const ButtonStyle = styled.button`
   font-family: "Pretendard-Regular";
   font-size: 1rem;
 
-  @media only screen and (max-width: ${DEVISE_SIZE.notebookMax}) {
+  @media only screen and (max-width: ${MEDIA_QUERY.notebookWidth}) {
     width: 7rem;
     padding: 0.5rem;
   }

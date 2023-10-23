@@ -26,14 +26,13 @@ const ButtonStyle = styled.button<{ $isBooked: boolean }>`
   text-align: center;
   padding: 0.5rem;
   height: 4rem;
-  font-size: 1rem;
-  font-family: "Pretendard-Regular";
+  font-family: "GmarketSansMedium";
   cursor: pointer;
   background-color: white;
 
   color: ${({ $isBooked }) => ($isBooked ? "lightgrey" : "white")};
   background-color: ${({ $isBooked }) =>
-    $isBooked ? "whitesmoke" : "#76916a"};
+    $isBooked ? "whitesmoke" : "#a2c294"};
 
   @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
     width: 70px;

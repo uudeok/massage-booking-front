@@ -3,7 +3,6 @@ import {
   InnerContainerStyle,
   LogoBoxStyle,
   MenuBoxStyle,
-  MenuInnerBoxStyle,
   MenuListStyle,
   LoginBoxStyle,
   LogoutBoxStyle,
@@ -26,13 +25,13 @@ const Header = () => {
   };
 
   return (
-    <ContainerStyle>
-      <InnerContainerStyle>
-        <LogoBoxStyle>
-          <Link to="/">자연치유 쉼</Link>
-        </LogoBoxStyle>
-        <MenuBoxStyle>
-          <MenuInnerBoxStyle>
+    <>
+      <ContainerStyle>
+        <InnerContainerStyle>
+          <LogoBoxStyle>
+            <Link to="/">자연치유 쉼</Link>
+          </LogoBoxStyle>
+          <MenuBoxStyle>
             <MenuListStyle>
               {MENU_LIST.map((item) => (
                 <li key={item.id}>
@@ -40,19 +39,19 @@ const Header = () => {
                 </li>
               ))}
             </MenuListStyle>
-          </MenuInnerBoxStyle>
-        </MenuBoxStyle>
-        <LoginBoxStyle>
-          {!getAuth && <Link to="/login">로그인</Link>}
-          {getAuth && (
-            <LogoutBoxStyle>
-              <button>내정보</button>
-              <button onClick={logoutHandler}>로그아웃</button>
-            </LogoutBoxStyle>
-          )}
-        </LoginBoxStyle>
-      </InnerContainerStyle>
-    </ContainerStyle>
+          </MenuBoxStyle>
+          <LoginBoxStyle>
+            {!getAuth && <Link to="/login">로그인</Link>}
+            {getAuth && (
+              <LogoutBoxStyle>
+                <button>내정보</button>
+                <button onClick={logoutHandler}>로그아웃</button>
+              </LogoutBoxStyle>
+            )}
+          </LoginBoxStyle>
+        </InnerContainerStyle>
+      </ContainerStyle>
+    </>
   );
 };
 

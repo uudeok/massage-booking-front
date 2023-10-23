@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { MEDIA_QUERY } from "../../const/devise";
-import { Link } from "react-router-dom";
 
 const JoinForm = () => {
   return (
@@ -34,14 +33,13 @@ const ContainerStyle = styled.div`
   font-family: "Pretendard-Regular";
   display: flex;
   flex-direction: column;
-  /* border: 1px solid black; */
 
   @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
-    width: 100%;
+    width: 24rem;
   }
 
   @media only screen and (max-width: ${MEDIA_QUERY.mobileWidth}) {
-    width: 100%;
+    width: 20rem;
   }
 `;
 

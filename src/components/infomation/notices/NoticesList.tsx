@@ -28,7 +28,7 @@ const NoticesList = () => {
     <ContainerStyle>
       <InnerBoxStyle>
         <HeaderStyle>
-          <TitleStyle>공지사항</TitleStyle>
+          <TitleStyle>📢공지사항</TitleStyle>
           <CategoryListStyle onChange={changeCategoryHandler}>
             <option value="ALL">전체</option>
             {NOTICE_LIST.map((item) => (
@@ -83,4 +83,5 @@ const CategoryListStyle = styled.select`
   width: 5rem;
   height: 2rem;
   display: flex;
+  color: black;
 `;

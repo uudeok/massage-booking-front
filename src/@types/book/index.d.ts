@@ -26,7 +26,7 @@ export interface ITimeTable {
   startTime: string;
   endTime: string;
   type: string;
-  date: Date;
+  date: Date | string;
   id: number;
 }
 

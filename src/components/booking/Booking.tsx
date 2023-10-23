@@ -30,8 +30,7 @@ const ContainerStyle = styled.div`
   justify-content: center;
 
   @media only screen and (max-width: ${MEDIA_QUERY.notebookWidth}) {
-    width: 100%;
-    height: 30vh;
+    height: 35vh;
   }
 `;
 

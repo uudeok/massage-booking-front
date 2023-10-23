@@ -16,6 +16,8 @@ const BookingDate = ({ changeTabHandler, tabNum }: IPreviousButton) => {
     console.log("날짜가 바뀔때마다 api 호출");
   }, [selectedDate]);
 
+  console.log(selectedDate);
+
   const changeDateHandler = (date: Date | null) => {
     setSelectedDate(date);
   };
@@ -117,7 +119,7 @@ const AvailableBoxStyle = styled.div`
 const AvailableCircleStyle = styled.div`
   width: 15px;
   height: 15px;
-  background-color: #76916a;
+  background-color: #a2c294;
   border-radius: 50%;
   margin-right: 0.5rem;
 `;
