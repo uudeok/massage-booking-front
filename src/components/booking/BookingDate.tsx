@@ -12,7 +12,7 @@ const BookingDate = ({ changeTabHandler, tabNum }: IPreviousButton) => {
 
   useEffect(() => {
     // 날짜가 바뀔때마다 가능한 시간대 가져오는 API 호출
-    // 예를들어 workingday/?from=선택한날짜&to=선택한날짜&products=선택한 마사지&category=마사지시간
+    // 예를들어 /?from=선택한날짜&to=선택한날짜&products=선택한 마사지&category=마사지시간
     console.log("날짜가 바뀔때마다 api 호출");
   }, [selectedDate]);
 
@@ -84,7 +84,7 @@ const CalendarBoxStyle = styled.div`
   display: flex;
   height: 6rem;
   align-items: center;
-  box-shadow: 0 0 0.5rem 0 rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 0.3rem 0 rgba(0, 0, 0, 0.2);
 
   @media only screen and (max-width: ${MEDIA_QUERY.notebookWidth}) {
     width: 100%;

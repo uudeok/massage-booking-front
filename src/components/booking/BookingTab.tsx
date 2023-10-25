@@ -1,6 +1,6 @@
 import { useState, Fragment } from "react";
 import styled from "styled-components";
-import BookingItemList from "./BookingItemList";
+import BookingList from "./BookingList";
 import BookingDate from "./BookingDate";
 import { MEDIA_QUERY } from "../../const/devise";
 import BookingDetailList from "./BookingDetailList";
@@ -17,7 +17,7 @@ const BookingTab = () => {
     {
       key: "마사지 선택",
       content: (
-        <BookingItemList changeTabHandler={changeTabHandler} tabNum={tabNum} />
+        <BookingList changeTabHandler={changeTabHandler} tabNum={tabNum} />
       ),
     },
     {

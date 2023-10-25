@@ -6,16 +6,25 @@ import Modal from "../common/UI/Modal";
 import LoginForm from "../auth/Login";
 import BookingSummary from "./BookingSummary";
 import BookingConfirm from "./BookingConfirm";
+import { getAuthUser } from "../../util";
+import { useNavigate } from "react-router-dom";
 
 const BookingForm = ({ changeTabHandler, tabNum }: IPreviousButton) => {
   const [loginIsShown, setLoginIsShown] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
+  const userInfo = getAuthUser();
+  const navigate = useNavigate();
 
   const changeCheckedHandler = () => {
     setIsChecked((prev) => !prev);
   };
 
   const showLoginHandler = () => {
+    // user정보가 있다면, 이미 로그인 된 상태이므로 login모달을 띄우지 않고 mypage 로 이동
+    if (userInfo !== null) {
+      navigate("/mypage");
+      return;
+    }
     setLoginIsShown(true);
   };
 

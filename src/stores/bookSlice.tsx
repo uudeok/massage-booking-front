@@ -1,7 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "./store";
+import { IMassageDetail, IMassageItem } from "../@types/book";
 
 const initialState = {
+  selectedDetail: [] as IMassageDetail[],
+  filteredDetail: [] as IMassageDetail[],
+  selectedMassageItem: [] as IMassageItem[],
   detail: [
     { time: 60, price: 60000, id: 1, massageId: 1 },
     { time: 90, price: 80000, id: 2, massageId: 1 },
@@ -15,7 +19,7 @@ const initialState = {
     { time: 90, price: 70000, id: 2, massageId: 4 },
     { time: 60, price: 70000, id: 1, massageId: 5 },
     { time: 90, price: 90000, id: 2, massageId: 5 },
-  ],
+  ] as IMassageDetail[],
   massage: [
     {
       img: "건식.jpg",
@@ -49,7 +53,7 @@ const initialState = {
       id: 5,
       content: "피부 테라피에 초점을 맞춘 마사지",
     },
-  ],
+  ] as IMassageItem[],
 };
 
 export const bookSlice = createSlice({
@@ -57,21 +61,27 @@ export const bookSlice = createSlice({
   initialState,
   reducers: {
     getMassageItem(state, action) {
-      state.massage = state.massage.filter(
+      state.selectedMassageItem = state.massage.filter(
         (masg) => masg.id === action.payload
       );
     },
-    getMassageDetail(state, action) {
-      state.detail = state.detail.filter(
-        (item) =>
-          item.massageId === action.payload.massageId &&
-          item.id === action.payload.timeId
+    getDetailList(state, action) {
+      state.filteredDetail = state.detail.filter(
+        (item) => item.massageId === action.payload
+      );
+    },
+    getSelectedDetail(state, action) {
+      state.selectedDetail = state.filteredDetail.filter(
+        (item) => item.id === action.payload
       );
     },
   },
 });
 
-export const getMassage = (state: RootState) => state.massage.massage;
+export const bookItem = (state: RootState) => state.book.selectedMassageItem;
+export const filteredDetail = (state: RootState) => state.book.filteredDetail;
+export const bookDetail = (state: RootState) => state.book.selectedDetail;
 
-export const { getMassageItem, getMassageDetail } = bookSlice.actions;
+export const { getMassageItem, getDetailList, getSelectedDetail } =
+  bookSlice.actions;
 export default bookSlice.reducer;

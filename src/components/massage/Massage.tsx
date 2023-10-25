@@ -29,6 +29,7 @@ const HeaderStyle = styled.h2`
   color: rgba(0, 0, 0, 0.35);
   margin: 1rem auto;
   width: 75%;
+  font-weight: bold;
 
   &::before,
   &::after {

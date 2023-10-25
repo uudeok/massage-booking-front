@@ -1,25 +1,28 @@
 import { IBookingDetail } from "../../@types/book";
 import styled from "styled-components";
 import { useSelector } from "react-redux/es/hooks/useSelector";
-import { getMassage } from "../../stores/massageSlice";
 import { BOOKING_ITEM } from "../../const/massage";
 import { addComma, addMinutesUnit } from "../../util";
 import { MEDIA_QUERY } from "../../const/devise";
+import { bookItem, getSelectedDetail } from "../../stores/bookSlice";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../stores/store";
 
 const BookingDetail = ({
   detail,
   changeTabHandler,
   tabNum,
 }: IBookingDetail) => {
-  const massageItem = useSelector(getMassage);
+  const dispatch = useDispatch<AppDispatch>();
+  const massageItem = useSelector(bookItem);
   const item = massageItem[0].item;
   const description = massageItem[0].content;
 
-  const fetchAvailableTime = async (massageId: number, timeId: number) => {
-    // 어떤 마사지의 몇분을 선택했는지 id 로 api 호출
-    // 예를들어 workingday/?from=오늘날짜&to=오늘날짜&products=선택한 마사지(massageId)&category=마사지시간(detail.time) 아니면 detailId
+  const fetchAvailableTime = async (timeId: number) => {
+    // 마사지의 몇분을 선택했는지
     // 그리고 나서 tab 이동
 
+    dispatch(getSelectedDetail(timeId));
     changeTabHandler(tabNum + 1);
   };
 
@@ -35,9 +38,7 @@ const BookingDetail = ({
         </MiddleStyle>
         <BottomStyle>
           <h3>{addMinutesUnit(detail.time)}</h3>
-          <ButtonStyle
-            onClick={() => fetchAvailableTime(detail.massageId, detail.id)}
-          >
+          <ButtonStyle onClick={() => fetchAvailableTime(detail.id)}>
             선택하기
           </ButtonStyle>
         </BottomStyle>
@@ -51,8 +52,9 @@ export default BookingDetail;
 const ContainerStyle = styled.div`
   margin: 2rem auto;
   border-radius: 6px;
-  background-color: whitesmoke;
-  box-shadow: 0 0 0.5rem 0 rgba(0, 0, 0, 0.2);
+  /* background-color: whitesmoke; */
+  /* box-shadow: 0 0 0.5rem 0 rgba(0, 0, 0, 0.2); */
+  border: 1px solid lightgrey;
   padding: 1rem;
   width: 45rem;
   height: 12rem;
@@ -88,9 +90,10 @@ const TopStyle = styled.div`
   div {
     border-radius: 30px;
     padding: 0.8rem 1rem;
-    background-color: #666161;
+    background-color: #5b5b5b;
     color: white;
     font-size: 1.5rem;
+    font-family: "GmarketSansMedium";
   }
 
   @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
@@ -123,6 +126,7 @@ const BottomStyle = styled.div`
     padding: 0.5rem 0;
     font-size: 1.5rem;
     font-weight: bold;
+    font-family: "GmarketSansMedium";
   }
 
   @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
@@ -139,8 +143,7 @@ const ButtonStyle = styled.button`
   width: 8.5rem;
   height: 2.5rem;
   cursor: pointer;
-  /* background-color: #819977; */
-  /* border: none; */
+  background-color: white;
   color: black;
   font-size: 1rem;
   font-family: "Pretendard-Regular";

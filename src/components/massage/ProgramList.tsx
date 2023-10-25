@@ -42,7 +42,7 @@ const ContainerStyle = styled.div`
   /* border-top: 1px solid black; */
   display: flex;
   flex-direction: column;
-  font-family: "Pretendard-Regular";
+  font-family: "GmarketSansMedium";
 `;
 
 const InnerBoxStyle = styled.ul`

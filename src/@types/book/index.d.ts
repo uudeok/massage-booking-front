@@ -5,6 +5,13 @@ export interface IMassageDetail {
   massageId: number;
 }
 
+export interface IMassageItem {
+  img: string;
+  item: string;
+  id: number;
+  content: string;
+}
+
 export interface IMassageTable {
   img: string;
   item: string;

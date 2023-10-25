@@ -33,7 +33,7 @@ const ProgramItem = ({ massage }: { massage: IMassageTable }) => {
 export default ProgramItem;
 
 const ImgBoxStyle = styled.div`
-  opacity: 0.8;
+  opacity: 0.9;
 `;
 
 const ContentBoxStyle = styled.div`
@@ -45,7 +45,11 @@ const ContentTitleStyle = styled.div`
 `;
 
 const ContentStyle = styled.div`
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
+
+  @media only screen and (max-width: ${MEDIA_QUERY.bigMobileWidth}) {
+    font-size: 0.8rem;
+  }
 `;
 
 const ContentPriceListStyle = styled.div`
@@ -56,5 +60,9 @@ const ContentPriceListStyle = styled.div`
   @media only screen and (max-width: ${MEDIA_QUERY.bigNotebookWidth}) {
     flex-direction: column;
     margin-top: 1rem;
+  }
+
+  @media only screen and (max-width: ${MEDIA_QUERY.bigMobileWidth}) {
+    font-size: 0.8rem;
   }
 `;

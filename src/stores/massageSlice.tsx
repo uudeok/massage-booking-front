@@ -3,6 +3,7 @@ import { RootState } from "./store";
 import { IMassageTable } from "../@types/book";
 
 const initialState = {
+  massageItem: [] as IMassageTable[],
   massage: [
     {
       img: "건식.jpg",
@@ -66,14 +67,14 @@ export const massageSlice = createSlice({
   initialState,
   reducers: {
     getMassageItem(state, action) {
-      state.massage = state.massage.filter(
+      state.massageItem = state.massage.filter(
         (masg) => masg.id === action.payload
       );
     },
   },
 });
 
-export const getMassage = (state: RootState) => state.massage.massage;
+export const getMassage = (state: RootState) => state.massage.massageItem;
 
 export const { getMassageItem } = massageSlice.actions;
 export default massageSlice.reducer;

@@ -47,7 +47,16 @@ const BannerBoxStyle = styled.div`
   }
 
   @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
-    left: 40%;
     font-size: 0.8rem;
+  }
+
+  @media only screen and (max-width: ${MEDIA_QUERY.bigMobileWidth}) {
+    font-size: 0.9rem;
+    left: 43%;
+  }
+
+  @media only screen and (max-width: ${MEDIA_QUERY.mobileWidth}) {
+    font-size: 0.8rem;
+    left: 40%;
   }
 `;

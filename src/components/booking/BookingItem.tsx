@@ -2,16 +2,17 @@ import { IBookingItem } from "../../@types/book";
 import styled from "styled-components";
 import { BOOKING_ITEM } from "../../const/massage";
 import { useDispatch } from "react-redux";
-import { getMassageItem } from "../../stores/massageSlice";
+import { AppDispatch } from "../../stores/store";
+import { getMassageItem, getDetailList } from "../../stores/bookSlice";
 
 const BookingItem = ({ massage, changeTabHandler, tabNum }: IBookingItem) => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
 
-  const fetchMassageItem = async (id: number) => {
-    /// 마사지 id 로 api 호출, 마사지 디테일 정보가 응답으로 온다.
+  const fetchMassageDetail = async (massageId: number) => {
+    /// 마사지 id 로 마사지 정보와 detail 정보 각각 가져오기
     // 그러고 나서 tab 이동
-
-    await dispatch(getMassageItem(id));
+    await dispatch(getMassageItem(massageId));
+    await dispatch(getDetailList(massageId));
     changeTabHandler(tabNum + 1);
   };
 
@@ -23,7 +24,7 @@ const BookingItem = ({ massage, changeTabHandler, tabNum }: IBookingItem) => {
       <ItemContentBoxStyle>
         <h3>{BOOKING_ITEM[massage.item]}</h3>
         <span>{massage.content}</span>
-        <ButtonStyle onClick={() => fetchMassageItem(massage.id)}>
+        <ButtonStyle onClick={() => fetchMassageDetail(massage.id)}>
           예약하기
         </ButtonStyle>
       </ItemContentBoxStyle>
@@ -72,10 +73,10 @@ const ButtonStyle = styled.button`
   font-size: 1rem;
   height: 3rem;
 
-  &:hover {
+  /* &:hover {
     background-color: #afc9a4;
     color: white;
     border: none;
     transition: all 0.326s ease-in-out;
-  }
+  } */
 `;

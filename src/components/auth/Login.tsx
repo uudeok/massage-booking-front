@@ -3,11 +3,10 @@ import { MEDIA_QUERY } from "../../const/devise";
 import { useInput } from "../../hooks/useInput";
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { getAuthUser } from "../../util";
 
 const LoginForm = () => {
   const navigate = useNavigate();
-  const userInfo = getAuthUser();
+
   const [error, setError] = useState("");
   const { inputValue, changeInputHandler } = useInput({
     email: "",
@@ -19,24 +18,21 @@ const LoginForm = () => {
   const isValidEmail = email.includes("@") && email.trim().length > 5;
   const isValidPassword = password.trim().length >= 7;
 
-  if (userInfo !== null) {
-    navigate("/mypage");
-  }
-
   const onLoginHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (!isValidEmail || !isValidPassword) {
-      setError("이메일 또는 비밀번호가 올바르지 않습니다");
+      setError("이메일 또는 비밀번호가 올바르지 않습니다.");
       return;
     }
 
+    localStorage.setItem("email", email);
     navigate("/mypage");
+    /// 로그인 API 요청
 
     // valid 검증 후, 로그인 API 요청
     // 1. 로그인 화면에서 로그인할 경우 로그인 후 메인으로가기
-    // 2. 예약 화면에서 로그인할 경우 로그인 후 나의정보 화면으로 가기
-    // 3. 이미 로그인이 되어있는 경우 나의정보 화면으로 가기
+    // 2. 예약 화면에서 회원으로 예약하기해서 로그인할 경우 로그인 후 나의정보 화면으로 가기
   };
 
   return (
@@ -65,7 +61,7 @@ const LoginForm = () => {
         <LoginButtonStyle>로그인</LoginButtonStyle>
       </FormStyle>
       <BottomBoxStyle>
-        <span>다른 계정으로 로그인</span>
+        <BottomTitleStyle>다른 계정으로 로그인</BottomTitleStyle>
         <BottomButtonStyle>카카오톡 로그인</BottomButtonStyle>
         <JoinButtonStyle>
           <Link to="/join">회원가입 하러가기</Link>
@@ -131,8 +127,10 @@ const LoginButtonStyle = styled.button`
 const BottomBoxStyle = styled.div`
   margin-top: 2rem;
   border-top: 1px solid lightgrey;
-  padding: 1rem;
+
   text-align: center;
+  display: flex;
+  flex-direction: column;
 
   @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
     width: 90%;
@@ -142,6 +140,10 @@ const BottomBoxStyle = styled.div`
   @media only screen and (max-width: ${MEDIA_QUERY.bigMobileWidth}) {
     width: 100%;
   }
+`;
+
+const BottomTitleStyle = styled.span`
+  margin-top: 1rem;
 `;
 
 const BottomButtonStyle = styled.button`

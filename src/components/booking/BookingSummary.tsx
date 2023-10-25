@@ -1,26 +1,37 @@
 import styled from "styled-components";
 import { MEDIA_QUERY } from "../../const/devise";
+import { useSelector } from "react-redux";
+import { bookDetail, bookItem } from "../../stores/bookSlice";
+import { BOOKING_ITEM } from "../../const/massage";
+import { addMinutesUnit, addComma } from "../../util";
 
 const BookingSummary = () => {
+  const selectedMassage = useSelector(bookItem);
+  const selectedMassageDetail = useSelector(bookDetail);
+
+  const massageItem = selectedMassage[0].item;
+  const massageTime = selectedMassageDetail[0].time;
+  const massagePrice = selectedMassageDetail[0].price;
+
   return (
     <>
       <HeaderStyle>예약 주문서 확인</HeaderStyle>
       <SummaryBoxStyle>
         <TimeBoxStyle>
           <span>마사지 시간</span>
-          <span>09:00 - 10:00 (60분)</span>
+          <span>09:00 - 10:00 ({addMinutesUnit(massageTime)})</span>
         </TimeBoxStyle>
         <ItemBoxStyle>
           <span>마사지 종류</span>
-          <span>건식마사지</span>
+          <span>{BOOKING_ITEM[massageItem]}</span>
         </ItemBoxStyle>
         <ItemBoxStyle>
           <span>받으실 날짜</span>
-          <span>2023-10-20</span>
+          <span>2023-10-25</span>
         </ItemBoxStyle>
         <LastItemBoxStyle>
           <span>금액</span>
-          <span>60,000원</span>
+          <span>{addComma(massagePrice)}</span>
         </LastItemBoxStyle>
       </SummaryBoxStyle>
     </>
@@ -47,19 +58,12 @@ const SummaryBoxStyle = styled.div`
   margin: 2rem auto;
   display: flex;
   flex-direction: row;
-  /* box-shadow: 0 0 0.5rem 0 rgba(0, 0, 0, 0.2); */
   text-align: center;
   border-radius: 10px;
   border: 1px solid lightgrey;
   font-family: "GmarketSansMedium";
 
-  div {
-    &:hover {
-      scale: calc(1.1);
-    }
-  }
-
-  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+  @media only screen and (max-width: ${MEDIA_QUERY.notebookWidth}) {
     flex-direction: column;
   }
 `;
@@ -78,9 +82,16 @@ const TimeBoxStyle = styled.div`
 
   span:last-child {
     color: #76916a;
+    font-size: 1.1rem;
   }
 
-  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+  @media only screen and (max-width: ${MEDIA_QUERY.bigNotebookWidth}) {
+    span:last-child {
+      font-size: 1rem;
+    }
+  }
+
+  @media only screen and (max-width: ${MEDIA_QUERY.notebookWidth}) {
     width: 100%;
     border-right: none;
     border-bottom: 1px solid lightgrey;
@@ -105,7 +116,13 @@ const ItemBoxStyle = styled.div`
     color: #76916a;
   }
 
-  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+  @media only screen and (max-width: ${MEDIA_QUERY.bigNotebookWidth}) {
+    span:last-child {
+      font-size: 1rem;
+    }
+  }
+
+  @media only screen and (max-width: ${MEDIA_QUERY.notebookWidth}) {
     width: 100%;
     border-right: none;
     border-bottom: 1px solid lightgrey;
@@ -129,7 +146,13 @@ const LastItemBoxStyle = styled.div`
     color: #76916a;
   }
 
-  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+  @media only screen and (max-width: ${MEDIA_QUERY.bigNotebookWidth}) {
+    span:last-child {
+      font-size: 1rem;
+    }
+  }
+
+  @media only screen and (max-width: ${MEDIA_QUERY.notebookWidth}) {
     width: 100%;
     border-right: none;
     border-bottom: 1px solid lightgrey;

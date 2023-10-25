@@ -1,11 +1,11 @@
-import { BOOKING_MASSAGE_TABLE } from "../../const/massage";
 import BookingItem from "./BookingItem";
 import styled from "styled-components";
 import { IPreviousButton } from "../../@types/book";
 import { MEDIA_QUERY } from "../../const/devise";
+import { BOOKING_MASSAGE_TABLE } from "../../const/massage";
 
-const BookingItemList = ({ changeTabHandler, tabNum }: IPreviousButton) => {
-  /// 마사지 리스트를 가져오는 API 요청
+const BookingList = ({ changeTabHandler, tabNum }: IPreviousButton) => {
+  // 마사지 리스트 API 가져옴
 
   return (
     <ContainerStyle>
@@ -22,7 +22,7 @@ const BookingItemList = ({ changeTabHandler, tabNum }: IPreviousButton) => {
   );
 };
 
-export default BookingItemList;
+export default BookingList;
 
 const ContainerStyle = styled.ul`
   display: flex;

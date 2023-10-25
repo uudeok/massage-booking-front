@@ -13,8 +13,7 @@ const JoinForm = () => {
       <MiddleBannerStyle>
         <div>자연치유 쉼의 회원만 누릴 수 있는 혜택!</div>
         <div>다양한 EVENT 안내!</div>
-        <div>적립금 1~3% 혜택</div>
-        <div>회원가입시 1,000원 할인쿠폰</div>
+        <div>현금처럼 쓸 수 있는 적립금 혜택</div>
       </MiddleBannerStyle>
       <MemberJoinBoxStyle>
         <span>또는</span>
