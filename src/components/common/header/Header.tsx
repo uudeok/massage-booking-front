@@ -44,7 +44,7 @@ const Header = () => {
             {!getAuth && <Link to="/login">로그인</Link>}
             {getAuth && (
               <LogoutBoxStyle>
-                <button onClick={() => navigate("/mypage")}>내정보</button>
+                <button onClick={() => navigate("/mypage/book")}>내정보</button>
                 <button onClick={logoutHandler}>로그아웃</button>
               </LogoutBoxStyle>
             )}

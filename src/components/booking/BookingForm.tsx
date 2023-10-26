@@ -10,19 +10,32 @@ import { getAuthUser } from "../../util";
 import { useNavigate } from "react-router-dom";
 
 const BookingForm = ({ changeTabHandler, tabNum }: IPreviousButton) => {
-  const [loginIsShown, setLoginIsShown] = useState(false);
-  const [isChecked, setIsChecked] = useState(false);
   const userInfo = getAuthUser();
   const navigate = useNavigate();
+  const [loginIsShown, setLoginIsShown] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
+  const [error, setError] = useState("");
+
+  const fetchMemberReservation = () => {
+    const process = window.confirm("예약 하시겠습니까?");
+    if (process) {
+      /// 예약 API 요청
+      navigate("/mypage/book");
+    }
+  };
 
   const changeCheckedHandler = () => {
     setIsChecked((prev) => !prev);
   };
 
   const showLoginHandler = () => {
-    // user정보가 있다면, 이미 로그인 된 상태이므로 login모달을 띄우지 않고 mypage 로 이동
+    if (!isChecked) {
+      setError("* 예약 내역을 확인 후 체크해주세요.");
+      return;
+    }
+
     if (userInfo !== null) {
-      navigate("/mypage");
+      fetchMemberReservation();
       return;
     }
     setLoginIsShown(true);
@@ -44,8 +57,8 @@ const BookingForm = ({ changeTabHandler, tabNum }: IPreviousButton) => {
       <BookingConfirm
         isChecked={isChecked}
         changeCheckedHandler={changeCheckedHandler}
-        loginIsShown={loginIsShown}
         showLoginHandler={showLoginHandler}
+        error={error}
       />
     </ContainerStyle>
   );

@@ -4,15 +4,15 @@ import { MEDIA_QUERY } from "../../const/devise";
 interface IProps {
   isChecked: boolean;
   changeCheckedHandler: () => void;
-  loginIsShown: boolean;
   showLoginHandler: () => void;
+  error: string;
 }
 
 const BookingConfirm = ({
   isChecked,
   changeCheckedHandler,
-  loginIsShown,
   showLoginHandler,
+  error,
 }: IProps) => {
   return (
     <ConfirmBoxStyle>
@@ -25,9 +25,7 @@ const BookingConfirm = ({
           />
           <p>위 내용을 모두 확인 하였습니다.</p>
         </CheckStyle>
-        {loginIsShown && !isChecked && (
-          <WarningStyle>* 예약 내역을 확인 후 체크해주세요.</WarningStyle>
-        )}
+        {error && <WarningStyle>{error}</WarningStyle>}
       </CheckBoxStyle>
       <ButtonBoxStyle>
         <NonMemberButtonStyle>비회원으로 진행</NonMemberButtonStyle>

@@ -1,10 +1,6 @@
-import Layout from "../../layout/Layout";
+import MyPageTab from "../../components/user/MyPageTab";
 
 const MyPage = () => {
-  return (
-    <Layout>
-      <MyPage />
-    </Layout>
-  );
+  return <MyPageTab />;
 };
 export default MyPage;

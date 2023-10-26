@@ -31,7 +31,7 @@ const ContainerStyle = styled.ul`
   flex-wrap: wrap;
   width: 1200px;
   margin: auto;
-  font-family: "GmarketSansMedium";
+  font-family: "Pretendard-Regular";
 `;
 
 const BookingItemStyle = styled.li`
