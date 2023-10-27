@@ -1,13 +1,14 @@
 import { useParams } from "react-router-dom";
 import MyBookList from "./MyBookList";
 import styled from "styled-components";
+import MyMileageList from "./MyMileageList";
 
 const MyPageTab = () => {
   const { category } = useParams();
 
   const MY_PAGE_TAB = [
     { key: "book", value: <MyBookList /> },
-    { key: "mileage", value: "적립금" },
+    { key: "mileage", value: <MyMileageList /> },
     { key: "coupon", value: "나의쿠폰" },
   ];
 

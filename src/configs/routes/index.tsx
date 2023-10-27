@@ -11,7 +11,7 @@ import ContactPage from "../../pages/ContactPage";
 import LoginPage from "../../pages/auth/LoginPage";
 import JoinPage from "../../pages/auth/JoinPage";
 import MyPage from "../../pages/user/MyPage";
-import MyRootLayoutPage from "../../pages/user/MyRootLayoutPage";
+import RootLayoutPage from "../../pages/user/RootLayoutPage";
 
 const bookRouteObjects: RouteObject[] = [
   {
@@ -65,7 +65,7 @@ const informationRouteObjects: RouteObject[] = [
 const userRouteObjects: RouteObject[] = [
   {
     path: "mypage",
-    element: <MyRootLayoutPage />,
+    element: <RootLayoutPage />,
     children: [{ path: ":category", element: <MyPage /> }],
   },
 ];

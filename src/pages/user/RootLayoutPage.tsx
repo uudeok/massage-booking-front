@@ -6,7 +6,7 @@ import Footer from "../../components/common/footer/Footer";
 import MyPageSide from "../../components/user/MyPageSide";
 import MyPageHeader from "../../components/user/MyPageHeader";
 
-const MyRootLayoutPage = () => {
+const RootLayoutPage = () => {
   return (
     <WrapperStyle>
       <Header />
@@ -20,7 +20,7 @@ const MyRootLayoutPage = () => {
   );
 };
 
-export default MyRootLayoutPage;
+export default RootLayoutPage;
 
 const WrapperStyle = styled.div`
   display: flex;
@@ -30,7 +30,7 @@ const WrapperStyle = styled.div`
 
 const MainStyle = styled.main`
   flex: 1;
-  width: 80%;
+  width: 70%;
   margin: 3rem auto;
   display: flex;
   flex-direction: row;
@@ -42,5 +42,9 @@ const MainStyle = styled.main`
 
   @media only screen and (max-width: ${MEDIA_QUERY.notebookWidth}) {
     width: 100%;
+  }
+
+  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+    flex-direction: column;
   }
 `;

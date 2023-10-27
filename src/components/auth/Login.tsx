@@ -4,7 +4,7 @@ import { useInput } from "../../hooks/useInput";
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 
-const LoginForm = () => {
+const LoginForm = ({ path }: { path?: string }) => {
   const navigate = useNavigate();
 
   const [error, setError] = useState("");
@@ -28,8 +28,12 @@ const LoginForm = () => {
 
     /// 로그인 API 요청
     localStorage.setItem("email", email);
-    navigate("/");
 
+    if (path) {
+      navigate(`/${path}`);
+    } else {
+      navigate("/");
+    }
     // valid 검증 후, 로그인 API 요청
     // 1. 로그인 화면에서 로그인할 경우 로그인 후 메인으로가기
     // 2. 예약 화면에서 회원으로 예약하기해서 로그인할 경우 로그인 후 나의정보 화면으로 가기

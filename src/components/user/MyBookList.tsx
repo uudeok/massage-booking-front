@@ -1,8 +1,11 @@
 import styled from "styled-components";
 import { MY_BOOK_LIST } from "../../const/mypage";
 import MyBookItem from "./MyBookItem";
+import { MEDIA_QUERY } from "../../const/devise";
 
 const MyBookList = () => {
+  // 개인 고객 조회
+
   return (
     <>
       <HeaderStyle>‖ 예약 내역</HeaderStyle>
@@ -37,6 +40,10 @@ const HeaderLayoutStyle = styled.div`
   padding: 1rem;
   margin-top: 1rem;
   text-align: center;
+
+  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+    display: none;
+  }
 `;
 
 const ContentLayoutStyle = styled.div`

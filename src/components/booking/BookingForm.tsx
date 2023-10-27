@@ -49,7 +49,7 @@ const BookingForm = ({ changeTabHandler, tabNum }: IPreviousButton) => {
     <ContainerStyle>
       {loginIsShown && isChecked && (
         <Modal onClose={hideLoginHandler}>
-          <LoginForm />
+          <LoginForm path="mypage/book" />
         </Modal>
       )}
       <PreviousButton changeTabHandler={changeTabHandler} tabNum={tabNum - 1} />

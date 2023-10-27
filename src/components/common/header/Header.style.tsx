@@ -17,10 +17,6 @@ export const InnerContainerStyle = styled.header`
   @media only screen and (max-width: ${MEDIA_QUERY.notebookWidth}) {
     width: 95%;
   }
-
-  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
-    width: 100%;
-  }
 `;
 
 export const LogoBoxStyle = styled.div`

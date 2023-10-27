@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { MY_PAGE_TABLE } from "../../const/mypage";
+import { MEDIA_QUERY } from "../../const/devise";
 
 const MyPageSide = () => {
   return (
@@ -23,6 +24,10 @@ const SideLayoutStyle = styled.div`
   padding: 1rem;
   width: 20rem;
   font-family: "Pretendard-Regular";
+
+  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+    width: 100%;
+  }
 `;
 
 const HeaderStyle = styled.h2`
@@ -31,6 +36,13 @@ const HeaderStyle = styled.h2`
 
 const ListStyled = styled.ul`
   margin-top: 1rem;
+
+  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+    display: flex;
+    flex-direction: row;
+    border: 1px solid black;
+    width: 100%;
+  }
 `;
 
 const ItemStyled = styled.li`
@@ -38,4 +50,9 @@ const ItemStyled = styled.li`
   font-size: 1rem;
   padding: 1rem;
   cursor: pointer;
+
+  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+    width: 100%;
+    text-align: center;
+  }
 `;
