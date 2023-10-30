@@ -1,17 +1,14 @@
-import { IMassageTable } from "../@types/book";
+import { TMassageTable, TTimeTable } from "../@types/book";
 
-interface IBookingItem {
-  [key: string]: string;
-}
-export const BOOKING_ITEM: IBookingItem = {
+export const BOOKING_ITEM = {
   DRY_MASSAGE: "건식 마사지",
   OIL_MASSAGE: "습식 마사지",
   MANUAL_THERAPY: "체형교정 마사지",
   YOUTH_MASSAGE: "청소년 마사지",
   SKIN_THERAPY: "피부 마사지",
-};
+} as const;
 
-export const BOOKING_MASSAGE_TABLE: IMassageTable[] = [
+export const BOOKING_MASSAGE_TABLE: TMassageTable[] = [
   {
     img: "dry.jpg",
     item: "DRY_MASSAGE",
@@ -69,11 +66,18 @@ export const BOOKING_MASSAGE_TABLE: IMassageTable[] = [
 /// 60, 90, 120분에 따라 startTime 과 endTime 을 어떻게 분기 칠것인지
 /// date 는 오늘날짜 기준 한달동안의 정보를 가지고 있어야함
 
-export const TIME_TABLE = [
+export const BOOKING_TYPE = {
+  FREE: "예약가능",
+  BOOK: "예약",
+  PENDING: "대기중",
+  CLOSE: "마감",
+} as const;
+
+export const BOOKING_TIME_TABLE: TTimeTable[] = [
   {
     startTime: "09:00:00",
     endTime: "10:00:00",
-    type: "free",
+    type: "FREE",
     date: new Date(),
     id: 1,
     massageId: 1,
@@ -81,7 +85,7 @@ export const TIME_TABLE = [
   {
     startTime: "10:00:00",
     endTime: "11:00:00",
-    type: "free",
+    type: "FREE",
     date: new Date(),
     id: 2,
     massageId: 1,
@@ -89,7 +93,7 @@ export const TIME_TABLE = [
   {
     startTime: "11:00:00",
     endTime: "12:00:00",
-    type: "book",
+    type: "BOOK",
     date: new Date(),
     id: 3,
     massageId: 1,
@@ -97,7 +101,7 @@ export const TIME_TABLE = [
   {
     startTime: "12:00:00",
     endTime: "13:00:00",
-    type: "free",
+    type: "FREE",
     date: new Date(),
     id: 4,
     massageId: 1,
@@ -105,7 +109,7 @@ export const TIME_TABLE = [
   {
     startTime: "13:00:00",
     endTime: "14:00:00",
-    type: "free",
+    type: "FREE",
     date: new Date(),
     id: 5,
     massageId: 1,
@@ -113,7 +117,7 @@ export const TIME_TABLE = [
   {
     startTime: "14:00:00",
     endTime: "15:00:00",
-    type: "book",
+    type: "BOOK",
     date: new Date(),
     id: 6,
     massageId: 1,
@@ -121,7 +125,7 @@ export const TIME_TABLE = [
   {
     startTime: "15:00:00",
     endTime: "16:00:00",
-    type: "free",
+    type: "FREE",
     date: new Date(),
     id: 7,
     massageId: 1,
@@ -129,7 +133,7 @@ export const TIME_TABLE = [
   {
     startTime: "16:00:00",
     endTime: "17:00:00",
-    type: "free",
+    type: "FREE",
     date: new Date(),
     id: 8,
     massageId: 1,
@@ -137,7 +141,7 @@ export const TIME_TABLE = [
   {
     startTime: "17:00:00",
     endTime: "18:00:00",
-    type: "book",
+    type: "BOOK",
     date: new Date(),
     id: 9,
     massageId: 1,
@@ -145,7 +149,7 @@ export const TIME_TABLE = [
   {
     startTime: "18:00:00",
     endTime: "19:00:00",
-    type: "free",
+    type: "FREE",
     date: new Date(),
     id: 10,
     massageId: 1,
@@ -153,7 +157,7 @@ export const TIME_TABLE = [
   {
     startTime: "19:00:00",
     endTime: "20:00:00",
-    type: "free",
+    type: "FREE",
     date: new Date(),
     id: 11,
     massageId: 1,
@@ -161,7 +165,7 @@ export const TIME_TABLE = [
   {
     startTime: "20:00:00",
     endTime: "21:00:00",
-    type: "free",
+    type: "FREE",
     date: new Date(),
     id: 12,
     massageId: 1,

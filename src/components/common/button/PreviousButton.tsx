@@ -1,12 +1,14 @@
 import styled from "styled-components";
 import { MEDIA_QUERY } from "../../../const/devise";
-import { IPreviousButton } from "../../../@types/book";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../../stores/store";
+import { subTabNum } from "../../../stores/bookSlice";
 
-const PreviousButton = ({ changeTabHandler, tabNum }: IPreviousButton) => {
+const PreviousButton = () => {
+  const dispatch = useDispatch<AppDispatch>();
+
   return (
-    <ButtonStyle onClick={() => changeTabHandler(tabNum)}>
-      이전단계로
-    </ButtonStyle>
+    <ButtonStyle onClick={() => dispatch(subTabNum())}>이전단계로</ButtonStyle>
   );
 };
 

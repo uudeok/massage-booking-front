@@ -1,15 +1,15 @@
 import styled from "styled-components";
 import { MEDIA_QUERY } from "../../const/devise";
 import { useSelector } from "react-redux";
-import { bookDetail, bookItem } from "../../stores/bookSlice";
 import { BOOKING_ITEM } from "../../const/massage";
 import { addMinutesUnit, addComma } from "../../util";
+import { massageItem, massageDetail } from "../../stores/massageSlice";
 
 const BookingSummary = () => {
-  const selectedMassage = useSelector(bookItem);
-  const selectedMassageDetail = useSelector(bookDetail);
+  const selectedMassage = useSelector(massageItem);
+  const selectedMassageDetail = useSelector(massageDetail);
 
-  const massageItem = selectedMassage[0].item;
+  const massage = selectedMassage[0].item;
   const massageTime = selectedMassageDetail[0].time;
   const massagePrice = selectedMassageDetail[0].price;
 
@@ -23,7 +23,7 @@ const BookingSummary = () => {
         </TimeBoxStyle>
         <ItemBoxStyle>
           <span>마사지 종류</span>
-          <span>{BOOKING_ITEM[massageItem]}</span>
+          <span>{BOOKING_ITEM[massage]}</span>
         </ItemBoxStyle>
         <ItemBoxStyle>
           <span>받으실 날짜</span>

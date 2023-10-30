@@ -1,16 +1,18 @@
 import styled from "styled-components";
-import { IBookingAvailableTime } from "../../@types/book";
+import { TTimeTable } from "../../@types/book";
 import { MEDIA_QUERY } from "../../const/devise";
 
-const BookingAvailableTime = ({
-  data,
-  fetchReservation,
-}: IBookingAvailableTime) => {
+type TProps = {
+  data: TTimeTable;
+  fetchReservation: (timeId: number) => void;
+};
+
+const BookingAvailableTime = ({ data, fetchReservation }: TProps) => {
   return (
     <ButtonStyle
       onClick={() => fetchReservation(data.id)}
-      disabled={data.type === "book"}
-      $isBooked={data.type === "book"}
+      disabled={data.type === "BOOK"}
+      $isBooked={data.type === "BOOK"}
     >
       {data.startTime.slice(0, 5)} - {data.endTime.slice(0, 5)}
     </ButtonStyle>

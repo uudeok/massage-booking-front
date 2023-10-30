@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import PreviousButton from "../common/button/PreviousButton";
-import { IPreviousButton } from "../../@types/book";
 import { useState } from "react";
 import Modal from "../common/UI/Modal";
 import LoginForm from "../auth/Login";
@@ -9,7 +8,7 @@ import BookingConfirm from "./BookingConfirm";
 import { getAuthUser } from "../../util";
 import { useNavigate } from "react-router-dom";
 
-const BookingForm = ({ changeTabHandler, tabNum }: IPreviousButton) => {
+const BookingForm = () => {
   const userInfo = getAuthUser();
   const navigate = useNavigate();
   const [loginIsShown, setLoginIsShown] = useState(false);
@@ -28,11 +27,16 @@ const BookingForm = ({ changeTabHandler, tabNum }: IPreviousButton) => {
     setIsChecked((prev) => !prev);
   };
 
-  const showLoginHandler = () => {
+  const validCheckHandler = () => {
     if (!isChecked) {
       setError("* 예약 내역을 확인 후 체크해주세요.");
-      return;
+      return false;
     }
+    return true;
+  };
+
+  const showLoginHandler = () => {
+    if (!validCheckHandler()) return;
 
     if (userInfo !== null) {
       fetchMemberReservation();
@@ -52,12 +56,13 @@ const BookingForm = ({ changeTabHandler, tabNum }: IPreviousButton) => {
           <LoginForm path="mypage/book" />
         </Modal>
       )}
-      <PreviousButton changeTabHandler={changeTabHandler} tabNum={tabNum - 1} />
+      <PreviousButton />
       <BookingSummary />
       <BookingConfirm
         isChecked={isChecked}
         changeCheckedHandler={changeCheckedHandler}
         showLoginHandler={showLoginHandler}
+        validCheckHandler={validCheckHandler}
         error={error}
       />
     </ContainerStyle>

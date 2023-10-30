@@ -1,9 +1,9 @@
 import styled from "styled-components";
-import { INotice } from "../../../@types/notice";
+import { TNotice } from "../../../@types/notice";
 import { Link } from "react-router-dom";
 import { MEDIA_QUERY } from "../../../const/devise";
 
-const NoticeMainItem = ({ item }: { item: INotice }) => {
+const NoticeMainItem = ({ item }: { item: TNotice }) => {
   return (
     <>
       <NoticeItemTitleStyle>

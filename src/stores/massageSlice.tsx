@@ -1,12 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "./store";
-import { IMassageTable } from "../@types/book";
+import { TMassageTable, TMassageDetail } from "../@types/book";
 
 const initialState = {
-  massageItem: [] as IMassageTable[],
+  massageDetail: [] as TMassageDetail[],
+  massageItem: [] as TMassageTable[],
   massage: [
     {
-      img: "건식.jpg",
+      img: "dry.jpg",
       item: "DRY_MASSAGE",
       id: 1,
       content:
@@ -18,7 +19,7 @@ const initialState = {
       ],
     },
     {
-      img: "습식.jpg",
+      img: "oil.jpg",
       item: "OIL_MASSAGE",
       id: 2,
       content: "피로 회복과 피부 탄력에 좋은 힐링식 아로마 마사지",
@@ -28,7 +29,7 @@ const initialState = {
       ],
     },
     {
-      img: "교정.jpg",
+      img: "manual.jpg",
       item: "MANUAL_THERAPY",
       id: 3,
       content: "마사지와 체형 교정을 한번에 받을 수 있는 체형교정 마사지",
@@ -39,7 +40,7 @@ const initialState = {
       ],
     },
     {
-      img: "청소년.jpg",
+      img: "youth.jpg",
       item: "YOUTH_MASSAGE",
       id: 4,
       content:
@@ -50,7 +51,7 @@ const initialState = {
       ],
     },
     {
-      img: "피부.jpg",
+      img: "skin.jpg",
       item: "SKIN_THERAPY",
       id: 5,
       content: "피부 테라피에 초점을 맞춘 마사지",
@@ -59,7 +60,7 @@ const initialState = {
         { time: 90, price: 90000, id: 2, massageId: 5 },
       ],
     },
-  ] as IMassageTable[],
+  ] as TMassageTable[],
 };
 
 export const massageSlice = createSlice({
@@ -71,10 +72,16 @@ export const massageSlice = createSlice({
         (masg) => masg.id === action.payload
       );
     },
+    getSelectedMassageDetail(state, action) {
+      state.massageDetail = state.massageItem[0].detail.filter(
+        (item) => item.id === action.payload
+      );
+    },
   },
 });
 
-export const getMassage = (state: RootState) => state.massage.massageItem;
-
-export const { getMassageItem } = massageSlice.actions;
+export const massageItem = (state: RootState) => state.massage.massageItem;
+export const massageDetail = (state: RootState) => state.massage.massageDetail;
+export const { getMassageItem, getSelectedMassageDetail } =
+  massageSlice.actions;
 export default massageSlice.reducer;

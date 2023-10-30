@@ -1,19 +1,35 @@
 import styled from "styled-components";
 import { MEDIA_QUERY } from "../../const/devise";
+import { useNavigate } from "react-router-dom";
 
 interface IProps {
   isChecked: boolean;
   changeCheckedHandler: () => void;
   showLoginHandler: () => void;
   error: string;
+  validCheckHandler: () => boolean;
 }
 
 const BookingConfirm = ({
   isChecked,
   changeCheckedHandler,
+  validCheckHandler,
   showLoginHandler,
   error,
 }: IProps) => {
+  const navigate = useNavigate();
+
+  const NonMemberHandler = () => {
+    if (!validCheckHandler()) return;
+    const process = window.confirm(
+      "비회원으로 진행 시, 적립금 혜택을 받으실 수 없습니다. 비회원으로 진행하시겠습니까?"
+    );
+    if (process) {
+      /// 비회원 진행 폼으로 이동해야함
+      navigate("/");
+    }
+  };
+
   return (
     <ConfirmBoxStyle>
       <CheckBoxStyle>
@@ -28,7 +44,9 @@ const BookingConfirm = ({
         {error && <WarningStyle>{error}</WarningStyle>}
       </CheckBoxStyle>
       <ButtonBoxStyle>
-        <NonMemberButtonStyle>비회원으로 진행</NonMemberButtonStyle>
+        <NonMemberButtonStyle onClick={NonMemberHandler}>
+          비회원으로 진행
+        </NonMemberButtonStyle>
         <MemberButtonStyle onClick={showLoginHandler}>
           회원으로 진행
         </MemberButtonStyle>

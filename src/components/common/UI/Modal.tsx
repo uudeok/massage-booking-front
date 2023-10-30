@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import ReactDOM from "react-dom";
 import { MEDIA_QUERY } from "../../../const/devise";
-import { IBackDrop, IModal } from "../../../@types/common";
+import { TBackDrop, TModal } from "../../../@types/common";
 
-const BackDrop = ({ onClose }: IBackDrop) => {
+const BackDrop = ({ onClose }: TBackDrop) => {
   return <BackDropStyle onClick={onClose}></BackDropStyle>;
 };
 
@@ -17,7 +17,7 @@ const ModalOverlay = ({ children }: { children: React.ReactNode }) => {
 
 const portalElement = document.getElementById("overlays") as HTMLElement;
 
-const Modal = ({ children, onClose }: IModal) => {
+const Modal = ({ children, onClose }: TModal) => {
   return (
     <>
       {ReactDOM.createPortal(<BackDrop onClose={onClose} />, portalElement)}

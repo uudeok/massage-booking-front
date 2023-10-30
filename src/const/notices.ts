@@ -1,21 +1,17 @@
-import { INotice } from "../@types/notice";
+import { TNotice } from "../@types/notice";
 
-interface INoticeCategory {
-  [key: string]: string;
-}
-
-export const NOTICE_CATEGORIES: INoticeCategory = {
+export const NOTICE_CATEGORIES = {
   ALL: "전체",
   BUSINESS_TIME: "영업시간",
   EVENTS: "이벤트",
   ETC: "기타",
   RULES: "운영방침",
-};
+} as const;
 
 /// 조회수도 넣을 예정
 /// auth 는 관리자
 
-export const NOTICE_LIST: INotice[] = [
+export const NOTICE_LIST: TNotice[] = [
   {
     title: "영업시간 변경안내",
     date: "2023-10-04",
@@ -34,7 +30,7 @@ export const NOTICE_LIST: INotice[] = [
   },
   {
     title: "기타 안내",
-    date: "2023-08-18",
+    date: "2023-09-28",
     category: "ETC",
     auth: "STAFF",
     content: "기타사항 ",
@@ -50,7 +46,7 @@ export const NOTICE_LIST: INotice[] = [
   },
   {
     title: "운영 방침",
-    date: "2023-09-26",
+    date: "2023-08-31",
     category: "RULES",
     auth: "STAFF",
     content: "기타사항 ",

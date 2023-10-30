@@ -1,45 +1,39 @@
-import { useState, Fragment } from "react";
+import { Fragment, useEffect } from "react";
 import styled from "styled-components";
 import BookingList from "./BookingList";
 import BookingDate from "./BookingDate";
 import { MEDIA_QUERY } from "../../const/devise";
 import BookingDetailList from "./BookingDetailList";
 import BookingForm from "./BookingForm";
+import { useSelector, useDispatch } from "react-redux";
+import { currTabNum, resetTabNum } from "../../stores/bookSlice";
 
 const BookingTab = () => {
-  const [tabNum, setTabNum] = useState(0);
+  const dispatch = useDispatch();
+  const tabNum = useSelector(currTabNum);
 
-  const changeTabHandler = (number: number) => {
-    setTabNum(number);
-  };
+  useEffect(() => {
+    return () => {
+      dispatch(resetTabNum());
+    };
+  }, [dispatch]);
 
   const TAB_LIST = [
     {
       key: "마사지 선택",
-      content: (
-        <BookingList changeTabHandler={changeTabHandler} tabNum={tabNum} />
-      ),
+      content: <BookingList />,
     },
     {
       key: "시간 선택",
-      content: (
-        <BookingDetailList
-          changeTabHandler={changeTabHandler}
-          tabNum={tabNum}
-        />
-      ),
+      content: <BookingDetailList />,
     },
     {
       key: "날짜 선택",
-      content: (
-        <BookingDate changeTabHandler={changeTabHandler} tabNum={tabNum} />
-      ),
+      content: <BookingDate />,
     },
     {
       key: "예약하기",
-      content: (
-        <BookingForm changeTabHandler={changeTabHandler} tabNum={tabNum} />
-      ),
+      content: <BookingForm />,
     },
   ];
 
@@ -51,9 +45,6 @@ const BookingTab = () => {
             <TabButtonStyle
               disabled={index !== tabNum}
               $isActive={index === tabNum}
-              onClick={() => {
-                setTabNum(index);
-              }}
             >
               {item.key}
             </TabButtonStyle>

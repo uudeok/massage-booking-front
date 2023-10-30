@@ -3,26 +3,18 @@ import styled from "styled-components";
 import PreviousButton from "../common/button/PreviousButton";
 import BookingDetail from "./BookingDetail";
 import { DEVISE_SIZE } from "../../const/devise";
-import { IPreviousButton } from "../../@types/book";
-import { filteredDetail } from "../../stores/bookSlice";
+import { massageItem } from "../../stores/massageSlice";
 
-const BookingDetailList = ({ changeTabHandler, tabNum }: IPreviousButton) => {
-  const massageDetail = useSelector(filteredDetail);
+const BookingDetailList = () => {
+  const selectedMassage = useSelector(massageItem);
+  const massageDetail = selectedMassage[0].detail;
 
   return (
     <ContainerStyle>
       <InnerBoxStyle>
-        <PreviousButton
-          changeTabHandler={changeTabHandler}
-          tabNum={tabNum - 1}
-        />
+        <PreviousButton />
         {massageDetail.map((detail) => (
-          <BookingDetail
-            key={detail.id}
-            detail={detail}
-            changeTabHandler={changeTabHandler}
-            tabNum={tabNum}
-          />
+          <BookingDetail key={detail.id} detail={detail} />
         ))}
       </InnerBoxStyle>
     </ContainerStyle>

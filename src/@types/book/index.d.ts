@@ -1,64 +1,41 @@
-export interface IMassageDetail {
+import { BOOKING_ITEM, BOOKING_TYPE } from "../../const/massage";
+
+export type valueOf<T> = T[keyof T];
+export type BOOKING_ITEM_TYPE = typeof BOOKING_ITEM;
+export type BOOKING_ITEM_KEYS = keyof BOOKING_ITEM_TYPE;
+export type BOOKING_ITEM_VALUE = valueOf<BOOKING_ITEM_TYPE>;
+
+export type BOOKING_TIME_TYPE = typeof BOOKING_TYPE;
+export type BOOKING_TIME_TYPE_KEYS = keyof BOOKING_TIME_TYPE;
+export type BOOKING_TIME_TYPE_VALUE = valueOf<BOOKING_TIME_TYPE>;
+
+export type TMassageDetail = {
   time: number;
   price: number;
   id: number;
   massageId: number;
-}
+};
 
-export interface IMassageItem {
+export type TMassageItem = {
   img: string;
-  item: string;
+  item: BOOKING_ITEM_KEYS;
   id: number;
   content: string;
-}
+};
 
-export interface IMassageTable {
+export type TMassageTable = {
   img: string;
-  item: string;
+  item: BOOKING_ITEM_KEYS;
   id: number;
   content: string;
   detail: IMassageDetail[];
-}
+};
 
-export interface ITabHandler {
-  changeTabHandler: (number: number) => void;
-}
-
-export interface IPreviousButton {
-  changeTabHandler: (number: number) => void;
-  tabNum: number;
-}
-
-export interface ITimeTable {
+export type TTimeTable = {
   startTime: string;
   endTime: string;
-  type: string;
+  type: BOOKING_TIME_TYPE_KEYS;
   date: Date | string;
   id: number;
   massageId: number;
-}
-
-/// Component props type ///
-
-export interface IBookingItem {
-  massage: IMassageTable;
-  changeTabHandler: (number: number) => void;
-  tabNum: number;
-}
-
-export interface IBookingDetail {
-  detail: IMassageDetail;
-  changeTabHandler: (number: number) => void;
-  tabNum: number;
-}
-
-export interface IBookingAvailableTime {
-  data: ITimeTable;
-  fetchReservation: (timeId: number) => void;
-}
-
-export interface IBookingCalendar {
-  changeDateHandler: (date: Date | null) => void;
-  setSelectedDate: React.Dispatch<React.SetStateAction<Date | null>>;
-  selectedDate: Date | null;
-}
+};

@@ -1,9 +1,9 @@
-import { INotice } from "../../../@types/notice";
+import { TNotice } from "../../../@types/notice";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { MEDIA_QUERY } from "../../../const/devise";
 
-const Notice = ({ detail }: { detail: INotice }) => {
+const Notice = ({ detail }: { detail: TNotice }) => {
   const navigate = useNavigate();
 
   return (

@@ -1,19 +1,19 @@
-import { IBookingItem } from "../../@types/book";
+import { TMassageItem } from "../../@types/book";
 import styled from "styled-components";
 import { BOOKING_ITEM } from "../../const/massage";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../stores/store";
-import { getMassageItem, getDetailList } from "../../stores/bookSlice";
+import { getMassageItem } from "../../stores/massageSlice";
+import { addTabNum } from "../../stores/bookSlice";
 
-const BookingItem = ({ massage, changeTabHandler, tabNum }: IBookingItem) => {
+const BookingItem = ({ massage }: { massage: TMassageItem }) => {
   const dispatch = useDispatch<AppDispatch>();
 
   const fetchMassageDetail = async (massageId: number) => {
     /// 마사지 id 로 마사지 정보와 detail 정보 각각 가져오기
     // 그러고 나서 tab 이동
     await dispatch(getMassageItem(massageId));
-    await dispatch(getDetailList(massageId));
-    changeTabHandler(tabNum + 1);
+    await dispatch(addTabNum());
   };
 
   return (

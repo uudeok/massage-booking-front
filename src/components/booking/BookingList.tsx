@@ -1,21 +1,16 @@
 import BookingItem from "./BookingItem";
 import styled from "styled-components";
-import { IPreviousButton } from "../../@types/book";
 import { MEDIA_QUERY } from "../../const/devise";
 import { BOOKING_MASSAGE_TABLE } from "../../const/massage";
 
-const BookingList = ({ changeTabHandler, tabNum }: IPreviousButton) => {
+const BookingList = () => {
   // 마사지 리스트 API 가져옴
 
   return (
     <ContainerStyle>
       {BOOKING_MASSAGE_TABLE.map((massage) => (
         <BookingItemStyle key={massage.id}>
-          <BookingItem
-            massage={massage}
-            changeTabHandler={changeTabHandler}
-            tabNum={tabNum}
-          />
+          <BookingItem massage={massage} />
         </BookingItemStyle>
       ))}
     </ContainerStyle>

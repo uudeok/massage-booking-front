@@ -1,29 +1,28 @@
-import { IBookingDetail } from "../../@types/book";
+import { TMassageDetail } from "../../@types/book";
 import styled from "styled-components";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import { BOOKING_ITEM } from "../../const/massage";
 import { addComma, addMinutesUnit } from "../../util";
 import { MEDIA_QUERY } from "../../const/devise";
-import { bookItem, getSelectedDetail } from "../../stores/bookSlice";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../stores/store";
+import {
+  massageItem,
+  getSelectedMassageDetail,
+} from "../../stores/massageSlice";
+import { addTabNum } from "../../stores/bookSlice";
 
-const BookingDetail = ({
-  detail,
-  changeTabHandler,
-  tabNum,
-}: IBookingDetail) => {
+const BookingDetail = ({ detail }: { detail: TMassageDetail }) => {
   const dispatch = useDispatch<AppDispatch>();
-  const massageItem = useSelector(bookItem);
-  const item = massageItem[0].item;
-  const description = massageItem[0].content;
+  const selectedMassage = useSelector(massageItem);
+  const item = selectedMassage[0].item;
+  const description = selectedMassage[0].content;
 
   const fetchAvailableTime = async (timeId: number) => {
     // 마사지의 몇분을 선택했는지
     // 그리고 나서 tab 이동
-
-    dispatch(getSelectedDetail(timeId));
-    changeTabHandler(tabNum + 1);
+    await dispatch(getSelectedMassageDetail(timeId));
+    dispatch(addTabNum());
   };
 
   return (

@@ -2,13 +2,18 @@ import styled from "styled-components";
 import { DEVISE_SIZE } from "../../const/devise";
 import Calendar from "../common/calendar/Calendar";
 import dayjs from "dayjs";
-import { IBookingCalendar } from "../../@types/book";
+
+type TProps = {
+  changeDateHandler: (date: Date | null) => void;
+  setSelectedDate: React.Dispatch<React.SetStateAction<Date | null>>;
+  selectedDate: Date | null;
+};
 
 const BookingCalendar = ({
   changeDateHandler,
   setSelectedDate,
   selectedDate,
-}: IBookingCalendar) => {
+}: TProps) => {
   const subOneDay = dayjs(selectedDate).subtract(1, "day").format();
   const addOneDay = dayjs(selectedDate).add(1, "day").format();
 

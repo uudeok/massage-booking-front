@@ -1,10 +1,10 @@
-import { IMassageTable } from "../../@types/book";
+import { TMassageTable } from "../../@types/book";
 import styled from "styled-components";
 import { BOOKING_ITEM } from "../../const/massage";
 import { addMinutesUnit, addComma } from "../../util";
 import { MEDIA_QUERY } from "../../const/devise";
 
-const ProgramItem = ({ massage }: { massage: IMassageTable }) => {
+const ProgramItem = ({ massage }: { massage: TMassageTable }) => {
   return (
     <div>
       <ImgBoxStyle>

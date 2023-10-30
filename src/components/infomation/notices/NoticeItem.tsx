@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import { INotice } from "../../../@types/notice";
+import { TNotice } from "../../../@types/notice";
 import { NOTICE_CATEGORIES } from "../../../const/notices";
 import { Link } from "react-router-dom";
 import { MEDIA_QUERY } from "../../../const/devise";
 
-const NoticeItem = ({ notice }: { notice: INotice[] }) => {
+const NoticeItem = ({ notice }: { notice: TNotice[] }) => {
   return (
     <>
       <HeaderStyle>

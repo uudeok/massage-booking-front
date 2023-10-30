@@ -11,12 +11,14 @@ interface IProps {
   selectedDate: Date | null;
 }
 
+const SUNDAY = 0;
+
 const Calendar = ({ changeDateHandler, selectedDate }: IProps) => {
   const addOneMonth = dayjs().add(1, "month").format();
 
   const isOffDay = (date: Date | number) => {
     const day = getDay(date);
-    return day !== 0;
+    return day !== SUNDAY;
   };
 
   return (

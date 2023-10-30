@@ -1,9 +1,9 @@
 import styled from "styled-components";
-import { IBookItem } from "../../@types/user/mypage";
+import { TBookItem } from "../../@types/user/mypage";
 import { addComma } from "../../util";
 import { MEDIA_QUERY } from "../../const/devise";
 
-const MyBookItem = ({ book }: { book: IBookItem }) => {
+const MyBookItem = ({ book }: { book: TBookItem }) => {
   const isConfirmed =
     book.orderStatus === "요청중" || book.orderStatus === "예약확정";
 

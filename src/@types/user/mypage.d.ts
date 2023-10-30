@@ -1,4 +1,4 @@
-export interface IBookItem {
+export type TBookItem = {
   orderDate: string;
   orderItem: string;
   massageDate: string;
@@ -6,4 +6,4 @@ export interface IBookItem {
   orderPrice: number;
   orderStatus: string;
   id: number;
-}
+};

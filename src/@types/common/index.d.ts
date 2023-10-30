@@ -1,13 +1,13 @@
-export interface ICalendar {
+export type TCalendar = {
   changeDateHandler: (date: Date) => void;
   selectedDate: Date | null;
-}
+};
 
-export interface IBackDrop {
+export type TBackDrop = {
   onClose: () => void;
-}
+};
 
-interface IModal {
+export type TModal = {
   onClose: () => void;
   children: React.ReactNode;
-}
+};

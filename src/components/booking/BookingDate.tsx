@@ -1,13 +1,16 @@
 import styled from "styled-components";
 import PreviousButton from "../common/button/PreviousButton";
-import { IPreviousButton } from "../../@types/book";
 import { useState, useEffect } from "react";
 import { MEDIA_QUERY } from "../../const/devise";
 import BookingCalendar from "./BookingCalendar";
-import { TIME_TABLE } from "../../const/massage";
+import { BOOKING_TIME_TABLE } from "../../const/massage";
 import BookingAvailableTime from "./BookingAvailableTime";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../stores/store";
+import { addTabNum } from "../../stores/bookSlice";
 
-const BookingDate = ({ changeTabHandler, tabNum }: IPreviousButton) => {
+const BookingDate = () => {
+  const dispatch = useDispatch<AppDispatch>();
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
 
   useEffect(() => {
@@ -22,17 +25,13 @@ const BookingDate = ({ changeTabHandler, tabNum }: IPreviousButton) => {
 
   const fetchReservation = async (timeId: number) => {
     // BookingAvailableTime 컴포넌트에서 시간을 클릭하면 클릭한 시간대의 id 를 받아옴
-
-    changeTabHandler(tabNum + 1);
+    dispatch(addTabNum());
   };
 
   return (
     <ContainerStyle>
       <InnerBoxStyle>
-        <PreviousButton
-          changeTabHandler={changeTabHandler}
-          tabNum={tabNum - 1}
-        />
+        <PreviousButton />
         <CalendarBoxStyle>
           <BookingCalendar
             changeDateHandler={changeDateHandler}
@@ -46,7 +45,7 @@ const BookingDate = ({ changeTabHandler, tabNum }: IPreviousButton) => {
           <span> - 가능한 시간</span>
         </AvailableBoxStyle>
         <TimeListBoxStyle>
-          {TIME_TABLE.map((item) => (
+          {BOOKING_TIME_TABLE.map((item) => (
             <BookingAvailableTime
               key={item.id}
               data={item}
