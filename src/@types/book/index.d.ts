@@ -16,13 +16,6 @@ export type TMassageDetail = {
   massageId: number;
 };
 
-export type TMassageItem = {
-  img: string;
-  item: BOOKING_ITEM_KEYS;
-  id: number;
-  content: string;
-};
-
 export type TMassageTable = {
   img: string;
   item: BOOKING_ITEM_KEYS;

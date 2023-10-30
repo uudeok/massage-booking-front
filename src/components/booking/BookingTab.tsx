@@ -64,7 +64,7 @@ const TabListStyle = styled.div`
   display: flex;
   flex-direction: row;
   height: 5rem;
-  margin-top: 2.5rem;
+  margin-top: 1.5rem;
 `;
 
 const TabButtonStyle = styled.button<{ $isActive: boolean }>`
@@ -94,6 +94,7 @@ const TabButtonStyle = styled.button<{ $isActive: boolean }>`
 
 const ContentContainerStyle = styled.div`
   display: flex;
+  flex-direction: column;
   width: 100%;
   margin-top: 3rem;
 `;

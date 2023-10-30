@@ -1,4 +1,4 @@
-import { TMassageItem } from "../../@types/book";
+import { TMassageTable } from "../../@types/book";
 import styled from "styled-components";
 import { BOOKING_ITEM } from "../../const/massage";
 import { useDispatch } from "react-redux";
@@ -6,7 +6,11 @@ import { AppDispatch } from "../../stores/store";
 import { getMassageItem } from "../../stores/massageSlice";
 import { addTabNum } from "../../stores/tabSlice";
 
-const BookingItem = ({ massage }: { massage: TMassageItem }) => {
+type TProps = {
+  massage: TMassageTable;
+};
+
+const BookingItem = ({ massage }: TProps) => {
   const dispatch = useDispatch<AppDispatch>();
 
   const fetchMassageDetail = async (massageId: number) => {
@@ -67,7 +71,7 @@ const ButtonStyle = styled.button`
   padding: 0.7rem;
   cursor: pointer;
   color: black;
-  border: 2px solid black;
+  border: 1px solid black;
   border-radius: 5px;
   font-family: "Pretendard-Regular";
   font-size: 1rem;

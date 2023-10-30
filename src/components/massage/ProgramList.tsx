@@ -1,10 +1,17 @@
-import { BOOKING_MASSAGE_TABLE } from "../../const/massage";
 import ProgramItem from "./ProgramItem";
 import styled from "styled-components";
 import { MEDIA_QUERY } from "../../const/devise";
 import Banner from "../banner/Banner";
+import { useQuery } from "@tanstack/react-query";
+import { fetchMassageList } from "../../api/book/bookApi";
+import LoadingBar from "../common/loading/LoadingBar";
 
 const ProgramList = () => {
+  const { isPending, data } = useQuery({
+    queryKey: ["massageList"],
+    queryFn: fetchMassageList,
+  });
+
   return (
     <>
       <Banner img="program.jpg">
@@ -12,15 +19,17 @@ const ProgramList = () => {
         <span>자연치유 쉼이 준비한 프로그램!</span>
         <span>다양한 마사지를 경험해보세요.</span>
       </Banner>
+      {isPending && <LoadingBar />}
       <ContainerStyle>
         <InnerBoxStyle>
           <TitleStyle>프로그램 안내</TitleStyle>
           <hr style={{ marginBottom: "2rem" }}></hr>
-          {BOOKING_MASSAGE_TABLE.map((massage) => (
-            <ItemBoxStyle key={massage.id}>
-              <ProgramItem massage={massage} />
-            </ItemBoxStyle>
-          ))}
+          {data &&
+            data.map((massage) => (
+              <ItemBoxStyle key={massage.id}>
+                <ProgramItem massage={massage} />
+              </ItemBoxStyle>
+            ))}
         </InnerBoxStyle>
       </ContainerStyle>
     </>
@@ -36,6 +45,11 @@ const BannerTitleStyle = styled.h2`
   @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
     font-size: 1.2rem;
   }
+`;
+
+const StatusStyle = styled.div`
+  text-align: center;
+  margin-top: 1rem;
 `;
 
 const ContainerStyle = styled.div`
