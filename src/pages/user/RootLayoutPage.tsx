@@ -3,8 +3,8 @@ import { MEDIA_QUERY } from "../../const/devise";
 import styled from "styled-components";
 import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
-import MyPageSide from "../../components/user/MyPageSide";
-import MyPageHeader from "../../components/user/MyPageHeader";
+import MyPageSide from "../../components/user/layout/MyPageSide";
+import MyPageHeader from "../../components/user/layout/MyPageHeader";
 
 const RootLayoutPage = () => {
   return (

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { MY_PAGE_TABLE } from "../../const/mypage";
-import { MEDIA_QUERY } from "../../const/devise";
+import { MY_PAGE_TABLE } from "../../../const/mypage";
+import { MEDIA_QUERY } from "../../../const/devise";
 
 const MyPageSide = () => {
   return (

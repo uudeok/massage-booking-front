@@ -28,6 +28,7 @@ const HeaderStyle = styled.h2`
   align-items: center;
   color: rgba(0, 0, 0, 0.35);
   margin: 1rem auto;
+
   width: 75%;
   font-weight: bold;
 

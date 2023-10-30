@@ -10,8 +10,10 @@ import MembershipPage from "../../pages/MembershipPage";
 import ContactPage from "../../pages/ContactPage";
 import LoginPage from "../../pages/auth/LoginPage";
 import JoinPage from "../../pages/auth/JoinPage";
-import MyPage from "../../pages/user/MyPage";
 import RootLayoutPage from "../../pages/user/RootLayoutPage";
+import MyBookPage from "../../pages/user/MyBookPage";
+import MyMileagePage from "../../pages/user/MyMileagePage";
+import MyCouponPage from "../../pages/user/MyCouponPage";
 
 const bookRouteObjects: RouteObject[] = [
   {
@@ -35,10 +37,6 @@ const noticeRouteObjects: RouteObject[] = [
     ],
   },
 ];
-
-// element 마다 Layout 으로 감싸줘야 하는 불편함이 있었음
-// notice 는 header 와 footer 레이아웃이 고정으로 필요한 컴포넌트이므로 NoticeRootLayout 페이지를
-// 만들어서 부모에서 한번만 감싸주는 형태로 바꿈
 
 const programRouteObjects: RouteObject[] = [
   {
@@ -66,7 +64,11 @@ const userRouteObjects: RouteObject[] = [
   {
     path: "mypage",
     element: <RootLayoutPage />,
-    children: [{ path: ":category", element: <MyPage /> }],
+    children: [
+      { path: "book", element: <MyBookPage /> },
+      { path: "mileage", element: <MyMileagePage /> },
+      { path: "coupon", element: <MyCouponPage /> },
+    ],
   },
 ];
 

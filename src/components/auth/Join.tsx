@@ -81,6 +81,10 @@ const MiddleBannerStyle = styled.div`
   div {
     padding: 0.3rem;
   }
+
+  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+    font-size: 0.8rem;
+  }
 `;
 
 const MemberJoinBoxStyle = styled.div`

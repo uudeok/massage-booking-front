@@ -95,6 +95,7 @@ const RightBoxStyle = styled.div`
   @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
     width: 100%;
     font-size: 0.7rem;
+    padding: 0.5rem;
   }
 `;
 

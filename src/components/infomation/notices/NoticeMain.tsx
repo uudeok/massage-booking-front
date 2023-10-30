@@ -21,7 +21,7 @@ export default NoticeMain;
 
 const ContainerStyle = styled.div`
   @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
-    box-shadow: 0 0 0.5rem 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 0.5rem 0 rgba(0, 0, 0, 0.1);
     padding: 0.5rem;
     width: 90%;
     margin: auto;

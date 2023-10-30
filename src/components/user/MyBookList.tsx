@@ -7,7 +7,7 @@ const MyBookList = () => {
   // 개인 고객 조회
 
   return (
-    <>
+    <LayoutStyle>
       <HeaderStyle>‖ 예약 내역</HeaderStyle>
       <HeaderLayoutStyle>
         <OrderDateStyle>예약일자</OrderDateStyle>
@@ -21,11 +21,16 @@ const MyBookList = () => {
           <MyBookItem key={book.id} book={book} />
         ))}
       </ContentLayoutStyle>
-    </>
+    </LayoutStyle>
   );
 };
 
 export default MyBookList;
+
+const LayoutStyle = styled.div`
+  padding: 1rem;
+  width: 100%;
+`;
 
 const HeaderStyle = styled.h2`
   font-family: "Pretendard-Regular";

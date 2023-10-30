@@ -1,10 +1,11 @@
 import styled from "styled-components";
+import { MEDIA_QUERY } from "../../const/devise";
 
 const MyMileageList = () => {
   // 개인 고객 조회
 
   return (
-    <>
+    <LayoutStyle>
       <HeaderStyle>‖ 적립금 내역</HeaderStyle>
       <SummaryBoxStyle>
         <SummaryLeftBoxStyle>
@@ -23,11 +24,16 @@ const MyMileageList = () => {
         <OrderPriceStyle>관련 내용</OrderPriceStyle>
       </HeaderLayoutStyle>
       <ContentLayoutStyle></ContentLayoutStyle>
-    </>
+    </LayoutStyle>
   );
 };
 
 export default MyMileageList;
+
+const LayoutStyle = styled.div`
+  padding: 1rem;
+  width: 100%;
+`;
 
 const HeaderStyle = styled.h2`
   font-family: "Pretendard-Regular";
@@ -40,6 +46,11 @@ const SummaryBoxStyle = styled.div`
   margin-top: 1rem;
   padding: 1rem;
   display: flex;
+
+  @media only screen and (max-width: ${MEDIA_QUERY.bigMobileWidth}) {
+    flex-direction: column;
+    height: 6rem;
+  }
 `;
 
 const SummaryLeftBoxStyle = styled.div`
@@ -51,6 +62,11 @@ const SummaryLeftBoxStyle = styled.div`
   span:first-child {
     flex: 1;
   }
+
+  @media only screen and (max-width: ${MEDIA_QUERY.bigMobileWidth}) {
+    border: none;
+    width: 100%;
+  }
 `;
 
 const SummaryRightBoxStyle = styled.div`
@@ -59,6 +75,10 @@ const SummaryRightBoxStyle = styled.div`
   padding: 0.5rem;
   span:first-child {
     flex: 1;
+  }
+
+  @media only screen and (max-width: ${MEDIA_QUERY.bigMobileWidth}) {
+    width: 100%;
   }
 `;
 
