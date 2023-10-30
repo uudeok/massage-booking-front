@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { MEDIA_QUERY } from "../../../const/devise";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../stores/store";
-import { subTabNum } from "../../../stores/bookSlice";
+import { subTabNum } from "../../../stores/tabSlice";
 
 const PreviousButton = () => {
   const dispatch = useDispatch<AppDispatch>();

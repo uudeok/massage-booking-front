@@ -37,5 +37,4 @@ export type TTimeTable = {
   type: BOOKING_TIME_TYPE_KEYS;
   date: Date | string;
   id: number;
-  massageId: number;
 };

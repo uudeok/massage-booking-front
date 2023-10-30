@@ -1,14 +1,14 @@
 import styled from "styled-components";
-import Notices from "./notices/Notices";
 import Membership from "./introduction/Membership";
 import { DEVISE_SIZE } from "../../const/devise";
+import NoticeMain from "./notices/NoticeMain";
 
 const Information = () => {
   return (
     <ContainerStyle>
       <InnerBoxStyle>
         <LeftBoxStyle>
-          <Notices />
+          <NoticeMain />
         </LeftBoxStyle>
         <RightBoxStyle>
           <Membership />

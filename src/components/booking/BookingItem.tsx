@@ -4,7 +4,7 @@ import { BOOKING_ITEM } from "../../const/massage";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../stores/store";
 import { getMassageItem } from "../../stores/massageSlice";
-import { addTabNum } from "../../stores/bookSlice";
+import { addTabNum } from "../../stores/tabSlice";
 
 const BookingItem = ({ massage }: { massage: TMassageItem }) => {
   const dispatch = useDispatch<AppDispatch>();

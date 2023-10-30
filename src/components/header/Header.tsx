@@ -8,7 +8,7 @@ import {
   LogoutBoxStyle,
 } from "./Header.style";
 import { Link, useNavigate } from "react-router-dom";
-import { getAuthUser, logout } from "../../../util";
+import { getAuthUser, logout } from "../../util";
 
 const MENU_LIST = [
   { key: "program", value: "프로그램 안내", id: 1 },

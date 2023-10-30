@@ -17,19 +17,6 @@ const BookingConfirm = ({
   showLoginHandler,
   error,
 }: IProps) => {
-  const navigate = useNavigate();
-
-  const NonMemberHandler = () => {
-    if (!validCheckHandler()) return;
-    const process = window.confirm(
-      "비회원으로 진행 시, 적립금 혜택을 받으실 수 없습니다. 비회원으로 진행하시겠습니까?"
-    );
-    if (process) {
-      /// 비회원 진행 폼으로 이동해야함
-      navigate("/");
-    }
-  };
-
   return (
     <ConfirmBoxStyle>
       <CheckBoxStyle>
@@ -44,12 +31,7 @@ const BookingConfirm = ({
         {error && <WarningStyle>{error}</WarningStyle>}
       </CheckBoxStyle>
       <ButtonBoxStyle>
-        <NonMemberButtonStyle onClick={NonMemberHandler}>
-          비회원으로 진행
-        </NonMemberButtonStyle>
-        <MemberButtonStyle onClick={showLoginHandler}>
-          회원으로 진행
-        </MemberButtonStyle>
+        <ButtonStyle onClick={showLoginHandler}>예약하기</ButtonStyle>
       </ButtonBoxStyle>
     </ConfirmBoxStyle>
   );
@@ -100,39 +82,15 @@ const ButtonBoxStyle = styled.div`
   @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
     display: flex;
     flex-direction: row;
+    justify-content: center;
   }
 `;
 
-const NonMemberButtonStyle = styled.button`
-  background-color: whitesmoke;
-  height: 3.5rem;
-  padding: 1rem;
-
-  border-radius: 5px;
-  font-size: 1rem;
-  border: none;
-  cursor: pointer;
-  color: black;
-
-  &:hover {
-    border: 2px solid #76916a;
-  }
-
-  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
-    font-size: 0.8rem;
-    padding: 0.5rem;
-
-    &:hover {
-      border: 1px solid #76916a;
-    }
-  }
-`;
-
-const MemberButtonStyle = styled.button`
+const ButtonStyle = styled.button`
+  width: 10rem;
   background-color: #76916a;
   height: 3.5rem;
   padding: 1rem;
-  margin-left: 1rem;
   border-radius: 5px;
   font-size: 1rem;
   border: none;
@@ -146,9 +104,14 @@ const MemberButtonStyle = styled.button`
   @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
     font-size: 0.8rem;
     padding: 0.5rem;
+    width: 15rem;
 
     &:hover {
       border: 1px solid white;
     }
+  }
+
+  @media only screen and (max-width: ${MEDIA_QUERY.mobileWidth}) {
+    width: 100%;
   }
 `;

@@ -5,8 +5,8 @@ const initialState = {
   tabNum: 0,
 };
 
-export const bookSlice = createSlice({
-  name: "book",
+export const tabSlice = createSlice({
+  name: "tab",
   initialState,
   reducers: {
     resetTabNum(state) {
@@ -21,7 +21,7 @@ export const bookSlice = createSlice({
   },
 });
 
-export const { resetTabNum, addTabNum, subTabNum } = bookSlice.actions;
-export const currTabNum = (state: RootState) => state.book.tabNum;
+export const { resetTabNum, addTabNum, subTabNum } = tabSlice.actions;
+export const currTabNum = (state: RootState) => state.tab.tabNum;
 
-export default bookSlice.reducer;
+export default tabSlice.reducer;

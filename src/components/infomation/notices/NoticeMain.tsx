@@ -3,7 +3,7 @@ import NoticesMainList from "./NoticesMainList";
 import { Link } from "react-router-dom";
 import { MEDIA_QUERY } from "../../../const/devise";
 
-const Notices = () => {
+const NoticeMain = () => {
   return (
     <ContainerStyle>
       <HeaderBoxStyle>
@@ -17,7 +17,7 @@ const Notices = () => {
   );
 };
 
-export default Notices;
+export default NoticeMain;
 
 const ContainerStyle = styled.div`
   @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {

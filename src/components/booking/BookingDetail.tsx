@@ -10,7 +10,7 @@ import {
   massageItem,
   getSelectedMassageDetail,
 } from "../../stores/massageSlice";
-import { addTabNum } from "../../stores/bookSlice";
+import { addTabNum } from "../../stores/tabSlice";
 
 const BookingDetail = ({ detail }: { detail: TMassageDetail }) => {
   const dispatch = useDispatch<AppDispatch>();

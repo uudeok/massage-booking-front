@@ -5,17 +5,20 @@ import { MEDIA_QUERY } from "../../const/devise";
 import BookingCalendar from "./BookingCalendar";
 import { BOOKING_TIME_TABLE } from "../../const/massage";
 import BookingAvailableTime from "./BookingAvailableTime";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "../../stores/store";
-import { addTabNum } from "../../stores/bookSlice";
+import { addTabNum } from "../../stores/tabSlice";
+import { massageDetail } from "../../stores/massageSlice";
 
 const BookingDate = () => {
   const dispatch = useDispatch<AppDispatch>();
+  const selectedMassageDetail = useSelector(massageDetail);
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
 
   useEffect(() => {
     // 날짜가 바뀔때마다 가능한 시간대 가져오는 API 호출
     // 예를들어 /?from=선택한날짜&to=선택한날짜&products=선택한 마사지&category=마사지시간
+
     console.log("날짜가 바뀔때마다 api 호출");
   }, [selectedDate]);
 
@@ -24,7 +27,8 @@ const BookingDate = () => {
   };
 
   const fetchReservation = async (timeId: number) => {
-    // BookingAvailableTime 컴포넌트에서 시간을 클릭하면 클릭한 시간대의 id 를 받아옴
+    // BookingAvailableTime 컴포넌트에서 시간을 클릭하면 선택한 시간을 가져옴
+    console.log(selectedDate, timeId);
     dispatch(addTabNum());
   };
 

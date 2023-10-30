@@ -1,11 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import massageSlice from "./massageSlice";
-import bookSlice from "./bookSlice";
+import tabSlice from "./tabSlice";
 
 export const store = configureStore({
   reducer: {
     massage: massageSlice,
-    book: bookSlice,
+    tab: tabSlice,
   },
 });
 

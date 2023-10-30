@@ -1,8 +1,8 @@
 import { Outlet } from "react-router-dom";
 import { MEDIA_QUERY } from "../../const/devise";
 import styled from "styled-components";
-import Header from "../../components/common/header/Header";
-import Footer from "../../components/common/footer/Footer";
+import Header from "../../components/header/Header";
+import Footer from "../../components/footer/Footer";
 import MyPageSide from "../../components/user/MyPageSide";
 import MyPageHeader from "../../components/user/MyPageHeader";
 

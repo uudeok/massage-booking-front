@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { MEDIA_QUERY } from "../../../const/devise";
+import { MEDIA_QUERY } from "../../const/devise";
 
 export const ContainerStyle = styled.div`
   width: 100%;

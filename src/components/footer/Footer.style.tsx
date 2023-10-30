@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { DEVISE_SIZE } from "../../../const/devise";
+import { DEVISE_SIZE } from "../../const/devise";
 
 export const FooterContainerStyle = styled.div`
   display: flex;

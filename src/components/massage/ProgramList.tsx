@@ -2,7 +2,7 @@ import { BOOKING_MASSAGE_TABLE } from "../../const/massage";
 import ProgramItem from "./ProgramItem";
 import styled from "styled-components";
 import { MEDIA_QUERY } from "../../const/devise";
-import Banner from "../common/banner/Banner";
+import Banner from "../banner/Banner";
 
 const ProgramList = () => {
   return (

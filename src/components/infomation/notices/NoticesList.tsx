@@ -4,10 +4,16 @@ import NoticeItem from "./NoticeItem";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { MEDIA_QUERY } from "../../../const/devise";
+import Paging from "../../pagination/Paging";
 
 const NoticesList = () => {
   const [category, setCategory] = useState("ALL");
+  const [page, setPage] = useState(1);
   const navigate = useNavigate();
+
+  const changePageHandler = (page: number) => {
+    setPage(page);
+  };
 
   // category 값이 바뀔 때마다 API 요청
 
@@ -39,6 +45,12 @@ const NoticesList = () => {
           </CategoryListStyle>
         </HeaderStyle>
         <NoticeItem notice={filteredList} />
+        <Paging
+          page={page}
+          changePageHandler={changePageHandler}
+          count={5}
+          pageSize={10}
+        />
       </InnerBoxStyle>
     </ContainerStyle>
   );

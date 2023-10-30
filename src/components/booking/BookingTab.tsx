@@ -6,7 +6,7 @@ import { MEDIA_QUERY } from "../../const/devise";
 import BookingDetailList from "./BookingDetailList";
 import BookingForm from "./BookingForm";
 import { useSelector, useDispatch } from "react-redux";
-import { currTabNum, resetTabNum } from "../../stores/bookSlice";
+import { currTabNum, resetTabNum } from "../../stores/tabSlice";
 
 const BookingTab = () => {
   const dispatch = useDispatch();
@@ -64,7 +64,7 @@ const TabListStyle = styled.div`
   display: flex;
   flex-direction: row;
   height: 5rem;
-  margin-top: 3rem;
+  margin-top: 2.5rem;
 `;
 
 const TabButtonStyle = styled.button<{ $isActive: boolean }>`

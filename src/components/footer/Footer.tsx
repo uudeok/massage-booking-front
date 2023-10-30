@@ -6,7 +6,7 @@ import {
   FooterInfoListStyle,
   FooterInfoItemStyle,
 } from "./Footer.style";
-import { FOOTER_BUSINESS } from "../../../const/footer";
+import { FOOTER_BUSINESS } from "../../const/footer";
 
 const Footer = () => {
   return (
