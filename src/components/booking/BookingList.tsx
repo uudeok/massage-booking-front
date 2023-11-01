@@ -1,23 +1,28 @@
 import BookingItem from "./BookingItem";
 import styled from "styled-components";
 import { MEDIA_QUERY } from "../../const/devise";
-import { useQuery } from "@tanstack/react-query";
-import { fetchMassageList } from "../../api/book/bookApi";
 import LoadingBar from "../common/loading/LoadingBar";
+import { useMassageList } from "../../hooks/useMassageList";
 
 const BookingList = () => {
-  const { isPending, data } = useQuery({
-    queryKey: ["massageList"],
-    queryFn: fetchMassageList,
-  });
+  const { data: massageList, isLoading, error } = useMassageList();
+
+  // 마사지 리스트는 거의 변하지 않는 데이터이므로
+  // staleTime, gcTime 을 무한으로 설정
+  // 새로고침시에만 API 요청
+
+  if (error) {
+    return <span>Error : {error.message}</span>;
+  }
 
   return (
     <>
-      {isPending && <LoadingBar />}
+      {isLoading && <LoadingBar />}
+
       <ContentBoxStyle>
         <ListBoxStyle>
-          {data &&
-            data.map((massage) => (
+          {massageList &&
+            massageList.map((massage) => (
               <BookingItemStyle key={massage.id}>
                 <BookingItem massage={massage} />
               </BookingItemStyle>

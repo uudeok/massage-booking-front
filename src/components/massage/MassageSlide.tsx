@@ -3,10 +3,11 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import styled from "styled-components";
 import { Autoplay } from "swiper/modules";
 import { Link } from "react-router-dom";
-import { BOOKING_MASSAGE_TABLE, BOOKING_ITEM } from "../../const/massage";
+import { BOOKING_ITEM } from "../../const/massage";
 import { MEDIA_QUERY } from "../../const/devise";
+import { TMassageTable } from "../../@types/book";
 
-const MassageSlide = () => {
+const MassageSlide = ({ data }: { data: TMassageTable[] | undefined }) => {
   return (
     <Swiper
       modules={[Autoplay]}
@@ -22,21 +23,24 @@ const MassageSlide = () => {
         768: { slidesPerView: 2 },
       }}
     >
-      {BOOKING_MASSAGE_TABLE.map((massage) => (
-        <SwiperSlide key={massage.id}>
-          <Link to="/program">
-            <ContainerStyle>
-              <img
-                src={massage.img}
-                alt={massage.content}
-                width="100%"
-                height="100%"
-              />
-              <ItemContentStyle>{BOOKING_ITEM[massage.item]}</ItemContentStyle>
-            </ContainerStyle>
-          </Link>
-        </SwiperSlide>
-      ))}
+      {data &&
+        data.map((massage) => (
+          <SwiperSlide key={massage.id}>
+            <Link to="/program">
+              <ContainerStyle>
+                <img
+                  src={massage.img}
+                  alt={massage.content}
+                  width="100%"
+                  height="100%"
+                />
+                <ItemContentStyle>
+                  {BOOKING_ITEM[massage.item]}
+                </ItemContentStyle>
+              </ContainerStyle>
+            </Link>
+          </SwiperSlide>
+        ))}
     </Swiper>
   );
 };

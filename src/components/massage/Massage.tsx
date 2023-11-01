@@ -1,14 +1,19 @@
 import styled from "styled-components";
 import MassageSlide from "./MassageSlide";
 import { MEDIA_QUERY } from "../../const/devise";
+import LoadingBar from "../common/loading/LoadingBar";
+import { useMassageList } from "../../hooks/useMassageList";
 
 const Massage = () => {
+  const { data: massageList, isLoading } = useMassageList();
+
   return (
     <>
       <HeaderStyle>Program</HeaderStyle>
+      {isLoading && <LoadingBar />}
       <MassageContainerStyle>
         <MassageInnerBoxStyle>
-          <MassageSlide />
+          <MassageSlide data={massageList} />
         </MassageInnerBoxStyle>
       </MassageContainerStyle>
     </>

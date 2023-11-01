@@ -4,7 +4,7 @@ import { DEVISE_SIZE } from "../../const/devise";
 export const FooterContainerStyle = styled.div`
   display: flex;
   width: 100%;
-  min-height: 60px;
+  min-height: 70px;
   color: white;
   background-color: #313131;
 `;
@@ -17,7 +17,7 @@ export const FooterInnerContainerStyle = styled.footer`
   }
 `;
 
-export const FooterLeftBoxStyle = styled.div`
+export const FooterTopBoxStyle = styled.div`
   display: flex;
   flex: 1;
 

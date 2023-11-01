@@ -7,18 +7,27 @@ import { router } from "./configs/routes";
 import { store } from "./stores/store";
 import { Provider } from "react-redux";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false, // 윈도우가 다시 포커스되었을때 데이터를 호출할 것인지
+      retry: 0, // API 요청 실패시 재시도 하는 옵션 (설정값 만큼 재시도)
+    },
+  },
+});
 
 root.render(
   <React.StrictMode>
     <GlobalStyles />
     <Provider store={store}>
       <QueryClientProvider client={queryClient}>
+        <ReactQueryDevtools />
         <RouterProvider router={router} />
       </QueryClientProvider>
     </Provider>

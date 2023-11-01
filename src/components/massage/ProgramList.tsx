@@ -2,15 +2,11 @@ import ProgramItem from "./ProgramItem";
 import styled from "styled-components";
 import { MEDIA_QUERY } from "../../const/devise";
 import Banner from "../banner/Banner";
-import { useQuery } from "@tanstack/react-query";
-import { fetchMassageList } from "../../api/book/bookApi";
 import LoadingBar from "../common/loading/LoadingBar";
+import { useMassageList } from "../../hooks/useMassageList";
 
 const ProgramList = () => {
-  const { isPending, data } = useQuery({
-    queryKey: ["massageList"],
-    queryFn: fetchMassageList,
-  });
+  const { data: massageList, isLoading } = useMassageList();
 
   return (
     <>
@@ -19,13 +15,13 @@ const ProgramList = () => {
         <span>자연치유 쉼이 준비한 프로그램!</span>
         <span>다양한 마사지를 경험해보세요.</span>
       </Banner>
-      {isPending && <LoadingBar />}
+      {isLoading && <LoadingBar />}
       <ContainerStyle>
         <InnerBoxStyle>
           <TitleStyle>프로그램 안내</TitleStyle>
           <hr style={{ marginBottom: "2rem" }}></hr>
-          {data &&
-            data.map((massage) => (
+          {massageList &&
+            massageList.map((massage) => (
               <ItemBoxStyle key={massage.id}>
                 <ProgramItem massage={massage} />
               </ItemBoxStyle>

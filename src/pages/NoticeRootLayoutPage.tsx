@@ -8,7 +8,6 @@ const NoticeRootLayoutPage = () => {
     <WrapperStyle>
       <Header />
       <MainStyle>
-        <hr style={{ border: "1px solid lightgrey" }}></hr>
         <Outlet />
       </MainStyle>
       <Footer />

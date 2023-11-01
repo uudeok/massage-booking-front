@@ -6,6 +6,7 @@ import {
   MenuListStyle,
   LoginBoxStyle,
   LogoutBoxStyle,
+  LogoStyle,
 } from "./Header.style";
 import { Link, useNavigate } from "react-router-dom";
 import { getAuthUser, logout } from "../../util";
@@ -29,7 +30,10 @@ const Header = () => {
       <ContainerStyle>
         <InnerContainerStyle>
           <LogoBoxStyle>
-            <Link to="/">자연치유 쉼</Link>
+            {/* <img src="logo.png" alt="logo" width="40px" /> */}
+            <Link to="/">
+              <LogoStyle>자연치유 쉼</LogoStyle>
+            </Link>
           </LogoBoxStyle>
           <MenuBoxStyle>
             <MenuListStyle>

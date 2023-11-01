@@ -1,10 +1,19 @@
 import styled from "styled-components";
 import { TNotice } from "../../../@types/notice";
-import { NOTICE_CATEGORIES } from "../../../const/notices";
+import { NOTICE_CATEGORY } from "../../../const/notices";
 import { Link } from "react-router-dom";
 import { MEDIA_QUERY } from "../../../const/devise";
+import LoadingBar from "../../common/loading/LoadingBar";
+import EmptyPage from "../../common/error/EmptyPage";
 
-const NoticeItem = ({ notice }: { notice: TNotice[] }) => {
+type TProps = {
+  notice: TNotice[];
+  isLoading: boolean;
+};
+
+const NoticeItem = ({ notice, isLoading }: TProps) => {
+  const isEmpty = notice.length === 0;
+
   return (
     <>
       <HeaderStyle>
@@ -14,10 +23,12 @@ const NoticeItem = ({ notice }: { notice: TNotice[] }) => {
         <ViewStyle>조회수</ViewStyle>
       </HeaderStyle>
       <ContentBoxStyle>
+        {isLoading && <LoadingBar />}
+        {isEmpty && <EmptyPage />}
         {notice.map((item) => (
           <ContentStyle key={item.id}>
             <ContentSortStyle>
-              {NOTICE_CATEGORIES[item.category]}
+              {NOTICE_CATEGORY[item.category]}
             </ContentSortStyle>
             <ContentTitleStyle>
               <Link to={`/notice/${item.id}`}>{item.title}</Link>

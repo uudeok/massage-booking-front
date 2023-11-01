@@ -1,6 +1,6 @@
 import { TNotice } from "../@types/notice";
 
-export const NOTICE_CATEGORIES = {
+export const NOTICE_CATEGORY = {
   ALL: "전체",
   BUSINESS_TIME: "영업시간",
   EVENTS: "이벤트",
@@ -8,8 +8,12 @@ export const NOTICE_CATEGORIES = {
   RULES: "운영방침",
 } as const;
 
-/// 조회수도 넣을 예정
-/// auth 는 관리자
+export const NOTICE_CATEGORIES = [
+  { key: "BUSINESS_TIME", value: "영업시간" },
+  { key: "EVENTS", value: "이벤트" },
+  { key: "RULES", value: "운영방침" },
+  { key: "ETC", value: "기타" },
+] as const;
 
 export const NOTICE_LIST: TNotice[] = [
   {

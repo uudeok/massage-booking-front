@@ -21,17 +21,31 @@ export const InnerContainerStyle = styled.header`
 
 export const LogoBoxStyle = styled.div`
   width: 20%;
-  font-size: 1.8rem;
+  display: flex;
+  align-items: end;
+
+  img {
+    padding: 0.2rem;
+  }
+
+  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+    width: 100%;
+    margin-left: 0.3rem;
+  }
+`;
+
+export const LogoStyle = styled.h1`
+  font-size: 2rem;
   font-family: "GmarketSansMedium";
+  height: 100%;
 
   @media only screen and (max-width: ${MEDIA_QUERY.notebookWidth}) {
     font-size: 1.6rem;
   }
 
   @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     width: 100%;
-    margin-left: 0.5rem;
   }
 `;
 

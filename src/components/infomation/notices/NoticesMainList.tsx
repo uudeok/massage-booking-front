@@ -3,8 +3,6 @@ import { NOTICE_LIST } from "../../../const/notices";
 import styled from "styled-components";
 
 const NoticesMainList = () => {
-  /// 공지사항 최신글 5개만 가져와서 뿌려준다.
-
   return (
     <NoticeBoxStyle>
       {NOTICE_LIST.map((item) => (

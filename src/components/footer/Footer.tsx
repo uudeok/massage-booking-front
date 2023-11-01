@@ -1,7 +1,7 @@
 import {
   FooterContainerStyle,
   FooterInnerContainerStyle,
-  FooterLeftBoxStyle,
+  FooterTopBoxStyle,
   FooterSymbolBoxStyle,
   FooterInfoListStyle,
   FooterInfoItemStyle,
@@ -12,7 +12,7 @@ const Footer = () => {
   return (
     <FooterContainerStyle>
       <FooterInnerContainerStyle>
-        <FooterLeftBoxStyle>
+        <FooterTopBoxStyle>
           <FooterSymbolBoxStyle>자연치유 쉼</FooterSymbolBoxStyle>
           <FooterInfoListStyle>
             {FOOTER_BUSINESS.map((info) => (
@@ -21,7 +21,7 @@ const Footer = () => {
               </FooterInfoItemStyle>
             ))}
           </FooterInfoListStyle>
-        </FooterLeftBoxStyle>
+        </FooterTopBoxStyle>
       </FooterInnerContainerStyle>
     </FooterContainerStyle>
   );

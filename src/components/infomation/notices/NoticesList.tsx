@@ -1,34 +1,49 @@
 import styled from "styled-components";
-import { NOTICE_LIST, NOTICE_CATEGORIES } from "../../../const/notices";
+import { NOTICE_CATEGORIES } from "../../../const/notices";
 import NoticeItem from "./NoticeItem";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { MEDIA_QUERY } from "../../../const/devise";
 import Paging from "../../pagination/Paging";
+import { NOTICE_CATEGORY_KEYS, TNotice } from "../../../@types/notice";
+import { fetchNoticeList } from "../../../api/notice/noticeApi";
 
 const NoticesList = () => {
-  const [category, setCategory] = useState("ALL");
+  const [noticeList, setNoticeList] = useState<TNotice[]>([]);
+  const [category, setCategory] = useState<NOTICE_CATEGORY_KEYS>("ALL");
   const [page, setPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<any>();
+
   const navigate = useNavigate();
 
   const changePageHandler = (page: number) => {
     setPage(page);
   };
 
-  // category 값이 바뀔 때마다 API 요청
+  const getNoticeList = async (category: NOTICE_CATEGORY_KEYS) => {
+    try {
+      setIsLoading(true);
+      const resData = await fetchNoticeList(category);
+      setNoticeList(resData);
+      setIsLoading(false);
+    } catch (error) {
+      setError(error);
+    }
+  };
 
-  let filteredList;
-
-  if (category === "ALL") {
-    filteredList = NOTICE_LIST;
-  } else {
-    filteredList = NOTICE_LIST.filter((item) => item.category === category);
-  }
+  useEffect(() => {
+    getNoticeList(category);
+  }, [category]);
 
   const changeCategoryHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setCategory(e.target.value);
+    setCategory(e.target.value as NOTICE_CATEGORY_KEYS);
     navigate(`/notice/?category=${e.target.value}`);
   };
+
+  if (error) {
+    return <span>{error}</span>;
+  }
 
   return (
     <ContainerStyle>
@@ -37,14 +52,14 @@ const NoticesList = () => {
           <TitleStyle>📢공지사항</TitleStyle>
           <CategoryListStyle onChange={changeCategoryHandler}>
             <option value="ALL">전체</option>
-            {NOTICE_LIST.map((item) => (
-              <option key={item.id} id={item.category} value={item.category}>
-                {NOTICE_CATEGORIES[item.category]}
+            {NOTICE_CATEGORIES.map((item, index) => (
+              <option key={index} id={item.key} value={item.key}>
+                {item.value}
               </option>
             ))}
           </CategoryListStyle>
         </HeaderStyle>
-        <NoticeItem notice={filteredList} />
+        <NoticeItem notice={noticeList} isLoading={isLoading} />
         <Paging
           page={page}
           changePageHandler={changePageHandler}
