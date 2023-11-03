@@ -3,15 +3,14 @@ import { MEDIA_QUERY } from "../../const/devise";
 import { useSelector } from "react-redux";
 import { BOOKING_ITEM } from "../../const/massage";
 import { addMinutesUnit, addComma } from "../../util";
-import { massageItem, massageDetail } from "../../stores/massageSlice";
+import { getMassageItem, getMassageDetail } from "../../stores/massageSlice";
 
 const BookingSummary = () => {
-  const selectedMassage = useSelector(massageItem);
-  const selectedMassageDetail = useSelector(massageDetail);
-
-  const massage = selectedMassage[0].item;
-  const massageTime = selectedMassageDetail[0].time;
+  const selectedMassage = useSelector(getMassageItem);
+  const selectedMassageDetail = useSelector(getMassageDetail);
+  const massage = selectedMassage.item;
   const massagePrice = selectedMassageDetail[0].price;
+  const massageTime = selectedMassageDetail[0].time;
 
   return (
     <>

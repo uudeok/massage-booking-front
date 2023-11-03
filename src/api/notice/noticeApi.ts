@@ -1,6 +1,6 @@
 import { generate_notice } from "..";
-import axios from "axios";
 import { NOTICE_CATEGORY_KEYS, TNotice } from "../../@types/notice";
+import axios from "axios";
 
 export const fetchNoticeList = async (category: NOTICE_CATEGORY_KEYS) => {
   if (category === "ALL") {

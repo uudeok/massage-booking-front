@@ -2,15 +2,20 @@ import styled from "styled-components";
 import MassageSlide from "./MassageSlide";
 import { MEDIA_QUERY } from "../../const/devise";
 import LoadingBar from "../common/loading/LoadingBar";
-import { useMassageList } from "../../hooks/useMassageList";
+import { useGetMassageListQuery } from "../../api/book/bookQuery";
+
+import ErrorPage from "../common/error/ErrorPage";
 
 const Massage = () => {
-  const { data: massageList, isLoading } = useMassageList();
+  const { data: massageList, isFetching, isError } = useGetMassageListQuery();
+
+  // RTK Query 로 API 호출 60초(기본값) 동안 캐싱 데이터 가져옴
 
   return (
     <>
       <HeaderStyle>Program</HeaderStyle>
-      {isLoading && <LoadingBar />}
+      {isFetching && <LoadingBar />}
+      {isError && <ErrorPage errorStatus={null} />}
       <MassageContainerStyle>
         <MassageInnerBoxStyle>
           <MassageSlide data={massageList} />

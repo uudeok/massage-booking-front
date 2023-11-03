@@ -5,14 +5,12 @@ import { MEDIA_QUERY } from "../../const/devise";
 import BookingCalendar from "./BookingCalendar";
 import { BOOKING_TIME_TABLE } from "../../const/massage";
 import BookingAvailableTime from "./BookingAvailableTime";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../stores/store";
 import { addTabNum } from "../../stores/tabSlice";
-import { massageDetail } from "../../stores/massageSlice";
 
 const BookingDate = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const selectedMassageDetail = useSelector(massageDetail);
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
 
   useEffect(() => {

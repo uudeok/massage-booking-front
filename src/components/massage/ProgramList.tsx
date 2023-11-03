@@ -3,10 +3,13 @@ import styled from "styled-components";
 import { MEDIA_QUERY } from "../../const/devise";
 import Banner from "../banner/Banner";
 import LoadingBar from "../common/loading/LoadingBar";
-import { useMassageList } from "../../hooks/useMassageList";
+import { useGetMassageListQuery } from "../../api/book/bookQuery";
+import ErrorPage from "../common/error/ErrorPage";
 
 const ProgramList = () => {
-  const { data: massageList, isLoading } = useMassageList();
+  const { data: massageList, isFetching, isError } = useGetMassageListQuery();
+
+  // RTK Query 로 API 호출 60초(기본값) 동안 캐싱 데이터 가져옴
 
   return (
     <>
@@ -15,11 +18,12 @@ const ProgramList = () => {
         <span>자연치유 쉼이 준비한 프로그램!</span>
         <span>다양한 마사지를 경험해보세요.</span>
       </Banner>
-      {isLoading && <LoadingBar />}
+      {isFetching && <LoadingBar />}
       <ContainerStyle>
         <InnerBoxStyle>
           <TitleStyle>프로그램 안내</TitleStyle>
           <hr style={{ marginBottom: "2rem" }}></hr>
+          {isError && <ErrorPage errorStatus={null} />}
           {massageList &&
             massageList.map((massage) => (
               <ItemBoxStyle key={massage.id}>
@@ -43,13 +47,7 @@ const BannerTitleStyle = styled.h2`
   }
 `;
 
-const StatusStyle = styled.div`
-  text-align: center;
-  margin-top: 1rem;
-`;
-
 const ContainerStyle = styled.div`
-  /* border-top: 1px solid black; */
   display: flex;
   flex-direction: column;
   font-family: "GmarketSansMedium";

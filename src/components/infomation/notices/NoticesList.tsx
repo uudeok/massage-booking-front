@@ -1,49 +1,38 @@
 import styled from "styled-components";
 import { NOTICE_CATEGORIES } from "../../../const/notices";
 import NoticeItem from "./NoticeItem";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { MEDIA_QUERY } from "../../../const/devise";
 import Paging from "../../pagination/Paging";
-import { NOTICE_CATEGORY_KEYS, TNotice } from "../../../@types/notice";
-import { fetchNoticeList } from "../../../api/notice/noticeApi";
+import { NOTICE_CATEGORY_KEYS } from "../../../@types/notice";
+import { useGetNoticeListQuery } from "../../../api/notice/noticeQuery";
 
 const NoticesList = () => {
-  const [noticeList, setNoticeList] = useState<TNotice[]>([]);
+  // 값을 전역적으로 관리할 필요가 없음 (리덕스x)
+  // 공지사항도 수시로 변하는 값은 아님
+  // RTK Query 로 데이터 가져와서 캐싱 된 데이터 받음
+
   const [category, setCategory] = useState<NOTICE_CATEGORY_KEYS>("ALL");
   const [page, setPage] = useState(1);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState<any>();
-
   const navigate = useNavigate();
+
+  const {
+    data: noticeList,
+    isFetching,
+    isError,
+  } = useGetNoticeListQuery(category);
 
   const changePageHandler = (page: number) => {
     setPage(page);
   };
-
-  const getNoticeList = async (category: NOTICE_CATEGORY_KEYS) => {
-    try {
-      setIsLoading(true);
-      const resData = await fetchNoticeList(category);
-      setNoticeList(resData);
-      setIsLoading(false);
-    } catch (error) {
-      setError(error);
-    }
-  };
-
-  useEffect(() => {
-    getNoticeList(category);
-  }, [category]);
 
   const changeCategoryHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setCategory(e.target.value as NOTICE_CATEGORY_KEYS);
     navigate(`/notice/?category=${e.target.value}`);
   };
 
-  if (error) {
-    return <span>{error}</span>;
-  }
+  const isEmpty = noticeList?.length === 0;
 
   return (
     <ContainerStyle>
@@ -59,7 +48,12 @@ const NoticesList = () => {
             ))}
           </CategoryListStyle>
         </HeaderStyle>
-        <NoticeItem notice={noticeList} isLoading={isLoading} />
+        <NoticeItem
+          notice={noticeList!}
+          isFetching={isFetching}
+          isError={isError}
+          isEmpty={isEmpty}
+        />
         <Paging
           page={page}
           changePageHandler={changePageHandler}

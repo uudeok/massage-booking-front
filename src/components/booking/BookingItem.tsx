@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { BOOKING_ITEM } from "../../const/massage";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../stores/store";
-import { getMassageItem } from "../../stores/massageSlice";
+import { fetchMassageItem } from "../../stores/massageSlice";
 import { addTabNum } from "../../stores/tabSlice";
 
 type TProps = {
@@ -13,11 +13,9 @@ type TProps = {
 const BookingItem = ({ massage }: TProps) => {
   const dispatch = useDispatch<AppDispatch>();
 
-  const fetchMassageDetail = async (massageId: number) => {
-    /// 마사지 id 로 마사지 정보와 detail 정보 각각 가져오기
-    // 그러고 나서 tab 이동
-    await dispatch(getMassageItem(massageId));
-    await dispatch(addTabNum());
+  const getMassageItem = async (massageId: number) => {
+    await dispatch(fetchMassageItem(massageId));
+    dispatch(addTabNum());
   };
 
   return (
@@ -28,7 +26,7 @@ const BookingItem = ({ massage }: TProps) => {
       <ItemContentBoxStyle>
         <h3>{BOOKING_ITEM[massage.item]}</h3>
         <span>{massage.content}</span>
-        <ButtonStyle onClick={() => fetchMassageDetail(massage.id)}>
+        <ButtonStyle onClick={() => getMassageItem(massage.id)}>
           예약하기
         </ButtonStyle>
       </ItemContentBoxStyle>

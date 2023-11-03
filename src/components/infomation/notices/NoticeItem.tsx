@@ -5,15 +5,16 @@ import { Link } from "react-router-dom";
 import { MEDIA_QUERY } from "../../../const/devise";
 import LoadingBar from "../../common/loading/LoadingBar";
 import EmptyPage from "../../common/error/EmptyPage";
+import ErrorPage from "../../common/error/ErrorPage";
 
 type TProps = {
   notice: TNotice[];
-  isLoading: boolean;
+  isFetching: boolean;
+  isError: boolean;
+  isEmpty: boolean;
 };
 
-const NoticeItem = ({ notice, isLoading }: TProps) => {
-  const isEmpty = notice.length === 0;
-
+const NoticeItem = ({ notice, isFetching, isError, isEmpty }: TProps) => {
   return (
     <>
       <HeaderStyle>
@@ -23,20 +24,22 @@ const NoticeItem = ({ notice, isLoading }: TProps) => {
         <ViewStyle>조회수</ViewStyle>
       </HeaderStyle>
       <ContentBoxStyle>
-        {isLoading && <LoadingBar />}
+        {isFetching && <LoadingBar />}
+        {isError && <ErrorPage errorStatus={null} />}
         {isEmpty && <EmptyPage />}
-        {notice.map((item) => (
-          <ContentStyle key={item.id}>
-            <ContentSortStyle>
-              {NOTICE_CATEGORY[item.category]}
-            </ContentSortStyle>
-            <ContentTitleStyle>
-              <Link to={`/notice/${item.id}`}>{item.title}</Link>
-            </ContentTitleStyle>
-            <ContentDateStyle>{item.date}</ContentDateStyle>
-            <ContentViewStyle>{item.id}</ContentViewStyle>
-          </ContentStyle>
-        ))}
+        {notice &&
+          notice.map((item) => (
+            <ContentStyle key={item.id}>
+              <ContentSortStyle>
+                {NOTICE_CATEGORY[item.category]}
+              </ContentSortStyle>
+              <ContentTitleStyle>
+                <Link to={`/notice/${item.id}`}>{item.title}</Link>
+              </ContentTitleStyle>
+              <ContentDateStyle>{item.date}</ContentDateStyle>
+              <ContentViewStyle>{item.id}</ContentViewStyle>
+            </ContentStyle>
+          ))}
       </ContentBoxStyle>
     </>
   );

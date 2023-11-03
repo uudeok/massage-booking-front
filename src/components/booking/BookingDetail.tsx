@@ -6,22 +6,17 @@ import { addComma, addMinutesUnit } from "../../util";
 import { MEDIA_QUERY } from "../../const/devise";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../stores/store";
-import {
-  massageItem,
-  getSelectedMassageDetail,
-} from "../../stores/massageSlice";
+import { getMassageItem, fetchMassageDetail } from "../../stores/massageSlice";
 import { addTabNum } from "../../stores/tabSlice";
 
 const BookingDetail = ({ detail }: { detail: TMassageDetail }) => {
   const dispatch = useDispatch<AppDispatch>();
-  const selectedMassage = useSelector(massageItem);
-  const item = selectedMassage[0].item;
-  const description = selectedMassage[0].content;
+  const selectedMassage = useSelector(getMassageItem);
+  const item = selectedMassage.item;
+  const content = selectedMassage.content;
 
-  const fetchAvailableTime = async (timeId: number) => {
-    // 마사지의 몇분을 선택했는지
-    // 그리고 나서 tab 이동
-    await dispatch(getSelectedMassageDetail(timeId));
+  const getAvailableTime = async (time: number) => {
+    await dispatch(fetchMassageDetail(time));
     dispatch(addTabNum());
   };
 
@@ -33,11 +28,11 @@ const BookingDetail = ({ detail }: { detail: TMassageDetail }) => {
           <div>{addComma(detail.price)}</div>
         </TopStyle>
         <MiddleStyle>
-          <p>{description}</p>
+          <p>{content}</p>
         </MiddleStyle>
         <BottomStyle>
           <h3>{addMinutesUnit(detail.time)}</h3>
-          <ButtonStyle onClick={() => fetchAvailableTime(detail.id)}>
+          <ButtonStyle onClick={() => getAvailableTime(detail.time)}>
             선택하기
           </ButtonStyle>
         </BottomStyle>

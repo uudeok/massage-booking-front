@@ -2,23 +2,33 @@ import BookingItem from "./BookingItem";
 import styled from "styled-components";
 import { MEDIA_QUERY } from "../../const/devise";
 import LoadingBar from "../common/loading/LoadingBar";
-import { useMassageList } from "../../hooks/useMassageList";
+import { useEffect } from "react";
+import {
+  massageError,
+  fetchMassageList,
+  getMassageList,
+  massageStatus,
+} from "../../stores/massageSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch } from "../../stores/store";
+import { TMassageTable } from "../../@types/book";
+import ErrorPage from "../common/error/ErrorPage";
 
 const BookingList = () => {
-  const { data: massageList, isLoading, error } = useMassageList();
+  const dispatch = useDispatch<AppDispatch>();
+  const massageList = useSelector(getMassageList) as TMassageTable[];
+  const status = useSelector(massageStatus);
+  const errorStatus = useSelector(massageError);
+  const isLoading = status === "loading";
 
-  // 마사지 리스트는 거의 변하지 않는 데이터이므로
-  // staleTime, gcTime 을 무한으로 설정
-  // 새로고침시에만 API 요청
-
-  if (error) {
-    return <span>Error : {error.message}</span>;
-  }
+  useEffect(() => {
+    dispatch(fetchMassageList());
+  }, [dispatch]);
 
   return (
     <>
       {isLoading && <LoadingBar />}
-
+      {errorStatus && <ErrorPage errorStatus={errorStatus} />}
       <ContentBoxStyle>
         <ListBoxStyle>
           {massageList &&
