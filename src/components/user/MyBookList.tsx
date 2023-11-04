@@ -4,8 +4,6 @@ import MyBookItem from "./MyBookItem";
 import { MEDIA_QUERY } from "../../const/devise";
 
 const MyBookList = () => {
-  // 개인 고객 조회
-
   return (
     <LayoutStyle>
       <HeaderStyle>‖ 예약 내역</HeaderStyle>

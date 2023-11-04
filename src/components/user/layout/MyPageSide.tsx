@@ -55,4 +55,8 @@ const ItemStyled = styled.li`
     width: 100%;
     text-align: center;
   }
+
+  @media only screen and (max-width: ${MEDIA_QUERY.bigMobileWidth}) {
+    font-size: 0.8rem;
+  }
 `;

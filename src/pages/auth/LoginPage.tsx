@@ -1,4 +1,4 @@
-import LoginForm from "../../components/auth/Login";
+import LoginForm from "../../components/auth/LoginForm";
 import Layout from "../../layout/Layout";
 import styled from "styled-components";
 import { MEDIA_QUERY } from "../../const/devise";

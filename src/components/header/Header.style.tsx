@@ -38,6 +38,8 @@ export const LogoStyle = styled.h1`
   font-size: 2rem;
   font-family: "GmarketSansMedium";
   height: 100%;
+  font-weight: bold;
+  /* color: #526348; */
 
   @media only screen and (max-width: ${MEDIA_QUERY.notebookWidth}) {
     font-size: 1.6rem;

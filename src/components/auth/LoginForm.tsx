@@ -6,7 +6,6 @@ import { useNavigate, Link } from "react-router-dom";
 
 const LoginForm = ({ path }: { path?: string }) => {
   const navigate = useNavigate();
-
   const [error, setError] = useState("");
   const { inputValue, changeInputHandler } = useInput({
     email: "",
@@ -18,13 +17,20 @@ const LoginForm = ({ path }: { path?: string }) => {
   const isValidEmail = email.includes("@") && email.trim().length > 5;
   const isValidPassword = password.trim().length >= 7;
 
+  const validLoginForm = () => {
+    if (!isValidEmail || !isValidPassword) {
+      setError("이메일 또는 비밀번호가 올바르지 않습니다.");
+      return false;
+    }
+    return true;
+  };
+
   const onLoginHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (!isValidEmail || !isValidPassword) {
-      setError("이메일 또는 비밀번호가 올바르지 않습니다.");
-      return;
-    }
+    if (!validLoginForm()) return;
+
+    console.log(email, password);
 
     /// 로그인 API 요청
     localStorage.setItem("email", email);
@@ -34,9 +40,6 @@ const LoginForm = ({ path }: { path?: string }) => {
     } else {
       navigate("/");
     }
-    // valid 검증 후, 로그인 API 요청
-    // 1. 로그인 화면에서 로그인할 경우 로그인 후 메인으로가기
-    // 2. 예약 화면에서 회원으로 예약하기해서 로그인할 경우 로그인 후 나의정보 화면으로 가기
   };
 
   return (
@@ -50,7 +53,6 @@ const LoginForm = ({ path }: { path?: string }) => {
           placeholder="이메일 주소를 입력해주세요"
           id="email"
           name="email"
-          defaultValue={email}
         />
         <LabelStyle htmlFor="password">비밀번호</LabelStyle>
         <InputStyle
@@ -59,7 +61,6 @@ const LoginForm = ({ path }: { path?: string }) => {
           placeholder="비밀번호를 입력해주세요"
           id="password"
           name="password"
-          defaultValue={password}
         />
         {error && <ErrorMessageStyle>{error}</ErrorMessageStyle>}
         <LoginButtonStyle>로그인</LoginButtonStyle>

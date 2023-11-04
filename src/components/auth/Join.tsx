@@ -1,7 +1,9 @@
 import styled from "styled-components";
 import { MEDIA_QUERY } from "../../const/devise";
+import { useNavigate } from "react-router-dom";
 
-const JoinForm = () => {
+const Join = () => {
+  const navigate = useNavigate();
   return (
     <ContainerStyle>
       <KakaoLoginBoxStyle>
@@ -11,19 +13,21 @@ const JoinForm = () => {
         <KakaoButtonStyle>카카오톡 회원가입</KakaoButtonStyle>
       </KakaoLoginBoxStyle>
       <MiddleBannerStyle>
-        <div>자연치유 쉼의 회원만 누릴 수 있는 혜택!</div>
+        <div>회원만 누릴 수 있는 혜택!</div>
         <div>다양한 EVENT 안내!</div>
         <div>현금처럼 쓸 수 있는 적립금 혜택</div>
       </MiddleBannerStyle>
       <MemberJoinBoxStyle>
         <span>또는</span>
-        <JoinButtonStyle>아이디&비밀번호 회원가입하기</JoinButtonStyle>
+        <JoinButtonStyle onClick={() => navigate("/register")}>
+          이메일&비밀번호 회원가입하기
+        </JoinButtonStyle>
       </MemberJoinBoxStyle>
     </ContainerStyle>
   );
 };
 
-export default JoinForm;
+export default Join;
 
 const ContainerStyle = styled.div`
   width: 30rem;

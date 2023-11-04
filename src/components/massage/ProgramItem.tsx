@@ -6,14 +6,9 @@ import { MEDIA_QUERY } from "../../const/devise";
 
 const ProgramItem = ({ massage }: { massage: TMassageTable }) => {
   return (
-    <div>
+    <>
       <ImgBoxStyle>
-        <img
-          src={massage.img}
-          alt={massage.item}
-          width="100%"
-          height="300rem"
-        />
+        <img src={massage.img} alt={massage.item} width="90%" height="300rem" />
       </ImgBoxStyle>
       <ContentBoxStyle>
         <ContentTitleStyle>{BOOKING_ITEM[massage.item]}</ContentTitleStyle>
@@ -26,7 +21,7 @@ const ProgramItem = ({ massage }: { massage: TMassageTable }) => {
           ))}
         </ContentPriceListStyle>
       </ContentBoxStyle>
-    </div>
+    </>
   );
 };
 

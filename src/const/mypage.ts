@@ -1,7 +1,7 @@
 export const MY_PAGE_TABLE = [
   { key: "book", value: "나의 예약" },
   { key: "mileage", value: "적립금" },
-  { key: "coupon", value: "나의 쿠폰" },
+  { key: "setting", value: "개인정보수정" },
 ];
 
 // 최신순으로 가져오기

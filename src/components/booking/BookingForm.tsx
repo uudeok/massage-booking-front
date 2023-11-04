@@ -2,7 +2,7 @@ import styled from "styled-components";
 import PreviousButton from "../common/button/PreviousButton";
 import { useState } from "react";
 import Modal from "../common/UI/Modal";
-import LoginForm from "../auth/Login";
+import LoginForm from "../auth/LoginForm";
 import BookingSummary from "./BookingSummary";
 import BookingConfirm from "./BookingConfirm";
 import { getAuthUser } from "../../util";
