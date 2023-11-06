@@ -1,6 +1,6 @@
-import MyMileageList from "../../components/user/MyMileageList";
+import MyMileage from "../../components/user/mileage/MyMileage";
 
 const MyMileagePage = () => {
-  return <MyMileageList />;
+  return <MyMileage />;
 };
 export default MyMileagePage;

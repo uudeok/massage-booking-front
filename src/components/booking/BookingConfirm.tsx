@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { MEDIA_QUERY } from "../../const/devise";
+import DefaultButton from "../common/button/DefaultButton";
 
 interface IProps {
   isChecked: boolean;
@@ -28,7 +29,14 @@ const BookingConfirm = ({
         {error && <WarningStyle>{error}</WarningStyle>}
       </CheckBoxStyle>
       <ButtonBoxStyle>
-        <ButtonStyle onClick={bookMassageHandler}>예약하기</ButtonStyle>
+        <DefaultButton
+          onClick={bookMassageHandler}
+          width="10rem"
+          backgroundColor="#76916a"
+          color="white"
+        >
+          예약하기
+        </DefaultButton>
       </ButtonBoxStyle>
     </ConfirmBoxStyle>
   );

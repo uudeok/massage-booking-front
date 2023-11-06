@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { MEDIA_QUERY } from "../../../const/devise";
+import { useEffect } from "react";
 
 type TProps = {
   children: React.ReactNode;
@@ -14,18 +15,17 @@ const DefaultModal = ({
   height,
   backgroundColor,
 }: TProps) => {
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, []);
+
   return (
     <>
       <BackDropStyle onClick={onClose} />
       <ModalStyle $height={height} $backgroundColor={backgroundColor}>
-        <CloseButtonBoxStyle>
-          <CloseButtonStyle
-            onClick={onClose}
-            $backgroundColor={backgroundColor}
-          >
-            X
-          </CloseButtonStyle>
-        </CloseButtonBoxStyle>
         {children}
       </ModalStyle>
     </>
@@ -83,17 +83,4 @@ const ModalStyle = styled.div<{ $height?: string; $backgroundColor?: string }>`
       transform: translateY(0);
     }
   }
-`;
-
-const CloseButtonBoxStyle = styled.div`
-  display: flex;
-  justify-content: right;
-`;
-
-const CloseButtonStyle = styled.button<{ $backgroundColor?: string }>`
-  border: none;
-  cursor: pointer;
-  background-color: ${({ $backgroundColor }) =>
-    $backgroundColor ? $backgroundColor : "white"};
-  color: whitesmoke;
 `;

@@ -9,6 +9,7 @@ import { AppDispatch } from "../../stores/store";
 import { getMassageItem, fetchMassageDetail } from "../../stores/massageSlice";
 import { addTabNum } from "../../stores/tabSlice";
 import { addComma } from "../../util/price";
+import DefaultButton from "../common/button/DefaultButton";
 
 const BookingDetail = ({ detail }: { detail: TMassageDetail }) => {
   const dispatch = useDispatch<AppDispatch>();
@@ -87,7 +88,7 @@ const TopStyle = styled.div`
     padding: 0.8rem 1rem;
     background-color: #5b5b5b;
     color: white;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-family: "GmarketSansMedium";
   }
 
@@ -135,13 +136,20 @@ const BottomStyle = styled.div`
 `;
 
 const ButtonStyle = styled.button`
-  width: 8.5rem;
-  height: 2.5rem;
+  /* width: 8.5rem;
+  height: 2.5rem; */
   cursor: pointer;
   background-color: white;
   color: black;
   font-size: 1rem;
   font-family: "Pretendard-Regular";
+  border: 2px solid lightgrey;
+  width: 100%;
+  border-radius: 30px;
+
+  /* border-radius: 30px; */
+  padding: 0.8rem 1rem;
+  width: 8rem;
 
   @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
     width: 100%;

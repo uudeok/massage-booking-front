@@ -1,16 +1,17 @@
 import styled from "styled-components";
 import { MEDIA_QUERY } from "../../const/devise";
-import { useNavigate } from "react-router-dom";
+import KakaoButton from "../common/button/KakaoButton";
+import DefaultButton from "../common/button/DefaultButton";
+import { Link } from "react-router-dom";
 
 const Join = () => {
-  const navigate = useNavigate();
   return (
     <ContainerStyle>
       <KakaoLoginBoxStyle>
         <HeaderStyle>회원가입</HeaderStyle>
         <span>아이디 비밀번호 입력없이 빠르고 간편하게</span>
         <span>클릭 한번으로 손쉬운 카카오톡 회원가입 하세요.</span>
-        <KakaoButtonStyle>카카오톡 회원가입</KakaoButtonStyle>
+        <KakaoButton>카카오톡 회원가입</KakaoButton>
       </KakaoLoginBoxStyle>
       <MiddleBannerStyle>
         <div>회원만 누릴 수 있는 혜택!</div>
@@ -19,9 +20,9 @@ const Join = () => {
       </MiddleBannerStyle>
       <MemberJoinBoxStyle>
         <span>또는</span>
-        <JoinButtonStyle onClick={() => navigate("/register")}>
-          이메일&비밀번호 회원가입하기
-        </JoinButtonStyle>
+        <DefaultButton>
+          <Link to="/register">이메일&비밀번호 회원가입하기</Link>
+        </DefaultButton>
       </MemberJoinBoxStyle>
     </ContainerStyle>
   );
@@ -61,22 +62,6 @@ const HeaderStyle = styled.h2`
   margin-top: 1rem;
 `;
 
-const KakaoButtonStyle = styled.button`
-  font-family: "Pretendard-Regular";
-  background-color: #fee500;
-  background-image: url(//storage.keepgrow.com/admin/campaign/20200611043456590.svg);
-  background-repeat: no-repeat;
-  background-position: 20px;
-  padding: 1rem;
-  border: none;
-  border-radius: 10px;
-  text-align: center;
-  font-size: 17px;
-  cursor: pointer;
-  margin-top: 1rem;
-  color: black;
-`;
-
 const MiddleBannerStyle = styled.div`
   text-align: center;
   padding: 1rem;
@@ -104,16 +89,4 @@ const MemberJoinBoxStyle = styled.div`
     font-size: 0.9rem;
     margin-bottom: 0.5rem;
   }
-`;
-
-const JoinButtonStyle = styled.button`
-  padding: 1rem;
-  border: none;
-  border-radius: 10px;
-  text-align: center;
-  font-size: 17px;
-  cursor: pointer;
-  margin-top: 1rem;
-  font-family: "Pretendard-Regular";
-  color: black;
 `;

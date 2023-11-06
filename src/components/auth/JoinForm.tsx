@@ -3,6 +3,7 @@ import { MEDIA_QUERY } from "../../const/devise";
 import { useInput } from "../../hooks/useInput";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import DefaultButton from "../common/button/DefaultButton";
 
 const JoinForm = () => {
   const navigate = useNavigate();
@@ -95,7 +96,9 @@ const JoinForm = () => {
           />
         </PersonalConsentBoxStyle>
         {error && <ErrorMessageStyle>{error}</ErrorMessageStyle>}
-        <ButtonStyle>회원가입</ButtonStyle>
+        <DefaultButton backgroundColor="#afc9a4" color="white">
+          회원가입
+        </DefaultButton>
       </FormStyle>
     </ContainerStyle>
   );
@@ -104,13 +107,12 @@ const JoinForm = () => {
 export default JoinForm;
 
 const ContainerStyle = styled.div`
-  width: 35rem;
+  width: 30rem;
   margin: 7rem auto;
   font-family: "Pretendard-Regular";
 
   @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
     width: 70%;
-    border: 1px solid black;
   }
 `;
 
@@ -149,28 +151,11 @@ const InputStyle = styled.input`
 const PersonalConsentBoxStyle = styled.div`
   display: flex;
   margin-top: 1rem;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 
   label {
     flex: 1;
     font-size: 1.2rem;
-  }
-`;
-
-const ButtonStyle = styled.button`
-  padding: 1rem;
-  border: none;
-  cursor: pointer;
-  color: white;
-  border-radius: 10px;
-  font-family: "Pretendard-Regular";
-  margin-top: 1rem;
-  font-size: 1rem;
-  background-color: #afc9a4;
-
-  &:hover {
-    color: whitesmoke;
-    transition: all 0.326s ease-in-out;
   }
 `;
 

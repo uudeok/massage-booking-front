@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { MY_BOOK_LIST } from "../../const/mypage";
+import { MY_BOOK_LIST } from "../../../const/mypage";
 import MyBookItem from "./MyBookItem";
-import { MEDIA_QUERY } from "../../const/devise";
+import { MEDIA_QUERY } from "../../../const/devise";
 
 const MyBookList = () => {
   return (

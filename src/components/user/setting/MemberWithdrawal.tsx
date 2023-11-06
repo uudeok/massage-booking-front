@@ -2,7 +2,8 @@ import Card from "../../common/card/Card";
 import styled from "styled-components";
 
 type TProps = {
-  showModal: () => void;
+  // showModal: () => void;
+  showModal: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 const MemberWithdrawal = ({ showModal }: TProps) => {
@@ -10,7 +11,7 @@ const MemberWithdrawal = ({ showModal }: TProps) => {
     <Card>
       <TitleBoxStyle>
         <h2>회원탈퇴</h2>
-        <ButtonStyle onClick={showModal}>탈퇴</ButtonStyle>
+        <ButtonStyle onClick={() => showModal(true)}>탈퇴</ButtonStyle>
       </TitleBoxStyle>
       <p>자연치유 쉼 회원 탈퇴하기</p>
     </Card>

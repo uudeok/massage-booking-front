@@ -1,20 +1,20 @@
 import styled from "styled-components";
 import PreviousButton from "../common/button/PreviousButton";
 import { useState } from "react";
-import Modal from "../common/UI/Modal";
 import LoginForm from "../auth/LoginForm";
 import BookingSummary from "./BookingSummary";
 import BookingConfirm from "./BookingConfirm";
 import { getAuthUser } from "../../util/auth";
 import { useNavigate } from "react-router-dom";
 import DefaultModal from "../common/UI/DefaultModal";
+import { useModal } from "../../hooks/useModal";
 
 const BookingForm = () => {
   const storedEmail = getAuthUser();
   const navigate = useNavigate();
-  const [loginIsShown, setLoginIsShown] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
   const [error, setError] = useState("");
+  const { modalIsShown, setModalIsShown, hideModalHandler } = useModal();
 
   const fetchMemberReservation = () => {
     const process = window.confirm("예약 하시겠습니까?");
@@ -43,18 +43,14 @@ const BookingForm = () => {
       fetchMemberReservation();
       return;
     }
-    setLoginIsShown(true);
-  };
-
-  const hideLoginHandler = () => {
-    setLoginIsShown(false);
+    setModalIsShown(true);
   };
 
   return (
     <ContainerStyle>
-      {loginIsShown && isChecked && (
-        <DefaultModal onClose={hideLoginHandler}>
-          <LoginForm path="mypage/book" />
+      {modalIsShown && isChecked && (
+        <DefaultModal onClose={hideModalHandler}>
+          <LoginForm path="mypage/book" onClose={hideModalHandler} />
         </DefaultModal>
       )}
       <PreviousButton />

@@ -3,8 +3,15 @@ import { MEDIA_QUERY } from "../../const/devise";
 import { useInput } from "../../hooks/useInput";
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import DefaultButton from "../common/button/DefaultButton";
+import KakaoButton from "../common/button/KakaoButton";
 
-const LoginForm = ({ path }: { path?: string }) => {
+type TProps = {
+  path?: string;
+  onClose?: () => void;
+};
+
+const LoginForm = ({ path, onClose }: TProps) => {
   const navigate = useNavigate();
   const [error, setError] = useState("");
   const { inputValue, changeInputHandler } = useInput({
@@ -42,8 +49,15 @@ const LoginForm = ({ path }: { path?: string }) => {
     }
   };
 
+  const showCloseButton = path && (
+    <CloseButtonBoxStyle>
+      <CloseButtonStyle onClick={onClose}>X</CloseButtonStyle>
+    </CloseButtonBoxStyle>
+  );
+
   return (
     <>
+      {showCloseButton}
       <FormStyle onChange={changeInputHandler} onSubmit={onLoginHandler}>
         <HeaderStyle>로그인</HeaderStyle>
         <LabelStyle htmlFor="email">이메일</LabelStyle>
@@ -63,20 +77,33 @@ const LoginForm = ({ path }: { path?: string }) => {
           name="password"
         />
         {error && <ErrorMessageStyle>{error}</ErrorMessageStyle>}
-        <LoginButtonStyle>로그인</LoginButtonStyle>
+        <DefaultButton backgroundColor="#afc9a4" color="white">
+          로그인
+        </DefaultButton>
       </FormStyle>
       <BottomBoxStyle>
         <BottomTitleStyle>다른 계정으로 로그인</BottomTitleStyle>
-        <BottomButtonStyle>카카오톡 로그인</BottomButtonStyle>
-        <JoinButtonStyle>
+        <KakaoButton>카카오톡 로그인</KakaoButton>
+        <DefaultButton>
           <Link to="/join">회원가입 하러가기</Link>
-        </JoinButtonStyle>
+        </DefaultButton>
       </BottomBoxStyle>
     </>
   );
 };
 
 export default LoginForm;
+
+const CloseButtonBoxStyle = styled.div`
+  display: flex;
+  justify-content: right;
+`;
+
+const CloseButtonStyle = styled.button`
+  border: none;
+  cursor: pointer;
+  background-color: white;
+`;
 
 const FormStyle = styled.form`
   /* width: 30rem; */
@@ -112,24 +139,6 @@ const InputStyle = styled.input`
   font-family: "Pretendard-Regular";
 `;
 
-const LoginButtonStyle = styled.button`
-  margin-top: 1rem;
-  font-family: "Pretendard-Regular";
-  background-color: #afc9a4;
-  border: none;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-  height: 3rem;
-  padding: 1rem;
-  border-radius: 10px;
-  font-size: 17px;
-
-  &:hover {
-    border: 1px solid whitesmoke;
-  }
-`;
-
 const BottomBoxStyle = styled.div`
   margin-top: 2rem;
   text-align: center;
@@ -160,40 +169,11 @@ const BottomTitleStyle = styled.span`
     content: "";
     flex-grow: 1;
     background: rgba(0, 0, 0, 0.35);
-    height: 1px;
+    height: 0.5px;
     font-size: 0px;
     line-height: 0px;
     margin: 0px 16px;
   }
-`;
-
-const BottomButtonStyle = styled.button`
-  font-family: "Pretendard-Regular";
-  background-color: #fee500;
-  background-image: url(//storage.keepgrow.com/admin/campaign/20200611043456590.svg);
-  background-repeat: no-repeat;
-  background-position: 20px;
-  padding: 1rem;
-  border: none;
-  border-radius: 10px;
-  text-align: center;
-  font-size: 17px;
-  cursor: pointer;
-  margin-top: 1rem;
-  width: 100%;
-  color: black;
-  margin-bottom: 1rem;
-`;
-
-const JoinButtonStyle = styled.button`
-  width: 100%;
-  height: 100%;
-  padding: 1rem;
-  border: none;
-  cursor: pointer;
-  color: grey;
-  border-radius: 10px;
-  font-family: "Pretendard-Regular";
 `;
 
 const ErrorMessageStyle = styled.span`
