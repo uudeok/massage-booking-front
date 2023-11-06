@@ -2,8 +2,9 @@ import styled from "styled-components";
 import { MEDIA_QUERY } from "../../const/devise";
 import { useSelector } from "react-redux";
 import { BOOKING_ITEM } from "../../const/massage";
-import { addMinutesUnit, addComma } from "../../util";
+import { addComma } from "../../util/price";
 import { getMassageItem, getMassageDetail } from "../../stores/massageSlice";
+import { addMinutesUnit } from "../../util/time";
 
 const BookingSummary = () => {
   const selectedMassage = useSelector(getMassageItem);

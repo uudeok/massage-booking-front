@@ -11,5 +11,5 @@ export type TNotice = {
   category: NOTICE_CATEGORY_KEYS;
   content: string;
   id: number;
-  auth: string;
+  writer: string;
 };

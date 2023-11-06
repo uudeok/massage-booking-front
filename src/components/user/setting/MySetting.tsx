@@ -1,9 +1,10 @@
 import styled from "styled-components";
-import { MEDIA_QUERY } from "../../const/devise";
+import { MEDIA_QUERY } from "../../../const/devise";
 import PasswordUpdate from "./PasswordUpdate";
 import MemberWithdrawal from "./MemberWithdrawal";
 import { useState } from "react";
-import Modal from "../common/UI/Modal";
+import DefaultModal from "../../common/UI/DefaultModal";
+import WithdrawalForm from "./WithdrawalForm";
 
 const MySetting = () => {
   const [modalShown, setModalShown] = useState(false);
@@ -16,18 +17,24 @@ const MySetting = () => {
     setModalShown(false);
   };
 
+  const showWithdrawalForm = modalShown && (
+    <DefaultModal
+      onClose={hideModalHandler}
+      height="15rem"
+      backgroundColor="#a4b69c"
+    >
+      <WithdrawalForm />
+    </DefaultModal>
+  );
+
   return (
     <ContainerStyle>
       <InnerBoxStyle>
-        {modalShown && (
-          <Modal onClose={hideModalHandler}>
-            <span>hi</span>
-          </Modal>
-        )}
+        {showWithdrawalForm}
         <HeaderStyle>‖ 회원 정보</HeaderStyle>
         <ListBoxStyle>
-          <PasswordUpdate showModal={showModalHandler} />
-          <MemberWithdrawal />
+          <PasswordUpdate />
+          <MemberWithdrawal showModal={showModalHandler} />
         </ListBoxStyle>
       </InnerBoxStyle>
     </ContainerStyle>

@@ -9,7 +9,7 @@ import ErrorPage from "../common/error/ErrorPage";
 const ProgramList = () => {
   const { data: massageList, isFetching, isError } = useGetMassageListQuery();
 
-  // RTK Query 로 API 호출 60초(기본값) 동안 캐싱 데이터 가져옴
+  // RTK Query 로 API 호출
 
   return (
     <>

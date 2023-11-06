@@ -2,12 +2,13 @@ import { TMassageDetail } from "../../@types/book";
 import styled from "styled-components";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import { BOOKING_ITEM } from "../../const/massage";
-import { addComma, addMinutesUnit } from "../../util";
+import { addMinutesUnit } from "../../util/time";
 import { MEDIA_QUERY } from "../../const/devise";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../stores/store";
 import { getMassageItem, fetchMassageDetail } from "../../stores/massageSlice";
 import { addTabNum } from "../../stores/tabSlice";
+import { addComma } from "../../util/price";
 
 const BookingDetail = ({ detail }: { detail: TMassageDetail }) => {
   const dispatch = useDispatch<AppDispatch>();

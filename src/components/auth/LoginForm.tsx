@@ -98,6 +98,7 @@ const HeaderStyle = styled.h2`
   font-size: 2rem;
   margin-bottom: 3rem;
   margin-top: 1rem;
+  font-weight: bold;
 `;
 
 const LabelStyle = styled.label`
@@ -131,8 +132,6 @@ const LoginButtonStyle = styled.button`
 
 const BottomBoxStyle = styled.div`
   margin-top: 2rem;
-  border-top: 1px solid lightgrey;
-
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -148,7 +147,24 @@ const BottomBoxStyle = styled.div`
 `;
 
 const BottomTitleStyle = styled.span`
+  color: rgba(0, 0, 0, 0.35);
+  display: flex;
+  flex-basis: 100%;
+  align-items: center;
+  font-family: "Pretendard-Regular";
+  font-size: 1rem;
   margin-top: 1rem;
+
+  &::before,
+  &::after {
+    content: "";
+    flex-grow: 1;
+    background: rgba(0, 0, 0, 0.35);
+    height: 1px;
+    font-size: 0px;
+    line-height: 0px;
+    margin: 0px 16px;
+  }
 `;
 
 const BottomButtonStyle = styled.button`

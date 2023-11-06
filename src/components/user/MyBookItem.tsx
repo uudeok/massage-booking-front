@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { TBookItem } from "../../@types/user/mypage";
-import { addComma } from "../../util";
+import { addComma } from "../../util/price";
 import { MEDIA_QUERY } from "../../const/devise";
 
 const MyBookItem = ({ book }: { book: TBookItem }) => {

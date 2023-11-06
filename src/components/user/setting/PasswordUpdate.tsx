@@ -1,19 +1,21 @@
-import Card from "../common/card/Card";
+import Card from "../../common/card/Card";
 import styled from "styled-components";
 
-const MemberWithdrawal = () => {
+const PasswordUpdate = () => {
+  const changePasswordHandler = () => {};
+
   return (
     <Card>
       <TitleBoxStyle>
-        <h2>회원탈퇴</h2>
-        <ButtonStyle>탈퇴</ButtonStyle>
+        <h2>비밀번호 수정</h2>
+        <ButtonStyle onClick={changePasswordHandler}>변경</ButtonStyle>
       </TitleBoxStyle>
-      <p>자연치유 쉼 회원 탈퇴하기</p>
+      <p>회원님의 소중한 개인정보를 위해 비밀번호를 주기적으로 변경해주세요.</p>
     </Card>
   );
 };
 
-export default MemberWithdrawal;
+export default PasswordUpdate;
 
 const TitleBoxStyle = styled.div`
   display: flex;

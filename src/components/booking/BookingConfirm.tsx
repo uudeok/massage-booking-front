@@ -1,20 +1,17 @@
 import styled from "styled-components";
 import { MEDIA_QUERY } from "../../const/devise";
-import { useNavigate } from "react-router-dom";
 
 interface IProps {
   isChecked: boolean;
   changeCheckedHandler: () => void;
-  showLoginHandler: () => void;
+  bookMassageHandler: () => void;
   error: string;
-  validCheckHandler: () => boolean;
 }
 
 const BookingConfirm = ({
   isChecked,
   changeCheckedHandler,
-  validCheckHandler,
-  showLoginHandler,
+  bookMassageHandler,
   error,
 }: IProps) => {
   return (
@@ -31,7 +28,7 @@ const BookingConfirm = ({
         {error && <WarningStyle>{error}</WarningStyle>}
       </CheckBoxStyle>
       <ButtonBoxStyle>
-        <ButtonStyle onClick={showLoginHandler}>예약하기</ButtonStyle>
+        <ButtonStyle onClick={bookMassageHandler}>예약하기</ButtonStyle>
       </ButtonBoxStyle>
     </ConfirmBoxStyle>
   );

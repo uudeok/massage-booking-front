@@ -1,35 +1,38 @@
 import styled from "styled-components";
-import ReactDOM from "react-dom";
 import { MEDIA_QUERY } from "../../../const/devise";
-import { TBackDrop, TModal } from "../../../@types/common";
 
-const BackDrop = ({ onClose }: TBackDrop) => {
-  return <BackDropStyle onClick={onClose}></BackDropStyle>;
+type TProps = {
+  children: React.ReactNode;
+  onClose: () => void;
+  height?: string;
+  backgroundColor?: string;
 };
 
-const ModalOverlay = ({ children }: { children: React.ReactNode }) => {
-  return (
-    <ModalStyle>
-      <div>{children}</div>
-    </ModalStyle>
-  );
-};
-
-const portalElement = document.getElementById("overlays") as HTMLElement;
-
-const Modal = ({ children, onClose }: TModal) => {
+const DefaultModal = ({
+  children,
+  onClose,
+  height,
+  backgroundColor,
+}: TProps) => {
   return (
     <>
-      {ReactDOM.createPortal(<BackDrop onClose={onClose} />, portalElement)}
-      {ReactDOM.createPortal(
-        <ModalOverlay>{children}</ModalOverlay>,
-        portalElement
-      )}
+      <BackDropStyle onClick={onClose} />
+      <ModalStyle $height={height} $backgroundColor={backgroundColor}>
+        <CloseButtonBoxStyle>
+          <CloseButtonStyle
+            onClick={onClose}
+            $backgroundColor={backgroundColor}
+          >
+            X
+          </CloseButtonStyle>
+        </CloseButtonBoxStyle>
+        {children}
+      </ModalStyle>
     </>
   );
 };
 
-export default Modal;
+export default DefaultModal;
 
 const BackDropStyle = styled.div`
   position: fixed;
@@ -41,23 +44,24 @@ const BackDropStyle = styled.div`
   background-color: rgba(0, 0, 0, 0.75);
 `;
 
-const ModalStyle = styled.div`
+const ModalStyle = styled.div<{ $height?: string; $backgroundColor?: string }>`
   position: fixed;
   bottom: 0;
   left: 0;
   right: 0;
-  top: 10%;
+  top: 7%;
   justify-content: center;
   align-items: center;
   left: calc(50% - 15rem);
-  width: 33rem;
-  height: 40rem;
-  background-color: white;
   padding: 1rem;
   border-radius: 14px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
   z-index: 30;
   animation: slide-down 300ms ease-out forwards;
+  width: 33rem;
+  background-color: ${({ $backgroundColor }) =>
+    $backgroundColor ? $backgroundColor : "white"};
+  height: ${({ $height }) => ($height ? $height : "40rem")};
 
   @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
     width: 26rem;
@@ -86,8 +90,10 @@ const CloseButtonBoxStyle = styled.div`
   justify-content: right;
 `;
 
-const CloseButtonStyle = styled.button`
+const CloseButtonStyle = styled.button<{ $backgroundColor?: string }>`
   border: none;
-  background-color: white;
   cursor: pointer;
+  background-color: ${({ $backgroundColor }) =>
+    $backgroundColor ? $backgroundColor : "white"};
+  color: whitesmoke;
 `;

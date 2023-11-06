@@ -5,11 +5,12 @@ import Modal from "../common/UI/Modal";
 import LoginForm from "../auth/LoginForm";
 import BookingSummary from "./BookingSummary";
 import BookingConfirm from "./BookingConfirm";
-import { getAuthUser } from "../../util";
+import { getAuthUser } from "../../util/auth";
 import { useNavigate } from "react-router-dom";
+import DefaultModal from "../common/UI/DefaultModal";
 
 const BookingForm = () => {
-  const userInfo = getAuthUser();
+  const storedEmail = getAuthUser();
   const navigate = useNavigate();
   const [loginIsShown, setLoginIsShown] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
@@ -35,10 +36,10 @@ const BookingForm = () => {
     return true;
   };
 
-  const showLoginHandler = () => {
+  const bookMassageHandler = () => {
     if (!validCheckHandler()) return;
 
-    if (userInfo !== null) {
+    if (storedEmail !== null) {
       fetchMemberReservation();
       return;
     }
@@ -52,17 +53,16 @@ const BookingForm = () => {
   return (
     <ContainerStyle>
       {loginIsShown && isChecked && (
-        <Modal onClose={hideLoginHandler}>
+        <DefaultModal onClose={hideLoginHandler}>
           <LoginForm path="mypage/book" />
-        </Modal>
+        </DefaultModal>
       )}
       <PreviousButton />
       <BookingSummary />
       <BookingConfirm
         isChecked={isChecked}
         changeCheckedHandler={changeCheckedHandler}
-        showLoginHandler={showLoginHandler}
-        validCheckHandler={validCheckHandler}
+        bookMassageHandler={bookMassageHandler}
         error={error}
       />
     </ContainerStyle>

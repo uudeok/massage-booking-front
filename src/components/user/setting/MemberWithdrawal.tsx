@@ -1,23 +1,23 @@
-import Card from "../common/card/Card";
+import Card from "../../common/card/Card";
 import styled from "styled-components";
 
 type TProps = {
   showModal: () => void;
 };
 
-const PasswordUpdate = ({ showModal }: TProps) => {
+const MemberWithdrawal = ({ showModal }: TProps) => {
   return (
     <Card>
       <TitleBoxStyle>
-        <h2>비밀번호 수정</h2>
-        <ButtonStyle onClick={() => showModal()}>변경</ButtonStyle>
+        <h2>회원탈퇴</h2>
+        <ButtonStyle onClick={showModal}>탈퇴</ButtonStyle>
       </TitleBoxStyle>
-      <p>회원님의 소중한 개인정보를 위해 비밀번호를 주기적으로 변경해주세요.</p>
+      <p>자연치유 쉼 회원 탈퇴하기</p>
     </Card>
   );
 };
 
-export default PasswordUpdate;
+export default MemberWithdrawal;
 
 const TitleBoxStyle = styled.div`
   display: flex;

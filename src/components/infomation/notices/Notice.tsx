@@ -15,7 +15,7 @@ const Notice = ({ detail }: { detail: TNotice }) => {
         </HeaderItemStyle>
         <HeaderItemStyle>
           <span>작성자</span>
-          <span>{detail.auth}</span>
+          <span>{detail.writer}</span>
         </HeaderItemStyle>
         <HeaderItemStyle>
           <span>작성일</span>
