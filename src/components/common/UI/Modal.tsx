@@ -2,27 +2,29 @@ import styled from "styled-components";
 import ReactDOM from "react-dom";
 import { MEDIA_QUERY } from "../../../const/devise";
 import { TBackDrop, TModal } from "../../../@types/common";
+import { useEffect } from "react";
 
 const BackDrop = ({ onClose }: TBackDrop) => {
   return <BackDropStyle onClick={onClose}></BackDropStyle>;
 };
 
-const ModalOverlay = ({ children }: { children: React.ReactNode }) => {
-  return (
-    <ModalStyle>
-      <div>{children}</div>
-    </ModalStyle>
-  );
-};
-
 const portalElement = document.getElementById("overlays") as HTMLElement;
 
-const Modal = ({ children, onClose }: TModal) => {
+const Modal = ({ children, onClose, height, backgroundColor }: TModal) => {
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, []);
+
   return (
     <>
       {ReactDOM.createPortal(<BackDrop onClose={onClose} />, portalElement)}
       {ReactDOM.createPortal(
-        <ModalOverlay>{children}</ModalOverlay>,
+        <ModalStyle $height={height} $backgroundColor={backgroundColor}>
+          {children}
+        </ModalStyle>,
         portalElement
       )}
     </>
@@ -41,7 +43,7 @@ const BackDropStyle = styled.div`
   background-color: rgba(0, 0, 0, 0.75);
 `;
 
-const ModalStyle = styled.div`
+const ModalStyle = styled.div<{ $height?: string; $backgroundColor?: string }>`
   position: fixed;
   bottom: 0;
   left: 0;
@@ -51,13 +53,15 @@ const ModalStyle = styled.div`
   align-items: center;
   left: calc(50% - 15rem);
   width: 33rem;
-  height: 40rem;
-  background-color: white;
   padding: 1rem;
   border-radius: 14px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
   z-index: 30;
   animation: slide-down 300ms ease-out forwards;
+
+  background-color: ${({ $backgroundColor }) =>
+    $backgroundColor ? $backgroundColor : "white"};
+  height: ${({ $height }) => ($height ? $height : "40rem")};
 
   @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
     width: 26rem;
@@ -79,15 +83,4 @@ const ModalStyle = styled.div`
       transform: translateY(0);
     }
   }
-`;
-
-const CloseButtonBoxStyle = styled.div`
-  display: flex;
-  justify-content: right;
-`;
-
-const CloseButtonStyle = styled.button`
-  border: none;
-  background-color: white;
-  cursor: pointer;
 `;

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { MEDIA_QUERY } from "../../const/devise";
 import Banner from "../banner/Banner";
 import LoadingBar from "../common/loading/LoadingBar";
-import { useGetMassageListQuery } from "../../api/book/bookQuery";
+import { useGetMassageListQuery } from "../../api/massage/massageQuery";
 import ErrorPage from "../common/error/ErrorPage";
 
 const ProgramList = () => {

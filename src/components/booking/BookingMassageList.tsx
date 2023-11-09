@@ -1,40 +1,23 @@
-import BookingItem from "./BookingItem";
+import BookingMassageItem from "./BookingMassageItem";
 import styled from "styled-components";
 import { MEDIA_QUERY } from "../../const/devise";
 import LoadingBar from "../common/loading/LoadingBar";
-import { useEffect } from "react";
-import {
-  massageError,
-  fetchMassageList,
-  getMassageList,
-  massageStatus,
-} from "../../stores/massageSlice";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch } from "../../stores/store";
-import { TMassageTable } from "../../@types/book";
 import ErrorPage from "../common/error/ErrorPage";
+import { useGetMassageListQuery } from "../../api/massage/massageQuery";
 
-const BookingList = () => {
-  const dispatch = useDispatch<AppDispatch>();
-  const massageList = useSelector(getMassageList) as TMassageTable[];
-  const status = useSelector(massageStatus);
-  const errorStatus = useSelector(massageError);
-  const isLoading = status === "loading";
-
-  useEffect(() => {
-    dispatch(fetchMassageList());
-  }, [dispatch]);
+const BookingMassageList = () => {
+  const { data: massageList, isFetching, isError } = useGetMassageListQuery();
 
   return (
     <>
-      {isLoading && <LoadingBar />}
-      {errorStatus && <ErrorPage errorStatus={errorStatus} />}
+      {isFetching && <LoadingBar />}
+      {isError && <ErrorPage errorStatus={null} />}
       <ContentBoxStyle>
         <ListBoxStyle>
           {massageList &&
             massageList.map((massage) => (
               <BookingItemStyle key={massage.id}>
-                <BookingItem massage={massage} />
+                <BookingMassageItem massage={massage} />
               </BookingItemStyle>
             ))}
         </ListBoxStyle>
@@ -43,7 +26,7 @@ const BookingList = () => {
   );
 };
 
-export default BookingList;
+export default BookingMassageList;
 
 const ContentBoxStyle = styled.div`
   display: flex;

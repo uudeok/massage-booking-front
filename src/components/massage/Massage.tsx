@@ -2,7 +2,7 @@ import styled from "styled-components";
 import MassageSlide from "./MassageSlide";
 import { MEDIA_QUERY } from "../../const/devise";
 import LoadingBar from "../common/loading/LoadingBar";
-import { useGetMassageListQuery } from "../../api/book/bookQuery";
+import { useGetMassageListQuery } from "../../api/massage/massageQuery";
 
 import ErrorPage from "../common/error/ErrorPage";
 

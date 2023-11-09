@@ -5,7 +5,7 @@ import { Autoplay } from "swiper/modules";
 import { Link } from "react-router-dom";
 import { BOOKING_ITEM } from "../../const/massage";
 import { MEDIA_QUERY } from "../../const/devise";
-import { TMassageTable } from "../../@types/book";
+import { TMassageTable } from "../../@types/massage";
 
 const MassageSlide = ({ data }: { data: TMassageTable[] | undefined }) => {
   return (

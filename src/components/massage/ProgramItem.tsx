@@ -1,4 +1,4 @@
-import { TMassageTable } from "../../@types/book";
+import { TMassageTable } from "../../@types/massage";
 import styled from "styled-components";
 import { BOOKING_ITEM } from "../../const/massage";
 import { addComma } from "../../util/price";

@@ -5,13 +5,16 @@ import { MEDIA_QUERY } from "../../const/devise";
 import BookingCalendar from "./BookingCalendar";
 import { BOOKING_TIME_TABLE } from "../../const/massage";
 import BookingAvailableTime from "./BookingAvailableTime";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "../../stores/store";
 import { addTabNum } from "../../stores/tabSlice";
+import { getMassageType } from "../../stores/massageSlice";
 
 const BookingDate = () => {
   const dispatch = useDispatch<AppDispatch>();
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
+  const selectedType = useSelector(getMassageType);
+  // 60, 90, 120
 
   useEffect(() => {
     // 날짜가 바뀔때마다 가능한 시간대 가져오는 API 호출

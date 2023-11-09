@@ -1,4 +1,4 @@
-import { TTimeTable } from "../@types/book";
+import { TTimeTable } from "../@types/massage";
 
 export const BOOKING_ITEM = {
   DRY_MASSAGE: "건식 마사지",

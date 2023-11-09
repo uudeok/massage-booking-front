@@ -1,6 +1,6 @@
-import { Fragment, useEffect } from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
-import BookingList from "./BookingList";
+import BookingMassageList from "./BookingMassageList";
 import BookingDate from "./BookingDate";
 import { MEDIA_QUERY } from "../../const/devise";
 import BookingDetailList from "./BookingDetailList";
@@ -21,7 +21,7 @@ const BookingTab = () => {
   const TAB_LIST = [
     {
       key: "마사지 선택",
-      content: <BookingList />,
+      content: <BookingMassageList />,
     },
     {
       key: "시간 선택",
@@ -41,14 +41,14 @@ const BookingTab = () => {
     <>
       <TabListStyle>
         {TAB_LIST.map((item, index) => (
-          <Fragment key={index}>
+          <React.Fragment key={index}>
             <TabButtonStyle
               disabled={index !== tabNum}
               $isActive={index === tabNum}
             >
               {item.key}
             </TabButtonStyle>
-          </Fragment>
+          </React.Fragment>
         ))}
       </TabListStyle>
 

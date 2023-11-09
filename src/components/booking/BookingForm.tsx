@@ -6,8 +6,8 @@ import BookingSummary from "./BookingSummary";
 import BookingConfirm from "./BookingConfirm";
 import { getAuthUser } from "../../util/auth";
 import { useNavigate } from "react-router-dom";
-import DefaultModal from "../common/UI/DefaultModal";
 import { useModal } from "../../hooks/useModal";
+import Modal from "../common/UI/Modal";
 
 const BookingForm = () => {
   const storedEmail = getAuthUser();
@@ -46,13 +46,15 @@ const BookingForm = () => {
     setModalIsShown(true);
   };
 
+  const showLoginForm = modalIsShown && isChecked && (
+    <Modal onClose={hideModalHandler}>
+      <LoginForm path="mypage/book" onClose={hideModalHandler} />
+    </Modal>
+  );
+
   return (
     <ContainerStyle>
-      {modalIsShown && isChecked && (
-        <DefaultModal onClose={hideModalHandler}>
-          <LoginForm path="mypage/book" onClose={hideModalHandler} />
-        </DefaultModal>
-      )}
+      {showLoginForm}
       <PreviousButton />
       <BookingSummary />
       <BookingConfirm

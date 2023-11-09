@@ -2,7 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import massageSlice from "./massageSlice";
 import tabSlice from "./tabSlice";
 import { setupListeners } from "@reduxjs/toolkit/query";
-import { massageApi } from "../api/book/bookQuery";
+import { massageApi } from "../api/massage/massageQuery";
 import { noticeApi } from "../api/notice/noticeQuery";
 
 export const store = configureStore({

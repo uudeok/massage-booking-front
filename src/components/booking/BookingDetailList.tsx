@@ -3,31 +3,32 @@ import styled from "styled-components";
 import PreviousButton from "../common/button/PreviousButton";
 import BookingDetail from "./BookingDetail";
 import { DEVISE_SIZE } from "../../const/devise";
-import {
-  getMassageItem,
-  massageError,
-  massageStatus,
-} from "../../stores/massageSlice";
-import { TMassageDetail, TMassageTable } from "../../@types/book";
-import LoadingBar from "../common/loading/LoadingBar";
+import { getMassageId } from "../../stores/massageSlice";
 import ErrorPage from "../common/error/ErrorPage";
+import { useGetMassageItemQuery } from "../../api/massage/massageQuery";
+import LoadingBar from "../common/loading/LoadingBar";
 
 const BookingDetailList = () => {
-  const selectedMassage = useSelector(getMassageItem) as TMassageTable;
-  const massageDetail = selectedMassage.detail as TMassageDetail[];
-  const status = useSelector(massageStatus);
-  const errorStatus = useSelector(massageError);
-  const isLoading = status === "loading";
+  const massageId = useSelector(getMassageId);
+  const {
+    data: selectedMassage,
+    isFetching,
+    isError,
+  } = useGetMassageItemQuery(massageId);
 
   return (
     <ContainerStyle>
       <InnerBoxStyle>
+        {isFetching && <LoadingBar />}
         <PreviousButton />
-        {isLoading && <LoadingBar />}
-        {errorStatus && <ErrorPage errorStatus={errorStatus} />}
-        {massageDetail &&
-          massageDetail.map((detail) => (
-            <BookingDetail key={detail.id} detail={detail} />
+        {isError && <ErrorPage errorStatus={null} />}
+        {selectedMassage &&
+          selectedMassage.detail.map((detail) => (
+            <BookingDetail
+              key={detail.id}
+              detail={detail}
+              massage={selectedMassage}
+            />
           ))}
       </InnerBoxStyle>
     </ContainerStyle>

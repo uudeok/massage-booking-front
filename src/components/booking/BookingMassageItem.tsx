@@ -1,9 +1,9 @@
-import { TMassageTable } from "../../@types/book";
+import { TMassageTable } from "../../@types/massage";
 import styled from "styled-components";
 import { BOOKING_ITEM } from "../../const/massage";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../stores/store";
-import { fetchMassageItem } from "../../stores/massageSlice";
+import { getSelectedMassageId } from "../../stores/massageSlice";
 import { addTabNum } from "../../stores/tabSlice";
 import DefaultButton from "../common/button/DefaultButton";
 
@@ -11,11 +11,11 @@ type TProps = {
   massage: TMassageTable;
 };
 
-const BookingItem = ({ massage }: TProps) => {
+const BookingMassageItem = ({ massage }: TProps) => {
   const dispatch = useDispatch<AppDispatch>();
 
   const getMassageItem = async (massageId: number) => {
-    await dispatch(fetchMassageItem(massageId));
+    await dispatch(getSelectedMassageId(massageId));
     dispatch(addTabNum());
   };
 
@@ -39,7 +39,7 @@ const BookingItem = ({ massage }: TProps) => {
   );
 };
 
-export default BookingItem;
+export default BookingMassageItem;
 
 const ItemBoxStyle = styled.div`
   display: flex;
@@ -68,16 +68,3 @@ const ItemContentBoxStyle = styled.div`
     font-size: 15px;
   }
 `;
-
-// const ButtonStyle = styled.button`
-//   background-color: white;
-//   padding: 0.7rem;
-//   cursor: pointer;
-//   color: black;
-//   border: 1px solid black;
-//   border-radius: 5px;
-//   font-family: "Pretendard-Regular";
-//   font-size: 1rem;
-//   height: 3rem;
-
-// `;

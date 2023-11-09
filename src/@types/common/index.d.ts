@@ -10,4 +10,6 @@ export type TBackDrop = {
 export type TModal = {
   onClose: () => void;
   children: React.ReactNode;
+  height?: string;
+  backgroundColor?: string;
 };

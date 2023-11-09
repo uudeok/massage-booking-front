@@ -1,24 +1,24 @@
-import { TMassageDetail } from "../../@types/book";
+import { TMassageDetail, TMassageTable } from "../../@types/massage";
 import styled from "styled-components";
-import { useSelector } from "react-redux/es/hooks/useSelector";
 import { BOOKING_ITEM } from "../../const/massage";
 import { addMinutesUnit } from "../../util/time";
 import { MEDIA_QUERY } from "../../const/devise";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../stores/store";
-import { getMassageItem, fetchMassageDetail } from "../../stores/massageSlice";
+import { getSelectedMassageType } from "../../stores/massageSlice";
 import { addTabNum } from "../../stores/tabSlice";
 import { addComma } from "../../util/price";
-import DefaultButton from "../common/button/DefaultButton";
 
-const BookingDetail = ({ detail }: { detail: TMassageDetail }) => {
+type TProps = {
+  detail: TMassageDetail;
+  massage: TMassageTable;
+};
+
+const BookingDetail = ({ detail, massage }: TProps) => {
   const dispatch = useDispatch<AppDispatch>();
-  const selectedMassage = useSelector(getMassageItem);
-  const item = selectedMassage.item;
-  const content = selectedMassage.content;
 
   const getAvailableTime = async (time: number) => {
-    await dispatch(fetchMassageDetail(time));
+    await dispatch(getSelectedMassageType(time));
     dispatch(addTabNum());
   };
 
@@ -26,11 +26,11 @@ const BookingDetail = ({ detail }: { detail: TMassageDetail }) => {
     <ContainerStyle>
       <InnerBoxStyle>
         <TopStyle>
-          <h3>{BOOKING_ITEM[item]}</h3>
+          <h3>{BOOKING_ITEM[massage.item]}</h3>
           <div>{addComma(detail.price)}</div>
         </TopStyle>
         <MiddleStyle>
-          <p>{content}</p>
+          <p>{massage.content}</p>
         </MiddleStyle>
         <BottomStyle>
           <h3>{addMinutesUnit(detail.time)}</h3>

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { TTimeTable } from "../../@types/book";
+import { TTimeTable } from "../../@types/massage";
 import { MEDIA_QUERY } from "../../const/devise";
 
 type TProps = {

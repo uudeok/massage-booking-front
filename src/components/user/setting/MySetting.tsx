@@ -2,17 +2,17 @@ import styled from "styled-components";
 import { MEDIA_QUERY } from "../../../const/devise";
 import PasswordUpdate from "./PasswordUpdate";
 import MemberWithdrawal from "./MemberWithdrawal";
-import DefaultModal from "../../common/UI/DefaultModal";
 import WithdrawalForm from "./WithdrawalForm";
 import { useModal } from "../../../hooks/useModal";
+import Modal from "../../common/UI/Modal";
 
 const MySetting = () => {
   const { modalIsShown, setModalIsShown, hideModalHandler } = useModal();
 
   const showWithdrawalForm = modalIsShown && (
-    <DefaultModal onClose={hideModalHandler} height="15rem">
+    <Modal onClose={hideModalHandler} height="15rem">
       <WithdrawalForm onClose={hideModalHandler} />
-    </DefaultModal>
+    </Modal>
   );
 
   return (
