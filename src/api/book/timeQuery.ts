@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { generate_time } from "..";
-import { TTimeTable } from "../../@types/massage";
+import { TTimeTable } from "../../@types/book";
 
 export const timeApi = createApi({
   reducerPath: "timeApi",

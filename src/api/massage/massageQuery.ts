@@ -9,11 +9,9 @@ export const massageApi = createApi({
   endpoints: (builder) => ({
     getMassageList: builder.query<TMassageTable[], void>({
       query: () => "/",
-      providesTags: [{ type: "massage" }],
     }),
     getMassageItem: builder.query<TMassageTable, number>({
       query: (id) => `/${id}`,
-      providesTags: [{ type: "massage" }],
     }),
 
     postMassageList: builder.mutation({

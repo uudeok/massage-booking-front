@@ -1,5 +1,5 @@
 import { NOTICE_CATEGORY } from "../../const/notices";
-import { valueOf } from "../massage";
+import { valueOf } from "../common";
 
 export type NOTICE_CATEGORY_TYPE = typeof NOTICE_CATEGORY;
 export type NOTICE_CATEGORY_KEYS = keyof NOTICE_CATEGORY_TYPE;

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { TTimeTable } from "../../@types/massage";
+import { TTimeTable } from "../../@types/book";
 import { MEDIA_QUERY } from "../../const/devise";
 import { TSelectedItem } from "./BookingDate";
 

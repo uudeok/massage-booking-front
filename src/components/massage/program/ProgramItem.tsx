@@ -1,9 +1,9 @@
-import { TMassageTable } from "../../@types/massage";
+import { TMassageTable } from "../../../@types/massage";
 import styled from "styled-components";
-import { BOOKING_ITEM } from "../../const/massage";
-import { addComma } from "../../util/price";
-import { MEDIA_QUERY } from "../../const/devise";
-import { addMinutesUnit } from "../../util/time";
+import { MASSAGE_ITEM } from "../../../const/book/massage";
+import { addComma } from "../../../util/price";
+import { MEDIA_QUERY } from "../../../const/devise";
+import { addMinutesUnit } from "../../../util/time";
 
 const ProgramItem = ({ massage }: { massage: TMassageTable }) => {
   return (
@@ -12,7 +12,7 @@ const ProgramItem = ({ massage }: { massage: TMassageTable }) => {
         <img src={massage.img} alt={massage.item} width="90%" height="300rem" />
       </ImgBoxStyle>
       <ContentBoxStyle>
-        <ContentTitleStyle>{BOOKING_ITEM[massage.item]}</ContentTitleStyle>
+        <ContentTitleStyle>{MASSAGE_ITEM[massage.item]}</ContentTitleStyle>
         <ContentStyle>{massage.content}</ContentStyle>
         <ContentPriceListStyle>
           {massage.detail.map((massage) => (

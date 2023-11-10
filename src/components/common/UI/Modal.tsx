@@ -1,8 +1,18 @@
 import styled from "styled-components";
 import ReactDOM from "react-dom";
 import { MEDIA_QUERY } from "../../../const/devise";
-import { TBackDrop, TModal } from "../../../@types/common";
 import { useEffect } from "react";
+
+type TBackDrop = {
+  onClose: () => void;
+};
+
+type TModal = {
+  onClose: () => void;
+  children: React.ReactNode;
+  height?: string;
+  backgroundColor?: string;
+};
 
 const BackDrop = ({ onClose }: TBackDrop) => {
   return <BackDropStyle onClick={onClose}></BackDropStyle>;

@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { TNotice } from "../../../@types/notice";
+import { TNotice } from "../../../../@types/notice";
 import { Link } from "react-router-dom";
-import { MEDIA_QUERY } from "../../../const/devise";
+import { MEDIA_QUERY } from "../../../../const/devise";
 
 const NoticeMainItem = ({ item }: { item: TNotice }) => {
   return (

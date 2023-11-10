@@ -1,4 +1,4 @@
-import { TTimeTable } from "../../@types/massage";
+import { TTimeTable } from "../../@types/book";
 
 export const addMinutesUnit = (minute: number) => {
   return minute + "분";

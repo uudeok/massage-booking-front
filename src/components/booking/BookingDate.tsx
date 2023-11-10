@@ -10,9 +10,9 @@ import { addTabNum } from "../../stores/tabSlice";
 import { getMassageType } from "../../stores/massageSlice";
 import { divisionTime } from "../../util/time";
 import { useGetAvailableTimeListQuery } from "../../api/book/timeQuery";
-import { TTimeTable } from "../../@types/massage";
 import LoadingBar from "../common/loading/LoadingBar";
 import { getSelectedTimeDetail } from "../../stores/timeSlice";
+import { TTimeTable } from "../../@types/book";
 
 export type TSelectedItem = {
   startId: number;
@@ -44,7 +44,12 @@ const BookingDate = () => {
   const result = divisionTime(selectedType, timeList);
   const { count, remainderArray: timeTable } = result;
 
-  const isEmpty = timeTable.length === 0;
+  const isEmpty = timeTable.length === 0 && (
+    <AlertBoxStyle>
+      <AlertMessageStyle>선택 가능한 시간이 없습니다😓</AlertMessageStyle>
+      <AlertMessageStyle>다른 날짜를 선택해주세요</AlertMessageStyle>
+    </AlertBoxStyle>
+  );
 
   const changeDateHandler = (date: Date | null) => {
     setSelectedDate(date);
@@ -72,9 +77,7 @@ const BookingDate = () => {
           <span> - 가능한 시간</span>
         </AvailableBoxStyle>
         {isFetching && <LoadingBar />}
-        {isEmpty && (
-          <AlertMessageStyle>선택 가능한 시간이 없습니다.😓</AlertMessageStyle>
-        )}
+        {isEmpty}
         <TimeListBoxStyle>
           {timeTable &&
             timeTable.map((item, index) => (
@@ -152,7 +155,17 @@ const AvailableCircleStyle = styled.div`
   margin-right: 0.5rem;
 `;
 
+const AlertBoxStyle = styled.div`
+  margin-top: 1rem;
+`;
+
 const AlertMessageStyle = styled.h3`
   font-size: 1.2rem;
   text-align: center;
+  color: orangered;
+  line-height: 1.5rem;
+
+  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+    font-size: 1rem;
+  }
 `;

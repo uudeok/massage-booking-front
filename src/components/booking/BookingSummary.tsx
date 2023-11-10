@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { MEDIA_QUERY } from "../../const/devise";
 import { useSelector } from "react-redux";
-import { BOOKING_ITEM } from "../../const/massage";
+import { MASSAGE_ITEM } from "../../const/book/massage";
 import { addComma } from "../../util/price";
 import { addMinutesUnit } from "../../util/time";
 import { getMassageDetail, getMassageItem } from "../../stores/massageSlice";
@@ -23,7 +23,7 @@ const BookingSummary = () => {
         </TimeBoxStyle>
         <ItemBoxStyle>
           <span>마사지 종류</span>
-          <span>{BOOKING_ITEM[selectedMassage.item]}</span>
+          <span>{MASSAGE_ITEM[selectedMassage.item]}</span>
         </ItemBoxStyle>
         <ItemBoxStyle>
           <span>받으실 날짜</span>

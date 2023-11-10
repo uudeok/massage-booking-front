@@ -1,4 +1,4 @@
-import NoticeDetail from "../components/infomation/notices/NoticeDetail";
+import NoticeDetail from "../../components/infomation/notices/NoticeDetail";
 
 const NoticeDetailPage = () => {
   return <NoticeDetail />;

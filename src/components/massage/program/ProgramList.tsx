@@ -1,10 +1,10 @@
 import ProgramItem from "./ProgramItem";
 import styled from "styled-components";
-import { MEDIA_QUERY } from "../../const/devise";
-import Banner from "../banner/Banner";
-import LoadingBar from "../common/loading/LoadingBar";
-import { useGetMassageListQuery } from "../../api/massage/massageQuery";
-import ErrorPage from "../common/error/ErrorPage";
+import { MEDIA_QUERY } from "../../../const/devise";
+import Banner from "../../banner/Banner";
+import LoadingBar from "../../common/loading/LoadingBar";
+import { useGetMassageListQuery } from "../../../api/massage/massageQuery";
+import ErrorPage from "../../common/error/ErrorPage";
 
 const ProgramList = () => {
   const { data: massageList, isFetching, isError } = useGetMassageListQuery();

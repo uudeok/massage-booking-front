@@ -1,6 +1,6 @@
 import { TMassageDetail, TMassageTable } from "../../@types/massage";
 import styled from "styled-components";
-import { BOOKING_ITEM } from "../../const/massage";
+import { MASSAGE_ITEM } from "../../const/book/massage";
 import { addMinutesUnit } from "../../util/time";
 import { MEDIA_QUERY } from "../../const/devise";
 import { useDispatch } from "react-redux";
@@ -26,7 +26,7 @@ const BookingDetail = ({ detail, massage }: TProps) => {
     <ContainerStyle>
       <InnerBoxStyle>
         <TopStyle>
-          <h3>{BOOKING_ITEM[massage.item]}</h3>
+          <h3>{MASSAGE_ITEM[massage.item]}</h3>
           <div>{addComma(detail.price)}</div>
         </TopStyle>
         <MiddleStyle>

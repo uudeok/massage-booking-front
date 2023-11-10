@@ -1,15 +1,18 @@
 import NoticeMainItem from "./NoticeMainItem";
-import { NOTICE_LIST } from "../../../const/notices";
 import styled from "styled-components";
+import { useGetLatestNoticeListQuery } from "../../../../api/notice/noticeQuery";
 
 const NoticesMainList = () => {
+  const { data: noticeList } = useGetLatestNoticeListQuery();
+
   return (
     <NoticeBoxStyle>
-      {NOTICE_LIST.map((item) => (
-        <NoticeItemBoxStyle key={item.date}>
-          <NoticeMainItem item={item} />
-        </NoticeItemBoxStyle>
-      ))}
+      {noticeList &&
+        noticeList.map((item) => (
+          <NoticeItemBoxStyle key={item.date}>
+            <NoticeMainItem item={item} />
+          </NoticeItemBoxStyle>
+        ))}
     </NoticeBoxStyle>
   );
 };

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import NoticesMainList from "./NoticesMainList";
 import { Link } from "react-router-dom";
-import { MEDIA_QUERY } from "../../../const/devise";
+import { MEDIA_QUERY } from "../../../../const/devise";
 
 const NoticeMain = () => {
   return (
@@ -21,7 +21,7 @@ export default NoticeMain;
 
 const ContainerStyle = styled.div`
   @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
-    box-shadow: 0 0 0.5rem 0 rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0 0 0.3rem 0 rgba(0, 0, 0, 0.1); */
     padding: 0.5rem;
     width: 90%;
     margin: auto;

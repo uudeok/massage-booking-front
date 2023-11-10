@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import styled from "styled-components";
 import { Autoplay } from "swiper/modules";
 import { Link } from "react-router-dom";
-import { BOOKING_ITEM } from "../../const/massage";
+import { MASSAGE_ITEM } from "../../const/book/massage";
 import { MEDIA_QUERY } from "../../const/devise";
 import { TMassageTable } from "../../@types/massage";
 
@@ -35,7 +35,7 @@ const MassageSlide = ({ data }: { data: TMassageTable[] | undefined }) => {
                   height="100%"
                 />
                 <ItemContentStyle>
-                  {BOOKING_ITEM[massage.item]}
+                  {MASSAGE_ITEM[massage.item]}
                 </ItemContentStyle>
               </ContainerStyle>
             </Link>

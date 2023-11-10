@@ -1,4 +1,3 @@
-import "./Calendar.style.css";
 import "react-datepicker/dist/react-datepicker.css";
 import styled from "styled-components";
 import DatePicker from "react-datepicker";

@@ -1,18 +1,13 @@
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
-import { NOTICE_LIST } from "../../../const/notices";
 import Notice from "./Notice";
 import { MEDIA_QUERY } from "../../../const/devise";
+import { useGetNoticeDetailQuery } from "../../../api/notice/noticeQuery";
+import ErrorPage from "../../common/error/ErrorPage";
 
 const NoticeDetail = () => {
-  const params = useParams();
-  const noticeId = params.id;
-
-  /// 게시글 id 로 API 요청해서 가져오기
-
-  const fetchDetailData = NOTICE_LIST.filter(
-    (item) => item.id === Number(noticeId)
-  );
+  const { id } = useParams();
+  const { data: noticeDetail, isError } = useGetNoticeDetailQuery(Number(id));
 
   return (
     <ContainerStyle>
@@ -20,9 +15,8 @@ const NoticeDetail = () => {
         <NoticeBoxStyle>
           <TitleStyle>공지사항</TitleStyle>
         </NoticeBoxStyle>
-        {fetchDetailData.map((detail) => (
-          <Notice key={detail.id} detail={detail} />
-        ))}
+        {isError && <ErrorPage errorStatus={null} />}
+        {noticeDetail && <Notice detail={noticeDetail} />}
       </InnerBoxStyle>
     </ContainerStyle>
   );

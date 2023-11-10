@@ -1,4 +1,11 @@
-import { TTimeTable } from "../@types/massage";
+import { TTimeTable } from "../../@types/book";
+
+export const BOOKING_TYPE = {
+  FREE: "예약가능",
+  BOOK: "예약",
+  PENDING: "대기중",
+  CLOSE: "마감",
+} as const;
 
 export const TIME_TABLE = [
   { startTime: "09:00", type: "BOOK", date: "2023-11-09", id: Math.random() },

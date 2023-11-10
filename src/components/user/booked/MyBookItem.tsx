@@ -1,7 +1,16 @@
 import styled from "styled-components";
-import { TBookItem } from "../../../@types/user/mypage";
 import { addComma } from "../../../util/price";
 import { MEDIA_QUERY } from "../../../const/devise";
+
+type TBookItem = {
+  orderDate: string;
+  orderItem: string;
+  massageDate: string;
+  massageTime: string;
+  orderPrice: number;
+  orderStatus: string;
+  id: number;
+};
 
 const MyBookItem = ({ book }: { book: TBookItem }) => {
   const isConfirmed =

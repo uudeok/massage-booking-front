@@ -9,10 +9,6 @@ import { NOTICE_CATEGORY_KEYS } from "../../../@types/notice";
 import { useGetNoticeListQuery } from "../../../api/notice/noticeQuery";
 
 const NoticesList = () => {
-  // 값을 전역적으로 관리할 필요가 없음 (리덕스x)
-  // 공지사항도 수시로 변하는 값은 아님
-  // RTK Query 로 데이터 가져와서 캐싱 된 데이터 받음
-
   const [category, setCategory] = useState<NOTICE_CATEGORY_KEYS>("ALL");
   const [page, setPage] = useState(1);
   const navigate = useNavigate();
