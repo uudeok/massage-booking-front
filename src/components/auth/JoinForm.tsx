@@ -4,6 +4,7 @@ import { useInput } from "../../hooks/useInput";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import DefaultButton from "../common/button/DefaultButton";
+import KakaoButton from "../common/button/KakaoButton";
 
 const JoinForm = () => {
   const navigate = useNavigate();
@@ -99,6 +100,7 @@ const JoinForm = () => {
         <DefaultButton backgroundColor="#afc9a4" color="white">
           회원가입
         </DefaultButton>
+        <KakaoButton>카카오톡 회원가입</KakaoButton>
       </FormStyle>
     </ContainerStyle>
   );

@@ -6,7 +6,7 @@ import Banner from "../../banner/Banner";
 const CONTACT_INFO = [
   { key: "주소", value: "경기도 파주시 가람로 134번길 53" },
   { key: "전화번호", value: "010-1234-5678" },
-  { key: "영업시간", value: "월-토 : AM 10:00 ~ PM 21:00" },
+  { key: "영업시간", value: "월-토 : AM 09:00 ~ PM 21:00" },
 ];
 
 const ContactList = () => {
@@ -64,6 +64,8 @@ const ContentBoxStyle = styled.div`
   @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
     flex-direction: column;
     width: 100%;
+    border-top: none;
+    border-bottom: none;
   }
 `;
 

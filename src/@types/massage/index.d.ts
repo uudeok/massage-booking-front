@@ -24,10 +24,17 @@ export type TMassageTable = {
   detail: IMassageDetail[];
 };
 
+// export type TTimeTable = {
+//   startTime: string;
+//   endTime: string;
+//   type: BOOKING_TIME_TYPE_KEYS;
+//   date: Date | string;
+//   id: number;
+// };
+
 export type TTimeTable = {
   startTime: string;
-  endTime: string;
   type: BOOKING_TIME_TYPE_KEYS;
-  date: Date | string;
+  date: string;
   id: number;
 };

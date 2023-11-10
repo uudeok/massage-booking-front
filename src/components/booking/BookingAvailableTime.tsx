@@ -1,20 +1,56 @@
 import styled from "styled-components";
 import { TTimeTable } from "../../@types/massage";
 import { MEDIA_QUERY } from "../../const/devise";
+import { TSelectedItem } from "./BookingDate";
 
 type TProps = {
-  data: TTimeTable;
-  fetchReservation: (timeId: number) => void;
+  data: TTimeTable[];
+  fetchReservation: (selectedItem: TSelectedItem) => Promise<void>;
+  count: number;
 };
 
-const BookingAvailableTime = ({ data, fetchReservation }: TProps) => {
+const BookingAvailableTime = ({ data, fetchReservation, count }: TProps) => {
+  const lastIndex = count - 1;
+
+  let num = 0;
+  for (let i = 0; i < data.length; i++) {
+    if (data[i].type === "BOOK") {
+      num = i;
+    }
+  }
+
+  const checkSelectedItemHandler = (
+    startId: number,
+    startTime: string,
+    endId: number,
+    endTime: string,
+    date: string
+  ) => {
+    const selectedItem = {
+      startId: startId,
+      startTime: startTime,
+      endId: endId,
+      endTime: endTime,
+      date: date,
+    };
+    fetchReservation(selectedItem);
+  };
+
   return (
     <ButtonStyle
-      onClick={() => fetchReservation(data.id)}
-      disabled={data.type === "BOOK"}
-      $isBooked={data.type === "BOOK"}
+      onClick={() =>
+        checkSelectedItemHandler(
+          data[0].id,
+          data[0].startTime,
+          data[lastIndex].id,
+          data[lastIndex].startTime,
+          data[0].date
+        )
+      }
+      disabled={data[num].type === "BOOK"}
+      $isBooked={data[num].type === "BOOK"}
     >
-      {data.startTime.slice(0, 5)} - {data.endTime.slice(0, 5)}
+      {data[0].startTime} - {data[lastIndex].startTime}
     </ButtonStyle>
   );
 };
@@ -31,6 +67,7 @@ const ButtonStyle = styled.button<{ $isBooked: boolean }>`
   font-family: "GmarketSansMedium";
   cursor: pointer;
   background-color: white;
+  font-size: 1rem;
 
   color: ${({ $isBooked }) => ($isBooked ? "lightgrey" : "white")};
   background-color: ${({ $isBooked }) =>
@@ -39,5 +76,6 @@ const ButtonStyle = styled.button<{ $isBooked: boolean }>`
   @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
     width: 70px;
     margin: 15px 7px;
+    font-size: 0.8rem;
   }
 `;

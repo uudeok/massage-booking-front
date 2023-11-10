@@ -4,15 +4,15 @@ import { TMassageDetail, TMassageTable } from "../@types/massage";
 import { massageApi } from "../api/massage/massageQuery";
 
 type TInitialState = {
-  massageDetail: TMassageDetail[];
-  massageItem: TMassageTable;
+  selectedMassageItem: TMassageTable;
+  selectedMassageDetail: TMassageDetail[];
   massageId: number;
   massageType: number;
 };
 
 const initialState: TInitialState = {
-  massageDetail: [],
-  massageItem: {} as TMassageTable,
+  selectedMassageItem: {} as TMassageTable,
+  selectedMassageDetail: [],
   massageId: 0,
   massageType: 0,
 };
@@ -26,7 +26,7 @@ export const massageSlice = createSlice({
     },
     getSelectedMassageType(state, action) {
       state.massageType = action.payload;
-      state.massageDetail = state.massageItem.detail.filter(
+      state.selectedMassageDetail = state.selectedMassageItem.detail.filter(
         (item) => item.time === action.payload
       );
     },
@@ -35,15 +35,16 @@ export const massageSlice = createSlice({
     builder.addMatcher(
       massageApi.endpoints.getMassageItem.matchFulfilled,
       (state, action) => {
-        state.massageItem = action.payload;
+        state.selectedMassageItem = action.payload;
       }
     );
   },
 });
 
-export const getMassageItem = (state: RootState) => state.massage.massageItem;
+export const getMassageItem = (state: RootState) =>
+  state.massage.selectedMassageItem;
 export const getMassageDetail = (state: RootState) =>
-  state.massage.massageDetail;
+  state.massage.selectedMassageDetail;
 export const getMassageId = (state: RootState) => state.massage.massageId;
 export const getMassageType = (state: RootState) => state.massage.massageType;
 

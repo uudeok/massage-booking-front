@@ -1,35 +1,57 @@
 import styled from "styled-components";
 import PreviousButton from "../common/button/PreviousButton";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { MEDIA_QUERY } from "../../const/devise";
 import BookingCalendar from "./BookingCalendar";
-import { BOOKING_TIME_TABLE } from "../../const/massage";
 import BookingAvailableTime from "./BookingAvailableTime";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "../../stores/store";
 import { addTabNum } from "../../stores/tabSlice";
 import { getMassageType } from "../../stores/massageSlice";
+import { divisionTime } from "../../util/time";
+import { useGetAvailableTimeListQuery } from "../../api/book/timeQuery";
+import { TTimeTable } from "../../@types/massage";
+import LoadingBar from "../common/loading/LoadingBar";
+import { getSelectedTimeDetail } from "../../stores/timeSlice";
+
+export type TSelectedItem = {
+  startId: number;
+  startTime: string;
+  endId: number;
+  endTime: string;
+  date: string;
+};
 
 const BookingDate = () => {
   const dispatch = useDispatch<AppDispatch>();
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
   const selectedType = useSelector(getMassageType);
-  // 60, 90, 120
 
-  useEffect(() => {
-    // 날짜가 바뀔때마다 가능한 시간대 가져오는 API 호출
-    // 예를들어 /?from=선택한날짜&to=선택한날짜&products=선택한 마사지&category=마사지시간
+  const date = selectedDate?.toISOString();
+  const simpleDate = date?.slice(0, 10) as string;
 
-    console.log("날짜가 바뀔때마다 api 호출");
-  }, [selectedDate]);
+  const { data: timeList, isFetching } = useGetAvailableTimeListQuery(
+    simpleDate
+  ) as {
+    data: TTimeTable[];
+    isFetching: boolean;
+  };
+
+  if (!timeList) {
+    return <LoadingBar />;
+  }
+
+  const result = divisionTime(selectedType, timeList);
+  const { count, remainderArray: timeTable } = result;
+
+  const isEmpty = timeTable.length === 0;
 
   const changeDateHandler = (date: Date | null) => {
     setSelectedDate(date);
   };
 
-  const fetchReservation = async (timeId: number) => {
-    // BookingAvailableTime 컴포넌트에서 시간을 클릭하면 선택한 시간을 가져옴
-    console.log(selectedDate, timeId);
+  const fetchReservation = async (selectedItem: TSelectedItem) => {
+    dispatch(getSelectedTimeDetail(selectedItem));
     dispatch(addTabNum());
   };
 
@@ -49,14 +71,20 @@ const BookingDate = () => {
           <AvailableCircleStyle></AvailableCircleStyle>
           <span> - 가능한 시간</span>
         </AvailableBoxStyle>
+        {isFetching && <LoadingBar />}
+        {isEmpty && (
+          <AlertMessageStyle>선택 가능한 시간이 없습니다.😓</AlertMessageStyle>
+        )}
         <TimeListBoxStyle>
-          {BOOKING_TIME_TABLE.map((item) => (
-            <BookingAvailableTime
-              key={item.id}
-              data={item}
-              fetchReservation={fetchReservation}
-            />
-          ))}
+          {timeTable &&
+            timeTable.map((item, index) => (
+              <BookingAvailableTime
+                key={index}
+                data={item}
+                fetchReservation={fetchReservation}
+                count={count}
+              />
+            ))}
         </TimeListBoxStyle>
       </InnerBoxStyle>
     </ContainerStyle>
@@ -122,4 +150,9 @@ const AvailableCircleStyle = styled.div`
   background-color: #a2c294;
   border-radius: 50%;
   margin-right: 0.5rem;
+`;
+
+const AlertMessageStyle = styled.h3`
+  font-size: 1.2rem;
+  text-align: center;
 `;
