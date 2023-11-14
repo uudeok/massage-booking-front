@@ -7,12 +7,13 @@ import BookingAvailableTime from "./BookingAvailableTime";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "../../stores/store";
 import { addTabNum } from "../../stores/tabSlice";
-import { getMassageType } from "../../stores/massageSlice";
-import { divisionTime } from "../../util/time";
+import { getMassageDetail } from "../../stores/massageSlice";
+import { divisionTime, makeSimpleDate, validationDate } from "../../util/time";
 import { useGetAvailableTimeListQuery } from "../../api/book/timeQuery";
 import LoadingBar from "../common/loading/LoadingBar";
 import { getSelectedTimeDetail } from "../../stores/timeSlice";
-import { TTimeTable } from "../../@types/book";
+import ErrorPage from "../common/error/ErrorPage";
+import AlertPage from "../common/error/AlertPage";
 
 export type TSelectedItem = {
   startId: number;
@@ -23,19 +24,19 @@ export type TSelectedItem = {
 };
 
 const BookingDate = () => {
+  const [selectedDate, setSelectedDate] = useState<Date>(new Date());
   const dispatch = useDispatch<AppDispatch>();
-  const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
-  const selectedType = useSelector(getMassageType);
+  const detail = useSelector(getMassageDetail);
+  const selectedType = detail[0].time;
 
-  const date = selectedDate?.toISOString();
-  const simpleDate = date?.slice(0, 10) as string;
+  const simpleDate = makeSimpleDate(selectedDate);
+  const isPassed = validationDate(selectedDate);
 
-  const { data: timeList, isFetching } = useGetAvailableTimeListQuery(
-    simpleDate
-  ) as {
-    data: TTimeTable[];
-    isFetching: boolean;
-  };
+  const {
+    data: timeList,
+    isFetching,
+    isError,
+  } = useGetAvailableTimeListQuery(simpleDate);
 
   if (!timeList) {
     return <LoadingBar />;
@@ -44,19 +45,20 @@ const BookingDate = () => {
   const result = divisionTime(selectedType, timeList);
   const { count, remainderArray: timeTable } = result;
 
-  const isEmpty = timeTable.length === 0 && (
-    <AlertBoxStyle>
-      <AlertMessageStyle>선택 가능한 시간이 없습니다😓</AlertMessageStyle>
-      <AlertMessageStyle>다른 날짜를 선택해주세요</AlertMessageStyle>
-    </AlertBoxStyle>
+  const isPassedDate = isPassed && (
+    <AlertPage>지난 날짜는 선택하실 수 없습니다😢</AlertPage>
+  );
+  const isOffDay = !isPassed && timeTable.length === 0 && (
+    <AlertPage>선택 가능한 시간이 없습니다😢</AlertPage>
   );
 
-  const changeDateHandler = (date: Date | null) => {
+  const changeDateHandler = (date: Date) => {
     setSelectedDate(date);
   };
 
   const fetchReservation = async (selectedItem: TSelectedItem) => {
-    dispatch(getSelectedTimeDetail(selectedItem));
+    await dispatch(getSelectedTimeDetail(selectedItem));
+
     dispatch(addTabNum());
   };
 
@@ -77,9 +79,12 @@ const BookingDate = () => {
           <span> - 가능한 시간</span>
         </AvailableBoxStyle>
         {isFetching && <LoadingBar />}
-        {isEmpty}
+        {isPassedDate}
+        {isOffDay}
+        {isError && <ErrorPage errorStatus={null} />}
         <TimeListBoxStyle>
-          {timeTable &&
+          {!isPassed &&
+            timeTable &&
             timeTable.map((item, index) => (
               <BookingAvailableTime
                 key={index}
@@ -153,19 +158,4 @@ const AvailableCircleStyle = styled.div`
   background-color: #a2c294;
   border-radius: 50%;
   margin-right: 0.5rem;
-`;
-
-const AlertBoxStyle = styled.div`
-  margin-top: 1rem;
-`;
-
-const AlertMessageStyle = styled.h3`
-  font-size: 1.2rem;
-  text-align: center;
-  color: orangered;
-  line-height: 1.5rem;
-
-  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
-    font-size: 1rem;
-  }
 `;

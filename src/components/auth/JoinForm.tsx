@@ -5,9 +5,12 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import DefaultButton from "../common/button/DefaultButton";
 import KakaoButton from "../common/button/KakaoButton";
+import { useDispatch } from "react-redux";
+import { openModal } from "../../stores/modalSlice";
 
 const JoinForm = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [error, setError] = useState("");
   const [isChecked, setIsChecked] = useState(false);
   const { inputValue, changeInputHandler } = useInput({
@@ -54,7 +57,16 @@ const JoinForm = () => {
   const onRegisterHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!validJoinForm()) return;
-    alert("회원이 되신 걸 환영합니다. 다시 로그인 해주세요");
+    dispatch(
+      openModal({
+        type: "ConfirmModal",
+        props: {
+          icon: "🎉",
+          content: "자연치유 쉼의 회원이 되신 걸 환영합니다.",
+          confirm: "다시 로그인해주세요.",
+        },
+      })
+    );
     navigate("/login");
   };
 

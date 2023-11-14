@@ -1,17 +1,9 @@
+import BookingNotice from "../../../booking/BookingNotice";
 import styled from "styled-components";
-import ReactDOM from "react-dom";
-import { MEDIA_QUERY } from "../../../const/devise";
+import { MEDIA_QUERY } from "../../../../const/devise";
 import { useEffect } from "react";
 
-type TModal = {
-  children: React.ReactNode;
-  height?: string;
-  backgroundColor?: string;
-};
-
-const portalElement = document.getElementById("overlays") as HTMLElement;
-
-const Modal = ({ children, height, backgroundColor }: TModal) => {
+const NoticeModal = ({ ...props }) => {
   useEffect(() => {
     document.body.style.overflow = "hidden";
     return () => {
@@ -20,18 +12,13 @@ const Modal = ({ children, height, backgroundColor }: TModal) => {
   }, []);
 
   return (
-    <>
-      {ReactDOM.createPortal(
-        <ModalStyle $height={height} $backgroundColor={backgroundColor}>
-          {children}
-        </ModalStyle>,
-        portalElement
-      )}
-    </>
+    <ModalStyle>
+      <BookingNotice {...props} />
+    </ModalStyle>
   );
 };
 
-export default Modal;
+export default NoticeModal;
 
 const ModalStyle = styled.div<{ $height?: string; $backgroundColor?: string }>`
   position: fixed;
@@ -48,10 +35,8 @@ const ModalStyle = styled.div<{ $height?: string; $backgroundColor?: string }>`
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
   z-index: 30;
   animation: slide-down 300ms ease-out forwards;
-
-  background-color: ${({ $backgroundColor }) =>
-    $backgroundColor ? $backgroundColor : "white"};
-  height: ${({ $height }) => ($height ? $height : "40rem")};
+  height: 30rem;
+  background-color: white;
 
   @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
     width: 26rem;
@@ -59,7 +44,8 @@ const ModalStyle = styled.div<{ $height?: string; $backgroundColor?: string }>`
   }
 
   @media only screen and (max-width: ${MEDIA_QUERY.mobileWidth}) {
-    width: 2rem;
+    width: 20rem;
+    height: 35rem;
     left: calc(50% - 10rem);
   }
 

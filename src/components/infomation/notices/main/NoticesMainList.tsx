@@ -20,12 +20,12 @@ const NoticesMainList = () => {
 export default NoticesMainList;
 
 const NoticeBoxStyle = styled.ul`
-  border-top: 1px solid grey;
+  border-top: 1px solid lightgrey;
   margin-bottom: 1rem;
 `;
 
 const NoticeItemBoxStyle = styled.li`
-  border-bottom: 1px solid grey;
+  border-bottom: 1px solid lightgrey;
   padding: 1.2rem;
   display: flex;
 `;

@@ -4,9 +4,9 @@ import Calendar from "../common/calendar/Calendar";
 import dayjs from "dayjs";
 
 type TProps = {
-  changeDateHandler: (date: Date | null) => void;
-  setSelectedDate: React.Dispatch<React.SetStateAction<Date | null>>;
-  selectedDate: Date | null;
+  changeDateHandler: (date: Date) => void;
+  setSelectedDate: React.Dispatch<React.SetStateAction<Date>>;
+  selectedDate: Date;
 };
 
 const BookingCalendar = ({

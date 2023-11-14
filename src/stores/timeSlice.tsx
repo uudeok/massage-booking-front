@@ -7,7 +7,7 @@ type TInitialState = {
 };
 
 const initialState = {
-  selectedTimeDetail: {},
+  selectedTimeDetail: {} as TSelectedItem,
 };
 
 export const timeSlice = createSlice({

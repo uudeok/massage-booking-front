@@ -71,7 +71,7 @@ const MassageContainerStyle = styled.div`
 
 const MassageInnerBoxStyle = styled.div`
   width: 70%;
-  height: 40vh;
+  height: 35vh;
   margin: auto;
   justify-content: center;
   align-items: center;

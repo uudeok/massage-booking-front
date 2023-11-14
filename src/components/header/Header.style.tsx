@@ -6,6 +6,7 @@ export const ContainerStyle = styled.div`
   height: 100px;
   display: flex;
   font-family: "Pretendard-Regular";
+  font-weight: bold;
 `;
 
 export const InnerContainerStyle = styled.header`
@@ -38,8 +39,6 @@ export const LogoStyle = styled.h1`
   font-size: 2rem;
   font-family: "GmarketSansMedium";
   height: 100%;
-  font-weight: bold;
-  /* color: #526348; */
 
   @media only screen and (max-width: ${MEDIA_QUERY.notebookWidth}) {
     font-size: 1.6rem;
@@ -76,7 +75,6 @@ export const MenuListStyle = styled.ul`
 export const LoginBoxStyle = styled.div`
   width: 20%;
   text-align: right;
-  font-family: "GmarketSansMedium";
 
   @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
     width: 100%;
@@ -91,6 +89,7 @@ export const LogoutBoxStyle = styled.div`
     font-family: "Pretendard-Regular";
     font-size: 1rem;
     cursor: pointer;
+    font-weight: bold;
 
     @media only screen and (max-width: ${MEDIA_QUERY.notebookWidth}) {
       font-size: 0.8rem;

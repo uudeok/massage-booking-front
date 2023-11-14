@@ -5,13 +5,12 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import DefaultButton from "../common/button/DefaultButton";
 import KakaoButton from "../common/button/KakaoButton";
+import { closeModal } from "../../stores/modalSlice";
+import { useDispatch } from "react-redux";
 
-type TProps = {
-  path?: string;
-  onClose?: () => void;
-};
+const LoginForm = ({ ...props }) => {
+  const dispatch = useDispatch();
 
-const LoginForm = ({ path, onClose }: TProps) => {
   const navigate = useNavigate();
   const [error, setError] = useState("");
   const { inputValue, changeInputHandler } = useInput({
@@ -37,27 +36,20 @@ const LoginForm = ({ path, onClose }: TProps) => {
 
     if (!validLoginForm()) return;
 
-    console.log(email, password);
-
     /// 로그인 API 요청
     localStorage.setItem("email", email);
 
-    if (path) {
-      navigate(`/${path}`);
+    dispatch(closeModal());
+
+    if (props.path) {
+      navigate(`/${props.path}`);
     } else {
       navigate("/");
     }
   };
 
-  const showCloseButton = path && (
-    <CloseButtonBoxStyle>
-      <CloseButtonStyle onClick={onClose}>X</CloseButtonStyle>
-    </CloseButtonBoxStyle>
-  );
-
   return (
     <>
-      {showCloseButton}
       <FormStyle onChange={changeInputHandler} onSubmit={onLoginHandler}>
         <HeaderStyle>로그인</HeaderStyle>
         <LabelStyle htmlFor="email">이메일</LabelStyle>
@@ -77,6 +69,7 @@ const LoginForm = ({ path, onClose }: TProps) => {
           name="password"
         />
         {error && <ErrorMessageStyle>{error}</ErrorMessageStyle>}
+
         <DefaultButton backgroundColor="#afc9a4" color="white">
           로그인
         </DefaultButton>
@@ -93,17 +86,6 @@ const LoginForm = ({ path, onClose }: TProps) => {
 };
 
 export default LoginForm;
-
-const CloseButtonBoxStyle = styled.div`
-  display: flex;
-  justify-content: right;
-`;
-
-const CloseButtonStyle = styled.button`
-  border: none;
-  cursor: pointer;
-  background-color: white;
-`;
 
 const FormStyle = styled.form`
   /* width: 30rem; */

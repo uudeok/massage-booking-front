@@ -1,44 +1,50 @@
 import styled from "styled-components";
 import { MEDIA_QUERY } from "../../const/devise";
 import DefaultButton from "../common/button/DefaultButton";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { openModal } from "../../stores/modalSlice";
 
-interface IProps {
-  isChecked: boolean;
-  changeCheckedHandler: () => void;
-  bookMassageHandler: () => void;
-  error: string;
-}
+const BookingConfirm = () => {
+  const dispatch = useDispatch();
+  const [isChecked, setIsChecked] = useState(false);
+  const [error, setIsError] = useState("");
 
-const BookingConfirm = ({
-  isChecked,
-  changeCheckedHandler,
-  bookMassageHandler,
-  error,
-}: IProps) => {
+  const changeCheckedHandler = () => {
+    setIsChecked((prev) => !prev);
+  };
+
+  const bookMassageHandler = () => {
+    if (!isChecked) return setIsError("* 예약 내역을 확인 후 체크해주세요.");
+    dispatch(openModal({ type: "NoticeModal" }));
+  };
+
   return (
-    <ConfirmBoxStyle>
-      <CheckBoxStyle>
-        <CheckStyle>
-          <input
-            type="checkbox"
-            checked={isChecked}
-            onChange={changeCheckedHandler}
-          />
-          <p>위 내용을 모두 확인 하였습니다.</p>
-        </CheckStyle>
-        {error && <WarningStyle>{error}</WarningStyle>}
-      </CheckBoxStyle>
-      <ButtonBoxStyle>
-        <DefaultButton
-          onClick={bookMassageHandler}
-          width="10rem"
-          backgroundColor="#76916a"
-          color="white"
-        >
-          예약하기
-        </DefaultButton>
-      </ButtonBoxStyle>
-    </ConfirmBoxStyle>
+    <>
+      <ConfirmBoxStyle>
+        <CheckBoxStyle>
+          <CheckStyle>
+            <input
+              type="checkbox"
+              checked={isChecked}
+              onChange={changeCheckedHandler}
+            />
+            <p>위 내용을 모두 확인 하였습니다.</p>
+          </CheckStyle>
+          {error && <WarningStyle>{error}</WarningStyle>}
+        </CheckBoxStyle>
+        <ButtonBoxStyle>
+          <DefaultButton
+            onClick={bookMassageHandler}
+            width="10rem"
+            backgroundColor="#76916a"
+            color="white"
+          >
+            예약하기
+          </DefaultButton>
+        </ButtonBoxStyle>
+      </ConfirmBoxStyle>
+    </>
   );
 };
 
@@ -88,35 +94,5 @@ const ButtonBoxStyle = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: center;
-  }
-`;
-
-const ButtonStyle = styled.button`
-  width: 10rem;
-  background-color: #76916a;
-  height: 3.5rem;
-  padding: 1rem;
-  border-radius: 5px;
-  font-size: 1rem;
-  border: none;
-  color: white;
-  cursor: pointer;
-
-  &:hover {
-    border: 2px solid white;
-  }
-
-  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
-    font-size: 0.8rem;
-    padding: 0.5rem;
-    width: 15rem;
-
-    &:hover {
-      border: 1px solid white;
-    }
-  }
-
-  @media only screen and (max-width: ${MEDIA_QUERY.mobileWidth}) {
-    width: 100%;
   }
 `;

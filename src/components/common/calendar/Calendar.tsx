@@ -6,8 +6,8 @@ import { ko } from "date-fns/esm/locale";
 import { getDay } from "date-fns";
 
 interface IProps {
-  changeDateHandler: (date: Date | null) => void;
-  selectedDate: Date | null;
+  changeDateHandler: (date: Date) => void;
+  selectedDate: Date;
 }
 
 const SUNDAY = 0;

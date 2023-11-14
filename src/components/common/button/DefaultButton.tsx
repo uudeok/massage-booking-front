@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { MEDIA_QUERY } from "../../../const/devise";
 
 type TProps = {
   children: React.ReactNode;
@@ -50,4 +51,8 @@ const ButtonStyle = styled.button<{
   color: ${({ $color }) => ($color ? $color : "black")};
   border: ${({ $border }) => $border};
   width: ${({ $width }) => $width};
+
+  /* @media only screen and (max-width: ${MEDIA_QUERY.bigMobileWidth}) {
+    width: 8rem;
+  } */
 `;

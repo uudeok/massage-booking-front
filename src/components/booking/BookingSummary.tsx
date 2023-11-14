@@ -6,10 +6,12 @@ import { addComma } from "../../util/price";
 import { addMinutesUnit } from "../../util/time";
 import { getMassageDetail, getMassageItem } from "../../stores/massageSlice";
 import { TMassageTable } from "../../@types/massage";
+import { getTimeDetail } from "../../stores/timeSlice";
 
 const BookingSummary = () => {
   const selectedMassage = useSelector(getMassageItem) as TMassageTable;
   const selectedDetail = useSelector(getMassageDetail);
+  const selectedTime = useSelector(getTimeDetail);
   const time = selectedDetail[0].time;
   const price = selectedDetail[0].price;
 
@@ -19,7 +21,10 @@ const BookingSummary = () => {
       <SummaryBoxStyle>
         <TimeBoxStyle>
           <span>마사지 시간</span>
-          <span>09:00 - 10:00 ({addMinutesUnit(time)})</span>
+          <span>
+            {selectedTime.startTime} - {selectedTime.endTime} (
+            {addMinutesUnit(time)})
+          </span>
         </TimeBoxStyle>
         <ItemBoxStyle>
           <span>마사지 종류</span>
@@ -27,7 +32,7 @@ const BookingSummary = () => {
         </ItemBoxStyle>
         <ItemBoxStyle>
           <span>받으실 날짜</span>
-          <span>2023-10-25</span>
+          <span>{selectedTime.date}</span>
         </ItemBoxStyle>
         <LastItemBoxStyle>
           <span>금액</span>

@@ -28,12 +28,14 @@ const MassageSlide = ({ data }: { data: TMassageTable[] | undefined }) => {
           <SwiperSlide key={massage.id}>
             <Link to="/program">
               <ContainerStyle>
-                <img
-                  src={massage.img}
-                  alt={massage.content}
-                  width="100%"
-                  height="100%"
-                />
+                <ItemImgStyle>
+                  <img
+                    src={massage.img}
+                    alt={massage.content}
+                    width="100%"
+                    height="100%"
+                  />
+                </ItemImgStyle>
                 <ItemContentStyle>
                   {MASSAGE_ITEM[massage.item]}
                 </ItemContentStyle>
@@ -52,26 +54,21 @@ const ContainerStyle = styled.div`
   flex-direction: column;
   text-align: center;
   cursor: pointer;
-  height: 40vh;
+  height: 100%;
   justify-content: center;
-  padding: 1rem;
+  border: 1px solid lightgrey;
+  box-shadow: 0 0 0.5 0 rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+`;
 
-  &:hover {
-    scale: calc(1.02);
-  }
-
+const ItemImgStyle = styled.div`
   img {
-    height: 100%;
     opacity: 0.9;
-  }
-
-  @media only screen and (max-width: ${MEDIA_QUERY.mobileWidth}) {
-    height: 35vh;
+    border-radius: 5px;
   }
 `;
 
 const ItemContentStyle = styled.div`
-  height: 20%;
   padding: 1rem;
   font-family: "GmarketSansMedium";
   font-size: 1rem;

@@ -7,14 +7,12 @@ type TInitialState = {
   selectedMassageItem: TMassageTable;
   selectedMassageDetail: TMassageDetail[];
   massageId: number;
-  massageType: number;
 };
 
 const initialState: TInitialState = {
   selectedMassageItem: {} as TMassageTable,
   selectedMassageDetail: [],
   massageId: 0,
-  massageType: 0,
 };
 
 export const massageSlice = createSlice({
@@ -25,7 +23,6 @@ export const massageSlice = createSlice({
       state.massageId = action.payload;
     },
     getSelectedMassageType(state, action) {
-      state.massageType = action.payload;
       state.selectedMassageDetail = state.selectedMassageItem.detail.filter(
         (item) => item.time === action.payload
       );
@@ -46,7 +43,6 @@ export const getMassageItem = (state: RootState) =>
 export const getMassageDetail = (state: RootState) =>
   state.massage.selectedMassageDetail;
 export const getMassageId = (state: RootState) => state.massage.massageId;
-export const getMassageType = (state: RootState) => state.massage.massageType;
 
 export const { getSelectedMassageId, getSelectedMassageType } =
   massageSlice.actions;

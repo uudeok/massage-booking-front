@@ -1,17 +1,13 @@
+import LoginForm from "../../../auth/LoginForm";
 import styled from "styled-components";
-import ReactDOM from "react-dom";
-import { MEDIA_QUERY } from "../../../const/devise";
+import { MEDIA_QUERY } from "../../../../const/devise";
 import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { closeModal } from "../../../../stores/modalSlice";
 
-type TModal = {
-  children: React.ReactNode;
-  height?: string;
-  backgroundColor?: string;
-};
+const LoginModal = ({ ...props }) => {
+  const dispatch = useDispatch();
 
-const portalElement = document.getElementById("overlays") as HTMLElement;
-
-const Modal = ({ children, height, backgroundColor }: TModal) => {
   useEffect(() => {
     document.body.style.overflow = "hidden";
     return () => {
@@ -20,18 +16,18 @@ const Modal = ({ children, height, backgroundColor }: TModal) => {
   }, []);
 
   return (
-    <>
-      {ReactDOM.createPortal(
-        <ModalStyle $height={height} $backgroundColor={backgroundColor}>
-          {children}
-        </ModalStyle>,
-        portalElement
-      )}
-    </>
+    <ModalStyle>
+      <CloseButtonBoxStyle>
+        <CloseButtonStyle onClick={() => dispatch(closeModal())}>
+          X
+        </CloseButtonStyle>
+      </CloseButtonBoxStyle>
+      <LoginForm {...props} />
+    </ModalStyle>
   );
 };
 
-export default Modal;
+export default LoginModal;
 
 const ModalStyle = styled.div<{ $height?: string; $backgroundColor?: string }>`
   position: fixed;
@@ -48,10 +44,8 @@ const ModalStyle = styled.div<{ $height?: string; $backgroundColor?: string }>`
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
   z-index: 30;
   animation: slide-down 300ms ease-out forwards;
-
-  background-color: ${({ $backgroundColor }) =>
-    $backgroundColor ? $backgroundColor : "white"};
-  height: ${({ $height }) => ($height ? $height : "40rem")};
+  background-color: white;
+  height: 38rem;
 
   @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
     width: 26rem;
@@ -59,7 +53,7 @@ const ModalStyle = styled.div<{ $height?: string; $backgroundColor?: string }>`
   }
 
   @media only screen and (max-width: ${MEDIA_QUERY.mobileWidth}) {
-    width: 2rem;
+    width: 20rem;
     left: calc(50% - 10rem);
   }
 
@@ -73,4 +67,15 @@ const ModalStyle = styled.div<{ $height?: string; $backgroundColor?: string }>`
       transform: translateY(0);
     }
   }
+`;
+
+const CloseButtonBoxStyle = styled.div`
+  display: flex;
+  justify-content: right;
+`;
+
+const CloseButtonStyle = styled.button`
+  border: none;
+  cursor: pointer;
+  background-color: white;
 `;
