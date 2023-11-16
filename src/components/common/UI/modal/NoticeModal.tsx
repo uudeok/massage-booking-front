@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { MEDIA_QUERY } from "../../../../const/devise";
 import { useEffect } from "react";
 
-const NoticeModal = ({ ...props }) => {
+const NoticeModal = () => {
   useEffect(() => {
     document.body.style.overflow = "hidden";
     return () => {
@@ -13,14 +13,14 @@ const NoticeModal = ({ ...props }) => {
 
   return (
     <ModalStyle>
-      <BookingNotice {...props} />
+      <BookingNotice />
     </ModalStyle>
   );
 };
 
 export default NoticeModal;
 
-const ModalStyle = styled.div<{ $height?: string; $backgroundColor?: string }>`
+const ModalStyle = styled.div`
   position: fixed;
   bottom: 0;
   left: 0;

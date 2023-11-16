@@ -5,14 +5,13 @@ import DefaultButton from "../../button/DefaultButton";
 import { useDispatch } from "react-redux";
 import { closeModal } from "../../../../stores/modalSlice";
 
-type TProps = {
-  content?: string;
+export type TTwoBtnModalType = {
+  content: string;
   confirm?: string;
 };
 
-const TwoBtnModal = ({ ...props }: TProps) => {
+const TwoBtnModal = ({ ...props }: TTwoBtnModalType) => {
   const dispatch = useDispatch();
-  console.log(props);
 
   useEffect(() => {
     document.body.style.overflow = "hidden";

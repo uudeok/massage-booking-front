@@ -20,7 +20,6 @@ export default Banner;
 const ImgBoxStyle = styled.div`
   width: 100%;
   height: 450px;
-  margin-top: 1rem;
 
   img {
     object-fit: cover;

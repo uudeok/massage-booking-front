@@ -9,8 +9,7 @@ import { useNavigate } from "react-router-dom";
 const BOOKING_NOTICE = [
   { content: "결제는 현장에서 진행 됩니다.", id: 1 },
   {
-    content:
-      "예약 시간을 꼭 준수해주세요. 환복 등으로 인해 5-10분 전에 방문 부탁드립니다.",
+    content: "예약 시간 10분 전에는 방문을 부탁드립니다.",
     id: 2,
   },
   {
@@ -19,7 +18,7 @@ const BOOKING_NOTICE = [
     id: 3,
   },
   {
-    content: "예약 내역 확인 및 취소는 마이페이지에서 가능합니다.",
+    content: "예약 내역 및 취소는 마이페이지에서 확인하실 수 있습니다.",
     id: 4,
   },
   {
@@ -33,7 +32,7 @@ const BOOKING_NOTICE = [
   },
 ];
 
-const BookingNotice = ({ ...props }) => {
+const BookingNotice = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const getAuth = getAuthUser();
@@ -41,7 +40,7 @@ const BookingNotice = ({ ...props }) => {
   const showMyPageHandler = () => {
     dispatch(
       openModal({
-        type: "ConfirmModal",
+        type: "OneBtnModal",
         props: {
           icon: "💗",
           content: "예약이 완료 되었습니다.",

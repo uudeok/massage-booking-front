@@ -8,9 +8,8 @@ import KakaoButton from "../common/button/KakaoButton";
 import { closeModal } from "../../stores/modalSlice";
 import { useDispatch } from "react-redux";
 
-const LoginForm = ({ ...props }) => {
+const LoginForm = ({ path }: { path?: string }) => {
   const dispatch = useDispatch();
-
   const navigate = useNavigate();
   const [error, setError] = useState("");
   const { inputValue, changeInputHandler } = useInput({
@@ -41,8 +40,8 @@ const LoginForm = ({ ...props }) => {
 
     dispatch(closeModal());
 
-    if (props.path) {
-      navigate(`/${props.path}`);
+    if (path) {
+      navigate(`/${path}`);
     } else {
       navigate("/");
     }
@@ -88,7 +87,6 @@ const LoginForm = ({ ...props }) => {
 export default LoginForm;
 
 const FormStyle = styled.form`
-  /* width: 30rem; */
   margin: 1rem auto;
   font-family: "Pretendard-Regular";
   display: flex;

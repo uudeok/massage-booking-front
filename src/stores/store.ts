@@ -20,9 +20,11 @@ export const store = configureStore({
   },
   devTools: true,
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({
-      serializableCheck: false,
-    }).concat(massageApi.middleware, noticeApi.middleware, timeApi.middleware),
+    getDefaultMiddleware().concat(
+      massageApi.middleware,
+      noticeApi.middleware,
+      timeApi.middleware
+    ),
 });
 
 setupListeners(store.dispatch);

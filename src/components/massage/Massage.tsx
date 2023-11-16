@@ -64,20 +64,27 @@ const MassageContainerStyle = styled.div`
   height: 45vh;
   display: flex;
 
-  @media only screen and (max-width: ${MEDIA_QUERY.mobileWidth}) {
+  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
     height: 40vh;
+  }
+
+  @media only screen and (max-width: ${MEDIA_QUERY.bigMobileWidth}) {
+    height: 35vh;
+  }
+
+  @media only screen and (max-width: ${MEDIA_QUERY.mobileWidth}) {
+    height: 30vh;
   }
 `;
 
 const MassageInnerBoxStyle = styled.div`
   width: 70%;
-  height: 35vh;
   margin: auto;
   justify-content: center;
   align-items: center;
   display: flex;
 
-  @media only screen and (max-width: ${MEDIA_QUERY.mobileWidth}) {
+  /* @media only screen and (max-width: ${MEDIA_QUERY.mobileWidth}) {
     height: 35vh;
-  }
+  } */
 `;

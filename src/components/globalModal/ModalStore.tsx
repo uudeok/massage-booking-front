@@ -1,23 +1,18 @@
-import { MODAL_TYPE_KEYS } from "../../@types/modal";
-import ConfirmModal from "../common/UI/modal/ConfirmModal";
+import OneBtnModal from "../common/UI/modal/OneBtnModal";
 import LoginModal from "../common/UI/modal/LoginModal";
 import NoticeModal from "../common/UI/modal/NoticeModal";
 import TwoBtnModal from "../common/UI/modal/TwoBtnModal";
 
-type MODAL_COMPONENT_TYPE = {
-  [key: MODAL_TYPE_KEYS]: (props: any) => JSX.Element;
-};
-
 export const MODAL_TYPE = {
-  NoticeModal: NoticeModal,
-  LoginModal: LoginModal,
-  TwoBtnModal: TwoBtnModal,
-  ConfirmModal: ConfirmModal,
+  NoticeModal: "NoticeModal",
+  LoginModal: "LoginModal",
+  TwoBtnModal: "TwoBtnModal",
+  OneBtnModal: "OneBtnModal",
 } as const;
 
-export const MODAL_COMPONENTS: MODAL_COMPONENT_TYPE = {
-  NoticeModal: NoticeModal,
-  LoginModal: LoginModal,
-  TwoBtnModal: TwoBtnModal,
-  ConfirmModal: ConfirmModal,
+export const MODAL_COMPONENTS = {
+  [MODAL_TYPE.NoticeModal]: NoticeModal,
+  [MODAL_TYPE.LoginModal]: LoginModal,
+  [MODAL_TYPE.TwoBtnModal]: TwoBtnModal,
+  [MODAL_TYPE.OneBtnModal]: OneBtnModal,
 };

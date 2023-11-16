@@ -57,9 +57,10 @@ const JoinForm = () => {
   const onRegisterHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!validJoinForm()) return;
+
     dispatch(
       openModal({
-        type: "ConfirmModal",
+        type: "OneBtnModal",
         props: {
           icon: "🎉",
           content: "자연치유 쉼의 회원이 되신 걸 환영합니다.",

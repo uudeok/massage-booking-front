@@ -5,7 +5,11 @@ import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { closeModal } from "../../../../stores/modalSlice";
 
-const LoginModal = ({ ...props }) => {
+export type TLoginModalType = {
+  path: string;
+};
+
+const LoginModal = ({ ...props }: TLoginModalType) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -22,14 +26,14 @@ const LoginModal = ({ ...props }) => {
           X
         </CloseButtonStyle>
       </CloseButtonBoxStyle>
-      <LoginForm {...props} />
+      <LoginForm path={props.path} />
     </ModalStyle>
   );
 };
 
 export default LoginModal;
 
-const ModalStyle = styled.div<{ $height?: string; $backgroundColor?: string }>`
+const ModalStyle = styled.div`
   position: fixed;
   bottom: 0;
   left: 0;

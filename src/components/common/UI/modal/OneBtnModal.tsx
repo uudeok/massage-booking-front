@@ -5,7 +5,13 @@ import DefaultButton from "../../button/DefaultButton";
 import { useDispatch } from "react-redux";
 import { closeModal } from "../../../../stores/modalSlice";
 
-const ConfirmModal = ({ ...props }) => {
+export type TOneBtnModalType = {
+  icon: string;
+  content: string;
+  confirm?: string;
+};
+
+const OneBtnModal = ({ ...props }: TOneBtnModalType) => {
   const dispatch = useDispatch();
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -37,7 +43,7 @@ const ConfirmModal = ({ ...props }) => {
   );
 };
 
-export default ConfirmModal;
+export default OneBtnModal;
 
 const ContainerStyle = styled.div`
   display: flex;

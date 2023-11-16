@@ -16,6 +16,7 @@ const ModalContainer = () => {
   if (modalList.length === 0) {
     return null;
   }
+
   const renderModal = modalList.map(({ type, props }) => {
     const ModalComponent = MODAL_COMPONENTS[type];
     return <ModalComponent key={type} {...props} />;

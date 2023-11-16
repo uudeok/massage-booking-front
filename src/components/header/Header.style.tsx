@@ -7,6 +7,12 @@ export const ContainerStyle = styled.div`
   display: flex;
   font-family: "Pretendard-Regular";
   font-weight: bold;
+  align-items: end;
+  margin-bottom: 0.5rem;
+
+  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+    height: 50px;
+  }
 `;
 
 export const InnerContainerStyle = styled.header`
@@ -23,7 +29,6 @@ export const InnerContainerStyle = styled.header`
 export const LogoBoxStyle = styled.div`
   width: 20%;
   display: flex;
-  align-items: end;
 
   img {
     padding: 0.2rem;
@@ -52,7 +57,6 @@ export const LogoStyle = styled.h1`
 
 export const MenuBoxStyle = styled.div`
   width: 60%;
-  /* border: 1px solid black; */
 
   @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
     display: none;
@@ -90,6 +94,7 @@ export const LogoutBoxStyle = styled.div`
     font-size: 1rem;
     cursor: pointer;
     font-weight: bold;
+    color: black;
 
     @media only screen and (max-width: ${MEDIA_QUERY.notebookWidth}) {
       font-size: 0.8rem;
@@ -99,4 +104,19 @@ export const LogoutBoxStyle = styled.div`
       font-size: 0.9rem;
     }
   }
+`;
+
+export const MenuBarStyle = styled.div`
+  text-align: right;
+  border: 1px solid black;
+
+  @media only screen and (min-width: ${MEDIA_QUERY.tabletWidth}) {
+    display: none;
+  }
+`;
+
+export const InnerBoxStyle = styled.div`
+  display: flex;
+  border: 1px solid black;
+  width: 100%;
 `;

@@ -10,8 +10,9 @@ import {
 } from "./Header.style";
 import { Link, useNavigate } from "react-router-dom";
 import { getAuthUser, logout } from "../../util/auth";
+import HeaderDropMenu from "./HeaderDropMenu";
 
-const MENU_LIST = [
+export const MENU_LIST = [
   { key: "program", value: "프로그램 안내", id: 1 },
   { key: "information", value: "회원권 안내", id: 2 },
   { key: "notice", value: "공지사항", id: 3 },
@@ -27,10 +28,10 @@ const Header = () => {
 
   return (
     <>
+      <HeaderDropMenu />
       <ContainerStyle>
         <InnerContainerStyle>
           <LogoBoxStyle>
-            {/* <img src="logo.png" alt="logo" width="40px" /> */}
             <Link to="/">
               <LogoStyle>자연치유 쉼</LogoStyle>
             </Link>

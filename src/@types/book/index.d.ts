@@ -1,4 +1,4 @@
-import { BOOKING_TYPE } from "../../const/book/massage";
+import { BOOKING_TYPE } from "../../const/book/time";
 import { valueOf } from "../common";
 
 export type BOOKING_TIME_TYPE = typeof BOOKING_TYPE;
