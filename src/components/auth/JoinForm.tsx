@@ -62,7 +62,6 @@ const JoinForm = () => {
       openModal({
         type: "OneBtnModal",
         props: {
-          icon: "🎉",
           content: "자연치유 쉼의 회원이 되신 걸 환영합니다.",
           confirm: "다시 로그인해주세요.",
         },

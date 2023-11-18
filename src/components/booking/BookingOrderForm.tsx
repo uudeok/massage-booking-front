@@ -3,7 +3,7 @@ import PreviousButton from "../common/button/PreviousButton";
 import BookingSummary from "./BookingSummary";
 import BookingConfirm from "./BookingConfirm";
 
-const BookingForm = () => {
+const BookingOrderForm = () => {
   return (
     <ContainerStyle>
       <PreviousButton />
@@ -13,7 +13,7 @@ const BookingForm = () => {
   );
 };
 
-export default BookingForm;
+export default BookingOrderForm;
 
 const ContainerStyle = styled.div`
   display: flex;

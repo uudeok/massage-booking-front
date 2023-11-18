@@ -11,7 +11,7 @@ export const ContainerStyle = styled.div`
   margin-bottom: 0.5rem;
 
   @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
-    height: 50px;
+    height: 30px;
   }
 `;
 
@@ -87,7 +87,7 @@ export const LoginBoxStyle = styled.div`
 
 export const LogoutBoxStyle = styled.div`
   button {
-    margin-left: 1rem;
+    margin-left: 0.5rem;
     border: none;
     background-color: white;
     font-family: "Pretendard-Regular";

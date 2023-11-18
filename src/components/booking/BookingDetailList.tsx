@@ -13,15 +13,18 @@ const BookingDetailList = () => {
   const {
     data: selectedMassage,
     isFetching,
-    isError,
+    error,
   } = useGetMassageItemQuery(massageId);
+
+  if (error && "status" in error) {
+    return <ErrorPage errorStatus={Number(error.status)} />;
+  }
 
   return (
     <ContainerStyle>
       <InnerBoxStyle>
         {isFetching && <LoadingBar />}
         <PreviousButton />
-        {isError && <ErrorPage errorStatus={null} />}
         {selectedMassage &&
           selectedMassage.detail.map((detail) => (
             <BookingDetail

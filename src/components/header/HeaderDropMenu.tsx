@@ -78,8 +78,4 @@ const MenuButtonStyle = styled.button`
   border: none;
   z-index: 100;
   font-weight: 900;
-
-  &:hover ${MenuListStyle} {
-    display: block;
-  }
 `;

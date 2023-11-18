@@ -1,15 +1,17 @@
 import styled from "styled-components";
 import { TTimeTable } from "../../@types/book";
 import { MEDIA_QUERY } from "../../const/devise";
-import { TSelectedItem } from "./BookingDate";
+import { useDispatch } from "react-redux";
+import { getSelectedTimeDetail } from "../../stores/timeSlice";
+import { addTabNum } from "../../stores/tabSlice";
 
 type TProps = {
   data: TTimeTable[];
-  fetchReservation: (selectedItem: TSelectedItem) => Promise<void>;
   count: number;
 };
 
-const BookingAvailableTime = ({ data, fetchReservation, count }: TProps) => {
+const BookingAvailableTime = ({ data, count }: TProps) => {
+  const dispatch = useDispatch();
   const lastIndex = count - 1;
 
   let num = 0;
@@ -19,34 +21,14 @@ const BookingAvailableTime = ({ data, fetchReservation, count }: TProps) => {
     }
   }
 
-  const checkSelectedItemHandler = (
-    startId: number,
-    startTime: string,
-    endId: number,
-    endTime: string,
-    date: string
-  ) => {
-    const selectedItem = {
-      startId: startId,
-      startTime: startTime,
-      endId: endId,
-      endTime: endTime,
-      date: date,
-    };
-    fetchReservation(selectedItem);
+  const fetchReservation = (data: TTimeTable[]) => {
+    dispatch(getSelectedTimeDetail(data));
+    dispatch(addTabNum());
   };
 
   return (
     <ButtonStyle
-      onClick={() =>
-        checkSelectedItemHandler(
-          data[0].id,
-          data[0].startTime,
-          data[lastIndex].id,
-          data[lastIndex].startTime,
-          data[0].date
-        )
-      }
+      onClick={() => fetchReservation(data)}
       disabled={data[num].type === "BOOK"}
       $isBooked={data[num].type === "BOOK"}
     >

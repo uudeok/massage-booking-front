@@ -4,9 +4,28 @@ import BookingMassageList from "./BookingMassageList";
 import BookingDate from "./BookingDate";
 import { MEDIA_QUERY } from "../../const/devise";
 import BookingDetailList from "./BookingDetailList";
-import BookingForm from "./BookingForm";
+import BookingOrderForm from "./BookingOrderForm";
 import { useSelector, useDispatch } from "react-redux";
 import { currTabNum, resetTabNum } from "../../stores/tabSlice";
+
+const TAB_LIST = [
+  {
+    key: "마사지 선택",
+    content: <BookingMassageList />,
+  },
+  {
+    key: "시간 선택",
+    content: <BookingDetailList />,
+  },
+  {
+    key: "날짜 선택",
+    content: <BookingDate />,
+  },
+  {
+    key: "예약하기",
+    content: <BookingOrderForm />,
+  },
+];
 
 const BookingTab = () => {
   const dispatch = useDispatch();
@@ -17,25 +36,6 @@ const BookingTab = () => {
       dispatch(resetTabNum());
     };
   }, [dispatch]);
-
-  const TAB_LIST = [
-    {
-      key: "마사지 선택",
-      content: <BookingMassageList />,
-    },
-    {
-      key: "시간 선택",
-      content: <BookingDetailList />,
-    },
-    {
-      key: "날짜 선택",
-      content: <BookingDate />,
-    },
-    {
-      key: "예약하기",
-      content: <BookingForm />,
-    },
-  ];
 
   return (
     <>

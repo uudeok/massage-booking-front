@@ -6,11 +6,16 @@ import { useNavigate, Link } from "react-router-dom";
 import DefaultButton from "../common/button/DefaultButton";
 import KakaoButton from "../common/button/KakaoButton";
 import { closeModal } from "../../stores/modalSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useUpdateAvailableTimeListMutation } from "../../api/book/timeQuery";
+import { getTimeDetail } from "../../stores/timeSlice";
 
 const LoginForm = ({ path }: { path?: string }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const selectedTime = useSelector(getTimeDetail);
+  const [updateTime] = useUpdateAvailableTimeListMutation();
+
   const [error, setError] = useState("");
   const { inputValue, changeInputHandler } = useInput({
     email: "",
@@ -30,6 +35,16 @@ const LoginForm = ({ path }: { path?: string }) => {
     return true;
   };
 
+  const changeBookHandler = async () => {
+    try {
+      selectedTime.map((time) =>
+        updateTime({ id: time.id, body: { ...time, type: "BOOK" } })
+      );
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
   const onLoginHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -41,6 +56,9 @@ const LoginForm = ({ path }: { path?: string }) => {
     dispatch(closeModal());
 
     if (path) {
+      // path 가 있다는 건, 예약 화면에서 넘어왔다는 뜻이니까
+      // 예약 확정 API를 여기다 넣어야함
+
       navigate(`/${path}`);
     } else {
       navigate("/");

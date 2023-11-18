@@ -17,8 +17,8 @@ type TProps = {
 const BookingDetail = ({ detail, massage }: TProps) => {
   const dispatch = useDispatch<AppDispatch>();
 
-  const getAvailableTime = async (time: number) => {
-    await dispatch(getSelectedMassageType(time));
+  const getAvailableTime = (time: number) => {
+    dispatch(getSelectedMassageType(time));
     dispatch(addTabNum());
   };
 

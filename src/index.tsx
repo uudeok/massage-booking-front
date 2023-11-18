@@ -3,9 +3,9 @@ import ReactDOM from "react-dom/client";
 import reportWebVitals from "./reportWebVitals";
 import GlobalStyles from "./styles/globalStyles";
 import { RouterProvider } from "react-router-dom";
+import { router } from "./configs/routes";
 import { store } from "./stores/store";
 import { Provider } from "react-redux";
-import { router } from "./configs/routes";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -15,7 +15,6 @@ root.render(
   <>
     <GlobalStyles />
     <Provider store={store}>
-      {/* <ModalContainer /> */}
       <RouterProvider router={router} />
     </Provider>
   </>

@@ -1,13 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { TSelectedItem } from "../components/booking/BookingDate";
 import { RootState } from "./store";
-
-type TInitialState = {
-  selectedTimeDetail: TSelectedItem;
-};
+import { TTimeTable } from "../@types/book";
 
 const initialState = {
-  selectedTimeDetail: {} as TSelectedItem,
+  selectedTimeDetail: [] as TTimeTable[],
 };
 
 export const timeSlice = createSlice({

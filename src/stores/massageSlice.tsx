@@ -19,7 +19,7 @@ export const massageSlice = createSlice({
   name: "massage",
   initialState,
   reducers: {
-    getSelectedMassageId(state, action) {
+    setSelectedMassageId(state, action) {
       state.massageId = action.payload;
     },
     getSelectedMassageType(state, action) {
@@ -44,7 +44,7 @@ export const getMassageDetail = (state: RootState) =>
   state.massage.selectedMassageDetail;
 export const getMassageId = (state: RootState) => state.massage.massageId;
 
-export const { getSelectedMassageId, getSelectedMassageType } =
+export const { setSelectedMassageId, getSelectedMassageType } =
   massageSlice.actions;
 
 export default massageSlice.reducer;

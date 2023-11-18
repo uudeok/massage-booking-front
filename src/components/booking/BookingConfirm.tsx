@@ -14,37 +14,35 @@ const BookingConfirm = () => {
     setIsChecked((prev) => !prev);
   };
 
-  const bookMassageHandler = () => {
+  const showNoticeHandler = () => {
     if (!isChecked) return setIsError("* 예약 내역을 확인 후 체크해주세요.");
     dispatch(openModal({ type: "NoticeModal" }));
   };
 
   return (
-    <>
-      <ConfirmBoxStyle>
-        <CheckBoxStyle>
-          <CheckStyle>
-            <input
-              type="checkbox"
-              checked={isChecked}
-              onChange={changeCheckedHandler}
-            />
-            <p>위 내용을 모두 확인 하였습니다.</p>
-          </CheckStyle>
-          {error && <WarningStyle>{error}</WarningStyle>}
-        </CheckBoxStyle>
-        <ButtonBoxStyle>
-          <DefaultButton
-            onClick={bookMassageHandler}
-            width="10rem"
-            backgroundColor="#76916a"
-            color="white"
-          >
-            예약하기
-          </DefaultButton>
-        </ButtonBoxStyle>
-      </ConfirmBoxStyle>
-    </>
+    <ConfirmBoxStyle>
+      <CheckBoxStyle>
+        <CheckStyle>
+          <input
+            type="checkbox"
+            checked={isChecked}
+            onChange={changeCheckedHandler}
+          />
+          <p>위 내용을 모두 확인 하였습니다.</p>
+        </CheckStyle>
+        {error && <WarningStyle>{error}</WarningStyle>}
+      </CheckBoxStyle>
+      <ButtonBoxStyle>
+        <DefaultButton
+          onClick={showNoticeHandler}
+          width="10rem"
+          backgroundColor="#76916a"
+          color="white"
+        >
+          예약하기
+        </DefaultButton>
+      </ButtonBoxStyle>
+    </ConfirmBoxStyle>
   );
 };
 

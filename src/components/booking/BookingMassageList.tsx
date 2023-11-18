@@ -6,12 +6,15 @@ import ErrorPage from "../common/error/ErrorPage";
 import { useGetMassageListQuery } from "../../api/massage/massageQuery";
 
 const BookingMassageList = () => {
-  const { data: massageList, isFetching, isError } = useGetMassageListQuery();
+  const { data: massageList, isFetching, error } = useGetMassageListQuery();
+
+  if (error && "status" in error) {
+    return <ErrorPage errorStatus={Number(error.status)} />;
+  }
 
   return (
     <>
       {isFetching && <LoadingBar />}
-      {isError && <ErrorPage errorStatus={null} />}
       <ContentBoxStyle>
         <ListBoxStyle>
           {massageList &&

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { MASSAGE_ITEM } from "../../const/book/massage";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../stores/store";
-import { getSelectedMassageId } from "../../stores/massageSlice";
+import { setSelectedMassageId } from "../../stores/massageSlice";
 import { addTabNum } from "../../stores/tabSlice";
 import DefaultButton from "../common/button/DefaultButton";
 
@@ -14,8 +14,8 @@ type TProps = {
 const BookingMassageItem = ({ massage }: TProps) => {
   const dispatch = useDispatch<AppDispatch>();
 
-  const getMassageItem = async (massageId: number) => {
-    await dispatch(getSelectedMassageId(massageId));
+  const selectMassageItem = (massageId: number) => {
+    dispatch(setSelectedMassageId(massageId));
     dispatch(addTabNum());
   };
 
@@ -28,7 +28,7 @@ const BookingMassageItem = ({ massage }: TProps) => {
         <h3>{MASSAGE_ITEM[massage.item]}</h3>
         <span>{massage.content}</span>
         <DefaultButton
-          onClick={() => getMassageItem(massage.id)}
+          onClick={() => selectMassageItem(massage.id)}
           backgroundColor="#afc9a4"
           color="white"
         >

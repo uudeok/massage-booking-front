@@ -6,7 +6,6 @@ import { useDispatch } from "react-redux";
 import { closeModal } from "../../../../stores/modalSlice";
 
 export type TOneBtnModalType = {
-  icon: string;
   content: string;
   confirm?: string;
 };
@@ -23,7 +22,7 @@ const OneBtnModal = ({ ...props }: TOneBtnModalType) => {
   return (
     <ModalStyle>
       <ContainerStyle>
-        <IconStyle>{props.icon}</IconStyle>
+        {/* <IconStyle>{props.icon}</IconStyle> */}
         <ContentStyle>
           <div>{props.content}</div>
           <div>{props.confirm}</div>

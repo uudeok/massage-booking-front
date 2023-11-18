@@ -3,7 +3,7 @@ import { MEDIA_QUERY } from "../../const/devise";
 import { useSelector } from "react-redux";
 import { MASSAGE_ITEM } from "../../const/book/massage";
 import { addComma } from "../../util/price";
-import { addMinutesUnit } from "../../util/time";
+import { addMinutesUnit, divisionType } from "../../util/time";
 import { getMassageDetail, getMassageItem } from "../../stores/massageSlice";
 import { TMassageTable } from "../../@types/massage";
 import { getTimeDetail } from "../../stores/timeSlice";
@@ -12,8 +12,16 @@ const BookingSummary = () => {
   const selectedMassage = useSelector(getMassageItem) as TMassageTable;
   const selectedDetail = useSelector(getMassageDetail);
   const selectedTime = useSelector(getTimeDetail);
+
   const time = selectedDetail[0].time;
   const price = selectedDetail[0].price;
+  const type = divisionType(time);
+  const lastIndex = type - 1;
+
+  const date = selectedTime[0].date;
+
+  const startTime = selectedTime[0].startTime;
+  const endTime = selectedTime[lastIndex].startTime;
 
   return (
     <>
@@ -22,8 +30,7 @@ const BookingSummary = () => {
         <TimeBoxStyle>
           <span>마사지 시간</span>
           <span>
-            {selectedTime.startTime} - {selectedTime.endTime} (
-            {addMinutesUnit(time)})
+            {startTime} - {endTime} ({addMinutesUnit(time)})
           </span>
         </TimeBoxStyle>
         <ItemBoxStyle>
@@ -32,7 +39,7 @@ const BookingSummary = () => {
         </ItemBoxStyle>
         <ItemBoxStyle>
           <span>받으실 날짜</span>
-          <span>{selectedTime.date}</span>
+          <span>{date}</span>
         </ItemBoxStyle>
         <LastItemBoxStyle>
           <span>금액</span>

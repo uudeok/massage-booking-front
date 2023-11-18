@@ -1,10 +1,13 @@
 import styled from "styled-components";
 import DefaultButton from "../common/button/DefaultButton";
 import { MEDIA_QUERY } from "../../const/devise";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { closeModal, openModal } from "../../stores/modalSlice";
 import { getAuthUser } from "../../util/auth";
 import { useNavigate } from "react-router-dom";
+import { useUpdateAvailableTimeListMutation } from "../../api/book/timeQuery";
+import { getTimeDetail } from "../../stores/timeSlice";
+import pLimit from "p-limit";
 
 const BOOKING_NOTICE = [
   { content: "결제는 현장에서 진행 됩니다.", id: 1 },
@@ -32,17 +35,21 @@ const BOOKING_NOTICE = [
   },
 ];
 
+const limit = pLimit(1);
+
 const BookingNotice = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const getAuth = getAuthUser();
+  const selectedTime = useSelector(getTimeDetail);
+
+  const [updateTime] = useUpdateAvailableTimeListMutation();
 
   const showMyPageHandler = () => {
     dispatch(
       openModal({
         type: "OneBtnModal",
         props: {
-          icon: "💗",
           content: "예약이 완료 되었습니다.",
           confirm: "마이페이지에서 확인 가능합니다.",
         },
@@ -51,10 +58,28 @@ const BookingNotice = () => {
     navigate("/mypage/book");
   };
 
-  const showLoginFormHandler = () => {
+  const changeBookHandler = async () => {
+    try {
+      const updateTimePromiseList = selectedTime.map((time) =>
+        limit(() =>
+          updateTime({ id: time.id, body: { ...time, type: "BOOK" } }).unwrap()
+        )
+      );
+      const updateTimePromiseListResult = await Promise.all(
+        updateTimePromiseList
+      );
+
+      console.log(updateTimePromiseListResult);
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  const bookMassageHandler = () => {
     dispatch(closeModal());
 
     if (getAuth) {
+      changeBookHandler();
       showMyPageHandler();
       return;
     }
@@ -66,6 +91,7 @@ const BookingNotice = () => {
     <ContainerStyle>
       <NoticeFormStyle>
         <h2>※ 예약 안내</h2>
+
         {BOOKING_NOTICE.map((item) => (
           <NoticeItemStyle key={item.id}>
             <span>•</span>
@@ -81,7 +107,7 @@ const BookingNotice = () => {
           width="12rem"
           backgroundColor="#afc9a4"
           color="white"
-          onClick={showLoginFormHandler}
+          onClick={bookMassageHandler}
         >
           확인
         </DefaultButton>
