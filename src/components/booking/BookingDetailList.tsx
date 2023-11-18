@@ -3,18 +3,18 @@ import styled from "styled-components";
 import PreviousButton from "../common/button/PreviousButton";
 import BookingDetail from "./BookingDetail";
 import { DEVISE_SIZE } from "../../const/devise";
-import { getMassageId } from "../../stores/massageSlice";
+import { getMassageItem } from "../../stores/massageSlice";
 import ErrorPage from "../common/error/ErrorPage";
 import { useGetMassageItemQuery } from "../../api/massage/massageQuery";
 import LoadingBar from "../common/loading/LoadingBar";
 
 const BookingDetailList = () => {
-  const massageId = useSelector(getMassageId);
+  const massageItem = useSelector(getMassageItem);
   const {
     data: selectedMassage,
     isFetching,
     error,
-  } = useGetMassageItemQuery(massageId);
+  } = useGetMassageItemQuery(massageItem);
 
   if (error && "status" in error) {
     return <ErrorPage errorStatus={Number(error.status)} />;
@@ -26,9 +26,9 @@ const BookingDetailList = () => {
         {isFetching && <LoadingBar />}
         <PreviousButton />
         {selectedMassage &&
-          selectedMassage.detail.map((detail) => (
+          selectedMassage.details.map((detail) => (
             <BookingDetail
-              key={detail.id}
+              key={detail.time}
               detail={detail}
               massage={selectedMassage}
             />

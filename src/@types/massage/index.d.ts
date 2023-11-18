@@ -13,9 +13,9 @@ export type TMassageDetail = {
 };
 
 export type TMassageTable = {
-  img: string;
+  image: string;
   item: BOOKING_ITEM_KEYS;
   id: number;
   content: string;
-  detail: IMassageDetail[];
+  details: IMassageDetail[];
 };

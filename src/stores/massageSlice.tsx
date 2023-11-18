@@ -6,24 +6,24 @@ import { massageApi } from "../api/massage/massageQuery";
 type TInitialState = {
   selectedMassageItem: TMassageTable;
   selectedMassageDetail: TMassageDetail[];
-  massageId: number;
+  massageItem: string;
 };
 
 const initialState: TInitialState = {
   selectedMassageItem: {} as TMassageTable,
   selectedMassageDetail: [],
-  massageId: 0,
+  massageItem: "",
 };
 
 export const massageSlice = createSlice({
   name: "massage",
   initialState,
   reducers: {
-    setSelectedMassageId(state, action) {
-      state.massageId = action.payload;
+    setSelectedMassageItem(state, action) {
+      state.massageItem = action.payload;
     },
-    getSelectedMassageType(state, action) {
-      state.selectedMassageDetail = state.selectedMassageItem.detail.filter(
+    setSelectedMassageType(state, action) {
+      state.selectedMassageDetail = state.selectedMassageItem.details.filter(
         (item) => item.time === action.payload
       );
     },
@@ -38,13 +38,13 @@ export const massageSlice = createSlice({
   },
 });
 
-export const getMassageItem = (state: RootState) =>
+export const getSelectedMassageItem = (state: RootState) =>
   state.massage.selectedMassageItem;
 export const getMassageDetail = (state: RootState) =>
   state.massage.selectedMassageDetail;
-export const getMassageId = (state: RootState) => state.massage.massageId;
+export const getMassageItem = (state: RootState) => state.massage.massageItem;
 
-export const { setSelectedMassageId, getSelectedMassageType } =
+export const { setSelectedMassageItem, setSelectedMassageType } =
   massageSlice.actions;
 
 export default massageSlice.reducer;

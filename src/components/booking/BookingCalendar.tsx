@@ -30,6 +30,7 @@ const BookingCalendar = ({
         <Calendar
           changeDateHandler={changeDateHandler}
           selectedDate={selectedDate}
+          setSelectedDate={setSelectedDate}
         />
       </CalendarMiddleBoxStyle>
 

@@ -4,21 +4,19 @@ import { MEDIA_QUERY } from "../../const/devise";
 import LoadingBar from "../common/loading/LoadingBar";
 import { useGetMassageListQuery } from "../../api/massage/massageQuery";
 
-import ErrorPage from "../common/error/ErrorPage";
-
 const Massage = () => {
-  const { data: massageList, isFetching, isError } = useGetMassageListQuery();
+  const { data: massageList } = useGetMassageListQuery();
 
-  // RTK Query 로 API 호출 60초(기본값) 동안 캐싱 데이터 가져옴
+  if (!massageList) {
+    return <LoadingBar />;
+  }
 
   return (
     <>
       <HeaderStyle>Program</HeaderStyle>
-      {isFetching && <LoadingBar />}
-      {isError && <ErrorPage errorStatus={null} />}
       <MassageContainerStyle>
         <MassageInnerBoxStyle>
-          <MassageSlide data={massageList} />
+          <MassageSlide massageList={massageList} />
         </MassageInnerBoxStyle>
       </MassageContainerStyle>
     </>

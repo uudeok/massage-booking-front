@@ -6,14 +6,18 @@ import BookingCalendar from "./BookingCalendar";
 import BookingAvailableTime from "./BookingAvailableTime";
 import { useSelector } from "react-redux";
 import { getMassageDetail } from "../../stores/massageSlice";
-import { divisionTime, makeSimpleDate, validationDate } from "../../util/time";
+import { divisionTime } from "../../util/time";
 import { useGetAvailableTimeListQuery } from "../../api/book/timeQuery";
 import LoadingBar from "../common/loading/LoadingBar";
 import ErrorPage from "../common/error/ErrorPage";
 import AlertPage from "../common/error/AlertPage";
+import { makeSimpleDate, validationDate } from "../../util/date";
+import { setHours, setMinutes } from "date-fns";
 
 const BookingDate = () => {
-  const [selectedDate, setSelectedDate] = useState<Date>(new Date());
+  const [selectedDate, setSelectedDate] = useState<Date>(
+    setHours(setMinutes(new Date(), 0), 9)
+  );
   const detail = useSelector(getMassageDetail);
   const selectedType = detail[0].time;
 

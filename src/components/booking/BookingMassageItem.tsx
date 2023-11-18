@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { MASSAGE_ITEM } from "../../const/book/massage";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../stores/store";
-import { setSelectedMassageId } from "../../stores/massageSlice";
+import { setSelectedMassageItem } from "../../stores/massageSlice";
 import { addTabNum } from "../../stores/tabSlice";
 import DefaultButton from "../common/button/DefaultButton";
 
@@ -14,21 +14,26 @@ type TProps = {
 const BookingMassageItem = ({ massage }: TProps) => {
   const dispatch = useDispatch<AppDispatch>();
 
-  const selectMassageItem = (massageId: number) => {
-    dispatch(setSelectedMassageId(massageId));
+  const selectMassageItem = (massageItem: string) => {
+    dispatch(setSelectedMassageItem(massageItem));
     dispatch(addTabNum());
   };
 
   return (
     <ItemBoxStyle>
       <ImgBoxStyle>
-        <img src={massage.img} alt={massage.item} width="100%" height="100%" />
+        <img
+          src={massage.image}
+          alt={massage.item}
+          width="100%"
+          height="100%"
+        />
       </ImgBoxStyle>
       <ItemContentBoxStyle>
         <h3>{MASSAGE_ITEM[massage.item]}</h3>
         <span>{massage.content}</span>
         <DefaultButton
-          onClick={() => selectMassageItem(massage.id)}
+          onClick={() => selectMassageItem(massage.item)}
           backgroundColor="#afc9a4"
           color="white"
         >

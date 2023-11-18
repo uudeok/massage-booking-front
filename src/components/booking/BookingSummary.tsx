@@ -4,12 +4,15 @@ import { useSelector } from "react-redux";
 import { MASSAGE_ITEM } from "../../const/book/massage";
 import { addComma } from "../../util/price";
 import { addMinutesUnit, divisionType } from "../../util/time";
-import { getMassageDetail, getMassageItem } from "../../stores/massageSlice";
+import {
+  getMassageDetail,
+  getSelectedMassageItem,
+} from "../../stores/massageSlice";
 import { TMassageTable } from "../../@types/massage";
 import { getTimeDetail } from "../../stores/timeSlice";
 
 const BookingSummary = () => {
-  const selectedMassage = useSelector(getMassageItem) as TMassageTable;
+  const selectedMassage = useSelector(getSelectedMassageItem) as TMassageTable;
   const selectedDetail = useSelector(getMassageDetail);
   const selectedTime = useSelector(getTimeDetail);
 

@@ -5,7 +5,7 @@ import { addMinutesUnit } from "../../util/time";
 import { MEDIA_QUERY } from "../../const/devise";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../stores/store";
-import { getSelectedMassageType } from "../../stores/massageSlice";
+import { setSelectedMassageType } from "../../stores/massageSlice";
 import { addTabNum } from "../../stores/tabSlice";
 import { addComma } from "../../util/price";
 
@@ -17,8 +17,8 @@ type TProps = {
 const BookingDetail = ({ detail, massage }: TProps) => {
   const dispatch = useDispatch<AppDispatch>();
 
-  const getAvailableTime = (time: number) => {
-    dispatch(getSelectedMassageType(time));
+  const setAvailableTime = (time: number) => {
+    dispatch(setSelectedMassageType(time));
     dispatch(addTabNum());
   };
 
@@ -34,7 +34,7 @@ const BookingDetail = ({ detail, massage }: TProps) => {
         </MiddleStyle>
         <BottomStyle>
           <h3>{addMinutesUnit(detail.time)}</h3>
-          <ButtonStyle onClick={() => getAvailableTime(detail.time)}>
+          <ButtonStyle onClick={() => setAvailableTime(detail.time)}>
             선택하기
           </ButtonStyle>
         </BottomStyle>

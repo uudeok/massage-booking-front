@@ -1,16 +1,24 @@
 import NoticeMainItem from "./NoticeMainItem";
 import styled from "styled-components";
-import { useGetLatestNoticeListQuery } from "../../../../api/notice/noticeQuery";
+import { useGetNoticeListQuery } from "../../../../api/notice/noticeQuery";
+import LoadingBar from "../../../common/loading/LoadingBar";
 
 const NoticesMainList = () => {
-  const { data: noticeList } = useGetLatestNoticeListQuery();
+  const { data } = useGetNoticeListQuery({
+    pageNumber: 1,
+    pageSize: 5,
+    // 최신순 5개 글만 가져옴
+  });
+
+  if (!data) return <LoadingBar />;
+  const noticeList = data.notices;
 
   return (
     <NoticeBoxStyle>
       {noticeList &&
-        noticeList.map((item) => (
-          <NoticeItemBoxStyle key={item.date}>
-            <NoticeMainItem item={item} />
+        noticeList.map((notice) => (
+          <NoticeItemBoxStyle key={notice.id}>
+            <NoticeMainItem notice={notice} />
           </NoticeItemBoxStyle>
         ))}
     </NoticeBoxStyle>

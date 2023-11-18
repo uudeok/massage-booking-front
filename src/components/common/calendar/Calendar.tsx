@@ -8,16 +8,24 @@ import { getDay } from "date-fns";
 interface IProps {
   changeDateHandler: (date: Date) => void;
   selectedDate: Date;
+  setSelectedDate: React.Dispatch<React.SetStateAction<Date>>;
 }
 
 const SUNDAY = 0;
 
 const Calendar = ({ changeDateHandler, selectedDate }: IProps) => {
-  const addOneMonth = dayjs().add(1, "month").format();
+  const addOneMonth = dayjs().add(2, "weeks").format();
 
   const isOffDay = (date: Date | number) => {
     const day = getDay(date);
     return day !== SUNDAY;
+  };
+
+  const filterPassedTime = (time: Date) => {
+    const currentDate = new Date();
+    const selectedDate = new Date(time);
+
+    return currentDate.getTime() < selectedDate.getTime();
   };
 
   return (
@@ -30,7 +38,8 @@ const Calendar = ({ changeDateHandler, selectedDate }: IProps) => {
       onChange={changeDateHandler}
       locale={ko}
       filterDate={isOffDay} // 쉬는 요일 선택 불가
-      excludeDates={[]} // 특정 날 선택 불가?? 어드민에서 어떻게 제어할건지
+      showTimeSelect
+      filterTime={filterPassedTime}
     />
   );
 };

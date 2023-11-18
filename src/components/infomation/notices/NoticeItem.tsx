@@ -1,20 +1,16 @@
 import styled from "styled-components";
-import { TNotice } from "../../../@types/notice";
+import { TNoticeDetail } from "../../../@types/notice";
 import { NOTICE_CATEGORY } from "../../../const/notices";
 import { Link } from "react-router-dom";
 import { MEDIA_QUERY } from "../../../const/devise";
 import LoadingBar from "../../common/loading/LoadingBar";
-import EmptyPage from "../../common/error/EmptyPage";
-import ErrorPage from "../../common/error/ErrorPage";
 
 type TProps = {
-  notice: TNotice[];
+  notice: TNoticeDetail[];
   isFetching: boolean;
-  isError: boolean;
-  isEmpty: boolean;
 };
 
-const NoticeItem = ({ notice, isFetching, isError, isEmpty }: TProps) => {
+const NoticeItem = ({ notice, isFetching }: TProps) => {
   return (
     <>
       <HeaderStyle>
@@ -25,8 +21,7 @@ const NoticeItem = ({ notice, isFetching, isError, isEmpty }: TProps) => {
       </HeaderStyle>
       <ContentBoxStyle>
         {isFetching && <LoadingBar />}
-        {isError && <ErrorPage errorStatus={null} />}
-        {isEmpty && <EmptyPage />}
+
         {notice &&
           notice.map((item) => (
             <ContentStyle key={item.id}>
@@ -36,8 +31,8 @@ const NoticeItem = ({ notice, isFetching, isError, isEmpty }: TProps) => {
               <ContentTitleStyle>
                 <Link to={`/notice/${item.id}`}>{item.title}</Link>
               </ContentTitleStyle>
-              <ContentDateStyle>{item.date}</ContentDateStyle>
-              <ContentViewStyle>{item.id}</ContentViewStyle>
+              <ContentDateStyle>{item.createdAt.slice(0, 10)}</ContentDateStyle>
+              <ContentViewStyle>{item.viewCount}</ContentViewStyle>
             </ContentStyle>
           ))}
       </ContentBoxStyle>

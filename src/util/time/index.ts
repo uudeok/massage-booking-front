@@ -1,5 +1,4 @@
 import { TTimeTable } from "../../@types/book";
-import dayjs from "dayjs";
 
 export const addMinutesUnit = (minute: number) => {
   return minute + "분";
@@ -29,20 +28,6 @@ export const divisionTime = (type: number, timeList: TTimeTable[]) => {
   const remainderArray = newArray.filter((arr) => arr.length === count);
 
   return { remainderArray, count };
-};
-
-export const makeSimpleDate = (selectedDate: Date) => {
-  const simpleDate = dayjs(selectedDate).format("YYYY-MM-DD");
-  return simpleDate;
-};
-
-export const validationDate = (selectedDate: Date) => {
-  const today = dayjs(new Date()).format("YYYY-MM-DD");
-  const date = dayjs(selectedDate).format("YYYY-MM-DD");
-
-  const isPassedDate = date < today;
-
-  return isPassedDate;
 };
 
 export const checkIdRange = (startId: number, endId: number) => {

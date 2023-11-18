@@ -1,17 +1,20 @@
-import { generate_massage } from "..";
+import { generate_ITEM } from "..";
 import { TMassageTable } from "../../@types/massage";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const massageApi = createApi({
   reducerPath: "massageApi",
-  baseQuery: fetchBaseQuery({ baseUrl: generate_massage }),
+  baseQuery: fetchBaseQuery({ baseUrl: generate_ITEM }),
   tagTypes: ["massage"],
   endpoints: (builder) => ({
     getMassageList: builder.query<TMassageTable[], void>({
       query: () => "/",
+      transformResponse: (response: { items: TMassageTable[] }, meta) => {
+        return response.items;
+      },
     }),
-    getMassageItem: builder.query<TMassageTable, number>({
-      query: (id) => `/${id}`,
+    getMassageItem: builder.query<TMassageTable, string>({
+      query: (item) => `/${item}`,
     }),
 
     postMassageList: builder.mutation({

@@ -7,17 +7,25 @@ import { MEDIA_QUERY } from "../../../const/devise";
 import Paging from "../../pagination/Paging";
 import { NOTICE_CATEGORY_KEYS } from "../../../@types/notice";
 import { useGetNoticeListQuery } from "../../../api/notice/noticeQuery";
+import LoadingBar from "../../common/loading/LoadingBar";
+
+const NOTICE_LIST_PAGE_SIZE = 10;
 
 const NoticesList = () => {
-  const [category, setCategory] = useState<NOTICE_CATEGORY_KEYS>("ALL");
+  const [category, setCategory] = useState<NOTICE_CATEGORY_KEYS>();
   const [page, setPage] = useState(1);
   const navigate = useNavigate();
 
-  const {
-    data: noticeList,
-    isFetching,
-    isError,
-  } = useGetNoticeListQuery(category);
+  const { data, isFetching } = useGetNoticeListQuery({
+    pageNumber: page,
+    pageSize: NOTICE_LIST_PAGE_SIZE,
+    category: category,
+  });
+
+  if (!data) return <LoadingBar />;
+
+  const noticeList = data.notices;
+  const meta = data.meta;
 
   const changePageHandler = (page: number) => {
     setPage(page);
@@ -28,15 +36,13 @@ const NoticesList = () => {
     navigate(`/notice/?category=${e.target.value}`);
   };
 
-  const isEmpty = noticeList?.length === 0;
-
   return (
     <ContainerStyle>
       <InnerBoxStyle>
         <HeaderStyle>
           <TitleStyle>📢공지사항</TitleStyle>
           <CategoryListStyle onChange={changeCategoryHandler}>
-            <option value="ALL">전체</option>
+            <option value="">전체</option>
             {NOTICE_CATEGORIES.map((item, index) => (
               <option key={index} id={item.key} value={item.key}>
                 {item.value}
@@ -44,17 +50,12 @@ const NoticesList = () => {
             ))}
           </CategoryListStyle>
         </HeaderStyle>
-        <NoticeItem
-          notice={noticeList!}
-          isFetching={isFetching}
-          isError={isError}
-          isEmpty={isEmpty}
-        />
+        <NoticeItem notice={noticeList} isFetching={isFetching} />
         <Paging
           page={page}
           changePageHandler={changePageHandler}
-          count={5}
-          pageSize={10}
+          count={meta.totalCount}
+          pageSize={NOTICE_LIST_PAGE_SIZE}
         />
       </InnerBoxStyle>
     </ContainerStyle>

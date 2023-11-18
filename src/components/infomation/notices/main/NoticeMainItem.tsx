@@ -1,15 +1,18 @@
 import styled from "styled-components";
-import { TNotice } from "../../../../@types/notice";
+import { TNoticeDetail } from "../../../../@types/notice";
 import { Link } from "react-router-dom";
 import { MEDIA_QUERY } from "../../../../const/devise";
+import { makeSliceDate } from "../../../../util/date";
 
-const NoticeMainItem = ({ item }: { item: TNotice }) => {
+const NoticeMainItem = ({ notice }: { notice: TNoticeDetail }) => {
+  const createdAt = makeSliceDate(notice.createdAt);
+
   return (
     <>
       <NoticeItemTitleStyle>
-        <Link to={`/notice/${item.id}`}>{item.title}</Link>
+        <Link to={`/notice/${notice.id}`}>{notice.title}</Link>
       </NoticeItemTitleStyle>
-      <NoticeItemDateStyle>{item.date}</NoticeItemDateStyle>
+      <NoticeItemDateStyle>{createdAt}</NoticeItemDateStyle>
     </>
   );
 };

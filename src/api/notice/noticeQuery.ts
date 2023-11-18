@@ -1,27 +1,35 @@
-import { generate_notice } from "..";
-import { NOTICE_CATEGORY_KEYS, TNotice } from "../../@types/notice";
+import { generate_NOTICE } from "..";
+import {
+  NOTICE_CATEGORY_KEYS,
+  NoticeType,
+  TNoticeDetail,
+} from "../../@types/notice";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const noticeApi = createApi({
   reducerPath: "noticeApi",
-  baseQuery: fetchBaseQuery({ baseUrl: generate_notice }),
+  baseQuery: fetchBaseQuery({ baseUrl: generate_NOTICE }),
   tagTypes: ["notice"],
   endpoints: (builder) => ({
-    getNoticeList: builder.query<TNotice[], NOTICE_CATEGORY_KEYS>({
-      query: (category) =>
-        category === "ALL" ? "/" : `/?category=${category}`,
+    getNoticeList: builder.query<
+      NoticeType,
+      { pageNumber: number; pageSize: number; category?: NOTICE_CATEGORY_KEYS }
+    >({
+      query: (arg) => {
+        const { pageNumber, pageSize, category } = arg;
+        console.log(pageNumber, pageSize, category);
+
+        return {
+          url: "/",
+          params: { pageNumber, pageSize, category },
+        };
+      },
     }),
-    getLatestNoticeList: builder.query<TNotice[], void>({
-      query: () => "/?_sort=date&_order=desc",
-    }),
-    getNoticeDetail: builder.query<TNotice, number>({
+
+    getNoticeDetail: builder.query<TNoticeDetail, number>({
       query: (id) => `/${id}`,
     }),
   }),
 });
 
-export const {
-  useGetNoticeListQuery,
-  useGetLatestNoticeListQuery,
-  useGetNoticeDetailQuery,
-} = noticeApi;
+export const { useGetNoticeListQuery, useGetNoticeDetailQuery } = noticeApi;

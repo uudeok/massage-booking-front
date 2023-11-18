@@ -7,6 +7,7 @@ import { noticeApi } from "../api/notice/noticeQuery";
 import { timeApi } from "../api/book/timeQuery";
 import timeSlice from "./timeSlice";
 import modalSlice from "./modalSlice";
+import { ordersApi } from "../api/orders/ordersQuery";
 
 export const store = configureStore({
   reducer: {
@@ -17,13 +18,15 @@ export const store = configureStore({
     [massageApi.reducerPath]: massageApi.reducer,
     [noticeApi.reducerPath]: noticeApi.reducer,
     [timeApi.reducerPath]: timeApi.reducer,
+    [ordersApi.reducerPath]: ordersApi.reducer,
   },
   devTools: true,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(
       massageApi.middleware,
       noticeApi.middleware,
-      timeApi.middleware
+      timeApi.middleware,
+      ordersApi.middleware
     ),
 });
 

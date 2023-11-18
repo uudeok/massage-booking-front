@@ -4,10 +4,9 @@ import styled from "styled-components";
 import { Autoplay } from "swiper/modules";
 import { Link } from "react-router-dom";
 import { MASSAGE_ITEM } from "../../const/book/massage";
-import { MEDIA_QUERY } from "../../const/devise";
 import { TMassageTable } from "../../@types/massage";
 
-const MassageSlide = ({ data }: { data: TMassageTable[] | undefined }) => {
+const MassageSlide = ({ massageList }: { massageList: TMassageTable[] }) => {
   return (
     <Swiper
       modules={[Autoplay]}
@@ -23,14 +22,14 @@ const MassageSlide = ({ data }: { data: TMassageTable[] | undefined }) => {
         768: { slidesPerView: 2 },
       }}
     >
-      {data &&
-        data.map((massage) => (
+      {massageList &&
+        massageList.map((massage) => (
           <SwiperSlide key={massage.id}>
             <Link to="/program">
               <ContainerStyle>
                 <ItemImgStyle>
                   <img
-                    src={massage.img}
+                    src={massage.image}
                     alt={massage.content}
                     width="100%"
                     height="100%"

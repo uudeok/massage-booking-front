@@ -2,48 +2,34 @@ import styled from "styled-components";
 import { addComma } from "../../../util/price";
 import { MEDIA_QUERY } from "../../../const/devise";
 import {
-  MY_BOOK_LIST_TYPE,
   ORDER_STATUS_TYPE_KEYS,
-} from "../../../@types/mypage";
+  TOrderType,
+} from "../../../@types/mypage/orders";
 import { MASSAGE_ITEM } from "../../../const/book/massage";
 import { ORDER_STATUS } from "../../../const/mypage";
 
-const MyBookItem = ({ book }: { book: MY_BOOK_LIST_TYPE }) => {
-  const isWaiting =
-    book.orderStatus === "requesting" || book.orderStatus === "confirmed";
-
-  const cancelOrderHandler = (
-    orderStatus: ORDER_STATUS_TYPE_KEYS,
-    id: number
-  ) => {
-    /// 예약 시간
-  };
-
+const MyOrderItem = ({ order }: { order: TOrderType }) => {
+  console.log(order);
   return (
     <BookItemStyle>
-      <OrderDateStyle>{book.orderDate}</OrderDateStyle>
-      <OrderItemStyle>{MASSAGE_ITEM[book.orderItem]}</OrderItemStyle>
+      <OrderDateStyle>{order.createdAt}</OrderDateStyle>
+      {/* <OrderItemStyle>{MASSAGE_ITEM[book.orderItem]}</OrderItemStyle> */}
 
       <OrderDetailStyle>
-        <span>{book.massageDate}</span>
-        <span>{book.massageTime}</span>
+        <span>{order.startReservedAt}</span>
+        <span>{order.endReservedAt}</span>
       </OrderDetailStyle>
-      <OrderPriceStyle>{addComma(book.orderPrice)}</OrderPriceStyle>
+      <OrderPriceStyle>{addComma(order.price)}</OrderPriceStyle>
       <OrderStatusStyle>
-        <span>{ORDER_STATUS[book.orderStatus]}</span>
-        {isWaiting && (
-          <ButtonStyle
-            onClick={() => cancelOrderHandler(book.orderStatus, book.id)}
-          >
-            예약취소
-          </ButtonStyle>
-        )}
+        {/* <span>{ORDER_STATUS[book.orderStatus]}</span> */}
+
+        <ButtonStyle>예약취소</ButtonStyle>
       </OrderStatusStyle>
     </BookItemStyle>
   );
 };
 
-export default MyBookItem;
+export default MyOrderItem;
 
 const BookItemStyle = styled.div`
   display: flex;

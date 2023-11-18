@@ -1,9 +1,10 @@
-import { TNotice } from "../../../@types/notice";
+import { TNoticeDetail } from "../../../@types/notice";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { MEDIA_QUERY } from "../../../const/devise";
+import { makeSliceDate } from "../../../util/date";
 
-const Notice = ({ detail }: { detail: TNotice }) => {
+const Notice = ({ detail }: { detail: TNoticeDetail }) => {
   const navigate = useNavigate();
 
   return (
@@ -19,11 +20,11 @@ const Notice = ({ detail }: { detail: TNotice }) => {
         </HeaderItemStyle>
         <HeaderItemStyle>
           <span>작성일</span>
-          <span>{detail.date}</span>
+          <span>{makeSliceDate(detail.createdAt)}</span>
         </HeaderItemStyle>
         <HeaderItemStyle>
           <span>조회수</span>
-          <span>{detail.id}</span>
+          <span>{detail.viewCount}</span>
         </HeaderItemStyle>
       </HeaderBoxStyle>
       <ContentBoxStyle>
@@ -66,6 +67,8 @@ const HeaderItemStyle = styled.div`
 const ContentBoxStyle = styled.div`
   padding: 1rem;
   border-bottom: 1px solid grey;
+  line-height: 2rem;
+  font-size: 1.2rem;
 
   @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
     font-size: 0.8rem;

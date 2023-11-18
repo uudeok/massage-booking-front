@@ -3,11 +3,10 @@ import styled from "styled-components";
 import Notice from "./Notice";
 import { MEDIA_QUERY } from "../../../const/devise";
 import { useGetNoticeDetailQuery } from "../../../api/notice/noticeQuery";
-import ErrorPage from "../../common/error/ErrorPage";
 
 const NoticeDetail = () => {
   const { id } = useParams();
-  const { data: noticeDetail, isError } = useGetNoticeDetailQuery(Number(id));
+  const { data: noticeDetail } = useGetNoticeDetailQuery(Number(id));
 
   return (
     <ContainerStyle>
@@ -15,7 +14,7 @@ const NoticeDetail = () => {
         <NoticeBoxStyle>
           <TitleStyle>공지사항</TitleStyle>
         </NoticeBoxStyle>
-        {isError && <ErrorPage errorStatus={null} />}
+
         {noticeDetail && <Notice detail={noticeDetail} />}
       </InnerBoxStyle>
     </ContainerStyle>

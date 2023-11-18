@@ -4,12 +4,9 @@ import { MEDIA_QUERY } from "../../../const/devise";
 import Banner from "../../banner/Banner";
 import LoadingBar from "../../common/loading/LoadingBar";
 import { useGetMassageListQuery } from "../../../api/massage/massageQuery";
-import ErrorPage from "../../common/error/ErrorPage";
 
 const ProgramList = () => {
-  const { data: massageList, isFetching, isError } = useGetMassageListQuery();
-
-  // RTK Query 로 API 호출
+  const { data: massageList, isFetching } = useGetMassageListQuery();
 
   return (
     <>
@@ -23,7 +20,7 @@ const ProgramList = () => {
         <InnerBoxStyle>
           <TitleStyle>프로그램 안내</TitleStyle>
           <hr style={{ marginBottom: "2rem" }}></hr>
-          {isError && <ErrorPage errorStatus={null} />}
+
           {massageList &&
             massageList.map((massage) => (
               <ItemBoxStyle key={massage.id}>

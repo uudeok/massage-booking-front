@@ -9,15 +9,20 @@ const ProgramItem = ({ massage }: { massage: TMassageTable }) => {
   return (
     <>
       <ImgBoxStyle>
-        <img src={massage.img} alt={massage.item} width="90%" height="300rem" />
+        <img
+          src={massage.image}
+          alt={massage.item}
+          width="90%"
+          height="300rem"
+        />
       </ImgBoxStyle>
       <ContentBoxStyle>
         <ContentTitleStyle>{MASSAGE_ITEM[massage.item]}</ContentTitleStyle>
         <ContentStyle>{massage.content}</ContentStyle>
         <ContentPriceListStyle>
-          {massage.detail.map((massage) => (
-            <div key={massage.id}>
-              {addMinutesUnit(massage.time)} : {addComma(massage.price)}
+          {massage.details.map((detail) => (
+            <div key={detail.time}>
+              {addMinutesUnit(detail.time)} : {addComma(detail.price)}
             </div>
           ))}
         </ContentPriceListStyle>
