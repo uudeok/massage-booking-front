@@ -6,7 +6,7 @@ export const ContainerStyle = styled.div`
   height: 100px;
   display: flex;
   font-family: "Pretendard-Regular";
-  font-weight: bold;
+  /* font-weight: bold; */
   align-items: end;
   margin-bottom: 0.5rem;
 
@@ -93,7 +93,6 @@ export const LogoutBoxStyle = styled.div`
     font-family: "Pretendard-Regular";
     font-size: 1rem;
     cursor: pointer;
-    font-weight: bold;
     color: black;
 
     @media only screen and (max-width: ${MEDIA_QUERY.notebookWidth}) {

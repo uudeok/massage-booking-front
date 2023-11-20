@@ -33,8 +33,9 @@ const BookingMassageItem = ({ massage }: TProps) => {
         <span>{massage.content}</span>
         <DefaultButton
           onClick={() => selectMassageItem(massage.item)}
-          backgroundColor="#afc9a4"
-          color="white"
+          backgroundColor="white"
+          color="black"
+          border="2px solid lightgrey"
         >
           예약하기
         </DefaultButton>

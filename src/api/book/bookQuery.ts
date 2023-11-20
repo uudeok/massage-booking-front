@@ -12,7 +12,7 @@ export const bookApi = createApi({
         return response.events;
       },
       providesTags: [{ type: "book" }],
-      keepUnusedDataFor: 5,
+      keepUnusedDataFor: 3,
     }),
   }),
 });

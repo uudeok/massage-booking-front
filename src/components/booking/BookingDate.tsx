@@ -6,15 +6,16 @@ import { useGetBookedTimeListQuery } from "../../api/book/bookQuery";
 import dayjs from "dayjs";
 import BookingCalendar from "./BookingCalendar";
 import BookingTimeList from "./BookingTimeList";
-import BookingInfo from "./BookingInfo";
+import LoadingBar from "../common/loading/LoadingBar";
 
 const BookingDate = () => {
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
   const targetDate = dayjs(selectedDate).format("YYYY-MM-DD");
-
   const { data: bookedData } = useGetBookedTimeListQuery(targetDate);
 
-  console.log(bookedData);
+  if (!bookedData) return <LoadingBar />;
+
+  // console.log(bookedData);
 
   return (
     <ContainerStyle>
@@ -25,8 +26,7 @@ const BookingDate = () => {
             selectedDate={selectedDate}
             setSelectedDate={setSelectedDate}
           />
-          <BookingTimeList />
-          <BookingInfo />
+          <BookingTimeList bookedData={bookedData} />
         </ContentBoxStyle>
       </InnerBoxStyle>
     </ContainerStyle>
@@ -59,6 +59,8 @@ const ContentBoxStyle = styled.div`
   padding: 1rem;
   display: flex;
   flex-direction: row;
+  /* box-shadow: 0 0 0.3rem 0 rgba(0, 0, 0, 0.2); */
+  margin-top: 1rem;
 
   @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
     flex-direction: column;

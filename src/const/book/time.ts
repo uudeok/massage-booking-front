@@ -4,3 +4,6 @@ export const BOOKING_TYPE = {
   PENDING: "대기중",
   CLOSE: "마감",
 } as const;
+
+export const OPEN_TINE = "09:00";
+export const CLOSE_TIME = "21:00";

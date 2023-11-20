@@ -45,8 +45,7 @@ const BookingCalendar = ({ selectedDate, setSelectedDate }: TProps) => {
 export default BookingCalendar;
 
 const CalendarStyle = styled.div`
-  padding: 1rem;
-  width: 33%;
+  width: 50%;
   text-align: center;
 
   @media only screen and (max-width: ${MEDIA_QUERY.notebookWidth}) {
@@ -57,4 +56,5 @@ const CalendarStyle = styled.div`
 const TitleStyle = styled.h2`
   font-size: 1.3rem;
   padding: 0.5rem;
+  margin-bottom: 1rem;
 `;

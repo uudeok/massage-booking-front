@@ -3,7 +3,7 @@ import { MEDIA_QUERY } from "../../const/devise";
 import { useSelector } from "react-redux";
 import { MASSAGE_ITEM } from "../../const/book/massage";
 import { addComma } from "../../util/price";
-import { addMinutesUnit, divisionType } from "../../util/time";
+import { addMinutesUnit } from "../../util/time";
 import {
   getMassageDetail,
   getSelectedMassageItem,
@@ -18,13 +18,10 @@ const BookingSummary = () => {
 
   const time = selectedDetail[0].time;
   const price = selectedDetail[0].price;
-  const type = divisionType(time);
-  const lastIndex = type - 1;
 
   const date = selectedTime[0].date;
 
   const startTime = selectedTime[0].startTime;
-  const endTime = selectedTime[lastIndex].startTime;
 
   return (
     <>
@@ -32,9 +29,7 @@ const BookingSummary = () => {
       <SummaryBoxStyle>
         <TimeBoxStyle>
           <span>마사지 시간</span>
-          <span>
-            {startTime} - {endTime} ({addMinutesUnit(time)})
-          </span>
+          <span>{/* {startTime} - {endTime} ({addMinutesUnit(time)}) */}</span>
         </TimeBoxStyle>
         <ItemBoxStyle>
           <span>마사지 종류</span>

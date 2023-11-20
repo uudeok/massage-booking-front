@@ -1,37 +1,34 @@
-import { TTimeTable } from "../../@types/book";
-
 export const addMinutesUnit = (minute: number) => {
   return minute + "분";
 };
 
-export const divisionType = (type: number) => {
-  let count = 0;
-  if (type === 60) count = 13;
-  if (type === 90) count = 19;
-  if (type === 120) count = 25;
+export const splitMultipleTimeArraysBy30Minutes = (timeArrays: string[]) => {
+  let result = [] as string[];
 
-  return count;
+  timeArrays.forEach((timeArray) => {
+    let startTime = new Date(`1970-01-01T${timeArray[0]}:00`);
+    const endTime = new Date(`1970-01-01T${timeArray[1]}:00`);
+
+    while (startTime <= endTime) {
+      const hours = startTime.getHours().toString().padStart(2, "0");
+      const minutes = startTime.getMinutes().toString().padStart(2, "0");
+      result.push(`${hours}:${minutes}`);
+
+      startTime.setMinutes(startTime.getMinutes() + 30);
+    }
+  });
+
+  return result;
 };
 
-export const divisionTime = (type: number, timeList: TTimeTable[]) => {
-  let count = 0;
-  if (type === 60) count = 13;
-  if (type === 90) count = 19;
-  if (type === 120) count = 25;
+export const convertStringsToDates = (timeStrings: string[]) => {
+  const dateObjects = timeStrings.map((timeStr) => {
+    const [hours, minutes] = timeStr.split(":").map(Number);
+    const date = new Date();
+    date.setHours(hours);
+    date.setMinutes(minutes);
+    return date;
+  });
 
-  const newArray = [];
-
-  for (let i = 0; i <= timeList.length; i += count!) {
-    newArray.push(timeList.slice(i, i + count!));
-  }
-
-  const remainderArray = newArray.filter((arr) => arr.length === count);
-
-  return { remainderArray, count };
-};
-
-export const checkIdRange = (startId: number, endId: number) => {
-  for (let i = startId; i <= endId; i++) {
-    return i;
-  }
+  return dateObjects;
 };
