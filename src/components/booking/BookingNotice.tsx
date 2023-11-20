@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { closeModal, openModal } from "../../stores/modalSlice";
 import { getAuthUser } from "../../util/auth";
 import { useNavigate } from "react-router-dom";
-import { useUpdateAvailableTimeListMutation } from "../../api/book/timeQuery";
 import { getTimeDetail } from "../../stores/timeSlice";
 import pLimit from "p-limit";
 
@@ -43,7 +42,7 @@ const BookingNotice = () => {
   const getAuth = getAuthUser();
   const selectedTime = useSelector(getTimeDetail);
 
-  const [updateTime] = useUpdateAvailableTimeListMutation();
+  // const [updateTime] = useUpdateAvailableTimeListMutation();
 
   const showMyPageHandler = () => {
     dispatch(
@@ -55,31 +54,36 @@ const BookingNotice = () => {
         },
       })
     );
-    navigate("/mypage/book");
+    navigate("/mypage/order");
   };
 
-  const changeBookHandler = async () => {
-    try {
-      const updateTimePromiseList = selectedTime.map((time) =>
-        limit(() =>
-          updateTime({ id: time.id, body: { ...time, type: "BOOK" } }).unwrap()
-        )
-      );
-      const updateTimePromiseListResult = await Promise.all(
-        updateTimePromiseList
-      );
-
-      console.log(updateTimePromiseListResult);
-    } catch (e) {
-      console.error(e);
-    }
-  };
+  // const changeBookHandler = async () => {
+  //   try {
+  //     updateTime({
+  //       order: {
+  //         item: "건식 마사지",
+  //         price: 60000,
+  //         startReservedAt: "2023-11-20T12:00:00",
+  //         endReservedAt: "2023-11-20T13:00:00",
+  //       },
+  //       event: {
+  //         targetDate: "2023-11-21",
+  //         startReservedTime: "13:00",
+  //         endReservedTime: "14:00",
+  //         dayOfWeek: "monday",
+  //         itemId: 1,
+  //         tutorId: -1,
+  //       },
+  //     });
+  //   } catch (e) {
+  //     console.error(e);
+  //   }
+  // };
 
   const bookMassageHandler = () => {
     dispatch(closeModal());
 
     if (getAuth) {
-      changeBookHandler();
       showMyPageHandler();
       return;
     }

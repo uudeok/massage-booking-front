@@ -1,79 +1,60 @@
+import "react-datepicker/dist/react-datepicker.css";
 import styled from "styled-components";
-import { DEVISE_SIZE } from "../../const/devise";
-import Calendar from "../common/calendar/Calendar";
+import DatePicker from "react-datepicker";
 import dayjs from "dayjs";
+import { ko } from "date-fns/esm/locale";
+import { getDay } from "date-fns";
+import { MEDIA_QUERY } from "../../const/devise";
 
 type TProps = {
-  changeDateHandler: (date: Date) => void;
-  setSelectedDate: React.Dispatch<React.SetStateAction<Date>>;
   selectedDate: Date;
+  setSelectedDate: React.Dispatch<React.SetStateAction<Date>>;
 };
 
-const BookingCalendar = ({
-  changeDateHandler,
-  setSelectedDate,
-  selectedDate,
-}: TProps) => {
-  const subOneDay = dayjs(selectedDate).subtract(1, "day").format();
-  const addOneDay = dayjs(selectedDate).add(1, "day").format();
+const SUNDAY = 0;
+
+const BookingCalendar = ({ selectedDate, setSelectedDate }: TProps) => {
+  const changeDateHandler = (date: Date) => {
+    setSelectedDate(date);
+  };
+
+  const addTwoWeeks = dayjs().add(2, "weeks").format();
+
+  const isOffDay = (date: Date | number) => {
+    const day = getDay(date);
+    return day !== SUNDAY;
+  };
 
   return (
-    <ContainerStyle>
-      <ArrowBoxStyle>
-        <ArrowButtonStyle onClick={() => setSelectedDate(new Date(subOneDay))}>
-          <span>«</span>
-          <KoreanButtonStyle> 이전 날짜</KoreanButtonStyle>
-        </ArrowButtonStyle>
-      </ArrowBoxStyle>
-
-      <CalendarMiddleBoxStyle>
-        <Calendar
-          changeDateHandler={changeDateHandler}
-          selectedDate={selectedDate}
-          setSelectedDate={setSelectedDate}
-        />
-      </CalendarMiddleBoxStyle>
-
-      <ArrowBoxStyle>
-        <ArrowButtonStyle onClick={() => setSelectedDate(new Date(addOneDay))}>
-          <KoreanButtonStyle>다음 날짜 </KoreanButtonStyle>
-          <span>»</span>
-        </ArrowButtonStyle>
-      </ArrowBoxStyle>
-    </ContainerStyle>
+    <CalendarStyle>
+      <TitleStyle>1. 날짜를 선택해주세요</TitleStyle>
+      <DatePicker
+        dateFormat="yyyy-MM-dd"
+        minDate={new Date()}
+        maxDate={new Date(addTwoWeeks)}
+        selected={selectedDate}
+        onChange={changeDateHandler}
+        locale={ko}
+        filterDate={isOffDay}
+        inline
+      />
+    </CalendarStyle>
   );
 };
 
 export default BookingCalendar;
 
-const ContainerStyle = styled.div`
-  display: flex;
-  width: 100%;
-  justify-content: center;
-`;
+const CalendarStyle = styled.div`
+  padding: 1rem;
+  width: 33%;
+  text-align: center;
 
-const ArrowBoxStyle = styled.div`
-  /* border: 2px solid #586d2c; */
-  padding: 0.3rem;
-  height: 2rem;
-`;
-
-const ArrowButtonStyle = styled.button`
-  border: none;
-  background-color: white;
-  cursor: pointer;
-  color: black;
-`;
-
-const KoreanButtonStyle = styled.span`
-  font-family: "Pretendard-Regular";
-  font-size: 1rem;
-  @media only screen and (max-width: ${DEVISE_SIZE.mobileWidthMax}) {
-    display: none;
+  @media only screen and (max-width: ${MEDIA_QUERY.notebookWidth}) {
+    width: 100%;
   }
 `;
 
-const CalendarMiddleBoxStyle = styled.div`
-  flex: 1;
-  text-align: center;
+const TitleStyle = styled.h2`
+  font-size: 1.3rem;
+  padding: 0.5rem;
 `;

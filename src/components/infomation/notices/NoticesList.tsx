@@ -2,7 +2,6 @@ import styled from "styled-components";
 import { NOTICE_CATEGORIES } from "../../../const/notices";
 import NoticeItem from "./NoticeItem";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { MEDIA_QUERY } from "../../../const/devise";
 import Paging from "../../pagination/Paging";
 import { NOTICE_CATEGORY_KEYS } from "../../../@types/notice";
@@ -14,7 +13,6 @@ const NOTICE_LIST_PAGE_SIZE = 10;
 const NoticesList = () => {
   const [category, setCategory] = useState<NOTICE_CATEGORY_KEYS>();
   const [page, setPage] = useState(1);
-  const navigate = useNavigate();
 
   const { data, isFetching } = useGetNoticeListQuery({
     pageNumber: page,
@@ -33,7 +31,6 @@ const NoticesList = () => {
 
   const changeCategoryHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setCategory(e.target.value as NOTICE_CATEGORY_KEYS);
-    navigate(`/notice/?category=${e.target.value}`);
   };
 
   return (

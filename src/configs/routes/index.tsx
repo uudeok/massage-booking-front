@@ -15,6 +15,7 @@ import MyOrderPage from "../../pages/user/MyOrderPage";
 import MyMileagePage from "../../pages/user/MyMileagePage";
 import RegisterPage from "../../pages/auth/RegisterPage";
 import MySettingPage from "../../pages/user/MySettingPage";
+import MyOrderDetailPage from "../../pages/user/MyOrderDetail";
 
 const bookRouteObjects: RouteObject[] = [
   {
@@ -66,7 +67,13 @@ const userRouteObjects: RouteObject[] = [
     path: "mypage",
     element: <RootLayoutPage />,
     children: [
-      { path: "book", element: <MyOrderPage /> },
+      {
+        path: "order",
+        children: [
+          { index: true, element: <MyOrderPage /> },
+          { path: ":id", element: <MyOrderDetailPage /> },
+        ],
+      },
       { path: "mileage", element: <MyMileagePage /> },
       { path: "setting", element: <MySettingPage /> },
     ],

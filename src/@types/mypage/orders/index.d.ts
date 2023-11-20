@@ -15,6 +15,8 @@ export type TOrderType = {
   displayStatus: ORDER_STATUS_TYPE_VALUES;
   startReservedAt: string;
   endReservedAt: string;
+  userId: number;
+  updatedAt: string;
 };
 
 export type TMyOrderMetaType = {

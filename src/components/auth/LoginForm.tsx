@@ -7,14 +7,12 @@ import DefaultButton from "../common/button/DefaultButton";
 import KakaoButton from "../common/button/KakaoButton";
 import { closeModal } from "../../stores/modalSlice";
 import { useDispatch, useSelector } from "react-redux";
-import { useUpdateAvailableTimeListMutation } from "../../api/book/timeQuery";
 import { getTimeDetail } from "../../stores/timeSlice";
 
 const LoginForm = ({ path }: { path?: string }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const selectedTime = useSelector(getTimeDetail);
-  const [updateTime] = useUpdateAvailableTimeListMutation();
 
   const [error, setError] = useState("");
   const { inputValue, changeInputHandler } = useInput({
@@ -35,15 +33,15 @@ const LoginForm = ({ path }: { path?: string }) => {
     return true;
   };
 
-  const changeBookHandler = async () => {
-    try {
-      selectedTime.map((time) =>
-        updateTime({ id: time.id, body: { ...time, type: "BOOK" } })
-      );
-    } catch (e) {
-      console.error(e);
-    }
-  };
+  // const changeBookHandler = async () => {
+  //   try {
+  //     selectedTime.map((time) =>
+  //       updateTime({ id: time.id, body: { ...time, type: "BOOK" } })
+  //     );
+  //   } catch (e) {
+  //     console.error(e);
+  //   }
+  // };
 
   const onLoginHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

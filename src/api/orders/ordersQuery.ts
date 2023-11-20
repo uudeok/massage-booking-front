@@ -7,8 +7,17 @@ export const ordersApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: generate_ORDERS }),
   tagTypes: ["orders"],
   endpoints: (builder) => ({
-    getOrderList: builder.query<MyOrderType, void>({
-      query: () => "/",
+    getOrderList: builder.query<
+      MyOrderType,
+      { pageNumber: number; pageSize: number }
+    >({
+      query: (arg) => {
+        const { pageNumber, pageSize } = arg;
+        return {
+          url: "/",
+          params: { pageNumber, pageSize },
+        };
+      },
     }),
   }),
 });

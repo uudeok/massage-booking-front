@@ -1,16 +1,21 @@
 import styled from "styled-components";
 import MyOrderItem from "./MyOrderItem";
-import { MEDIA_QUERY } from "../../../const/devise";
 import { useGetOrderListQuery } from "../../../api/orders/ordersQuery";
 import MyOrderHeader from "./MyOrderHeader";
 import Paging from "../../pagination/Paging";
 import LoadingBar from "../../common/loading/LoadingBar";
 import { useState } from "react";
-import { MY_ORDER_PAGESIZE } from "../../../const/mypage";
+import { useNavigate } from "react-router-dom";
+
+const MY_ORDER_LIST_PAGESIZE = 5;
 
 const MyOrderList = () => {
-  const { data } = useGetOrderListQuery();
+  const navigate = useNavigate();
   const [page, setPage] = useState(1);
+  const { data } = useGetOrderListQuery({
+    pageSize: MY_ORDER_LIST_PAGESIZE,
+    pageNumber: page,
+  });
 
   if (!data) return <LoadingBar />;
 
@@ -19,6 +24,7 @@ const MyOrderList = () => {
 
   const changePageHandler = (page: number) => {
     setPage(page);
+    navigate(`/mypage/order/?page=${page}`);
   };
 
   return (
@@ -36,7 +42,7 @@ const MyOrderList = () => {
         count={meta.totalCount}
         changePageHandler={changePageHandler}
         page={page}
-        pageSize={MY_ORDER_PAGESIZE}
+        pageSize={MY_ORDER_LIST_PAGESIZE}
       />
     </LayoutStyle>
   );

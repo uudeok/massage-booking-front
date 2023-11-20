@@ -5,6 +5,11 @@ export const makeSliceDate = (date: string) => {
   return sliceDate;
 };
 
+export const makeSliceTime = (date: string) => {
+  const sliceTime = date.slice(11, 16);
+  return sliceTime;
+};
+
 export const makeSimpleDate = (selectedDate: Date) => {
   const simpleDate = dayjs(selectedDate).format("YYYY-MM-DD");
   return simpleDate;

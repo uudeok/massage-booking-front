@@ -1,18 +1,22 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "./store";
-import { TMassageDetail, TMassageTable } from "../@types/massage";
+import {
+  BOOKING_ITEM_KEYS,
+  TMassageDetail,
+  TMassageTable,
+} from "../@types/massage";
 import { massageApi } from "../api/massage/massageQuery";
 
 type TInitialState = {
   selectedMassageItem: TMassageTable;
   selectedMassageDetail: TMassageDetail[];
-  massageItem: string;
+  massageItem: BOOKING_ITEM_KEYS;
 };
 
 const initialState: TInitialState = {
   selectedMassageItem: {} as TMassageTable,
   selectedMassageDetail: [],
-  massageItem: "",
+  massageItem: "DRY_MASSAGE",
 };
 
 export const massageSlice = createSlice({
@@ -23,7 +27,7 @@ export const massageSlice = createSlice({
       state.massageItem = action.payload;
     },
     setSelectedMassageType(state, action) {
-      state.selectedMassageDetail = state.selectedMassageItem.details.filter(
+      state.selectedMassageDetail = state.selectedMassageItem.detail.filter(
         (item) => item.time === action.payload
       );
     },

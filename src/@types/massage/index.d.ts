@@ -7,9 +7,8 @@ export type BOOKING_ITEM_VALUE = valueOf<BOOKING_ITEM_TYPE>;
 
 export type TMassageDetail = {
   time: number;
+  unit: string;
   price: number;
-  id: number;
-  massageId: number;
 };
 
 export type TMassageTable = {
@@ -17,5 +16,8 @@ export type TMassageTable = {
   item: BOOKING_ITEM_KEYS;
   id: number;
   content: string;
-  details: IMassageDetail[];
+  detail: IMassageDetail[];
+  createdAt: string;
+  displayItem: BOOKING_ITEM_VALUE;
+  updatedAt: string;
 };

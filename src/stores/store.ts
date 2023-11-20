@@ -4,7 +4,7 @@ import tabSlice from "./tabSlice";
 import { setupListeners } from "@reduxjs/toolkit/query";
 import { massageApi } from "../api/massage/massageQuery";
 import { noticeApi } from "../api/notice/noticeQuery";
-import { timeApi } from "../api/book/timeQuery";
+import { bookApi } from "../api/book/bookQuery";
 import timeSlice from "./timeSlice";
 import modalSlice from "./modalSlice";
 import { ordersApi } from "../api/orders/ordersQuery";
@@ -17,7 +17,7 @@ export const store = configureStore({
     modal: modalSlice,
     [massageApi.reducerPath]: massageApi.reducer,
     [noticeApi.reducerPath]: noticeApi.reducer,
-    [timeApi.reducerPath]: timeApi.reducer,
+    [bookApi.reducerPath]: bookApi.reducer,
     [ordersApi.reducerPath]: ordersApi.reducer,
   },
   devTools: true,
@@ -25,7 +25,7 @@ export const store = configureStore({
     getDefaultMiddleware().concat(
       massageApi.middleware,
       noticeApi.middleware,
-      timeApi.middleware,
+      bookApi.middleware,
       ordersApi.middleware
     ),
 });

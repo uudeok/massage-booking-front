@@ -1,5 +1,5 @@
 import { generate_ITEM } from "..";
-import { TMassageTable } from "../../@types/massage";
+import { BOOKING_ITEM_KEYS, TMassageTable } from "../../@types/massage";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const massageApi = createApi({
@@ -9,23 +9,12 @@ export const massageApi = createApi({
   endpoints: (builder) => ({
     getMassageList: builder.query<TMassageTable[], void>({
       query: () => "/",
-      transformResponse: (response: { items: TMassageTable[] }, meta) => {
+      transformResponse: (response: { items: TMassageTable[] }) => {
         return response.items;
       },
     }),
-    getMassageItem: builder.query<TMassageTable, string>({
+    getMassageItem: builder.query<TMassageTable, BOOKING_ITEM_KEYS>({
       query: (item) => `/${item}`,
-    }),
-
-    postMassageList: builder.mutation({
-      query: (body) => {
-        return {
-          url: "/",
-          method: "POST",
-          body,
-        };
-      },
-      invalidatesTags: [{ type: "massage" }],
     }),
   }),
 });

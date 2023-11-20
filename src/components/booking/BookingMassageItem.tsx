@@ -1,6 +1,5 @@
-import { TMassageTable } from "../../@types/massage";
+import { BOOKING_ITEM_KEYS, TMassageTable } from "../../@types/massage";
 import styled from "styled-components";
-import { MASSAGE_ITEM } from "../../const/book/massage";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../stores/store";
 import { setSelectedMassageItem } from "../../stores/massageSlice";
@@ -14,7 +13,7 @@ type TProps = {
 const BookingMassageItem = ({ massage }: TProps) => {
   const dispatch = useDispatch<AppDispatch>();
 
-  const selectMassageItem = (massageItem: string) => {
+  const selectMassageItem = (massageItem: BOOKING_ITEM_KEYS) => {
     dispatch(setSelectedMassageItem(massageItem));
     dispatch(addTabNum());
   };
@@ -24,13 +23,13 @@ const BookingMassageItem = ({ massage }: TProps) => {
       <ImgBoxStyle>
         <img
           src={massage.image}
-          alt={massage.item}
+          alt={massage.displayItem}
           width="100%"
           height="100%"
         />
       </ImgBoxStyle>
       <ItemContentBoxStyle>
-        <h3>{MASSAGE_ITEM[massage.item]}</h3>
+        <h3>{massage.displayItem}</h3>
         <span>{massage.content}</span>
         <DefaultButton
           onClick={() => selectMassageItem(massage.item)}

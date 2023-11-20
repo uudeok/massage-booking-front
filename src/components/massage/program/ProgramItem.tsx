@@ -6,6 +6,8 @@ import { MEDIA_QUERY } from "../../../const/devise";
 import { addMinutesUnit } from "../../../util/time";
 
 const ProgramItem = ({ massage }: { massage: TMassageTable }) => {
+  console.log(massage);
+
   return (
     <>
       <ImgBoxStyle>
@@ -20,7 +22,7 @@ const ProgramItem = ({ massage }: { massage: TMassageTable }) => {
         <ContentTitleStyle>{MASSAGE_ITEM[massage.item]}</ContentTitleStyle>
         <ContentStyle>{massage.content}</ContentStyle>
         <ContentPriceListStyle>
-          {massage.details.map((detail) => (
+          {massage.detail.map((detail) => (
             <div key={detail.time}>
               {addMinutesUnit(detail.time)} : {addComma(detail.price)}
             </div>

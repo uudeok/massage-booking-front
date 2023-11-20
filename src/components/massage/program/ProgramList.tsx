@@ -7,6 +7,7 @@ import { useGetMassageListQuery } from "../../../api/massage/massageQuery";
 
 const ProgramList = () => {
   const { data: massageList, isFetching } = useGetMassageListQuery();
+  console.log(massageList);
 
   return (
     <>
@@ -20,7 +21,6 @@ const ProgramList = () => {
         <InnerBoxStyle>
           <TitleStyle>프로그램 안내</TitleStyle>
           <hr style={{ marginBottom: "2rem" }}></hr>
-
           {massageList &&
             massageList.map((massage) => (
               <ItemBoxStyle key={massage.id}>
