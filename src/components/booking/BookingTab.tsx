@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 import BookingMassageList from "./BookingMassageList";
-import BookingDate from "./BookingDate";
 import { MEDIA_QUERY } from "../../const/devise";
 import BookingDetailList from "./BookingDetailList";
 import { useSelector, useDispatch } from "react-redux";
 import { currTabNum, resetTabNum } from "../../stores/tabSlice";
+import BookingCalendar from "./BookingCalendar";
 
 const TAB_LIST = [
   {
@@ -18,7 +18,7 @@ const TAB_LIST = [
   },
   {
     key: "날짜 선택",
-    content: <BookingDate />,
+    content: <BookingCalendar />,
   },
 ];
 

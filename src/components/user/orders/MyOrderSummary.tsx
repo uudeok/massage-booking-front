@@ -1,9 +1,10 @@
 import styled from "styled-components";
 import { MEDIA_QUERY } from "../../../const/devise";
 import { useDeleteOrderDataMutation } from "../../../api/orders/ordersQuery";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const MyOrderSummary = () => {
+  const navigate = useNavigate();
   const { id } = useParams();
 
   const [deleteOrder] = useDeleteOrderDataMutation();
@@ -12,6 +13,7 @@ const MyOrderSummary = () => {
     const process = window.confirm("오더를 취소하시겠습니까?");
     if (process) {
       deleteOrder(Number(id));
+      navigate("/mypage/order");
     }
   };
 
@@ -66,6 +68,8 @@ const OrderedDateStyle = styled.span`
 const CancelButtonStyle = styled.button`
   background-color: transparent;
   cursor: pointer;
+  border: 1px solid lightgrey;
+  color: black;
 `;
 
 const ContentBoxStyle = styled.div`

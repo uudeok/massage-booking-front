@@ -82,7 +82,7 @@ const ViewDetailsStyle = styled.span`
   font-family: "Pretendard-Regular";
 
   a {
-    color: #346aff;
+    color: #337ab7;
   }
 
   &:hover {
@@ -129,6 +129,7 @@ const OrderStatusStyle = styled.div`
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  font-weight: bold;
 
   @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
     padding: 0.5rem;

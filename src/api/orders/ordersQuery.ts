@@ -1,6 +1,10 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { generate_ORDERS } from "..";
-import { MyOrderType, TPostType } from "../../@types/mypage/orders";
+import {
+  MyOrderType,
+  TDeleteType,
+  TPostType,
+} from "../../@types/mypage/orders";
 
 export const ordersApi = createApi({
   reducerPath: "ordersApi",
@@ -20,7 +24,7 @@ export const ordersApi = createApi({
           params: { pageNumber, pageSize },
         };
       },
-      providesTags: (result, error) => [{ type: "orders" }],
+      providesTags: [{ type: "orders" }],
     }),
     postOrderData: builder.mutation<any, TPostType>({
       query: (arg) => {
@@ -34,7 +38,7 @@ export const ordersApi = createApi({
       },
       invalidatesTags: ["orders"],
     }),
-    deleteOrderData: builder.mutation<any, number>({
+    deleteOrderData: builder.mutation<{ orders: TDeleteType }, number>({
       query: (id) => {
         return {
           url: `/${id}`,

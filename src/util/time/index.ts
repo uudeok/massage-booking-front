@@ -1,3 +1,5 @@
+import dayjs from "dayjs";
+
 export const addMinutesUnit = (minute: number) => {
   return minute + "분";
 };
@@ -31,4 +33,20 @@ export const convertStringsToDates = (timeStrings: string[]) => {
   });
 
   return dateObjects;
+};
+
+export const makeFullDate = (date: Date) => {
+  return dayjs(date).format("YYYY-MM-DDTHH:mm:ss");
+};
+
+export const makeSimpleDate = (date: Date) => {
+  return dayjs(date).format("YYYY-MM-DD");
+};
+
+export const makeSimpleTime = (date: Date | null) => {
+  return dayjs(date).format("HH:mm");
+};
+
+export const addMinutes = (date: string, time: number) => {
+  return dayjs(date).add(time, "minutes");
 };

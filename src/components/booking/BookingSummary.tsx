@@ -12,14 +12,15 @@ import { usePostOrderDataMutation } from "../../api/orders/ordersQuery";
 import dayjs from "dayjs";
 import { DAY_OF_WEEK_NUMBER } from "../../const/book/time";
 import { useNavigate } from "react-router-dom";
+import { makeFullDate, makeSimpleTime, addMinutes } from "../../util/time";
+import { makeSimpleDate } from "../../util/date";
 
 type TProps = {
   selectedDate: Date;
-  startTime: string;
-  endTime: string;
+  massageEndTime: Date | null;
 };
 
-const BookingSummary = ({ startTime, endTime, selectedDate }: TProps) => {
+const BookingSummary = ({ massageEndTime, selectedDate }: TProps) => {
   const getAuth = getAuthUser();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -27,11 +28,14 @@ const BookingSummary = ({ startTime, endTime, selectedDate }: TProps) => {
   const massageDetail = useSelector(getMassageDetail);
   const selectedMassageTime = massageDetail[0].time;
   const selectedMassagePrice = massageDetail[0].price;
-  const simpleDate = dayjs(selectedDate).format("YYYY-MM-DD");
-  const fullStartDate = dayjs(selectedDate).format("YYYY-MM-DDTHH:mm:ss");
-  const fullEndDate = dayjs(fullStartDate)
-    .add(selectedMassageTime, "minutes")
-    .format("YYYY-MM-DDTHH:mm:ss");
+
+  const simpleDate = makeSimpleDate(selectedDate);
+  const fullStartDate = makeFullDate(selectedDate);
+  const startTime = makeSimpleTime(selectedDate);
+  const endTime = makeSimpleTime(massageEndTime);
+  const fullEndDate = addMinutes(fullStartDate, selectedMassageTime).format(
+    "YYYY-MM-DDTHH:mm:ss"
+  );
   const dayNum = dayjs(simpleDate).day();
 
   // console.log(startTime);
