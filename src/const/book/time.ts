@@ -7,3 +7,13 @@ export const BOOKING_TYPE = {
 
 export const OPEN_TINE = "09:00";
 export const CLOSE_TIME = "21:00";
+
+export const DAY_OF_WEEK_NUMBER = [
+  "sunday",
+  "monday",
+  "tuesday",
+  "wednesday",
+  "thursday",
+  "friday",
+  "saturday",
+];

@@ -2,14 +2,17 @@ import styled from "styled-components";
 import { addComma } from "../../../util/price";
 import { MEDIA_QUERY } from "../../../const/devise";
 import { TOrderType } from "../../../@types/mypage/orders";
-import { makeSliceDate } from "../../../util/date";
 import { Link } from "react-router-dom";
+import dayjs from "dayjs";
+import { useSelector } from "react-redux";
+import { getMassageDetail } from "../../../stores/massageSlice";
 
 const MyOrderItem = ({ order }: { order: TOrderType }) => {
-  const createdAt = makeSliceDate(order.createdAt);
-  const startDate = order.startReservedAt.slice(0, 10);
-  const startTime = order.startReservedAt.slice(11, 16);
-  const endTime = order.endReservedAt.slice(11, 16);
+  const createdAt = dayjs(order.createdAt).format("YYYY-MM-DD");
+  const startDate = dayjs(order.startReservedAt).format("YYYY-MM-DD");
+  const startTime = dayjs(order.startReservedAt).format("HH:mm");
+  const endTime = dayjs(order.endReservedAt).format("HH:mm");
+  const selectedMassageDetail = useSelector(getMassageDetail);
 
   return (
     <BookItemStyle>
@@ -24,7 +27,7 @@ const MyOrderItem = ({ order }: { order: TOrderType }) => {
       <OrderDetailStyle>
         <span>{startDate}</span>
         <span>
-          {startTime} - {endTime}
+          {startTime} - {endTime} ({selectedMassageDetail[0].time}분)
         </span>
       </OrderDetailStyle>
       <OrderPriceStyle>{addComma(order.price)}</OrderPriceStyle>

@@ -1,12 +1,27 @@
 import styled from "styled-components";
 import { MEDIA_QUERY } from "../../../const/devise";
+import { useDeleteOrderDataMutation } from "../../../api/orders/ordersQuery";
+import { useParams } from "react-router-dom";
 
 const MyOrderSummary = () => {
+  const { id } = useParams();
+
+  const [deleteOrder] = useDeleteOrderDataMutation();
+
+  const cancelOrderHandler = () => {
+    const process = window.confirm("오더를 취소하시겠습니까?");
+    if (process) {
+      deleteOrder(Number(id));
+    }
+  };
+
   return (
     <div>
       <HeaderStyle>
         <OrderedDateStyle>2023-11-15 예약</OrderedDateStyle>
-        <CancelButtonStyle>예약 취소</CancelButtonStyle>
+        <CancelButtonStyle onClick={cancelOrderHandler}>
+          예약 취소
+        </CancelButtonStyle>
       </HeaderStyle>
       <ContentBoxStyle>
         <InformationBoxStyle>

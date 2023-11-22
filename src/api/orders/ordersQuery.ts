@@ -1,10 +1,12 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { generate_ORDERS } from "..";
-import { MyOrderType } from "../../@types/mypage/orders";
+import { MyOrderType, TPostType } from "../../@types/mypage/orders";
 
 export const ordersApi = createApi({
   reducerPath: "ordersApi",
-  baseQuery: fetchBaseQuery({ baseUrl: generate_ORDERS }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: generate_ORDERS,
+  }),
   tagTypes: ["orders"],
   endpoints: (builder) => ({
     getOrderList: builder.query<
@@ -18,8 +20,35 @@ export const ordersApi = createApi({
           params: { pageNumber, pageSize },
         };
       },
+      providesTags: (result, error) => [{ type: "orders" }],
+    }),
+    postOrderData: builder.mutation<any, TPostType>({
+      query: (arg) => {
+        const { event, order } = arg;
+        console.log(event, order);
+        return {
+          url: "/",
+          method: "POST",
+          body: { event: event, order: order },
+        };
+      },
+      invalidatesTags: ["orders"],
+    }),
+    deleteOrderData: builder.mutation<any, number>({
+      query: (id) => {
+        return {
+          url: `/${id}`,
+          method: "DELETE",
+        };
+      },
+
+      invalidatesTags: ["orders"],
     }),
   }),
 });
 
-export const { useGetOrderListQuery } = ordersApi;
+export const {
+  useGetOrderListQuery,
+  usePostOrderDataMutation,
+  useDeleteOrderDataMutation,
+} = ordersApi;

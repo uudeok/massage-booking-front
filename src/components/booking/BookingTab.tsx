@@ -4,7 +4,6 @@ import BookingMassageList from "./BookingMassageList";
 import BookingDate from "./BookingDate";
 import { MEDIA_QUERY } from "../../const/devise";
 import BookingDetailList from "./BookingDetailList";
-import BookingOrderForm from "./BookingOrderForm";
 import { useSelector, useDispatch } from "react-redux";
 import { currTabNum, resetTabNum } from "../../stores/tabSlice";
 
@@ -20,10 +19,6 @@ const TAB_LIST = [
   {
     key: "날짜 선택",
     content: <BookingDate />,
-  },
-  {
-    key: "예약하기",
-    content: <BookingOrderForm />,
   },
 ];
 

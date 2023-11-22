@@ -1,6 +1,6 @@
 import { ORDER_STATUS } from "../../const/mypage";
 import { valueOf } from "../common";
-import { BOOKING_ITEM_VALUE } from "../../massage";
+import { BOOKING_ITEM_KEYS, BOOKING_ITEM_VALUE } from "../../massage";
 
 export type ORDER_STATUS_TYPE = typeof ORDER_STATUS;
 export type ORDER_STATUS_TYPE_KEYS = keyof ORDER_STATUS_TYPE;
@@ -29,4 +29,25 @@ export type TMyOrderMetaType = {
 export type MyOrderType = {
   orders: TOrderType[];
   meta: TMyOrderMetaType;
+};
+
+export type TPostOrderType = {
+  item: BOOKING_ITEM_VALUE;
+  price: number;
+  startReservedAt: string;
+  endReservedAt: string;
+};
+
+export type TPostEventType = {
+  targetDate: string;
+  startReservedTime: string;
+  endReservedTime: string;
+  dayOfWeek: string;
+  itemId: number;
+  tutorId: number;
+};
+
+export type TPostType = {
+  order: TPostOrderType;
+  event: TPostEventType;
 };

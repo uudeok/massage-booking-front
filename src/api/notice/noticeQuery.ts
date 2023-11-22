@@ -17,13 +17,14 @@ export const noticeApi = createApi({
     >({
       query: (arg) => {
         const { pageNumber, pageSize, category } = arg;
-        console.log(pageNumber, pageSize, category);
+        // console.log(pageNumber, pageSize, category);
 
         return {
           url: "/",
           params: { pageNumber, pageSize, category },
         };
       },
+      providesTags: [{ type: "notice" }],
     }),
 
     getNoticeDetail: builder.query<TNoticeDetail, number>({

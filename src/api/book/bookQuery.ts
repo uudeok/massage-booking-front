@@ -1,6 +1,8 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { generate_EVENTS } from "..";
 
+// 예약된 시간 가져오기
+
 export const bookApi = createApi({
   reducerPath: "bookApi",
   baseQuery: fetchBaseQuery({ baseUrl: generate_EVENTS }),

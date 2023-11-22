@@ -12,6 +12,7 @@ export const massageApi = createApi({
       transformResponse: (response: { items: TMassageTable[] }) => {
         return response.items;
       },
+      providesTags: [{ type: "massage" }],
     }),
     getMassageItem: builder.query<TMassageTable, BOOKING_ITEM_KEYS>({
       query: (item) => `/${item}`,
