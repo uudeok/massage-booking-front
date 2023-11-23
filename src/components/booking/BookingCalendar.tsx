@@ -3,34 +3,37 @@ import styled from "styled-components";
 import DatePicker from "react-datepicker";
 import dayjs from "dayjs";
 import { ko } from "date-fns/esm/locale";
-import { getDay } from "date-fns";
 import { MEDIA_QUERY } from "../../const/devise";
-import { setHours, setMinutes } from "date-fns";
+import { setHours, setMinutes, getDay } from "date-fns";
 import {
   convertStringsToDates,
   splitMultipleTimeArraysBy30Minutes,
+  spreadBookedData,
 } from "../../util/time";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { getMassageDetail } from "../../stores/massageSlice";
-import BookingNotice from "./BookingNotice";
-import BookingSummary from "./BookingSummary";
 import { useGetBookedTimeListQuery } from "../../api/book/bookQuery";
 import LoadingBar from "../common/loading/LoadingBar";
-import PreviousButton from "../common/button/PreviousButton";
 import { makeSimpleDate } from "../../util/date";
 
 const SUNDAY = 0;
 
-const BookingCalendar = () => {
-  const massageDetail = useSelector(getMassageDetail);
-  const selectedMassageTime = massageDetail[0].time;
+type TProps = {
+  selectedDate: Date | any;
+  setSelectedDate: React.Dispatch<React.SetStateAction<Date>>;
+  changeDateHandler: (date: Date) => void;
+  endTime: Date | any;
+  setEndTime: React.Dispatch<React.SetStateAction<Date | any>>;
+};
 
-  const [selectedDate, setSelectedDate] = useState<Date>(
-    setHours(setMinutes(new Date(), 0), 9)
-  );
-  const [endTime, setEndTime] = useState<Date | null>(null);
-  const [isSelected, setIsSelected] = useState(false);
+const BookingCalendar = ({
+  selectedDate,
+  setSelectedDate,
+  changeDateHandler,
+  endTime,
+  setEndTime,
+}: TProps) => {
   const addTwoWeeks = dayjs().add(2, "weeks").format();
 
   const targetDate = makeSimpleDate(selectedDate);
@@ -38,19 +41,13 @@ const BookingCalendar = () => {
 
   if (!bookedData) return <LoadingBar />;
 
-  const changeDateHandler = (date: Date) => {
-    setSelectedDate(date);
-    setEndTime(dayjs(date).add(selectedMassageTime, "minutes").toDate());
-    setIsSelected(true);
-  };
+  const result = splitMultipleTimeArraysBy30Minutes(bookedData);
+  const booked = convertStringsToDates(result);
 
   const isOffDay = (date: Date | number) => {
     const day = getDay(date);
     return day !== SUNDAY;
   };
-
-  const result = splitMultipleTimeArraysBy30Minutes(bookedData);
-  const booked = convertStringsToDates(result);
 
   const filterPassedTime = (time: Date) => {
     const currentTime = new Date().getTime();
@@ -60,51 +57,39 @@ const BookingCalendar = () => {
   };
 
   return (
-    <ContainerStyle>
-      <PreviousButton />
-      <CalendarStyle>
-        <TitleStyle>날짜 및 시간을 선택해주세요</TitleStyle>
-        <CalendarBoxStyle>
-          <StyledTimePicker
-            dateFormat="yyyy-MM-dd aa h:mm "
-            minDate={new Date()}
-            maxDate={new Date(addTwoWeeks)}
-            selected={selectedDate}
-            onChange={changeDateHandler}
-            locale={ko}
-            filterDate={isOffDay}
-            showTimeSelect
-            minTime={setHours(setMinutes(new Date(), 0), 9)}
-            maxTime={setHours(setMinutes(new Date(), 0), 21)}
-            timeCaption="시간"
-            excludeTimes={booked}
-            filterTime={filterPassedTime}
-          />
-          <HyphenStyle>-</HyphenStyle>
-          <StyledTimePicker
-            showTimeSelect
-            locale={ko}
-            selected={endTime}
-            onChange={(time) => setEndTime(time)}
-            placeholderText="종료 시간"
-            dateFormat="yyyy-MM-dd aa h:mm "
-            disabled
-          />
-        </CalendarBoxStyle>
-      </CalendarStyle>
-      {isSelected && (
-        <ReservationDetailStyle>
-          <TitleStyle>※ 예약 내역</TitleStyle>
-          <DetailBoxStyle>
-            <BookingNotice />
-            <BookingSummary
-              selectedDate={selectedDate}
-              massageEndTime={endTime}
-            />
-          </DetailBoxStyle>
-        </ReservationDetailStyle>
-      )}
-    </ContainerStyle>
+    <>
+      <TitleStyle>날짜 및 시간을 선택해주세요</TitleStyle>
+      <CalendarBoxStyle>
+        <StyledTimePicker
+          dateFormat="yyyy-MM-dd aa h:mm"
+          minDate={new Date()}
+          maxDate={new Date(addTwoWeeks)}
+          selected={selectedDate}
+          onChange={changeDateHandler}
+          locale={ko}
+          filterDate={isOffDay}
+          showTimeSelect
+          minTime={setHours(setMinutes(new Date(), 0), 9)}
+          maxTime={setHours(setMinutes(new Date(), 0), 21)}
+          timeCaption="시간"
+          excludeTimes={booked}
+          filterTime={filterPassedTime}
+          placeholderText="시작 시간"
+          onKeyDown={(e) => e.preventDefault()}
+        />
+
+        <HyphenStyle>-</HyphenStyle>
+        <StyledTimePicker
+          showTimeSelect
+          locale={ko}
+          selected={endTime}
+          onChange={(time) => setEndTime(time)}
+          placeholderText="종료 시간"
+          dateFormat="yyyy-MM-dd aa h:mm "
+          disabled
+        />
+      </CalendarBoxStyle>
+    </>
   );
 };
 
@@ -171,24 +156,4 @@ const StyledTimePicker = styled(DatePicker)`
   /* @media only screen and (max-width: ${MEDIA_QUERY.bigNotebookWidth}) {
     width: 40%;
   } */
-`;
-
-const DetailBoxStyle = styled.div`
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  padding: 1rem;
-
-  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
-    flex-direction: column;
-  }
-`;
-
-const ReservationDetailStyle = styled.div`
-  margin-top: 1rem;
-  padding: 1rem;
-  background-color: whitesmoke;
-  display: flex;
-  flex-direction: column;
-  text-align: center;
 `;

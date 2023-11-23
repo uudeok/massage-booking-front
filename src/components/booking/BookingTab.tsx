@@ -6,6 +6,7 @@ import BookingDetailList from "./BookingDetailList";
 import { useSelector, useDispatch } from "react-redux";
 import { currTabNum, resetTabNum } from "../../stores/tabSlice";
 import BookingCalendar from "./BookingCalendar";
+import BookingDate from "./BookingDate";
 
 const TAB_LIST = [
   {
@@ -18,7 +19,7 @@ const TAB_LIST = [
   },
   {
     key: "날짜 선택",
-    content: <BookingCalendar />,
+    content: <BookingDate />,
   },
 ];
 
