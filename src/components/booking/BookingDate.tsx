@@ -7,6 +7,7 @@ import { MEDIA_QUERY } from "../../const/devise";
 import { setHours, setMinutes, getDay } from "date-fns";
 import {
   convertStringsToDates,
+  isTimeOverlaps,
   makeSimpleTime,
   splitMultipleTimeArraysBy30Minutes,
   spreadBookedData,
@@ -19,6 +20,7 @@ import LoadingBar from "../common/loading/LoadingBar";
 import PreviousButton from "../common/button/PreviousButton";
 import { makeSimpleDate } from "../../util/date";
 import BookingBreakDown from "./BookingBreakDown";
+import { CLOSE_TIME } from "../../const/book/time";
 
 const SUNDAY = 0;
 
@@ -40,31 +42,52 @@ const BookingCalendar = () => {
 
   if (!bookedData) return <LoadingBar />;
 
+  const validBusinessTime = (date: Date) => {
+    const start = makeSimpleTime(date);
+
+    if (start === "19:30" && 90 < selectedMassageTime) {
+      setError(
+        "마사지 시간이 영업시간을 초과합니다. 다른 시간을 선택해주세요."
+      );
+    } else if (start === "20:00" && 60 < selectedMassageTime) {
+      setError(
+        "마사지 시간이 영업시간을 초과합니다. 다른 시간을 선택해주세요."
+      );
+    } else if (start === "20:30") {
+      setError(
+        "마사지를 받을 수 있는 시간이 아닙니다. 다른 시간을 선택해주세요."
+      );
+    } else if (start === CLOSE_TIME) {
+      setError(
+        "영업시간은 09:00 ~ 21:00 까지 입니다. 다른 시간을 선택해주세요."
+      );
+    } else {
+      return true;
+    }
+  };
+
   const validTimeRange = (date: Date) => {
     const start = makeSimpleTime(date);
     const end = dayjs(date).add(selectedMassageTime, "minutes").format("HH:mm");
     const spreadData = spreadBookedData(bookedData);
-    const result = spreadData.map((item) => {
-      if (start < item && item < end) {
-        setError(
-          "시간이 중복되어 예약 할 수 없습니다. 다른 시간을 선택해주세요"
-        );
-        setIsSelected(false);
-        return true;
-      }
+    const result = isTimeOverlaps(spreadData, start, end);
+    if (result.length > 0) {
+      setError("시간이 중복되어 예약 할 수 없습니다. 다른 시간을 선택해주세요");
       return false;
-    });
-    return result;
+    }
+    return true;
   };
 
   const changeDateHandler = (date: Date) => {
     setError("");
+    setIsSelected(false);
     setSelectedDate(date);
     setEndTime(dayjs(date).add(selectedMassageTime, "minutes").toDate());
+    const isValid = validBusinessTime(date);
+    if (!isValid) return;
     if (bookedData.length !== 0) {
       const result = validTimeRange(date);
-      const isTrue = result.filter((res) => res === true);
-      if (isTrue.length >= 1) return;
+      if (!result) return;
     }
 
     setIsSelected(true);
@@ -190,10 +213,6 @@ const StyledTimePicker = styled(DatePicker)`
   font-size: 1rem;
   border: 2px solid #555555;
   cursor: pointer;
-
-  /* @media only screen and (max-width: ${MEDIA_QUERY.bigNotebookWidth}) {
-    width: 40%;
-  } */
 `;
 
 const ErrorMessageStyle = styled.span`

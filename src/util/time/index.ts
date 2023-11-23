@@ -45,6 +45,15 @@ export const spreadBookedData = (bookedData: string[]) => {
   return data;
 };
 
+export const isTimeOverlaps = (
+  spreadData: string[],
+  start: string,
+  end: string
+) => {
+  const result = spreadData.filter((data) => start < data && data < end);
+  return result;
+};
+
 export const makeFullDate = (date: Date) => {
   return dayjs(date).format("YYYY-MM-DDTHH:mm:ss");
 };

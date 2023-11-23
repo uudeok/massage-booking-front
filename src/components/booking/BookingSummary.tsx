@@ -38,10 +38,6 @@ const BookingSummary = ({ massageEndTime, selectedDate }: TProps) => {
   );
   const dayNum = dayjs(simpleDate).day();
 
-  // console.log(startTime);
-  // console.log(endTime);
-  // console.log(simpleDate);
-
   const [postOrder] = usePostOrderDataMutation();
 
   const changeBookHandler = async () => {

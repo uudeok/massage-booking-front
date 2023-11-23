@@ -5,7 +5,6 @@ import { MEDIA_QUERY } from "../../const/devise";
 import BookingDetailList from "./BookingDetailList";
 import { useSelector, useDispatch } from "react-redux";
 import { currTabNum, resetTabNum } from "../../stores/tabSlice";
-import BookingCalendar from "./BookingCalendar";
 import BookingDate from "./BookingDate";
 
 const TAB_LIST = [
@@ -14,7 +13,7 @@ const TAB_LIST = [
     content: <BookingMassageList />,
   },
   {
-    key: "시간 선택",
+    key: "타입 선택",
     content: <BookingDetailList />,
   },
   {
