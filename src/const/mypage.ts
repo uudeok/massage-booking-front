@@ -1,6 +1,5 @@
 export const MY_PAGE_TABLE = [
   { key: "order", value: "나의 예약" },
-  { key: "mileage", value: "적립금" },
   { key: "setting", value: "개인정보수정" },
 ];
 

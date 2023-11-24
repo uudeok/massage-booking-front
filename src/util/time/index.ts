@@ -4,7 +4,7 @@ export const addMinutesUnit = (minute: number) => {
   return minute + "분";
 };
 
-export const splitMultipleTimeArraysBy30Minutes = (timeArrays: string[]) => {
+export const splitTimeArraysBy30Minutes = (timeArrays: string[]) => {
   let result = [] as string[];
 
   timeArrays.forEach((timeArray) => {
@@ -23,28 +23,6 @@ export const splitMultipleTimeArraysBy30Minutes = (timeArrays: string[]) => {
   return result;
 };
 
-export const convertStringsToDates = (timeStrings: string[]) => {
-  const dateObjects = timeStrings.map((timeStr) => {
-    const [hours, minutes] = timeStr.split(":").map(Number);
-    const date = new Date();
-    date.setHours(hours);
-    date.setMinutes(minutes);
-    return date;
-  });
-
-  return dateObjects;
-};
-
-export const spreadBookedData = (bookedData: string[]) => {
-  let data = [];
-  for (let i = 0; i < bookedData.length; i++) {
-    for (let j = 0; j <= 1; j++) {
-      data.push(bookedData[i][j]);
-    }
-  }
-  return data;
-};
-
 export const isTimeOverlaps = (
   spreadData: string[],
   start: string,
@@ -54,18 +32,10 @@ export const isTimeOverlaps = (
   return result;
 };
 
-export const makeFullDate = (date: Date) => {
-  return dayjs(date).format("YYYY-MM-DDTHH:mm:ss");
-};
-
-export const makeSimpleDate = (date: Date) => {
-  return dayjs(date).format("YYYY-MM-DD");
-};
-
-export const makeSimpleTime = (date: Date | null) => {
+export const makeSimpleTime = (date: Date | string | null) => {
   return dayjs(date).format("HH:mm");
 };
 
-export const addMinutes = (date: string, time: number) => {
+export const addFewMinutes = (date: Date, time: number) => {
   return dayjs(date).add(time, "minutes");
 };

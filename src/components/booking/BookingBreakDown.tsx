@@ -25,6 +25,15 @@ const BookingBreakDown = ({ selectedDate, massageEndTime }: TProps) => {
 
 export default BookingBreakDown;
 
+const ReservationDetailStyle = styled.div`
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: whitesmoke;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+`;
+
 const TitleStyle = styled.h2`
   font-size: 1.3rem;
   width: 100%;
@@ -37,17 +46,9 @@ const DetailBoxStyle = styled.div`
   flex-direction: row;
   width: 100%;
   padding: 1rem;
+  gap: 0.5rem;
 
   @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
     flex-direction: column;
   }
-`;
-
-const ReservationDetailStyle = styled.div`
-  margin-top: 1rem;
-  padding: 1rem;
-  background-color: whitesmoke;
-  display: flex;
-  flex-direction: column;
-  text-align: center;
 `;

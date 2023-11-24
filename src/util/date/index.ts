@@ -1,18 +1,11 @@
 import dayjs from "dayjs";
 
-export const makeSliceDate = (date: string) => {
-  const sliceDate = date.slice(0, 10);
-  return sliceDate;
+export const makeFullDate = (date: Date) => {
+  return dayjs(date).format("YYYY-MM-DDTHH:mm:ss");
 };
 
-export const makeSliceTime = (date: string) => {
-  const sliceTime = date.slice(11, 16);
-  return sliceTime;
-};
-
-export const makeSimpleDate = (selectedDate: Date) => {
-  const simpleDate = dayjs(selectedDate).format("YYYY-MM-DD");
-  return simpleDate;
+export const makeSimpleDate = (date: Date | string) => {
+  return dayjs(date).format("YYYY-MM-DD");
 };
 
 export const validationDate = (selectedDate: Date) => {
@@ -22,4 +15,26 @@ export const validationDate = (selectedDate: Date) => {
   const isPassedDate = date < today;
 
   return isPassedDate;
+};
+
+export const convertStringsToDates = (timeStrings: string[]) => {
+  const dateObjects = timeStrings.map((timeStr) => {
+    const [hours, minutes] = timeStr.split(":").map(Number);
+    const date = new Date();
+    date.setHours(hours);
+    date.setMinutes(minutes);
+    return date;
+  });
+
+  return dateObjects;
+};
+
+export const spreadBookedData = (bookedData: string[]) => {
+  let data = [];
+  for (let i = 0; i < bookedData.length; i++) {
+    for (let j = 0; j <= 1; j++) {
+      data.push(bookedData[i][j]);
+    }
+  }
+  return data;
 };

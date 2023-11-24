@@ -2,8 +2,11 @@ import styled from "styled-components";
 import { MEDIA_QUERY } from "../../../const/devise";
 import { useDeleteOrderDataMutation } from "../../../api/orders/ordersQuery";
 import { useNavigate, useParams } from "react-router-dom";
+import { FcInfo } from "react-icons/fc";
+import { useHover } from "../../../hooks/useHover";
 
 const MyOrderSummary = () => {
+  const { ref, isHover } = useHover();
   const navigate = useNavigate();
   const { id } = useParams();
 
@@ -45,6 +48,11 @@ const MyOrderSummary = () => {
         <InformationBoxStyle>
           <KeyStyle>예약 상태</KeyStyle>
           <span>요청중</span>
+
+          <div ref={ref}>
+            <FcInfo />
+            {isHover && <span>zz</span>}
+          </div>
         </InformationBoxStyle>
       </ContentBoxStyle>
     </div>
@@ -70,6 +78,7 @@ const CancelButtonStyle = styled.button`
   cursor: pointer;
   border: 1px solid lightgrey;
   color: black;
+  width: 5rem;
 `;
 
 const ContentBoxStyle = styled.div`
@@ -87,7 +96,7 @@ const InformationBoxStyle = styled.div`
 `;
 
 const KeyStyle = styled.span`
-  width: 15%;
+  width: 16%;
   color: #555555;
 
   @media only screen and (max-width: ${MEDIA_QUERY.bigMobileWidth}) {

@@ -12,8 +12,9 @@ import { usePostOrderDataMutation } from "../../api/orders/ordersQuery";
 import dayjs from "dayjs";
 import { DAY_OF_WEEK_NUMBER } from "../../const/book/time";
 import { useNavigate } from "react-router-dom";
-import { makeFullDate, makeSimpleTime, addMinutes } from "../../util/time";
+import { makeSimpleTime, addFewMinutes } from "../../util/time";
 import { makeSimpleDate } from "../../util/date";
+import { makeFullDate } from "../../util/date";
 
 type TProps = {
   selectedDate: Date;
@@ -33,7 +34,7 @@ const BookingSummary = ({ massageEndTime, selectedDate }: TProps) => {
   const fullStartDate = makeFullDate(selectedDate);
   const startTime = makeSimpleTime(selectedDate);
   const endTime = makeSimpleTime(massageEndTime);
-  const fullEndDate = addMinutes(fullStartDate, selectedMassageTime).format(
+  const fullEndDate = addFewMinutes(selectedDate, selectedMassageTime).format(
     "YYYY-MM-DDTHH:mm:ss"
   );
   const dayNum = dayjs(simpleDate).day();
@@ -69,8 +70,8 @@ const BookingSummary = ({ massageEndTime, selectedDate }: TProps) => {
       if (process) {
         changeBookHandler();
         navigate("/mypage/order");
-        return;
       }
+      return;
     }
     dispatch(
       openModal({ type: "LoginModal", props: { path: "mypage/order" } })
@@ -145,18 +146,27 @@ const KeyStyle = styled.span`
 `;
 
 const BookButtonStyle = styled.button`
+  font-family: "Pretendard-Regular";
   background-color: transparent;
   cursor: pointer;
   padding: 0.5rem;
-  width: 50%;
+  width: 100%;
   border-radius: 10px;
-  border: 2px solid lightgrey;
+  border: 2px solid black;
   float: right;
   color: black;
 
+  &:hover {
+    color: #555555;
+  }
+
   @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
-    width: 40%;
+    width: 30%;
     float: none;
     margin-top: 2rem;
+  }
+
+  @media only screen and (max-width: ${MEDIA_QUERY.bigMobileWidth}) {
+    width: 50%;
   }
 `;

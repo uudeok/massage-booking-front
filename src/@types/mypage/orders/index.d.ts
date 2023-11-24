@@ -1,6 +1,6 @@
-import { ORDER_STATUS } from "../../const/mypage";
-import { valueOf } from "../common";
-import { BOOKING_ITEM_KEYS, BOOKING_ITEM_VALUE } from "../../massage";
+import { ORDER_STATUS } from "../../../const/mypage";
+import { valueOf } from "../../common";
+import { BOOKING_ITEM_VALUE } from "../../massage";
 
 export type ORDER_STATUS_TYPE = typeof ORDER_STATUS;
 export type ORDER_STATUS_TYPE_KEYS = keyof ORDER_STATUS_TYPE;

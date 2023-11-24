@@ -2,7 +2,7 @@ import { TNoticeDetail } from "../../../@types/notice";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { MEDIA_QUERY } from "../../../const/devise";
-import { makeSliceDate } from "../../../util/date";
+import { makeSimpleDate } from "../../../util/date";
 
 const Notice = ({ detail }: { detail: TNoticeDetail }) => {
   const navigate = useNavigate();
@@ -20,7 +20,7 @@ const Notice = ({ detail }: { detail: TNoticeDetail }) => {
         </HeaderItemStyle>
         <HeaderItemStyle>
           <span>작성일</span>
-          <span>{makeSliceDate(detail.createdAt)}</span>
+          <span>{makeSimpleDate(detail.createdAt)}</span>
         </HeaderItemStyle>
         <HeaderItemStyle>
           <span>조회수</span>

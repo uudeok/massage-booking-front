@@ -2,10 +2,10 @@ import styled from "styled-components";
 import { TNoticeDetail } from "../../../../@types/notice";
 import { Link } from "react-router-dom";
 import { MEDIA_QUERY } from "../../../../const/devise";
-import { makeSliceDate } from "../../../../util/date";
+import { makeSimpleDate } from "../../../../util/date";
 
 const NoticeMainItem = ({ notice }: { notice: TNoticeDetail }) => {
-  const createdAt = makeSliceDate(notice.createdAt);
+  const createdAt = makeSimpleDate(notice.createdAt);
 
   return (
     <>

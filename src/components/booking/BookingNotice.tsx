@@ -16,7 +16,7 @@ export default BookingNotice;
 
 const NoticeBoxStyle = styled.div`
   padding: 1rem;
-  border: 1px solid lightgrey;
+  border: 1px dotted lightgrey;
   text-align: left;
 `;
 

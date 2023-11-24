@@ -6,11 +6,10 @@ import { ko } from "date-fns/esm/locale";
 import { MEDIA_QUERY } from "../../const/devise";
 import { setHours, setMinutes, getDay } from "date-fns";
 import {
-  convertStringsToDates,
-  isTimeOverlaps,
+  addFewMinutes,
   makeSimpleTime,
-  splitMultipleTimeArraysBy30Minutes,
-  spreadBookedData,
+  isTimeOverlaps,
+  splitTimeArraysBy30Minutes,
 } from "../../util/time";
 import { useState } from "react";
 import { useSelector } from "react-redux";
@@ -21,6 +20,8 @@ import PreviousButton from "../common/button/PreviousButton";
 import { makeSimpleDate } from "../../util/date";
 import BookingBreakDown from "./BookingBreakDown";
 import { CLOSE_TIME } from "../../const/book/time";
+import "./styles/Calendar.css";
+import { spreadBookedData, convertStringsToDates } from "../../util/date";
 
 const SUNDAY = 0;
 
@@ -68,9 +69,15 @@ const BookingCalendar = () => {
 
   const validTimeRange = (date: Date) => {
     const start = makeSimpleTime(date);
-    const end = dayjs(date).add(selectedMassageTime, "minutes").format("HH:mm");
+    const end = addFewMinutes(date, selectedMassageTime).format("HH:mm");
     const spreadData = spreadBookedData(bookedData);
     const result = isTimeOverlaps(spreadData, start, end);
+
+    if (date < new Date()) {
+      setError("오늘보다 이전 날짜는 선택하실 수 없습니다.");
+      return false;
+    }
+
     if (result.length > 0) {
       setError("시간이 중복되어 예약 할 수 없습니다. 다른 시간을 선택해주세요");
       return false;
@@ -82,7 +89,7 @@ const BookingCalendar = () => {
     setError("");
     setIsSelected(false);
     setSelectedDate(date);
-    setEndTime(dayjs(date).add(selectedMassageTime, "minutes").toDate());
+    setEndTime(addFewMinutes(date, selectedMassageTime).toDate());
     const isValid = validBusinessTime(date);
     if (!isValid) return;
     if (bookedData.length !== 0) {
@@ -98,7 +105,7 @@ const BookingCalendar = () => {
     return day !== SUNDAY;
   };
 
-  const result = splitMultipleTimeArraysBy30Minutes(bookedData);
+  const result = splitTimeArraysBy30Minutes(bookedData);
   const booked = convertStringsToDates(result);
 
   const filterPassedTime = (time: Date) => {
@@ -114,7 +121,7 @@ const BookingCalendar = () => {
       <CalendarStyle>
         <TitleStyle>날짜 및 시간을 선택해주세요</TitleStyle>
         <CalendarBoxStyle>
-          <StyledTimePicker
+          <StyledStartTimePicker
             dateFormat="yyyy-MM-dd aa h:mm "
             minDate={new Date()}
             maxDate={new Date(addTwoWeeks)}
@@ -129,9 +136,10 @@ const BookingCalendar = () => {
             excludeTimes={booked}
             filterTime={filterPassedTime}
             onKeyDown={(e) => e.preventDefault()}
+            dateFormatCalendar="yyyy년 MM월"
           />
           <HyphenStyle>-</HyphenStyle>
-          <StyledTimePicker
+          <StyledEndTimePicker
             showTimeSelect
             locale={ko}
             selected={endTime}
@@ -205,7 +213,22 @@ const HyphenStyle = styled.div`
   justify-content: center;
 `;
 
-const StyledTimePicker = styled(DatePicker)`
+const StyledStartTimePicker = styled(DatePicker)`
+  font-family: "Pretendard-Regular";
+  padding: 0.5rem;
+  text-align: center;
+  border-radius: 30px;
+  font-size: 1rem;
+  border: 2px solid #555555;
+  cursor: pointer;
+  /* gap: 1rem; */
+
+  &:focus {
+    border: 2px solid blue;
+  }
+`;
+
+const StyledEndTimePicker = styled(DatePicker)`
   font-family: "Pretendard-Regular";
   padding: 0.5rem;
   text-align: center;

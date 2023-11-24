@@ -12,7 +12,6 @@ import LoginPage from "../../pages/auth/LoginPage";
 import JoinPage from "../../pages/auth/JoinPage";
 import RootLayoutPage from "../../pages/user/RootLayoutPage";
 import MyOrderPage from "../../pages/user/MyOrderPage";
-import MyMileagePage from "../../pages/user/MyMileagePage";
 import RegisterPage from "../../pages/auth/RegisterPage";
 import MySettingPage from "../../pages/user/MySettingPage";
 import MyOrderDetailPage from "../../pages/user/MyOrderDetail";
@@ -74,7 +73,6 @@ const userRouteObjects: RouteObject[] = [
           { path: ":id", element: <MyOrderDetailPage /> },
         ],
       },
-      { path: "mileage", element: <MyMileagePage /> },
       { path: "setting", element: <MySettingPage /> },
     ],
   },

@@ -3,16 +3,14 @@ import { addComma } from "../../../util/price";
 import { MEDIA_QUERY } from "../../../const/devise";
 import { TOrderType } from "../../../@types/mypage/orders";
 import { Link } from "react-router-dom";
-import dayjs from "dayjs";
-import { useSelector } from "react-redux";
-import { getMassageDetail } from "../../../stores/massageSlice";
+import { makeSimpleDate } from "../../../util/date";
+import { makeSimpleTime } from "../../../util/time";
 
 const MyOrderItem = ({ order }: { order: TOrderType }) => {
-  const createdAt = dayjs(order.createdAt).format("YYYY-MM-DD");
-  const startDate = dayjs(order.startReservedAt).format("YYYY-MM-DD");
-  const startTime = dayjs(order.startReservedAt).format("HH:mm");
-  const endTime = dayjs(order.endReservedAt).format("HH:mm");
-  const selectedMassageDetail = useSelector(getMassageDetail);
+  const createdAt = makeSimpleDate(order.createdAt);
+  const startDate = makeSimpleDate(order.startReservedAt);
+  const startTime = makeSimpleTime(order.startReservedAt);
+  const endTime = makeSimpleTime(order.endReservedAt);
 
   return (
     <BookItemStyle>
@@ -27,7 +25,7 @@ const MyOrderItem = ({ order }: { order: TOrderType }) => {
       <OrderDetailStyle>
         <span>{startDate}</span>
         <span>
-          {startTime} - {endTime} ({selectedMassageDetail[0].time}분)
+          {startTime} - {endTime}
         </span>
       </OrderDetailStyle>
       <OrderPriceStyle>{addComma(order.price)}</OrderPriceStyle>
@@ -46,6 +44,7 @@ const BookItemStyle = styled.div`
   border-bottom: 1px solid lightgrey;
   padding: 1rem;
   text-align: center;
+  font-family: "Pretendard-Regular";
 
   @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
     flex-direction: column;
@@ -79,7 +78,6 @@ const OrderDateStyle = styled.span`
 
 const ViewDetailsStyle = styled.span`
   cursor: pointer;
-  font-family: "Pretendard-Regular";
 
   a {
     color: #337ab7;
@@ -105,7 +103,6 @@ const OrderDetailStyle = styled.div`
   flex-direction: column;
   justify-content: center;
   gap: 0.5rem;
-  /* font-weight: bold; */
 
   @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
     padding: 0.5rem;
@@ -127,9 +124,8 @@ const OrderPriceStyle = styled.div`
 const OrderStatusStyle = styled.div`
   width: 15%;
   display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
   font-weight: bold;
+  justify-content: center;
 
   @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
     padding: 0.5rem;

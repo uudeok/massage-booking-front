@@ -5,17 +5,12 @@ import dayjs from "dayjs";
 import { ko } from "date-fns/esm/locale";
 import { MEDIA_QUERY } from "../../const/devise";
 import { setHours, setMinutes, getDay } from "date-fns";
-import {
-  convertStringsToDates,
-  splitMultipleTimeArraysBy30Minutes,
-  spreadBookedData,
-} from "../../util/time";
-import { useState } from "react";
-import { useSelector } from "react-redux";
-import { getMassageDetail } from "../../stores/massageSlice";
+import { splitTimeArraysBy30Minutes } from "../../util/time";
+
 import { useGetBookedTimeListQuery } from "../../api/book/bookQuery";
 import LoadingBar from "../common/loading/LoadingBar";
 import { makeSimpleDate } from "../../util/date";
+import { convertStringsToDates } from "../../util/date";
 
 const SUNDAY = 0;
 
@@ -41,7 +36,7 @@ const BookingCalendar = ({
 
   if (!bookedData) return <LoadingBar />;
 
-  const result = splitMultipleTimeArraysBy30Minutes(bookedData);
+  const result = splitTimeArraysBy30Minutes(bookedData);
   const booked = convertStringsToDates(result);
 
   const isOffDay = (date: Date | number) => {
