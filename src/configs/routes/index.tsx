@@ -13,8 +13,9 @@ import JoinPage from "../../pages/auth/JoinPage";
 import RootLayoutPage from "../../pages/user/RootLayoutPage";
 import MyOrderPage from "../../pages/user/MyOrderPage";
 import RegisterPage from "../../pages/auth/RegisterPage";
-import MySettingPage from "../../pages/user/MySettingPage";
 import MyOrderDetailPage from "../../pages/user/MyOrderDetail";
+import UserPasswordModifyPage from "../../pages/user/UserPasswordModify";
+import UserWithdrawalPage from "../../pages/user/UserWithdrawalPage";
 
 const bookRouteObjects: RouteObject[] = [
   {
@@ -73,7 +74,8 @@ const userRouteObjects: RouteObject[] = [
           { path: ":id", element: <MyOrderDetailPage /> },
         ],
       },
-      { path: "setting", element: <MySettingPage /> },
+      { path: "userModify", element: <UserPasswordModifyPage /> },
+      { path: "withdraw", element: <UserWithdrawalPage /> },
     ],
   },
 ];

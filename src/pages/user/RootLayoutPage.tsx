@@ -34,7 +34,6 @@ const MainStyle = styled.main`
   margin: 3rem auto;
   display: flex;
   flex-direction: row;
-  /* border: 1px solid black; */
 
   @media only screen and (max-width: ${MEDIA_QUERY.bigNotebookWidth}) {
     width: 80%;

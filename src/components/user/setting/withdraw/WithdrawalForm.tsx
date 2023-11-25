@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { MEDIA_QUERY } from "../../../const/devise";
-import DefaultButton from "../../common/button/DefaultButton";
+import { MEDIA_QUERY } from "../../../../const/devise";
+import DefaultButton from "../../../common/button/DefaultButton";
 
 type TProps = {
   onClose: () => void;

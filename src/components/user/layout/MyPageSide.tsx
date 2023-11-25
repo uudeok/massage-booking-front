@@ -22,7 +22,7 @@ export default MyPageSide;
 
 const SideLayoutStyle = styled.div`
   padding: 1rem;
-  width: 20rem;
+  width: 25rem;
   font-family: "Pretendard-Regular";
 
   @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {

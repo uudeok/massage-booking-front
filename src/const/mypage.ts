@@ -1,6 +1,7 @@
 export const MY_PAGE_TABLE = [
   { key: "order", value: "나의 예약" },
-  { key: "setting", value: "개인정보수정" },
+  { key: "userModify", value: "비밀번호 변경" },
+  { key: "withdraw", value: "회원탈퇴" },
 ];
 
 export const ORDER_STATUS = {

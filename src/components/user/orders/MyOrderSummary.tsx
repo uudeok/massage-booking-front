@@ -29,37 +29,47 @@ const MyOrderSummary = () => {
         </CancelButtonStyle>
       </HeaderStyle>
       <ContentBoxStyle>
-        <InformationBoxStyle>
+        <OrderItemBoxStyle>
           <KeyStyle>예약한 마사지</KeyStyle>
           <span>건식 마사지</span>
-        </InformationBoxStyle>
-        <InformationBoxStyle>
+        </OrderItemBoxStyle>
+        <OrderItemBoxStyle>
           <KeyStyle>예약한 날짜</KeyStyle>
           <span>2023-11-20</span>
-        </InformationBoxStyle>
-        <InformationBoxStyle>
+        </OrderItemBoxStyle>
+        <OrderItemBoxStyle>
           <KeyStyle>예약한 시간</KeyStyle>
           <span>12:00 - 13:00</span>
-        </InformationBoxStyle>
-        <InformationBoxStyle>
+        </OrderItemBoxStyle>
+        <OrderItemBoxStyle>
           <KeyStyle>금액</KeyStyle>
           <span>60,000원</span>
-        </InformationBoxStyle>
-        <InformationBoxStyle>
+        </OrderItemBoxStyle>
+        <OrderItemBoxStyle>
           <KeyStyle>예약 상태</KeyStyle>
           <span>요청중</span>
 
-          <div ref={ref}>
+          <InformationBoxStyle ref={ref}>
             <FcInfo />
-            {isHover && <span>zz</span>}
-          </div>
-        </InformationBoxStyle>
+            {isHover && <span>예약 확인 중 입니다.</span>}
+          </InformationBoxStyle>
+        </OrderItemBoxStyle>
       </ContentBoxStyle>
     </div>
   );
 };
 
 export default MyOrderSummary;
+
+const InformationBoxStyle = styled.div`
+  display: flex;
+  gap: 0.2rem;
+  cursor: pointer;
+  span {
+    font-size: 0.9rem;
+    color: #555555;
+  }
+`;
 
 const HeaderStyle = styled.div`
   display: flex;
@@ -90,7 +100,7 @@ const ContentBoxStyle = styled.div`
   border-bottom: 1px solid lightgrey;
 `;
 
-const InformationBoxStyle = styled.div`
+const OrderItemBoxStyle = styled.div`
   display: flex;
   padding: 0.5rem;
 `;

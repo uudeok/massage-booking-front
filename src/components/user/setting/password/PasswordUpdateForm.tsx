@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useInput } from "../../../hooks/useInput";
+import { useInput } from "../../../../hooks/useInput";
 
 const PasswordUpdateForm = () => {
   const { inputValue, changeInputHandler } = useInput({
@@ -12,12 +12,12 @@ const PasswordUpdateForm = () => {
 
   const changePasswordHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    // 유효성 검사 필요
     console.log(prevPassword, newPassword, newPasswordConfirm);
   };
 
   return (
     <>
-      <HeaderStyle>비밀번호 변경</HeaderStyle>
       <FormStyle onSubmit={changePasswordHandler} onChange={changeInputHandler}>
         <LabelStyle htmlFor="prevPassword">기존 비밀번호</LabelStyle>
         <InputStyle
@@ -27,6 +27,7 @@ const PasswordUpdateForm = () => {
           required
           placeholder="기존 비밀번호를 입력해주세요."
         />
+
         <LabelStyle htmlFor="newPassword">새 비밀번호</LabelStyle>
         <InputStyle
           type="password"
@@ -43,7 +44,7 @@ const PasswordUpdateForm = () => {
           required
           placeholder="비밀번호를 한번 더 입력해주세요."
         />
-        <ButtonStyle>변경</ButtonStyle>
+        <ButtonStyle>변경하기</ButtonStyle>
       </FormStyle>
     </>
   );
@@ -59,12 +60,6 @@ const FormStyle = styled.form`
   margin-top: 1rem;
 `;
 
-const HeaderStyle = styled.h2`
-  font-size: 1.5rem;
-  padding: 1rem;
-  font-weight: bold;
-`;
-
 const LabelStyle = styled.label`
   margin-bottom: 1rem;
   font-size: 1.2rem;
@@ -78,7 +73,6 @@ const InputStyle = styled.input`
 `;
 
 const ButtonStyle = styled.button`
-  padding: 1rem;
   border: none;
   cursor: pointer;
   color: white;
@@ -86,6 +80,8 @@ const ButtonStyle = styled.button`
   font-family: "Pretendard-Regular";
   font-size: 1rem;
   background-color: #afc9a4;
+  padding: 0.5rem;
+  margin-top: 1rem;
 
   &:hover {
     color: whitesmoke;

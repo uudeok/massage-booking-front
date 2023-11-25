@@ -80,7 +80,7 @@ const ViewDetailsStyle = styled.span`
   cursor: pointer;
 
   a {
-    color: #337ab7;
+    color: #2196f3;
   }
 
   &:hover {
@@ -124,13 +124,13 @@ const OrderPriceStyle = styled.div`
 const OrderStatusStyle = styled.div`
   width: 15%;
   display: flex;
-  font-weight: bold;
   justify-content: center;
+  /* font-weight: bold; */
 
   @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
     padding: 0.5rem;
     flex-direction: row;
     width: 100%;
-    align-items: center;
+    justify-content: left;
   }
 `;
