@@ -31,6 +31,7 @@ const LayoutStyle = styled.div`
   width: 30rem;
   margin: 1rem auto;
   padding: 1rem;
+  border-radius: 10px;
 
   @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
     width: 70%;

@@ -20,10 +20,10 @@ const ButtonStyle = styled.button`
   border: none;
   border-radius: 10px;
   text-align: center;
-  font-size: 17px;
+  font-size: 1rem;
   cursor: pointer;
   margin-top: 1rem;
   width: 100%;
   color: black;
-  margin-bottom: 1rem;
+  /* margin-bottom: 1rem; */
 `;

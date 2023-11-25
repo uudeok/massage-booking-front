@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { useInput } from "../../../../hooks/useInput";
+import { MEDIA_QUERY } from "../../../../const/devise";
 
 const PasswordUpdateForm = () => {
   const { inputValue, changeInputHandler } = useInput({
@@ -63,6 +64,10 @@ const FormStyle = styled.form`
 const LabelStyle = styled.label`
   margin-bottom: 1rem;
   font-size: 1.2rem;
+
+  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+    font-size: 1rem;
+  }
 `;
 
 const InputStyle = styled.input`
@@ -80,7 +85,7 @@ const ButtonStyle = styled.button`
   font-family: "Pretendard-Regular";
   font-size: 1rem;
   background-color: #afc9a4;
-  padding: 0.5rem;
+  padding: 0.7rem;
   margin-top: 1rem;
 
   &:hover {

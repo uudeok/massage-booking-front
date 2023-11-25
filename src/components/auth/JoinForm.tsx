@@ -31,9 +31,7 @@ const JoinForm = () => {
 
   const validJoinForm = () => {
     if (!isValidEmail) {
-      setError(
-        "올바른 이메일 주소를 입력해주세요. 예약 내역이 이메일로 발송됩니다."
-      );
+      setError("올바른 이메일 주소를 입력해주세요..");
       return false;
     }
 
@@ -80,7 +78,7 @@ const JoinForm = () => {
           required
           id="email"
           name="email"
-          placeholder="예약 내역이 이메일로 발송됩니다."
+          placeholder="이메일 주소를 입력해주세요."
         />
         <LabelStyle htmlFor="password">비밀번호</LabelStyle>
         <InputStyle

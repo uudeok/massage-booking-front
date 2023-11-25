@@ -42,7 +42,7 @@ const ButtonStyle = styled.button<{
   font-family: "Pretendard-Regular";
   border: none;
   cursor: pointer;
-  height: 3rem;
+  /* height: 3rem; */
   padding: 1rem;
   border-radius: 10px;
   font-size: 1rem;

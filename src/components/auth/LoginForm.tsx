@@ -91,10 +91,12 @@ const LoginForm = ({ path }: { path?: string }) => {
       </FormStyle>
       <BottomBoxStyle>
         <BottomTitleStyle>다른 계정으로 로그인</BottomTitleStyle>
-        <KakaoButton>카카오톡 로그인</KakaoButton>
-        <DefaultButton>
-          <Link to="/join">회원가입 하러가기</Link>
-        </DefaultButton>
+        <ButtonBoxStyle>
+          <KakaoButton>카카오톡 로그인</KakaoButton>
+          <DefaultButton>
+            <Link to="/join">회원가입 하러가기</Link>
+          </DefaultButton>
+        </ButtonBoxStyle>
       </BottomBoxStyle>
     </>
   );
@@ -175,4 +177,10 @@ const BottomTitleStyle = styled.span`
 const ErrorMessageStyle = styled.span`
   color: red;
   font-size: 0.9rem;
+`;
+
+const ButtonBoxStyle = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 `;
