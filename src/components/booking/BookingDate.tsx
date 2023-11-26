@@ -47,21 +47,13 @@ const BookingCalendar = () => {
     const start = makeSimpleTime(date);
 
     if (start === "19:30" && 90 < selectedMassageTime) {
-      setError(
-        "마사지 시간이 영업시간을 초과합니다. 다른 시간을 선택해주세요."
-      );
+      setError("마사지 시간이 영업시간을 초과합니다.");
     } else if (start === "20:00" && 60 < selectedMassageTime) {
-      setError(
-        "마사지 시간이 영업시간을 초과합니다. 다른 시간을 선택해주세요."
-      );
+      setError("마사지 시간이 영업시간을 초과합니다.");
     } else if (start === "20:30") {
-      setError(
-        "마사지를 받을 수 있는 시간이 아닙니다. 다른 시간을 선택해주세요."
-      );
+      setError("마사지를 받을 수 있는 시간이 아닙니다.");
     } else if (start === CLOSE_TIME) {
-      setError(
-        "영업시간은 09:00 ~ 21:00 까지 입니다. 다른 시간을 선택해주세요."
-      );
+      setError("영업시간은 09:00 ~ 21:00 까지 입니다.");
     } else {
       return true;
     }
@@ -79,7 +71,7 @@ const BookingCalendar = () => {
     }
 
     if (result.length > 0) {
-      setError("시간이 중복되어 예약 할 수 없습니다. 다른 시간을 선택해주세요");
+      setError("시간이 중복됩니다. 다른 시간을 선택해주세요");
       return false;
     }
     return true;

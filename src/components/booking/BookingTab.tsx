@@ -13,7 +13,7 @@ const TAB_LIST = [
     content: <BookingMassageList />,
   },
   {
-    key: "타입 선택",
+    key: "종류 선택",
     content: <BookingDetailList />,
   },
   {
@@ -59,7 +59,7 @@ const TabListStyle = styled.div`
   display: flex;
   flex-direction: row;
   height: 5rem;
-  margin-top: 1.5rem;
+  /* margin-top: 1rem; */
 `;
 
 const TabButtonStyle = styled.button<{ $isActive: boolean }>`
@@ -76,6 +76,9 @@ const TabButtonStyle = styled.button<{ $isActive: boolean }>`
   background-color: ${({ $isActive }) =>
     $isActive ? "#afc9a4" : "whitesmoke"};
   color: ${({ $isActive }) => ($isActive ? "white" : "grey")};
+  font-weight: ${({ $isActive }) => ($isActive ? "bold" : "")};
+  box-shadow: ${({ $isActive }) =>
+    $isActive ? "0 0 0.3rem 0 rgba(0, 0, 0, 0.2)" : ""};
 
   @media only screen and (max-width: ${MEDIA_QUERY.notebookWidth}) {
     font-size: 1.2rem;

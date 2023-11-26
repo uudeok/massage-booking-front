@@ -8,7 +8,9 @@ export const ContainerStyle = styled.div`
   font-family: "Pretendard-Regular";
   /* font-weight: bold; */
   align-items: end;
-  margin-bottom: 0.5rem;
+  /* margin-bottom: 0.5rem; */
+  padding: 0.5rem;
+  background-color: whitesmoke;
 
   @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
     height: 30px;
@@ -89,7 +91,7 @@ export const LogoutBoxStyle = styled.div`
   button {
     margin-left: 0.5rem;
     border: none;
-    background-color: white;
+    background-color: whitesmoke;
     font-family: "Pretendard-Regular";
     font-size: 1rem;
     cursor: pointer;

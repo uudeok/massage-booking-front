@@ -45,10 +45,8 @@ const BookingDetail = ({ detail, massage }: TProps) => {
 export default BookingDetail;
 
 const ContainerStyle = styled.div`
-  margin: 2rem auto;
+  margin: 1rem auto;
   border-radius: 6px;
-  /* background-color: whitesmoke; */
-  /* box-shadow: 0 0 0.5rem 0 rgba(0, 0, 0, 0.2); */
   border: 1px solid lightgrey;
   padding: 1rem;
   width: 45rem;

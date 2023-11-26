@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../stores/store";
 import { setSelectedMassageItem } from "../../stores/massageSlice";
 import { addTabNum } from "../../stores/tabSlice";
-import DefaultButton from "../common/button/DefaultButton";
 
 type TProps = {
   massage: TMassageTable;
@@ -31,14 +30,9 @@ const BookingMassageItem = ({ massage }: TProps) => {
       <ItemContentBoxStyle>
         <h3>{massage.displayItem}</h3>
         <span>{massage.content}</span>
-        <DefaultButton
-          onClick={() => selectMassageItem(massage.item)}
-          backgroundColor="white"
-          color="black"
-          border="2px solid lightgrey"
-        >
+        <ButtonStyle onClick={() => selectMassageItem(massage.item)}>
           예약하기
-        </DefaultButton>
+        </ButtonStyle>
       </ItemContentBoxStyle>
     </ItemBoxStyle>
   );
@@ -51,10 +45,15 @@ const ItemBoxStyle = styled.div`
   flex-direction: column;
   width: 100%;
   height: 100%;
+  /* border: 1px solid black; */
 `;
 
 const ImgBoxStyle = styled.div`
   height: 70%;
+
+  img {
+    border-radius: 10px;
+  }
 `;
 
 const ItemContentBoxStyle = styled.div`
@@ -72,4 +71,13 @@ const ItemContentBoxStyle = styled.div`
     padding: 0.5rem;
     font-size: 15px;
   }
+`;
+
+const ButtonStyle = styled.button`
+  background-color: white;
+  color: black;
+  border: 2px solid lightgrey;
+  padding: 0.7rem;
+  border-radius: 10px;
+  cursor: pointer;
 `;

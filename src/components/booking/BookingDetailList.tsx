@@ -15,8 +15,8 @@ const BookingDetailList = () => {
   return (
     <ContainerStyle>
       <InnerBoxStyle>
-        {isFetching && <LoadingBar />}
         <PreviousButton />
+        {isFetching && <LoadingBar />}
         {selectedMassage &&
           selectedMassage.detail.map((detail) => (
             <BookingDetail
@@ -34,8 +34,10 @@ export default BookingDetailList;
 
 const ContainerStyle = styled.div`
   display: flex;
+  flex-direction: column;
   width: 70%;
   margin: auto;
+  padding: 1rem;
 
   @media only screen and (max-width: ${DEVISE_SIZE.notebookMax}) {
     width: 100%;
@@ -43,10 +45,5 @@ const ContainerStyle = styled.div`
 `;
 
 const InnerBoxStyle = styled.div`
-  margin: auto;
-  padding: 1rem;
-
-  @media only screen and (max-width: ${DEVISE_SIZE.notebookMax}) {
-    width: 100%;
-  }
+  margin: 0 auto;
 `;

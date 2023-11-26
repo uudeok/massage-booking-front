@@ -6,6 +6,10 @@ import { FcInfo } from "react-icons/fc";
 import { useHover } from "../../../hooks/useHover";
 
 const MyOrderSummary = () => {
+  /// orderStatus === "PENDING" or "CONFIRM" 일때만 예약 취소 가능
+  /// 예약 시간 2시간 전 예약 안내 연락 보내기
+  /// 30분 지나면 예약 취소 불가
+
   const { ref, isHover } = useHover();
   const navigate = useNavigate();
   const { id } = useParams();

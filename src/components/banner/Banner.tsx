@@ -39,7 +39,7 @@ const BannerBoxStyle = styled.div`
   left: 60%;
   bottom: 21rem;
   padding: 1rem;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
 
   span {
     padding: 0.3rem;
