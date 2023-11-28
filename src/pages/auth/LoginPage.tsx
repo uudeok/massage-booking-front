@@ -1,4 +1,3 @@
-import LoginForm from "../../components/auth/LoginForm";
 import Layout from "../../layout/Layout";
 import styled from "styled-components";
 import { MEDIA_QUERY } from "../../const/devise";
@@ -8,7 +7,6 @@ const LoginPage = () => {
   return (
     <Layout>
       <LoginLayoutStyle>
-        {/* <LoginForm /> */}
         <OauthLogin />
       </LoginLayoutStyle>
     </Layout>

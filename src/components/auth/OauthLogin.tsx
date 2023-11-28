@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { MEDIA_QUERY } from "../../const/devise";
-import { Link } from "react-router-dom";
 import KakaoLogin from "./KakaoLogin";
 import NaverLogin from "./NaverLogin";
 
@@ -20,9 +19,6 @@ const OauthLogin = () => {
       <BottomBoxStyle>
         <KakaoLogin />
         <NaverLogin />
-        {/* <JoinButtonStyle>
-          <Link to="/join">회원가입 하러가기</Link>
-        </JoinButtonStyle> */}
       </BottomBoxStyle>
     </>
   );
@@ -60,6 +56,9 @@ const BannerStyle = styled.div`
   border: 2px dotted lightgrey;
   border-radius: 10px;
   font-family: "Pretendard-Regular";
+  /* background-color: #555555;
+  color: white;
+  border: none; */
 
   div {
     padding: 0.3rem;
@@ -68,17 +67,6 @@ const BannerStyle = styled.div`
   @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
     font-size: 0.8rem;
   }
-`;
-
-const JoinButtonStyle = styled.button`
-  font-family: "Pretendard-Regular";
-  border: none;
-  cursor: pointer;
-  padding: 1rem;
-  border-radius: 10px;
-  font-size: 1rem;
-  background-color: whitesmoke;
-  color: black;
 `;
 
 const MiddleBannerStyle = styled.div`

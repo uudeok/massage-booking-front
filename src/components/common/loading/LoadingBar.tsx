@@ -3,7 +3,7 @@ import styled from "styled-components";
 const LoadingBar = () => {
   return (
     <LoadingBarStyle>
-      <h1>로딩중...</h1>
+      {/* <h1>로딩중...</h1> */}
       <span></span>
       <span></span>
       <span></span>

@@ -9,10 +9,8 @@ import NoticeRootLayoutPage from "../../pages/notice/NoticeRootLayoutPage";
 import MembershipPage from "../../pages/MembershipPage";
 import ContactPage from "../../pages/ContactPage";
 import LoginPage from "../../pages/auth/LoginPage";
-import JoinPage from "../../pages/auth/JoinPage";
 import RootLayoutPage from "../../pages/user/RootLayoutPage";
 import MyOrderPage from "../../pages/user/MyOrderPage";
-import RegisterPage from "../../pages/auth/RegisterPage";
 import MyOrderDetailPage from "../../pages/user/MyOrderDetail";
 import UserPasswordModifyPage from "../../pages/user/UserPasswordModify";
 import UserWithdrawalPage from "../../pages/user/UserWithdrawalPage";
@@ -84,8 +82,6 @@ const userRouteObjects: RouteObject[] = [
 
 const authRouteObjects: RouteObject[] = [
   { path: "login", element: <LoginPage /> },
-  { path: "join", element: <JoinPage /> },
-  { path: "register", element: <RegisterPage /> },
   { path: "naverCallback", element: <NaverLoginPage /> },
   { path: "kakaoCallback", element: <KakaoLoginPage /> },
 ];

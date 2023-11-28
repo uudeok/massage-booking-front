@@ -90,7 +90,7 @@ export const LogoutBoxStyle = styled.div`
   button {
     margin-left: 0.5rem;
     border: none;
-    background-color: whitesmoke;
+    background-color: white;
     font-family: "Pretendard-Regular";
     font-size: 1rem;
     cursor: pointer;

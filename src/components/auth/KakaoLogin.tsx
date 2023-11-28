@@ -8,10 +8,6 @@ const KakaoLogin = () => {
   const REDIRECT_URL = "http://localhost:3000/kakaoCallback";
   const KAKAO_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URL}&response_type=code`;
 
-  //   const handleLogin = () => {
-  //     window.location.href = KAKAO_URL;
-  //   };
-
   return (
     <Link to={KAKAO_URL}>
       <KakaoButton>카카오톡 계정 로그인</KakaoButton>
