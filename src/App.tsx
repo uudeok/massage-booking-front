@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import ModalContainer from "./components/globalModal/ModalContainer";
+import ModalContainer from "./components/common/UI/globalModal/ModalContainer";
 
 function App() {
   return (

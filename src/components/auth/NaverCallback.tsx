@@ -9,7 +9,8 @@ const NaverCallback = () => {
   const getToken = useCallback(async () => {
     const code = new URL(window.location.href).searchParams.get("code");
     console.log("naver", code);
-    localStorage.setItem("access_token", code!);
+
+    localStorage.setItem("code", code!);
 
     if (code) {
       navigate("/");

@@ -2,12 +2,10 @@ import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "./store";
 import { MODAL_TYPE_VALUE } from "../@types/modal";
 import { TLoginModalType } from "../components/common/UI/modal/LoginModal";
-import { TOneBtnModalType } from "../components/common/UI/modal/OneBtnModal";
-import { TTwoBtnModalType } from "../components/common/UI/modal/TwoBtnModal";
 
 // props 의 type 을 어떻게 지정해주지??
 
-export type ModalProps = TLoginModalType | TOneBtnModalType | TTwoBtnModalType;
+export type ModalProps = TLoginModalType;
 
 export type ModalType = {
   type: MODAL_TYPE_VALUE;

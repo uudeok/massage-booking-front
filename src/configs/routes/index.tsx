@@ -12,10 +12,10 @@ import LoginPage from "../../pages/auth/LoginPage";
 import RootLayoutPage from "../../pages/user/RootLayoutPage";
 import MyOrderPage from "../../pages/user/MyOrderPage";
 import MyOrderDetailPage from "../../pages/user/MyOrderDetail";
-import UserPasswordModifyPage from "../../pages/user/UserPasswordModify";
 import UserWithdrawalPage from "../../pages/user/UserWithdrawalPage";
 import NaverLoginPage from "../../pages/auth/NaverLoginPage";
 import KakaoLoginPage from "../../pages/auth/KakaoLoginPage";
+import MyInformationPage from "../../pages/user/MyInfomationPage";
 
 const bookRouteObjects: RouteObject[] = [
   {
@@ -74,7 +74,7 @@ const userRouteObjects: RouteObject[] = [
           { path: ":id", element: <MyOrderDetailPage /> },
         ],
       },
-      { path: "userModify", element: <UserPasswordModifyPage /> },
+      { path: "information", element: <MyInformationPage /> },
       { path: "withdraw", element: <UserWithdrawalPage /> },
     ],
   },

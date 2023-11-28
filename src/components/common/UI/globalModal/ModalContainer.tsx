@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { modalSelector, closeModal } from "../../stores/modalSlice";
+import { modalSelector, closeModal } from "../../../../stores/modalSlice";
 import { createPortal } from "react-dom";
 import styled from "styled-components";
 import { MODAL_COMPONENTS } from "./ModalStore";

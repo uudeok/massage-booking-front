@@ -1,4 +1,4 @@
-import { MODAL_TYPE } from "../../components/globalModal/ModalStore";
+import { MODAL_TYPE } from "../../components/common/UI/globalModal/ModalStore";
 import { valueOf } from "../common";
 
 export type MODAL_TYPE_TYPE = typeof MODAL_TYPE;

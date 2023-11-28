@@ -6,7 +6,7 @@ import { MEDIA_QUERY } from "../../../const/devise";
 const MyPageSide = () => {
   return (
     <SideLayoutStyle>
-      <HeaderStyle>‖ 나의 내역</HeaderStyle>
+      <HeaderStyle>‖ 나의 정보</HeaderStyle>
       <ListStyled>
         {MY_PAGE_TABLE.map((item, index) => (
           <ItemStyled key={index}>

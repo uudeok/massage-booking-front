@@ -12,7 +12,7 @@ const KakaoCallback = () => {
   const getToken = useCallback(() => {
     const code = new URL(window.location.href).searchParams.get("code");
     console.log("kakaoCode", code);
-    localStorage.setItem("access_token", code!);
+    localStorage.setItem("code", code!);
 
     if (code) {
       navigate("/");

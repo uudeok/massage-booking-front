@@ -20,7 +20,7 @@ export const MENU_LIST = [
 
 const Header = () => {
   const getAuth = getAuthUser();
-  console.log("Header", getAuth);
+  // console.log("Header", getAuth);
   const navigate = useNavigate();
   const logoutHandler = () => {
     logout();

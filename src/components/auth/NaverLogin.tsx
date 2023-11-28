@@ -8,9 +8,11 @@ const NaverLogin = () => {
   const NAVER_URL = `https://nid.naver.com/oauth2.0/authorize?response_type=code&client_id=${NAVER_CLIENT_ID}&state=${STATE}&redirect_url=${NAVER_CALLBACK_URL}`;
 
   return (
-    <Link to={NAVER_URL}>
-      <NaverButton>네이버 아이디 로그인</NaverButton>
-    </Link>
+    <>
+      <Link to={NAVER_URL}>
+        <NaverButton>네이버 아이디 로그인</NaverButton>
+      </Link>
+    </>
   );
 };
 

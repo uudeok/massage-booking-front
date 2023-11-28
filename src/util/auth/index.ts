@@ -1,5 +1,5 @@
 export const getAuthUser = () => {
-  const token = localStorage.getItem("access_token");
+  const token = localStorage.getItem("code");
 
   console.log("index", token);
   if (!token) {
@@ -10,6 +10,6 @@ export const getAuthUser = () => {
 };
 
 export const logout = () => {
-  localStorage.removeItem("access_token");
+  localStorage.removeItem("code");
   localStorage.removeItem("com.naver.nid.access_token");
 };
