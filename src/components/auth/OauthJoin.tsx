@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { MEDIA_QUERY } from "../../const/devise";
-import KakaoButton from "../common/button/KakaoButton";
-import NaverButton from "../common/button/NaverButton";
+import KakaoLogin from "./KakaoLogin";
+import NaverLogin from "./NaverLogin";
 
 const OauthJoin = () => {
   return (
@@ -18,8 +18,8 @@ const OauthJoin = () => {
           <div>다양한 EVENT 안내!</div>
         </MiddleBannerStyle>
         <ButtonBoxStyle>
-          <KakaoButton>카카오톡 회원가입</KakaoButton>
-          <NaverButton>네이버 회원가입</NaverButton>
+          <KakaoLogin />
+          <NaverLogin />
         </ButtonBoxStyle>
       </OauthJoinBoxStyle>
     </ContainerStyle>

@@ -10,7 +10,6 @@ export const ContainerStyle = styled.div`
   align-items: end;
   /* margin-bottom: 0.5rem; */
   padding: 0.5rem;
-  background-color: whitesmoke;
 
   @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
     height: 30px;

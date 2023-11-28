@@ -8,8 +8,8 @@ const LoginPage = () => {
   return (
     <Layout>
       <LoginLayoutStyle>
-        <LoginForm />
-        {/* <OauthLogin /> */}
+        {/* <LoginForm /> */}
+        <OauthLogin />
       </LoginLayoutStyle>
     </Layout>
   );

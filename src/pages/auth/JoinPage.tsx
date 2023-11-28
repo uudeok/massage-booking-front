@@ -6,8 +6,8 @@ import Layout from "../../layout/Layout";
 const JoinPage = () => {
   return (
     <Layout>
-      {/* <OauthJoin /> */}
-      <Join />
+      <OauthJoin />
+      {/* <Join /> */}
     </Layout>
   );
 };

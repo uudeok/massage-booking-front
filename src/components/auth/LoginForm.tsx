@@ -8,6 +8,8 @@ import KakaoButton from "../common/button/KakaoButton";
 import { closeModal } from "../../stores/modalSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { getTimeDetail } from "../../stores/timeSlice";
+import NaverLogin from "./NaverLogin";
+import KakaoLogin from "./KakaoLogin";
 
 const LoginForm = ({ path }: { path?: string }) => {
   const dispatch = useDispatch();
@@ -53,14 +55,14 @@ const LoginForm = ({ path }: { path?: string }) => {
 
     dispatch(closeModal());
 
-    if (path) {
-      // path 가 있다는 건, 예약 화면에서 넘어왔다는 뜻이니까
-      // 예약 확정 API를 여기다 넣어야함
+    // if (path) {
+    //   // path 가 있다는 건, 예약 화면에서 넘어왔다는 뜻이니까
+    //   // 예약 확정 API를 여기다 넣어야함
 
-      navigate(`/${path}`);
-    } else {
-      navigate("/");
-    }
+    //   navigate(`/${path}`);
+    // } else {
+    //   navigate("/");
+    // }
   };
 
   return (
@@ -92,7 +94,8 @@ const LoginForm = ({ path }: { path?: string }) => {
       <BottomBoxStyle>
         <BottomTitleStyle>다른 계정으로 로그인</BottomTitleStyle>
         <ButtonBoxStyle>
-          <KakaoButton>카카오톡 로그인</KakaoButton>
+          <KakaoLogin />
+          <NaverLogin />
           <DefaultButton>
             <Link to="/join">회원가입 하러가기</Link>
           </DefaultButton>
@@ -103,6 +106,14 @@ const LoginForm = ({ path }: { path?: string }) => {
 };
 
 export default LoginForm;
+
+const KakaoButtonStyle = styled.button`
+  background: url("/kakao_login_medium_wide.png") no-repeat center;
+  width: 100%;
+  height: 5rem;
+  border: none;
+  cursor: pointer;
+`;
 
 const FormStyle = styled.form`
   margin: 1rem auto;

@@ -1,9 +1,9 @@
-import LoginForm from "../../../auth/LoginForm";
 import styled from "styled-components";
 import { MEDIA_QUERY } from "../../../../const/devise";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { closeModal } from "../../../../stores/modalSlice";
+import OauthLogin from "../../../auth/OauthLogin";
 
 export type TLoginModalType = {
   path: string;
@@ -26,7 +26,7 @@ const LoginModal = ({ ...props }: TLoginModalType) => {
           X
         </CloseButtonStyle>
       </CloseButtonBoxStyle>
-      <LoginForm path={props.path} />
+      <OauthLogin />
     </ModalStyle>
   );
 };
@@ -41,15 +41,15 @@ const ModalStyle = styled.div`
   top: 10%;
   justify-content: center;
   align-items: center;
-  left: calc(50% - 15rem);
-  width: 33rem;
-  padding: 1rem;
-  border-radius: 14px;
+  left: calc(50% - 10rem);
+  width: 26rem;
+  padding: 1.5rem;
+  /* border-radius: 14px; */
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
   z-index: 30;
   animation: slide-down 300ms ease-out forwards;
   background-color: white;
-  height: 38rem;
+  height: 30rem;
 
   @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
     width: 26rem;

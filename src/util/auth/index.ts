@@ -1,13 +1,13 @@
 export const getAuthUser = () => {
-  const storedEmail = localStorage.getItem("email");
-
-  if (!storedEmail) {
+  const token = localStorage.getItem("access_token");
+  console.log("index", token);
+  if (!token) {
     return null;
   }
 
-  return { storedEmail };
+  return { token };
 };
 
 export const logout = () => {
-  localStorage.removeItem("email");
+  localStorage.removeItem("access_token");
 };
