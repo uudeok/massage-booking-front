@@ -2,30 +2,28 @@ import BookingMassageItem from "./BookingMassageItem";
 import styled from "styled-components";
 import { MEDIA_QUERY } from "../../const/devise";
 import LoadingBar from "../common/loading/LoadingBar";
-import ErrorPage from "../common/error/ErrorPage";
 import { useGetMassageListQuery } from "../../api/massage/massageQuery";
 
 const BookingMassageList = () => {
   const { data: massageList, isFetching, error } = useGetMassageListQuery();
 
   if (error && "status" in error) {
-    return <ErrorPage errorStatus={Number(error.status)} />;
+    throw error;
   }
 
+  if (isFetching) return <LoadingBar />;
+
   return (
-    <>
-      {isFetching && <LoadingBar />}
-      <ContentBoxStyle>
-        <ListBoxStyle>
-          {massageList &&
-            massageList.map((massage) => (
-              <BookingItemStyle key={massage.id}>
-                <BookingMassageItem massage={massage} />
-              </BookingItemStyle>
-            ))}
-        </ListBoxStyle>
-      </ContentBoxStyle>
-    </>
+    <ContentBoxStyle>
+      <ListBoxStyle>
+        {massageList &&
+          massageList.map((massage) => (
+            <BookingItemStyle key={massage.id}>
+              <BookingMassageItem massage={massage} />
+            </BookingItemStyle>
+          ))}
+      </ListBoxStyle>
+    </ContentBoxStyle>
   );
 };
 

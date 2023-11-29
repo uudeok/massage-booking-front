@@ -20,13 +20,8 @@ const ProgramList = () => {
       <ContainerStyle>
         <InnerBoxStyle>
           <TitleStyle>프로그램 안내</TitleStyle>
-          <hr style={{ marginBottom: "2rem" }}></hr>
-          {massageList &&
-            massageList.map((massage) => (
-              <ItemBoxStyle key={massage.id}>
-                <ProgramItem massage={massage} />
-              </ItemBoxStyle>
-            ))}
+          <hr style={{ marginBottom: "3rem" }}></hr>
+          <ImgBoxStyle src="brochure.jpg" alt="가격표" />
         </InnerBoxStyle>
       </ContainerStyle>
     </>
@@ -76,4 +71,9 @@ const TitleStyle = styled.h1`
 const ItemBoxStyle = styled.li`
   text-align: center;
   padding: 1rem;
+`;
+
+const ImgBoxStyle = styled.img`
+  margin: auto;
+  display: flex;
 `;

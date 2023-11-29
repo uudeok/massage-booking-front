@@ -3,13 +3,13 @@ import styled from "styled-components";
 const ErrorPage = ({ errorStatus }: { errorStatus: number | null }) => {
   if (errorStatus === 404) {
     return <ImgStyle src="404.png" alt="error" />;
-  } else {
-    return (
-      <ContentStyle>
-        <span>일시적인 오류 입니다.</span>
-      </ContentStyle>
-    );
   }
+
+  return (
+    <ContentStyle>
+      <span>일시적인 오류 입니다.</span>
+    </ContentStyle>
+  );
 };
 
 export default ErrorPage;
