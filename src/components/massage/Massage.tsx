@@ -7,6 +7,8 @@ import { useGetMassageListQuery } from "../../api/massage/massageQuery";
 const Massage = () => {
   const { data: massageList } = useGetMassageListQuery();
 
+  // data 가 빈배열일 경우?
+
   if (!massageList) {
     return <LoadingBar />;
   }

@@ -2,6 +2,8 @@ import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../stores/store";
 import { subTabNum } from "../../../stores/tabSlice";
+import { palette } from "../../../styles/palette";
+import { font } from "../../../fonts/font";
 
 const PreviousButton = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -19,8 +21,12 @@ const ButtonStyle = styled.button`
   width: 10rem;
   cursor: pointer;
   color: black;
-  font-family: "Pretendard-Regular";
+  font-family: ${font.pretend};
   font-size: 1rem;
   border: none;
   text-align: left;
+
+  &:hover {
+    color: ${palette.grey};
+  }
 `;

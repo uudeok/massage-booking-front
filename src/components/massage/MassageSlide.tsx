@@ -22,26 +22,23 @@ const MassageSlide = ({ massageList }: { massageList: TMassageTable[] }) => {
         768: { slidesPerView: 2 },
       }}
     >
-      {massageList &&
-        massageList.map((massage) => (
-          <SwiperSlide key={massage.id}>
-            <Link to="/program">
-              <ContainerStyle>
-                <ItemImgStyle>
-                  <img
-                    src={massage.image}
-                    alt={massage.content}
-                    width="100%"
-                    height="100%"
-                  />
-                </ItemImgStyle>
-                <ItemContentStyle>
-                  {MASSAGE_ITEM[massage.item]}
-                </ItemContentStyle>
-              </ContainerStyle>
-            </Link>
-          </SwiperSlide>
-        ))}
+      {massageList.map((massage) => (
+        <SwiperSlide key={massage.id}>
+          <Link to="/program">
+            <ContainerStyle>
+              <ItemImgStyle>
+                <img
+                  src={massage.image}
+                  alt={massage.content}
+                  width="100%"
+                  height="100%"
+                />
+              </ItemImgStyle>
+              <ItemContentStyle>{MASSAGE_ITEM[massage.item]}</ItemContentStyle>
+            </ContainerStyle>
+          </Link>
+        </SwiperSlide>
+      ))}
     </Swiper>
   );
 };

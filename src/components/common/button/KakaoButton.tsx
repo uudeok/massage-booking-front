@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { font } from "../../../fonts/font";
 
 type TProps = {
   children: React.ReactNode;
@@ -11,7 +12,7 @@ const KakaoButton = ({ children }: TProps) => {
 export default KakaoButton;
 
 const ButtonStyle = styled.button`
-  font-family: "Pretendard-Regular";
+  font-family: ${font.pretend};
   background-color: #fee500;
   background-image: url(//storage.keepgrow.com/admin/campaign/20200611043456590.svg);
   background-repeat: no-repeat;

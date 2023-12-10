@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { MEDIA_QUERY } from "../../../../const/devise";
-import DefaultButton from "../../../common/button/DefaultButton";
 
 type TProps = {
   onClose: () => void;
@@ -18,22 +17,8 @@ const WithdrawalForm = ({ onClose }: TProps) => {
         <span>정말 탈퇴하시겠습니까?</span>
       </ContentBoxStyle>
       <ButtonBoxStyle>
-        <DefaultButton
-          width="10rem"
-          backgroundColor="white"
-          border="2px solid #afc9a4"
-          onClick={onClose}
-        >
-          취소하기
-        </DefaultButton>
-        <DefaultButton
-          onClick={onWithdrawalHandler}
-          width="10rem"
-          backgroundColor="#afc9a4"
-          color="white"
-        >
-          탈퇴하기
-        </DefaultButton>
+        <button onClick={onClose}>취소하기</button>
+        <button onClick={onWithdrawalHandler}>탈퇴하기</button>
       </ButtonBoxStyle>
     </InnerBoxStyle>
   );

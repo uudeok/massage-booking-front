@@ -5,23 +5,22 @@ import LoadingBar from "../common/loading/LoadingBar";
 import { useGetMassageListQuery } from "../../api/massage/massageQuery";
 
 const BookingMassageList = () => {
-  const { data: massageList, isFetching, error } = useGetMassageListQuery();
+  const { data: massageList, error } = useGetMassageListQuery();
+
+  if (!massageList) return <LoadingBar />;
 
   if (error && "status" in error) {
     throw error;
   }
 
-  if (isFetching) return <LoadingBar />;
-
   return (
     <ContentBoxStyle>
       <ListBoxStyle>
-        {massageList &&
-          massageList.map((massage) => (
-            <BookingItemStyle key={massage.id}>
-              <BookingMassageItem massage={massage} />
-            </BookingItemStyle>
-          ))}
+        {massageList.map((massage) => (
+          <BookingItemStyle key={massage.id}>
+            <BookingMassageItem massage={massage} />
+          </BookingItemStyle>
+        ))}
       </ListBoxStyle>
     </ContentBoxStyle>
   );

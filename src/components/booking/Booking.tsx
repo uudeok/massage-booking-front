@@ -54,6 +54,7 @@ const InnerBoxStyle = styled.div`
   justify-content: center;
   position: relative;
   bottom: 60%;
+  gap: 2rem;
 
   a {
     color: black;

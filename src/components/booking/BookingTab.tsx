@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, Fragment } from "react";
 import styled from "styled-components";
 import BookingMassageList from "./BookingMassageList";
 import { MEDIA_QUERY } from "../../const/devise";
@@ -6,6 +6,7 @@ import BookingDetailList from "./BookingDetailList";
 import { useSelector, useDispatch } from "react-redux";
 import { currTabNum, resetTabNum } from "../../stores/tabSlice";
 import BookingDate from "./BookingDate";
+import { font } from "../../fonts/font";
 
 const TAB_LIST = [
   {
@@ -36,14 +37,14 @@ const BookingTab = () => {
     <>
       <TabListStyle>
         {TAB_LIST.map((item, index) => (
-          <React.Fragment key={index}>
+          <Fragment key={index}>
             <TabButtonStyle
               disabled={index !== tabNum}
               $isActive={index === tabNum}
             >
               {item.key}
             </TabButtonStyle>
-          </React.Fragment>
+          </Fragment>
         ))}
       </TabListStyle>
 
@@ -59,7 +60,6 @@ const TabListStyle = styled.div`
   display: flex;
   flex-direction: row;
   height: 5rem;
-  /* margin-top: 1rem; */
 `;
 
 const TabButtonStyle = styled.button<{ $isActive: boolean }>`
@@ -71,10 +71,10 @@ const TabButtonStyle = styled.button<{ $isActive: boolean }>`
   align-items: center;
   border: none;
   font-size: 1.5rem;
-  font-family: "GmarketSansMedium";
+  font-family: ${font.Gmarket};
 
   background-color: ${({ $isActive }) =>
-    $isActive ? "#afc9a4" : "whitesmoke"};
+    $isActive ? "#819977" : "whitesmoke"};
   color: ${({ $isActive }) => ($isActive ? "white" : "grey")};
   font-weight: ${({ $isActive }) => ($isActive ? "bold" : "")};
   box-shadow: ${({ $isActive }) =>

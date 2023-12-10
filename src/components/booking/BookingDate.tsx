@@ -22,10 +22,11 @@ import BookingBreakDown from "./BookingBreakDown";
 import { CLOSE_TIME } from "../../const/book/time";
 import "./styles/Calendar.css";
 import { spreadBookedData, convertStringsToDates } from "../../util/date";
+import { font } from "../../fonts/font";
 
 const SUNDAY = 0;
 
-const BookingCalendar = () => {
+const BookingDate = () => {
   const massageDetail = useSelector(getMassageDetail);
   const selectedMassageTime = massageDetail[0].time;
 
@@ -97,8 +98,8 @@ const BookingCalendar = () => {
     return day !== SUNDAY;
   };
 
-  const result = splitTimeArraysBy30Minutes(bookedData);
-  const booked = convertStringsToDates(result);
+  const devidedMinutes = splitTimeArraysBy30Minutes(bookedData);
+  const booked = convertStringsToDates(devidedMinutes);
 
   const filterPassedTime = (time: Date) => {
     const currentTime = new Date().getTime();
@@ -153,14 +154,14 @@ const BookingCalendar = () => {
   );
 };
 
-export default BookingCalendar;
+export default BookingDate;
 
 const ContainerStyle = styled.div`
   display: flex;
   flex-direction: column;
   width: 60rem;
   margin: 2rem auto;
-  font-family: "Pretendard-Regular";
+  font-family: ${font.pretend};
 
   @media only screen and (max-width: ${MEDIA_QUERY.notebookWidth}) {
     width: 100%;
@@ -206,7 +207,7 @@ const HyphenStyle = styled.div`
 `;
 
 const StyledStartTimePicker = styled(DatePicker)`
-  font-family: "Pretendard-Regular";
+  font-family: ${font.pretend};
   padding: 0.5rem;
   text-align: center;
   border-radius: 30px;
@@ -221,7 +222,7 @@ const StyledStartTimePicker = styled(DatePicker)`
 `;
 
 const StyledEndTimePicker = styled(DatePicker)`
-  font-family: "Pretendard-Regular";
+  font-family: ${font.pretend};
   padding: 0.5rem;
   text-align: center;
   border-radius: 30px;

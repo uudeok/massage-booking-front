@@ -7,6 +7,8 @@ import { AppDispatch } from "../../stores/store";
 import { setSelectedMassageType } from "../../stores/massageSlice";
 import { addTabNum } from "../../stores/tabSlice";
 import { addComma } from "../../util/price";
+import { palette } from "../../styles/palette";
+import { font } from "../../fonts/font";
 
 type TProps = {
   detail: TMassageDetail;
@@ -47,11 +49,11 @@ export default BookingDetail;
 const ContainerStyle = styled.div`
   margin: 1rem auto;
   border-radius: 6px;
-  border: 1px solid lightgrey;
+  border: 1px solid ${palette.grey};
   padding: 1rem;
   width: 45rem;
   height: 12rem;
-  font-family: "Pretendard-Regular";
+  font-family: ${font.pretend};
 
   @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
     height: 18rem;
@@ -86,7 +88,7 @@ const TopStyle = styled.div`
     background-color: #5b5b5b;
     color: white;
     font-size: 1.3rem;
-    font-family: "GmarketSansMedium";
+    font-family: ${font.Gmarket};
   }
 
   @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {

@@ -15,6 +15,7 @@ import { useNavigate } from "react-router-dom";
 import { makeSimpleTime, addFewMinutes } from "../../util/time";
 import { makeSimpleDate } from "../../util/date";
 import { makeFullDate } from "../../util/date";
+import { font } from "../../fonts/font";
 
 type TProps = {
   selectedDate: Date;
@@ -146,12 +147,12 @@ const KeyStyle = styled.span`
 `;
 
 const BookButtonStyle = styled.button`
-  font-family: "Pretendard-Regular";
+  font-family: ${font.pretend};
   background-color: transparent;
   cursor: pointer;
   padding: 0.5rem;
   width: 100%;
-  border-radius: 10px;
+  border-radius: 50px;
   border: 2px solid black;
   float: right;
   color: black;

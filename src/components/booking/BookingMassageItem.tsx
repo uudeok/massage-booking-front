@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../stores/store";
 import { setSelectedMassageItem } from "../../stores/massageSlice";
 import { addTabNum } from "../../stores/tabSlice";
+import { palette } from "../../styles/palette";
 
 type TProps = {
   massage: TMassageTable;
@@ -45,7 +46,6 @@ const ItemBoxStyle = styled.div`
   flex-direction: column;
   width: 100%;
   height: 100%;
-  /* border: 1px solid black; */
 `;
 
 const ImgBoxStyle = styled.div`
@@ -62,6 +62,8 @@ const ItemContentBoxStyle = styled.div`
   flex-direction: column;
   padding: 1rem;
 
+  align-items: center;
+
   h3 {
     margin-bottom: 0.5rem;
   }
@@ -74,10 +76,15 @@ const ItemContentBoxStyle = styled.div`
 `;
 
 const ButtonStyle = styled.button`
-  background-color: white;
-  color: black;
-  border: 2px solid lightgrey;
+  background-color: ${palette.white};
+  color: ${palette.black};
+  border: 2px solid ${palette.grey};
   padding: 0.7rem;
-  border-radius: 10px;
+  border-radius: 50px;
   cursor: pointer;
+  width: 100%;
+
+  &:hover {
+    color: ${palette.grey};
+  }
 `;

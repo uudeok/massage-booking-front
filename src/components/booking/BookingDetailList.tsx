@@ -9,22 +9,21 @@ import LoadingBar from "../common/loading/LoadingBar";
 
 const BookingDetailList = () => {
   const massageItem = useSelector(getMassageItem);
-  const { data: selectedMassage, isFetching } =
-    useGetMassageItemQuery(massageItem);
+  const { data: selectedMassage } = useGetMassageItemQuery(massageItem);
+
+  if (!selectedMassage) return <LoadingBar />;
 
   return (
     <ContainerStyle>
       <InnerBoxStyle>
         <PreviousButton />
-        {isFetching && <LoadingBar />}
-        {selectedMassage &&
-          selectedMassage.detail.map((detail) => (
-            <BookingDetail
-              key={detail.time}
-              detail={detail}
-              massage={selectedMassage}
-            />
-          ))}
+        {selectedMassage.detail.map((detail) => (
+          <BookingDetail
+            key={detail.time}
+            detail={detail}
+            massage={selectedMassage}
+          />
+        ))}
       </InnerBoxStyle>
     </ContainerStyle>
   );
