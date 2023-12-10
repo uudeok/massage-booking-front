@@ -1,7 +1,7 @@
 import NoticeMainItem from "./NoticeMainItem";
 import styled from "styled-components";
 import { useGetNoticeListQuery } from "../../../../api/notice/noticeQuery";
-import LoadingBar from "../../../common/loading/LoadingBar";
+import LoadingBar from "../../../loading/LoadingBar";
 
 const NoticesMainList = () => {
   const { data } = useGetNoticeListQuery({

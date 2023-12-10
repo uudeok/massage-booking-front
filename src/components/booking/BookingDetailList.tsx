@@ -5,7 +5,7 @@ import BookingDetail from "./BookingDetail";
 import { DEVISE_SIZE } from "../../const/devise";
 import { getMassageItem } from "../../stores/massageSlice";
 import { useGetMassageItemQuery } from "../../api/massage/massageQuery";
-import LoadingBar from "../common/loading/LoadingBar";
+import LoadingBar from "../loading/LoadingBar";
 
 const BookingDetailList = () => {
   const massageItem = useSelector(getMassageItem);

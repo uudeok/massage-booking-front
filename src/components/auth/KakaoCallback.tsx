@@ -1,5 +1,5 @@
 import { useEffect, useCallback } from "react";
-import LoadingBar from "../common/loading/LoadingBar";
+import LoadingBar from "../loading/LoadingBar";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 

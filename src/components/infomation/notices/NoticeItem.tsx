@@ -3,7 +3,7 @@ import { TNoticeDetail } from "../../../@types/notice";
 import { NOTICE_CATEGORY } from "../../../const/notices";
 import { Link } from "react-router-dom";
 import { MEDIA_QUERY } from "../../../const/devise";
-import LoadingBar from "../../common/loading/LoadingBar";
+import LoadingBar from "../../loading/LoadingBar";
 
 type TProps = {
   notice: TNoticeDetail[];

@@ -16,7 +16,7 @@ import UserWithdrawalPage from "../../pages/user/UserWithdrawalPage";
 import NaverLoginPage from "../../pages/auth/NaverLoginPage";
 import KakaoLoginPage from "../../pages/auth/KakaoLoginPage";
 import MyInformationPage from "../../pages/user/MyInfomationPage";
-import NotFound from "../../components/common/error/NotFound";
+import NotFound from "../../components/error/NotFound";
 
 const bookRouteObjects: RouteObject[] = [
   {

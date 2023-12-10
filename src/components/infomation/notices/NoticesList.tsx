@@ -6,7 +6,7 @@ import { MEDIA_QUERY } from "../../../const/devise";
 import Paging from "../../pagination/Paging";
 import { NOTICE_CATEGORY_KEYS } from "../../../@types/notice";
 import { useGetNoticeListQuery } from "../../../api/notice/noticeQuery";
-import LoadingBar from "../../common/loading/LoadingBar";
+import LoadingBar from "../../loading/LoadingBar";
 
 const NOTICE_LIST_PAGE_SIZE = 10;
 

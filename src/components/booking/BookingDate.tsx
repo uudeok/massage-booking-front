@@ -15,7 +15,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import { getMassageDetail } from "../../stores/massageSlice";
 import { useGetBookedTimeListQuery } from "../../api/book/bookQuery";
-import LoadingBar from "../common/loading/LoadingBar";
+import LoadingBar from "../loading/LoadingBar";
 import PreviousButton from "../common/button/PreviousButton";
 import { makeSimpleDate } from "../../util/date";
 import BookingBreakDown from "./BookingBreakDown";

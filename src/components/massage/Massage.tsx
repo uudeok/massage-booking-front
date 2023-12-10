@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import MassageSlide from "./MassageSlide";
 import { MEDIA_QUERY } from "../../const/devise";
-import LoadingBar from "../common/loading/LoadingBar";
+import LoadingBar from "../loading/LoadingBar";
 import { useGetMassageListQuery } from "../../api/massage/massageQuery";
 
 const Massage = () => {

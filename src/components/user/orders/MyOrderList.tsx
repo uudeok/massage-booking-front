@@ -3,7 +3,7 @@ import MyOrderItem from "./MyOrderItem";
 import { useGetOrderListQuery } from "../../../api/orders/ordersQuery";
 import MyOrderHeader from "./MyOrderHeader";
 import Paging from "../../pagination/Paging";
-import LoadingBar from "../../common/loading/LoadingBar";
+import LoadingBar from "../../loading/LoadingBar";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
