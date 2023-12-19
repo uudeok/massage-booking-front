@@ -1,26 +1,25 @@
-import BookingMassageItem from "./BookingMassageItem";
 import styled from "styled-components";
 import { MEDIA_QUERY } from "../../const/devise";
 import LoadingBar from "../loading/LoadingBar";
+import BookingMassageItem from "./BookingMassageItem";
+import Mapping from "../common/Mapping";
 import { useGetMassageListQuery } from "../../api/massage/massageQuery";
 
 const BookingMassageList = () => {
-  const { data: massageList, error } = useGetMassageListQuery();
+  const { data: massageList } = useGetMassageListQuery();
 
   if (!massageList) return <LoadingBar />;
 
-  if (error && "status" in error) {
-    throw error;
-  }
+  const renderBookingItem = (massage: any) => (
+    <BookingItemStyle key={massage.id}>
+      <BookingMassageItem massage={massage} />
+    </BookingItemStyle>
+  );
 
   return (
     <ContentBoxStyle>
       <ListBoxStyle>
-        {massageList.map((massage) => (
-          <BookingItemStyle key={massage.id}>
-            <BookingMassageItem massage={massage} />
-          </BookingItemStyle>
-        ))}
+        <Mapping data={massageList} renderItem={renderBookingItem} />
       </ListBoxStyle>
     </ContentBoxStyle>
   );

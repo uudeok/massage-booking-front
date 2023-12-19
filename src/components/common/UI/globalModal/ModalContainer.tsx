@@ -1,31 +1,31 @@
 import { useSelector, useDispatch } from "react-redux";
-import { modalSelector, closeModal } from "../../../../stores/modalSlice";
+// import { modalSelector, closeModal } from "../../../../stores/modalSlice";
 import { createPortal } from "react-dom";
 import styled from "styled-components";
 import { MODAL_COMPONENTS } from "./ModalStore";
 
-const BackDrop = () => {
-  const dispatch = useDispatch();
-  return <BackDropStyle onClick={() => dispatch(closeModal())}></BackDropStyle>;
-};
+// const BackDrop = () => {
+//   const dispatch = useDispatch();
+//   return <BackDropStyle onClick={() => dispatch(closeModal())}></BackDropStyle>;
+// };
 
 const ModalContainer = () => {
-  const modalList = useSelector(modalSelector);
-  const portalElement = document.getElementById("overlays") as HTMLElement;
+  // const modalList = useSelector(modalSelector);
+  // const portalElement = document.getElementById("overlays") as HTMLElement;
 
-  if (modalList.length === 0) {
-    return null;
-  }
+  // if (modalList.length === 0) {
+  //   return null;
+  // }
 
-  const renderModal = modalList.map(({ type, props }) => {
-    const ModalComponent = MODAL_COMPONENTS[type];
-    return <ModalComponent key={type} {...props} />;
-  });
+  // const renderModal = modalList.map(({ type, props }) => {
+  //   const ModalComponent = MODAL_COMPONENTS[type];
+  //   return <ModalComponent key={type} {...props} />;
+  // });
 
   return (
     <>
-      {createPortal(<BackDrop />, portalElement)}
-      {createPortal(<>{renderModal}</>, portalElement)};
+      {/* {createPortal(<BackDrop />, portalElement)}
+      {createPortal(<>{renderModal}</>, portalElement)}; */}
     </>
   );
 };

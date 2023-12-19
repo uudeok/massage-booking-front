@@ -5,6 +5,7 @@ import { AppDispatch } from "../../stores/store";
 import { setSelectedMassageItem } from "../../stores/massageSlice";
 import { addTabNum } from "../../stores/tabSlice";
 import { palette } from "../../styles/palette";
+import { MEDIA_QUERY } from "../../const/devise";
 
 type TProps = {
   massage: TMassageTable;
@@ -28,13 +29,13 @@ const BookingMassageItem = ({ massage }: TProps) => {
           height="100%"
         />
       </ImgBoxStyle>
-      <ItemContentBoxStyle>
+      <ContentBoxStyle>
         <h3>{massage.displayItem}</h3>
         <span>{massage.content}</span>
         <ButtonStyle onClick={() => selectMassageItem(massage.item)}>
           예약하기
         </ButtonStyle>
-      </ItemContentBoxStyle>
+      </ContentBoxStyle>
     </ItemBoxStyle>
   );
 };
@@ -56,7 +57,7 @@ const ImgBoxStyle = styled.div`
   }
 `;
 
-const ItemContentBoxStyle = styled.div`
+const ContentBoxStyle = styled.div`
   height: 30%;
   display: flex;
   flex-direction: column;
@@ -66,12 +67,15 @@ const ItemContentBoxStyle = styled.div`
 
   h3 {
     margin-bottom: 0.5rem;
+    font-weight: bold;
   }
 
   span {
     flex: 1;
-    padding: 0.5rem;
+    padding: 1rem;
     font-size: 15px;
+    /* border: 1px solid black; */
+    width: 100%;
   }
 `;
 
@@ -86,5 +90,9 @@ const ButtonStyle = styled.button`
 
   &:hover {
     color: ${palette.grey};
+  }
+
+  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+    padding: 0.5rem;
   }
 `;

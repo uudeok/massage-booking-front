@@ -1,13 +1,12 @@
 import styled from "styled-components";
 import { MEDIA_QUERY } from "../../const/devise";
 import { addComma } from "../../util/price";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import {
   getMassageDetail,
   getSelectedMassageItem,
 } from "../../stores/massageSlice";
 import { getAuthUser } from "../../util/auth";
-import { openModal } from "../../stores/modalSlice";
 import { usePostOrderDataMutation } from "../../api/orders/ordersQuery";
 import dayjs from "dayjs";
 import { DAY_OF_WEEK_NUMBER } from "../../const/book/time";
@@ -16,6 +15,9 @@ import { makeSimpleTime, addFewMinutes } from "../../util/time";
 import { makeSimpleDate } from "../../util/date";
 import { makeFullDate } from "../../util/date";
 import { font } from "../../fonts/font";
+import { useModal } from "../../hooks/useModal";
+import Modal from "../common/UI/modal/Modal";
+import LoginModal from "../common/UI/modal/LoginModal";
 
 type TProps = {
   selectedDate: Date;
@@ -24,7 +26,6 @@ type TProps = {
 
 const BookingSummary = ({ massageEndTime, selectedDate }: TProps) => {
   const getAuth = getAuthUser();
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const massageItem = useSelector(getSelectedMassageItem);
   const massageDetail = useSelector(getMassageDetail);
@@ -40,7 +41,15 @@ const BookingSummary = ({ massageEndTime, selectedDate }: TProps) => {
   );
   const dayNum = dayjs(simpleDate).day();
 
-  const [postOrder] = usePostOrderDataMutation();
+  const {
+    isOpen: isLoginModalOpen,
+    showModal: showLoginModal,
+    closeModal: closeLoginModal,
+  } = useModal();
+
+  const [postOrder] = usePostOrderDataMutation({
+    fixedCacheKey: "shared-update-post",
+  });
 
   const changeBookHandler = async () => {
     try {
@@ -67,44 +76,51 @@ const BookingSummary = ({ massageEndTime, selectedDate }: TProps) => {
 
   const bookMassageHandler = () => {
     if (getAuth) {
-      const process = window.confirm("예약 하시겠습니까?");
+      const process = window.confirm("예약을 진행하시겠습니까?");
       if (process) {
         changeBookHandler();
         navigate("/mypage/order");
       }
-      return;
+    } else {
+      showLoginModal();
     }
-    dispatch(
-      openModal({ type: "LoginModal", props: { path: "mypage/order" } })
-    );
   };
 
+  const showLoginForm = isLoginModalOpen && (
+    <LoginModal closeModal={closeLoginModal} path="/order/mypage" />
+  );
+
   return (
-    <SummaryBoxStyle>
-      <SummaryListStyle>
-        <SummaryItemStyle>
-          <KeyStyle>받으실 마사지</KeyStyle>
-          <span>{massageItem.displayItem}</span>
-        </SummaryItemStyle>
-        <SummaryItemStyle>
-          <KeyStyle>받으실 날짜</KeyStyle>
-          <span>{simpleDate}</span>
-        </SummaryItemStyle>
-        <SummaryItemStyle>
-          <KeyStyle>받으실 시간</KeyStyle>
-          <span>
-            {startTime} - {endTime} ({selectedMassageTime}분)
-          </span>
-        </SummaryItemStyle>
-        <SummaryItemStyle>
-          <KeyStyle>금액</KeyStyle>
-          <span>{addComma(selectedMassagePrice)}</span>
-        </SummaryItemStyle>
-      </SummaryListStyle>
-      <div>
-        <BookButtonStyle onClick={bookMassageHandler}>예약하기</BookButtonStyle>
-      </div>
-    </SummaryBoxStyle>
+    <>
+      {showLoginForm}
+      <SummaryBoxStyle>
+        <SummaryListStyle>
+          <SummaryItemStyle>
+            <KeyStyle>받으실 마사지</KeyStyle>
+            <span>{massageItem.displayItem}</span>
+          </SummaryItemStyle>
+          <SummaryItemStyle>
+            <KeyStyle>받으실 날짜</KeyStyle>
+            <span>{simpleDate}</span>
+          </SummaryItemStyle>
+          <SummaryItemStyle>
+            <KeyStyle>받으실 시간</KeyStyle>
+            <span>
+              {startTime} - {endTime} ({selectedMassageTime}분)
+            </span>
+          </SummaryItemStyle>
+          <SummaryItemStyle>
+            <KeyStyle>금액</KeyStyle>
+            <span>{addComma(selectedMassagePrice)}</span>
+          </SummaryItemStyle>
+        </SummaryListStyle>
+        <div>
+          <BookButtonStyle onClick={bookMassageHandler}>
+            예약하기
+          </BookButtonStyle>
+        </div>
+      </SummaryBoxStyle>
+    </>
   );
 };
 
@@ -170,4 +186,14 @@ const BookButtonStyle = styled.button`
   @media only screen and (max-width: ${MEDIA_QUERY.bigMobileWidth}) {
     width: 50%;
   }
+`;
+
+const BackDropStyle = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 20;
+  background-color: rgba(0, 0, 0, 0.75);
 `;

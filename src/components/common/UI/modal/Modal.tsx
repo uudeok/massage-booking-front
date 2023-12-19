@@ -1,14 +1,15 @@
 import styled from "styled-components";
-import { MEDIA_QUERY } from "../../../../const/devise";
 import { useEffect } from "react";
-import OauthLogin from "../../../auth/OauthLogin";
+import { MEDIA_QUERY } from "../../../../const/devise";
 
-export type TLoginModalType = {
-  path: string;
+type TProps = {
+  children: React.ReactNode;
   closeModal: () => void;
+  path?: string;
+  height?: string;
 };
 
-const LoginModal = ({ closeModal, ...props }: TLoginModalType) => {
+const Modal = ({ children, closeModal, ...props }: TProps) => {
   useEffect(() => {
     document.body.style.overflow = "hidden";
     return () => {
@@ -19,17 +20,12 @@ const LoginModal = ({ closeModal, ...props }: TLoginModalType) => {
   return (
     <>
       <BackDropStyle onClick={() => closeModal()} />
-      <ModalStyle>
-        <CloseButtonBoxStyle>
-          <CloseButtonStyle onClick={() => closeModal()}>X</CloseButtonStyle>
-        </CloseButtonBoxStyle>
-        <OauthLogin />
-      </ModalStyle>
+      <ModalStyle $height={props.height}>{children}</ModalStyle>
     </>
   );
 };
 
-export default LoginModal;
+export default Modal;
 
 const BackDropStyle = styled.div`
   position: fixed;
@@ -41,7 +37,7 @@ const BackDropStyle = styled.div`
   background-color: rgba(0, 0, 0, 0.75);
 `;
 
-const ModalStyle = styled.div`
+const ModalStyle = styled.div<{ $height?: string }>`
   position: fixed;
   bottom: 0;
   left: 0;
@@ -49,14 +45,15 @@ const ModalStyle = styled.div`
   top: 10%;
   justify-content: center;
   align-items: center;
-  left: calc(50% - 10rem);
+  left: calc(50% - 11rem);
   width: 26rem;
   padding: 1.5rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
   z-index: 30;
   animation: slide-down 300ms ease-out forwards;
   background-color: white;
-  height: 30rem;
+  height: 19rem;
+  height: ${({ $height }) => ($height ? $height : "19rem")};
 
   @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
     width: 26rem;
@@ -78,15 +75,4 @@ const ModalStyle = styled.div`
       transform: translateY(0);
     }
   }
-`;
-
-const CloseButtonBoxStyle = styled.div`
-  display: flex;
-  justify-content: right;
-`;
-
-const CloseButtonStyle = styled.button`
-  border: none;
-  cursor: pointer;
-  background-color: white;
 `;

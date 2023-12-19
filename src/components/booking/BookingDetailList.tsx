@@ -1,11 +1,12 @@
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import styled from "styled-components";
 import PreviousButton from "../common/button/PreviousButton";
-import BookingDetail from "./BookingDetail";
-import { DEVISE_SIZE } from "../../const/devise";
 import { getMassageItem } from "../../stores/massageSlice";
 import { useGetMassageItemQuery } from "../../api/massage/massageQuery";
 import LoadingBar from "../loading/LoadingBar";
+import { MEDIA_QUERY } from "../../const/devise";
+import Mapping from "../common/Mapping";
+import BookingDetail from "./BookingDetail";
 
 const BookingDetailList = () => {
   const massageItem = useSelector(getMassageItem);
@@ -13,36 +14,71 @@ const BookingDetailList = () => {
 
   if (!selectedMassage) return <LoadingBar />;
 
+  const renderDetailItem = (detail: any) => (
+    <ItemStyle key={detail.time}>
+      <BookingDetail detail={detail} massage={selectedMassage} />
+    </ItemStyle>
+  );
+
   return (
-    <ContainerStyle>
-      <InnerBoxStyle>
+    <>
+      <ButtonBoxStyle>
         <PreviousButton />
-        {selectedMassage.detail.map((detail) => (
-          <BookingDetail
-            key={detail.time}
-            detail={detail}
-            massage={selectedMassage}
+      </ButtonBoxStyle>
+      <ContentBoxStyle>
+        <ListBoxStyle>
+          <Mapping
+            data={selectedMassage.detail}
+            renderItem={renderDetailItem}
           />
-        ))}
-      </InnerBoxStyle>
-    </ContainerStyle>
+        </ListBoxStyle>
+      </ContentBoxStyle>
+    </>
   );
 };
 
 export default BookingDetailList;
 
-const ContainerStyle = styled.div`
+const ContentBoxStyle = styled.div`
   display: flex;
-  flex-direction: column;
-  width: 70%;
-  margin: auto;
-  padding: 1rem;
+`;
 
-  @media only screen and (max-width: ${DEVISE_SIZE.notebookMax}) {
-    width: 100%;
+const ItemStyle = styled.li`
+  width: 500px;
+  height: 500px;
+  padding: 1rem;
+  margin: 40px;
+  text-align: center;
+  border: 1px solid lightgrey;
+  border-radius: 10px;
+
+  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+    width: 360px;
+    height: 450px;
+    margin: 10px;
+    margin-top: 3rem;
+  }
+
+  @media only screen and (max-width: ${MEDIA_QUERY.mobileWidth}) {
+    width: 335px;
+    height: 450px;
+    margin: 15px;
+    margin-top: 3rem;
   }
 `;
 
-const InnerBoxStyle = styled.div`
-  margin: 0 auto;
+const ListBoxStyle = styled.ul`
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 1200px;
+  margin: auto;
+  font-family: "Pretendard-Regular";
+`;
+
+const ButtonBoxStyle = styled.div`
+  margin-left: 2rem;
+  width: 1100px;
+  margin: auto;
 `;

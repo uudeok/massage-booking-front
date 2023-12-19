@@ -6,7 +6,7 @@ import { massageApi } from "../api/massage/massageQuery";
 import { noticeApi } from "../api/notice/noticeQuery";
 import { bookApi } from "../api/book/bookQuery";
 import timeSlice from "./timeSlice";
-import modalSlice from "./modalSlice";
+
 import { ordersApi } from "../api/orders/ordersQuery";
 
 export const store = configureStore({
@@ -14,7 +14,7 @@ export const store = configureStore({
     massage: massageSlice,
     time: timeSlice,
     tab: tabSlice,
-    modal: modalSlice,
+
     [massageApi.reducerPath]: massageApi.reducer,
     [noticeApi.reducerPath]: noticeApi.reducer,
     [bookApi.reducerPath]: bookApi.reducer,

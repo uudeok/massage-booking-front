@@ -24,12 +24,12 @@ export const ordersApi = createApi({
           params: { pageNumber, pageSize },
         };
       },
+
       providesTags: [{ type: "orders" }],
     }),
     postOrderData: builder.mutation<any, TPostType>({
       query: (arg) => {
         const { event, order } = arg;
-        console.log(event, order);
         return {
           url: "/",
           method: "POST",

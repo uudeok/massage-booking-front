@@ -1,6 +1,5 @@
 import { TMassageDetail, TMassageTable } from "../../@types/massage";
 import styled from "styled-components";
-import { addMinutesUnit } from "../../util/time";
 import { MEDIA_QUERY } from "../../const/devise";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../stores/store";
@@ -8,7 +7,6 @@ import { setSelectedMassageType } from "../../stores/massageSlice";
 import { addTabNum } from "../../stores/tabSlice";
 import { addComma } from "../../util/price";
 import { palette } from "../../styles/palette";
-import { font } from "../../fonts/font";
 
 type TProps = {
   detail: TMassageDetail;
@@ -24,134 +22,96 @@ const BookingDetail = ({ detail, massage }: TProps) => {
   };
 
   return (
-    <ContainerStyle>
-      <InnerBoxStyle>
-        <TopStyle>
-          <h3>{massage.displayItem}</h3>
-          <div>{addComma(detail.price)}</div>
-        </TopStyle>
-        <MiddleStyle>
-          <p>{massage.content}</p>
-        </MiddleStyle>
-        <BottomStyle>
-          <h3>{addMinutesUnit(detail.time)}</h3>
-          <ButtonStyle onClick={() => setAvailableTime(detail.time)}>
-            선택하기
-          </ButtonStyle>
-        </BottomStyle>
-      </InnerBoxStyle>
-    </ContainerStyle>
+    <ItemBoxStyle>
+      <ImgBoxStyle>
+        <img
+          src={massage.image}
+          alt={massage.displayItem}
+          width="100%"
+          height="100%"
+        />
+      </ImgBoxStyle>
+      <ContentBoxStyle>
+        <TopBoxStyle>
+          <span>{massage.displayItem}</span>
+          <span>({detail.time}분)</span>
+        </TopBoxStyle>
+        <MiddleBoxStyle>{addComma(detail.price)}</MiddleBoxStyle>
+        <ButtonStyle onClick={() => setAvailableTime(detail.time)}>
+          예약하기
+        </ButtonStyle>
+      </ContentBoxStyle>
+    </ItemBoxStyle>
   );
 };
 
 export default BookingDetail;
 
-const ContainerStyle = styled.div`
-  margin: 1rem auto;
-  border-radius: 6px;
-  border: 1px solid ${palette.grey};
+const ItemBoxStyle = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+`;
+
+const ImgBoxStyle = styled.div`
+  height: 70%;
+
+  img {
+    border-radius: 10px;
+  }
+`;
+
+const ContentBoxStyle = styled.div`
+  height: 30%;
+  display: flex;
+  flex-direction: column;
   padding: 1rem;
-  width: 45rem;
-  height: 12rem;
-  font-family: ${font.pretend};
+`;
+
+const ButtonStyle = styled.button`
+  background-color: ${palette.white};
+  color: ${palette.black};
+  border: 2px solid ${palette.grey};
+  padding: 0.7rem;
+  border-radius: 50px;
+  cursor: pointer;
+  width: 100%;
+
+  &:hover {
+    color: ${palette.grey};
+  }
 
   @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
-    height: 18rem;
-    width: 21rem;
-    margin: 2rem auto;
     padding: 0.5rem;
   }
 `;
 
-const InnerBoxStyle = styled.div`
+const TopBoxStyle = styled.div`
   width: 100%;
-  padding: 1rem;
+  padding: 0.5rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-align: left;
 
   @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
-    height: 100%;
+    font-size: 1rem;
+    padding: 0;
   }
 `;
 
-const TopStyle = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-
-  h3 {
-    margin: 0.5rem 0;
-    font-size: 1.5rem;
-  }
-
-  div {
-    border-radius: 30px;
-    padding: 0.8rem 1rem;
-    background-color: #5b5b5b;
-    color: white;
-    font-size: 1.3rem;
-    font-family: ${font.Gmarket};
-  }
+const MiddleBoxStyle = styled.div`
+  width: 100%;
+  padding: 0.5rem;
+  text-align: left;
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
 
   @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
-    /* display: flex;
-    flex-direction: column; */
-
-    div {
-      font-size: 1.3rem;
-      margin-top: 0.5rem;
-    }
-  }
-`;
-
-const MiddleStyle = styled.div`
-  padding: 0.5rem 0;
-
-  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
-    display: flex;
-    flex-direction: column;
+    font-size: 1rem;
+    padding: 0;
     margin-top: 1rem;
-  }
-`;
-
-const BottomStyle = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin-top: 1rem;
-
-  h3 {
-    padding: 0.5rem 0;
-    font-size: 1.5rem;
-    font-weight: bold;
-    font-family: "GmarketSansMedium";
-  }
-
-  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
-    display: flex;
-    flex-direction: column;
-
-    h3 {
-      font-size: 1.3rem;
-    }
-  }
-`;
-
-const ButtonStyle = styled.button`
-  /* width: 8.5rem;
-  height: 2.5rem; */
-  cursor: pointer;
-  background-color: white;
-  color: black;
-  font-size: 1rem;
-  font-family: "Pretendard-Regular";
-  border: 2px solid lightgrey;
-  width: 100%;
-  border-radius: 30px;
-
-  /* border-radius: 30px; */
-  padding: 0.8rem 1rem;
-  width: 8rem;
-
-  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
-    width: 100%;
-    margin-top: 2rem;
+    margin-bottom: 1rem;
   }
 `;

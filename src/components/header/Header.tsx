@@ -22,6 +22,7 @@ const Header = () => {
   const getAuth = getAuthUser();
   // console.log("Header", getAuth);
   const navigate = useNavigate();
+
   const logoutHandler = () => {
     logout();
     navigate("/");
