@@ -1,19 +1,18 @@
 import { MEDIA_QUERY } from "../../../../const/devise";
 import styled from "styled-components";
-import Card from "../../../common/card/Card";
 
 const MemberWithdrawal = () => {
   return (
     <ContainerStyle>
       <HeaderStyle>‖ 회원 탈퇴</HeaderStyle>
       <CardBoxStyle>
-        <Card>
+        <CardLayoutStyle>
           <TitleBoxStyle>
             <h2>회원탈퇴</h2>
             <ButtonStyle>탈퇴</ButtonStyle>
           </TitleBoxStyle>
           <p>자연치유 쉼 회원 탈퇴하기.</p>
-        </Card>
+        </CardLayoutStyle>
       </CardBoxStyle>
     </ContainerStyle>
   );
@@ -39,6 +38,16 @@ const TitleBoxStyle = styled.div`
     flex: 1;
     font-size: 1.2rem;
   }
+`;
+
+const CardLayoutStyle = styled.div`
+  border-radius: 10px;
+  border: 1px solid lightgrey;
+  padding: 1rem;
+  min-height: 6rem;
+  margin-bottom: 1rem;
+  width: 100%;
+  font-family: "Pretendard-Regular";
 `;
 
 const ButtonStyle = styled.button`

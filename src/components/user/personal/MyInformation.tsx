@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import Card from "../../common/card/Card";
 import { MEDIA_QUERY } from "../../../const/devise";
 
 const MyInformation = () => {

@@ -1,19 +1,20 @@
 import styled from "styled-components";
-import { MEDIA_QUERY } from "../../const/devise";
 import LoadingBar from "../loading/LoadingBar";
 import BookingMassageItem from "./BookingMassageItem";
-import Mapping from "../common/Mapping";
+import Mapping from "../common/UI/map/Mapping";
 import { useGetMassageListQuery } from "../../api/massage/massageQuery";
+import { TMassageTable } from "../../@types/massage";
+import Card from "../common/card/Card";
 
 const BookingMassageList = () => {
   const { data: massageList } = useGetMassageListQuery();
 
   if (!massageList) return <LoadingBar />;
 
-  const renderBookingItem = (massage: any) => (
-    <BookingItemStyle key={massage.id}>
+  const renderBookingItem = (massage: TMassageTable) => (
+    <Card key={massage.id}>
       <BookingMassageItem massage={massage} />
-    </BookingItemStyle>
+    </Card>
   );
 
   return (
@@ -39,28 +40,4 @@ const ListBoxStyle = styled.ul`
   width: 1200px;
   margin: auto;
   font-family: "Pretendard-Regular";
-`;
-
-const BookingItemStyle = styled.li`
-  width: 500px;
-  height: 500px;
-  padding: 1rem;
-  margin: 40px;
-  text-align: center;
-  border: 1px solid lightgrey;
-  border-radius: 10px;
-
-  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
-    width: 360px;
-    height: 450px;
-    margin: 10px;
-    margin-top: 3rem;
-  }
-
-  @media only screen and (max-width: ${MEDIA_QUERY.mobileWidth}) {
-    width: 335px;
-    height: 450px;
-    margin: 15px;
-    margin-top: 3rem;
-  }
 `;

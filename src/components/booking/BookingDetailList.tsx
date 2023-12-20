@@ -4,9 +4,10 @@ import PreviousButton from "../common/button/PreviousButton";
 import { getMassageItem } from "../../stores/massageSlice";
 import { useGetMassageItemQuery } from "../../api/massage/massageQuery";
 import LoadingBar from "../loading/LoadingBar";
-import { MEDIA_QUERY } from "../../const/devise";
-import Mapping from "../common/Mapping";
+import Mapping from "../common/UI/map/Mapping";
 import BookingDetail from "./BookingDetail";
+import { TMassageDetail } from "../../@types/massage";
+import Card from "../common/card/Card";
 
 const BookingDetailList = () => {
   const massageItem = useSelector(getMassageItem);
@@ -14,10 +15,10 @@ const BookingDetailList = () => {
 
   if (!selectedMassage) return <LoadingBar />;
 
-  const renderDetailItem = (detail: any) => (
-    <ItemStyle key={detail.time}>
+  const renderDetailItem = (detail: TMassageDetail) => (
+    <Card key={detail.time}>
       <BookingDetail detail={detail} massage={selectedMassage} />
-    </ItemStyle>
+    </Card>
   );
 
   return (
@@ -41,30 +42,6 @@ export default BookingDetailList;
 
 const ContentBoxStyle = styled.div`
   display: flex;
-`;
-
-const ItemStyle = styled.li`
-  width: 500px;
-  height: 500px;
-  padding: 1rem;
-  margin: 40px;
-  text-align: center;
-  border: 1px solid lightgrey;
-  border-radius: 10px;
-
-  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
-    width: 360px;
-    height: 450px;
-    margin: 10px;
-    margin-top: 3rem;
-  }
-
-  @media only screen and (max-width: ${MEDIA_QUERY.mobileWidth}) {
-    width: 335px;
-    height: 450px;
-    margin: 15px;
-    margin-top: 3rem;
-  }
 `;
 
 const ListBoxStyle = styled.ul`
