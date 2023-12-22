@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 type TProps = {
   title: string;
-  content: string | number;
+  content?: string | number;
   subTitle?: string | number;
   fontSize?: string;
   textAlign?: string;

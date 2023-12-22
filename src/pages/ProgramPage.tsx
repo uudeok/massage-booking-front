@@ -1,4 +1,4 @@
-import ProgramList from "../components/massage/program/ProgramList";
+import ProgramList from "../components/program/ProgramList";
 import Layout from "../layout/Layout";
 
 const ProgramPage = () => {

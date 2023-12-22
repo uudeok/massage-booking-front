@@ -1,9 +1,9 @@
-import { TMassageTable } from "../../../@types/massage";
+import { TMassageTable } from "../../@types/massage";
 import styled from "styled-components";
-import { MASSAGE_ITEM } from "../../../const/book/massage";
-import { addComma } from "../../../util/price";
-import { MEDIA_QUERY } from "../../../const/devise";
-import { addMinutesUnit } from "../../../util/time";
+import { MASSAGE_ITEM } from "../../const/book/massage";
+import { addComma } from "../../util/price";
+import { MEDIA_QUERY } from "../../const/devise";
+import { addMinutesUnit } from "../../util/time";
 
 const ProgramItem = ({ massage }: { massage: TMassageTable }) => {
   console.log(massage);

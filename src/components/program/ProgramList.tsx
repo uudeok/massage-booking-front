@@ -1,9 +1,9 @@
 import ProgramItem from "./ProgramItem";
 import styled from "styled-components";
-import { MEDIA_QUERY } from "../../../const/devise";
-import Banner from "../../banner/Banner";
-import LoadingBar from "../../loading/LoadingBar";
-import { useGetMassageListQuery } from "../../../api/massage/massageQuery";
+import { MEDIA_QUERY } from "../../const/devise";
+import Banner from "../banner/Banner";
+import LoadingBar from "../loading/LoadingBar";
+import { useGetMassageListQuery } from "../../api/massage/massageQuery";
 
 const ProgramList = () => {
   const { data: massageList, isFetching } = useGetMassageListQuery();

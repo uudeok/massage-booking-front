@@ -2,13 +2,17 @@ import styled from "styled-components";
 import { MEDIA_QUERY } from "../../../const/devise";
 import { palette } from "../../../styles/palette";
 
-type TProps = {
+type TProps<T> = {
   text: string;
-  onClickButton: (props: any) => void;
-  argument: string | number;
+  onClickButton: (props: T) => void;
+  argument: T;
 };
 
-const CardButton = ({ text, onClickButton, argument }: TProps) => {
+const CardButton = <T extends {}>({
+  text,
+  onClickButton,
+  argument,
+}: TProps<T>) => {
   return (
     <ButtonStyle
       onClick={() => {
