@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Membership from "./introduction/Membership";
+import Membership from "../introduction/Membership";
 import { DEVISE_SIZE } from "../../const/devise";
 import NoticeMain from "./notices/main/NoticeMain";
 

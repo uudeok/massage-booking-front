@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { MEDIA_QUERY } from "../../../const/devise";
-import Banner from "../../banner/Banner";
+import { MEDIA_QUERY } from "../../const/devise";
+import Banner from "../banner/Banner";
 
 const MembershipList = () => {
   return (

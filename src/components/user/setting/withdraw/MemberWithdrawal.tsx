@@ -1,5 +1,6 @@
 import { MEDIA_QUERY } from "../../../../const/devise";
 import styled from "styled-components";
+import CommonButton from "../../../common/button/CommonButton";
 
 const MemberWithdrawal = () => {
   return (
@@ -9,7 +10,15 @@ const MemberWithdrawal = () => {
         <CardLayoutStyle>
           <TitleBoxStyle>
             <h2>회원탈퇴</h2>
-            <ButtonStyle>탈퇴</ButtonStyle>
+            <CommonButton
+              type="round"
+              width="3rem"
+              padding="0.5rem"
+              border="1px solid lightgrey"
+            >
+              탈퇴
+            </CommonButton>
+            {/* <ButtonStyle>탈퇴</ButtonStyle> */}
           </TitleBoxStyle>
           <p>자연치유 쉼 회원 탈퇴하기.</p>
         </CardLayoutStyle>
@@ -48,15 +57,6 @@ const CardLayoutStyle = styled.div`
   margin-bottom: 1rem;
   width: 100%;
   font-family: "Pretendard-Regular";
-`;
-
-const ButtonStyle = styled.button`
-  background-color: white;
-  padding: 0.5rem;
-  border-radius: 10px;
-  border: 1px solid lightgrey;
-  cursor: pointer;
-  color: black;
 `;
 
 const CardBoxStyle = styled.div`

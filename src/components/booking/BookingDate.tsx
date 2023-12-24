@@ -12,21 +12,24 @@ import {
   splitTimeArraysBy30Minutes,
 } from "../../util/time";
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { getMassageDetail } from "../../stores/massageSlice";
 import { useGetBookedTimeListQuery } from "../../api/book/bookQuery";
 import LoadingBar from "../loading/LoadingBar";
-import PreviousButton from "../common/button/PreviousButton";
 import { makeSimpleDate } from "../../util/date";
 import BookingBreakDown from "./BookingBreakDown";
 import { CLOSE_TIME } from "../../const/book/time";
 import "./styles/Calendar.css";
 import { spreadBookedData, convertStringsToDates } from "../../util/date";
 import { font } from "../../fonts/font";
+import CommonButton from "../common/button/CommonButton";
+import { AppDispatch } from "../../stores/store";
+import { subTabNum } from "../../stores/tabSlice";
 
 const SUNDAY = 0;
 
 const BookingDate = () => {
+  const dispatch = useDispatch<AppDispatch>();
   const massageDetail = useSelector(getMassageDetail);
   const selectedMassageTime = massageDetail[0].time;
 
@@ -110,7 +113,9 @@ const BookingDate = () => {
 
   return (
     <ContainerStyle>
-      <PreviousButton />
+      <CommonButton type="plain" onClickButton={() => dispatch(subTabNum())}>
+        뒤로가기
+      </CommonButton>
       <CalendarStyle>
         <TitleStyle>날짜 및 시간을 선택해주세요</TitleStyle>
         <CalendarBoxStyle>

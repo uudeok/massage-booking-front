@@ -14,10 +14,10 @@ import { useNavigate } from "react-router-dom";
 import { makeSimpleTime, addFewMinutes } from "../../util/time";
 import { makeSimpleDate } from "../../util/date";
 import { makeFullDate } from "../../util/date";
-import { font } from "../../fonts/font";
 import { useModal } from "../../hooks/useModal";
-import Modal from "../common/UI/modal/Modal";
 import LoginModal from "../common/UI/modal/LoginModal";
+import { palette } from "../../styles/palette";
+import CommonButton from "../common/button/CommonButton";
 
 type TProps = {
   selectedDate: Date;
@@ -75,6 +75,7 @@ const BookingSummary = ({ massageEndTime, selectedDate }: TProps) => {
   };
 
   const bookMassageHandler = () => {
+    console.log("확인");
     if (getAuth) {
       const process = window.confirm("예약을 진행하시겠습니까?");
       if (process) {
@@ -114,11 +115,17 @@ const BookingSummary = ({ massageEndTime, selectedDate }: TProps) => {
             <span>{addComma(selectedMassagePrice)}</span>
           </SummaryItemStyle>
         </SummaryListStyle>
-        <div>
-          <BookButtonStyle onClick={bookMassageHandler}>
+        <ButtonBoxStyle>
+          <CommonButton
+            type="round"
+            border="2px solid grey"
+            onClickButton={bookMassageHandler}
+            padding="0.5rem"
+            hoverColor={palette.grey}
+          >
             예약하기
-          </BookButtonStyle>
-        </div>
+          </CommonButton>
+        </ButtonBoxStyle>
       </SummaryBoxStyle>
     </>
   );
@@ -162,38 +169,6 @@ const KeyStyle = styled.span`
   text-align: left;
 `;
 
-const BookButtonStyle = styled.button`
-  font-family: ${font.pretend};
-  background-color: transparent;
-  cursor: pointer;
-  padding: 0.5rem;
-  width: 100%;
-  border-radius: 50px;
-  border: 2px solid black;
-  float: right;
-  color: black;
-
-  &:hover {
-    color: #555555;
-  }
-
-  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
-    width: 30%;
-    float: none;
-    margin-top: 2rem;
-  }
-
-  @media only screen and (max-width: ${MEDIA_QUERY.bigMobileWidth}) {
-    width: 50%;
-  }
-`;
-
-const BackDropStyle = styled.div`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-  z-index: 20;
-  background-color: rgba(0, 0, 0, 0.75);
+const ButtonBoxStyle = styled.div`
+  margin-top: 1rem;
 `;

@@ -1,6 +1,5 @@
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import styled from "styled-components";
-import PreviousButton from "../common/button/PreviousButton";
 import { getMassageItem } from "../../stores/massageSlice";
 import { useGetMassageItemQuery } from "../../api/massage/massageQuery";
 import LoadingBar from "../loading/LoadingBar";
@@ -8,8 +7,13 @@ import Mapping from "../common/UI/map/Mapping";
 import BookingDetail from "./BookingDetail";
 import { TMassageDetail } from "../../@types/massage";
 import Card from "../common/card/Card";
+import CommonButton from "../common/button/CommonButton";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../stores/store";
+import { subTabNum } from "../../stores/tabSlice";
 
 const BookingDetailList = () => {
+  const dispatch = useDispatch<AppDispatch>();
   const massageItem = useSelector(getMassageItem);
   const { data: selectedMassage } = useGetMassageItemQuery(massageItem);
 
@@ -24,7 +28,9 @@ const BookingDetailList = () => {
   return (
     <>
       <ButtonBoxStyle>
-        <PreviousButton />
+        <CommonButton type="plain" onClickButton={() => dispatch(subTabNum())}>
+          뒤로가기
+        </CommonButton>
       </ButtonBoxStyle>
       <ContentBoxStyle>
         <ListBoxStyle>

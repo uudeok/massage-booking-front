@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Map, MapMarker } from "react-kakao-maps-sdk";
-import { MEDIA_QUERY } from "../../../const/devise";
-import Banner from "../../banner/Banner";
+import { MEDIA_QUERY } from "../../const/devise";
+import Banner from "../banner/Banner";
 
 const CONTACT_INFO = [
   { key: "주소", value: "경기도 파주시 가람로 134번길 53" },

@@ -4,6 +4,7 @@ import { useDeleteOrderDataMutation } from "../../../api/orders/ordersQuery";
 import { useNavigate, useParams } from "react-router-dom";
 import { FcInfo } from "react-icons/fc";
 import { useHover } from "../../../hooks/useHover";
+import CommonButton from "../../common/button/CommonButton";
 
 const MyOrderSummary = () => {
   /// orderStatus === "PENDING" or "CONFIRM" 일때만 예약 취소 가능
@@ -28,9 +29,13 @@ const MyOrderSummary = () => {
     <div>
       <HeaderStyle>
         <OrderedDateStyle>2023-11-15 예약</OrderedDateStyle>
-        <CancelButtonStyle onClick={cancelOrderHandler}>
+        <CommonButton
+          type="rectangle"
+          onClickButton={cancelOrderHandler}
+          width="5rem"
+        >
           예약 취소
-        </CancelButtonStyle>
+        </CommonButton>
       </HeaderStyle>
       <ContentBoxStyle>
         <OrderItemBoxStyle>
@@ -85,14 +90,6 @@ const HeaderStyle = styled.div`
 
 const OrderedDateStyle = styled.span`
   flex: 1;
-`;
-
-const CancelButtonStyle = styled.button`
-  background-color: transparent;
-  cursor: pointer;
-  border: 1px solid lightgrey;
-  color: black;
-  width: 5rem;
 `;
 
 const ContentBoxStyle = styled.div`

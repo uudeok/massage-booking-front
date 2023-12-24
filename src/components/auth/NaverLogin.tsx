@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import NaverButton from "../common/button/NaverButton";
+import CommonButton from "../common/button/CommonButton";
 
 const NaverLogin = () => {
   const STATE = "test";
@@ -10,7 +10,7 @@ const NaverLogin = () => {
   return (
     <>
       <Link to={NAVER_URL}>
-        <NaverButton>네이버 아이디 로그인</NaverButton>
+        <CommonButton oauth="naver">네이버 아이디 로그인</CommonButton>
       </Link>
     </>
   );

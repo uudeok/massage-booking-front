@@ -1,4 +1,4 @@
-import ContactList from "../components/infomation/contact/ContactList";
+import ContactList from "../components/contact/ContactList";
 import Layout from "../layout/Layout";
 
 const ContactPage = () => {

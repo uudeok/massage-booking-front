@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { MEDIA_QUERY } from "../../../const/devise";
 import { makeSimpleDate } from "../../../util/date";
+import CommonButton from "../../common/button/CommonButton";
 
 const Notice = ({ detail }: { detail: TNoticeDetail }) => {
   const navigate = useNavigate();
@@ -31,7 +32,13 @@ const Notice = ({ detail }: { detail: TNoticeDetail }) => {
         <p>{detail.content}</p>
       </ContentBoxStyle>
       <ButtonBoxStyle>
-        <ButtonStyle onClick={() => navigate("..")}>목록</ButtonStyle>
+        <CommonButton
+          type="rectangle"
+          onClickButton={() => navigate("..")}
+          width="5rem"
+        >
+          목록
+        </CommonButton>
       </ButtonBoxStyle>
     </>
   );
@@ -78,12 +85,4 @@ const ContentBoxStyle = styled.div`
 const ButtonBoxStyle = styled.div`
   text-align: right;
   padding: 1rem;
-`;
-
-const ButtonStyle = styled.button`
-  background-color: white;
-  border: 1px solid grey;
-  cursor: pointer;
-  width: 5rem;
-  color: black;
 `;
