@@ -27,9 +27,8 @@ const BookingMassageItem = ({ massage }: TProps) => {
       <CommonButton
         type="round"
         onClickButton={() => selectMassageItem(massage.item)}
-        padding="0.7rem"
-        border={`2px solid ${palette.grey}`}
-        hoverColor={palette.grey}
+        $padding="0.7rem"
+        $border={`2px solid ${palette.grey}`}
       >
         선택하기
       </CommonButton>

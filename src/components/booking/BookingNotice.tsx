@@ -1,20 +1,30 @@
 import styled from "styled-components";
 import { MEDIA_QUERY } from "../../const/devise";
 import { BOOKING_NOTICE } from "../../const/book/massage";
+import Mapping from "../common/UI/map/Mapping";
+
+type noticeItemType = {
+  content: string;
+  id: number;
+};
 
 const BookingNotice = () => {
+  const renderNoticeItem = (noticeItem: noticeItemType) => (
+    <NoticeItemStyle key={noticeItem.id}>
+      • {noticeItem.content}
+    </NoticeItemStyle>
+  );
+
   return (
     <NoticeBoxStyle>
-      {BOOKING_NOTICE.map((item) => (
-        <NoticeItemStyle key={item.id}>• {item.content}</NoticeItemStyle>
-      ))}
+      <Mapping data={BOOKING_NOTICE} renderItem={renderNoticeItem} />
     </NoticeBoxStyle>
   );
 };
 
 export default BookingNotice;
 
-const NoticeBoxStyle = styled.div`
+const NoticeBoxStyle = styled.ul`
   padding: 1rem;
   border: 1px dotted lightgrey;
   text-align: left;

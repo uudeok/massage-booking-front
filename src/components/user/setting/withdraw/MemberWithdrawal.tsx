@@ -13,12 +13,11 @@ const MemberWithdrawal = () => {
             <CommonButton
               type="round"
               width="3rem"
-              padding="0.5rem"
-              border="1px solid lightgrey"
+              $padding="0.5rem"
+              $border="1px solid lightgrey"
             >
               탈퇴
             </CommonButton>
-            {/* <ButtonStyle>탈퇴</ButtonStyle> */}
           </TitleBoxStyle>
           <p>자연치유 쉼 회원 탈퇴하기.</p>
         </CardLayoutStyle>

@@ -7,7 +7,6 @@ import { addComma } from "../../util/price";
 import CardImage from "../common/card/CardImage";
 import CardContent from "../common/card/CardContent";
 import { palette } from "../../styles/palette";
-import Button from "../common/button/CommonButton";
 import CommonButton from "../common/button/CommonButton";
 
 type TProps = {
@@ -36,8 +35,8 @@ const BookingDetail = ({ detail, massage }: TProps) => {
       <CommonButton
         type="round"
         onClickButton={() => setAvailableTime(detail.time)}
-        border={`2px solid ${palette.grey}`}
-        padding="0.7rem"
+        $border={`2px solid ${palette.grey}`}
+        $padding="0.7rem"
       >
         선택하기
       </CommonButton>

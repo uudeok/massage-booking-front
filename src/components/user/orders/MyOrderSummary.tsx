@@ -18,7 +18,7 @@ const MyOrderSummary = () => {
   const [deleteOrder] = useDeleteOrderDataMutation();
 
   const cancelOrderHandler = () => {
-    const process = window.confirm("오더를 취소하시겠습니까?");
+    const process = window.confirm("예약을 취소하시겠습니까?");
     if (process) {
       deleteOrder(Number(id));
       navigate("/mypage/order");
