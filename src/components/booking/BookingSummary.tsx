@@ -35,17 +35,18 @@ const BookingSummary = ({ massageEndTime, selectedDate }: TProps) => {
   const SUMMARY_LIST: SummaryListType[] = [
     { key: "받으실 마사지", value: massageItem.displayItem },
     { key: "받으실 날짜", value: simpleDate },
-    { key: "받으실 시간", value: startTime },
+    {
+      key: "받으실 시간",
+      value: `${startTime}-${endTime} (${selectedMassageTime}분)`,
+    },
     { key: "금액", value: addComma(selectedMassagePrice) },
   ];
 
   const renderSummaryItem = (summaryItem: SummaryListType) => (
-    <SummaryListStyle>
-      <SummaryItemStyle>
-        <KeyStyle>{summaryItem.key}</KeyStyle>
-        <span>{summaryItem.value}</span>
-      </SummaryItemStyle>
-    </SummaryListStyle>
+    <SummaryItemStyle>
+      <KeyStyle>{summaryItem.key}</KeyStyle>
+      <span>{summaryItem.value}</span>
+    </SummaryItemStyle>
   );
 
   return (

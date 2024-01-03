@@ -14,9 +14,11 @@ const root = ReactDOM.createRoot(
 root.render(
   <>
     <GlobalStyles />
-    <Provider store={store}>
-      <RouterProvider router={router} />
-    </Provider>
+    <React.StrictMode>
+      <Provider store={store}>
+        <RouterProvider router={router} />
+      </Provider>
+    </React.StrictMode>
   </>
 );
 

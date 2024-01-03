@@ -16,15 +16,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { getMassageDetail } from "../../stores/massageSlice";
 import { useGetBookedTimeListQuery } from "../../api/book/bookQuery";
 import LoadingBar from "../loading/LoadingBar";
-import { makeSimpleDate } from "../../util/date";
 import BookingBreakDown from "./BookingBreakDown";
 import { CLOSE_TIME } from "../../const/book/time";
-import "./styles/Calendar.css";
-import { spreadBookedData, convertStringsToDates } from "../../util/date";
+import {
+  spreadBookedData,
+  convertStringsToDates,
+  makeSimpleDate,
+} from "../../util/date";
 import { font } from "../../fonts/font";
 import CommonButton from "../common/button/CommonButton";
 import { AppDispatch } from "../../stores/store";
 import { subTabNum } from "../../stores/tabSlice";
+import { ORDER_ERROR_MESSAGE } from "../../const/book/errorMessage";
 
 const SUNDAY = 0;
 
@@ -51,13 +54,13 @@ const BookingDate = () => {
     const start = makeSimpleTime(date);
 
     if (start === "19:30" && 90 < selectedMassageTime) {
-      setError("마사지 시간이 영업시간을 초과합니다.");
+      setError(ORDER_ERROR_MESSAGE.notice_over_time);
     } else if (start === "20:00" && 60 < selectedMassageTime) {
-      setError("마사지 시간이 영업시간을 초과합니다.");
+      setError(ORDER_ERROR_MESSAGE.notice_over_time);
     } else if (start === "20:30") {
-      setError("마사지를 받을 수 있는 시간이 아닙니다.");
+      setError(ORDER_ERROR_MESSAGE.notice_available_time);
     } else if (start === CLOSE_TIME) {
-      setError("영업시간은 09:00 ~ 21:00 까지 입니다.");
+      setError(ORDER_ERROR_MESSAGE.notice_business_time);
     } else {
       return true;
     }
@@ -70,12 +73,12 @@ const BookingDate = () => {
     const result = isTimeOverlaps(spreadData, start, end);
 
     if (date < new Date()) {
-      setError("오늘보다 이전 날짜는 선택하실 수 없습니다.");
+      setError(ORDER_ERROR_MESSAGE.notice_past_time);
       return false;
     }
 
     if (result.length > 0) {
-      setError("시간이 중복됩니다. 다른 시간을 선택해주세요");
+      setError(ORDER_ERROR_MESSAGE.notice_overlap_time);
       return false;
     }
     return true;
@@ -101,8 +104,8 @@ const BookingDate = () => {
     return day !== SUNDAY;
   };
 
-  const devidedMinutes = splitTimeArraysBy30Minutes(bookedData);
-  const booked = convertStringsToDates(devidedMinutes);
+  const dividedMinutes = splitTimeArraysBy30Minutes(bookedData);
+  const booked = convertStringsToDates(dividedMinutes);
 
   const filterPassedTime = (time: Date) => {
     const currentTime = new Date().getTime();

@@ -1,3 +1,5 @@
+import React from "react";
+
 type TProps<T> = {
   data: T[];
   renderItem: (item: T) => JSX.Element | void;
