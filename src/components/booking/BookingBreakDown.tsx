@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { MEDIA_QUERY } from "../../const/devise";
 import BookingNotice from "./BookingNotice";
 import BookingSummary from "./BookingSummary";
+import { useMemo } from "react";
 
 type TProps = {
   selectedDate: Date;
@@ -9,11 +10,13 @@ type TProps = {
 };
 
 const BookingBreakDown = ({ selectedDate, massageEndTime }: TProps) => {
+  const bookingNotice = useMemo(() => <BookingNotice />, []);
+
   return (
     <ReservationDetailStyle>
       <TitleStyle>※ 예약 내역</TitleStyle>
       <DetailBoxStyle>
-        <BookingNotice />
+        {bookingNotice}
         <BookingSummary
           selectedDate={selectedDate}
           massageEndTime={massageEndTime}

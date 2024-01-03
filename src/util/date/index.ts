@@ -20,7 +20,6 @@ export const validationDate = (selectedDate: Date) => {
 export const convertStringsToDates = (timeStrings: string[]) => {
   const dateObjects = timeStrings.map((timeStr) => {
     const [hours, minutes] = timeStr.split(":").map(Number);
-    console.log(hours, minutes);
     const date = new Date();
     date.setHours(hours);
     date.setMinutes(minutes);

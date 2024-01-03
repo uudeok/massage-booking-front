@@ -43,7 +43,7 @@ const BookingSummary = ({ massageEndTime, selectedDate }: TProps) => {
   ];
 
   const renderSummaryItem = (summaryItem: SummaryListType) => (
-    <SummaryItemStyle>
+    <SummaryItemStyle key={summaryItem.key}>
       <KeyStyle>{summaryItem.key}</KeyStyle>
       <span>{summaryItem.value}</span>
     </SummaryItemStyle>

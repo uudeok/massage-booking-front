@@ -11,7 +11,7 @@ const KakaoCallback = () => {
 
   const getToken = useCallback(() => {
     const code = new URL(window.location.href).searchParams.get("code");
-    console.log("kakaoCode", code);
+    // console.log("kakaoCode", code);
     localStorage.setItem("code", code!);
 
     if (code) {
