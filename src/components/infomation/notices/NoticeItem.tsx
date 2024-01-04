@@ -4,6 +4,9 @@ import { NOTICE_CATEGORY } from "../../../const/notices";
 import { Link } from "react-router-dom";
 import { MEDIA_QUERY } from "../../../const/devise";
 import LoadingBar from "../../loading/LoadingBar";
+import NoticeHeader from "./NoticeHeader";
+import Mapping from "../../common/UI/map/Mapping";
+import { makeSimpleDate } from "../../../util/date";
 
 type TProps = {
   notice: TNoticeDetail[];
@@ -11,63 +14,29 @@ type TProps = {
 };
 
 const NoticeItem = ({ notice, isFetching }: TProps) => {
+  const renderNoticeItem = (notice: TNoticeDetail) => (
+    <ContentStyle key={notice.id}>
+      <ContentSortStyle>{NOTICE_CATEGORY[notice.category]}</ContentSortStyle>
+      <ContentTitleStyle>
+        <Link to={`/notice/${notice.id}`}>{notice.title}</Link>
+      </ContentTitleStyle>
+      <ContentDateStyle>{makeSimpleDate(notice.createdAt)}</ContentDateStyle>
+      <ContentViewStyle>{notice.viewCount}</ContentViewStyle>
+    </ContentStyle>
+  );
+
   return (
     <>
-      <HeaderStyle>
-        <SortStyle>구분</SortStyle>
-        <TitleStyle>제목</TitleStyle>
-        <DateStyle>작성일</DateStyle>
-        <ViewStyle>조회수</ViewStyle>
-      </HeaderStyle>
+      <NoticeHeader />
       <ContentBoxStyle>
         {isFetching && <LoadingBar />}
-
-        {notice &&
-          notice.map((item) => (
-            <ContentStyle key={item.id}>
-              <ContentSortStyle>
-                {NOTICE_CATEGORY[item.category]}
-              </ContentSortStyle>
-              <ContentTitleStyle>
-                <Link to={`/notice/${item.id}`}>{item.title}</Link>
-              </ContentTitleStyle>
-              <ContentDateStyle>{item.createdAt.slice(0, 10)}</ContentDateStyle>
-              <ContentViewStyle>{item.viewCount}</ContentViewStyle>
-            </ContentStyle>
-          ))}
+        <Mapping data={notice} renderItem={renderNoticeItem} />
       </ContentBoxStyle>
     </>
   );
 };
 
 export default NoticeItem;
-
-const HeaderStyle = styled.div`
-  display: flex;
-  text-align: center;
-  padding: 1rem;
-  border-bottom: 1px solid black;
-
-  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
-    display: none;
-  }
-`;
-
-const SortStyle = styled.div`
-  width: 20%;
-`;
-
-const TitleStyle = styled.div`
-  flex: 1;
-`;
-
-const DateStyle = styled.div`
-  width: 10%;
-`;
-
-const ViewStyle = styled.div`
-  width: 10%;
-`;
 
 const ContentBoxStyle = styled.div`
   display: flex;

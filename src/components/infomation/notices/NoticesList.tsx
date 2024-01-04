@@ -7,6 +7,8 @@ import Paging from "../../pagination/Paging";
 import { NOTICE_CATEGORY_KEYS } from "../../../@types/notice";
 import { useGetNoticeListQuery } from "../../../api/notice/noticeQuery";
 import LoadingBar from "../../loading/LoadingBar";
+import Mapping from "../../common/UI/map/Mapping";
+import { TNoticeCategory } from "../../../@types/notice";
 
 const NOTICE_LIST_PAGE_SIZE = 10;
 
@@ -33,6 +35,12 @@ const NoticesList = () => {
     setCategory(e.target.value as NOTICE_CATEGORY_KEYS);
   };
 
+  const renderCategoryItem = (category: TNoticeCategory) => (
+    <option key={category.key} id={category.key} value={category.key}>
+      {category.value}
+    </option>
+  );
+
   return (
     <ContainerStyle>
       <InnerBoxStyle>
@@ -40,11 +48,7 @@ const NoticesList = () => {
           <TitleStyle>📢공지사항</TitleStyle>
           <CategoryListStyle onChange={changeCategoryHandler}>
             <option value="">전체</option>
-            {NOTICE_CATEGORIES.map((item, index) => (
-              <option key={index} id={item.key} value={item.key}>
-                {item.value}
-              </option>
-            ))}
+            <Mapping data={NOTICE_CATEGORIES} renderItem={renderCategoryItem} />
           </CategoryListStyle>
         </HeaderStyle>
         <NoticeItem notice={noticeList} isFetching={isFetching} />

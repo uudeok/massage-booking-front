@@ -1,3 +1,5 @@
+import { TNoticeCategory } from "../@types/notice";
+
 export const NOTICE_CATEGORY = {
   BUSINESS_TIME: "영업시간",
   EVENT: "이벤트",
@@ -10,4 +12,4 @@ export const NOTICE_CATEGORIES = [
   { key: "EVENT", value: "이벤트" },
   { key: "RULE", value: "운영방침" },
   { key: "ETC", value: "기타" },
-] as const;
+] as TNoticeCategory[];

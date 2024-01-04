@@ -4,29 +4,34 @@ import { useNavigate } from "react-router-dom";
 import { MEDIA_QUERY } from "../../../const/devise";
 import { makeSimpleDate } from "../../../util/date";
 import CommonButton from "../../common/button/CommonButton";
+import Mapping from "../../common/UI/map/Mapping";
+
+type NoticeType = {
+  key: string;
+  value: string | number;
+};
 
 const Notice = ({ detail }: { detail: TNoticeDetail }) => {
   const navigate = useNavigate();
 
+  const NOTICE_DETAIL: NoticeType[] = [
+    { key: "제목", value: detail.title },
+    { key: "작성자", value: detail.writer },
+    { key: "작성일", value: makeSimpleDate(detail.createdAt) },
+    { key: "조회수", value: detail.viewCount },
+  ];
+
+  const renderNoticeDetail = (noticeDetail: NoticeType) => (
+    <HeaderItemStyle key={noticeDetail.key}>
+      <span>{noticeDetail.key}</span>
+      <span>{noticeDetail.value}</span>
+    </HeaderItemStyle>
+  );
+
   return (
     <>
       <HeaderBoxStyle>
-        <HeaderItemStyle>
-          <span>제목</span>
-          <span>{detail.title}</span>
-        </HeaderItemStyle>
-        <HeaderItemStyle>
-          <span>작성자</span>
-          <span>{detail.writer}</span>
-        </HeaderItemStyle>
-        <HeaderItemStyle>
-          <span>작성일</span>
-          <span>{makeSimpleDate(detail.createdAt)}</span>
-        </HeaderItemStyle>
-        <HeaderItemStyle>
-          <span>조회수</span>
-          <span>{detail.viewCount}</span>
-        </HeaderItemStyle>
+        <Mapping data={NOTICE_DETAIL} renderItem={renderNoticeDetail} />
       </HeaderBoxStyle>
       <ContentBoxStyle>
         <p>{detail.content}</p>

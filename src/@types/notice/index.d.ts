@@ -5,6 +5,11 @@ export type NOTICE_CATEGORY_TYPE = typeof NOTICE_CATEGORY;
 export type NOTICE_CATEGORY_KEYS = keyof NOTICE_CATEGORY_TYPE;
 export type NOTICE_CATEGORY_VALUES = valueOf<NOTICE_CATEGORY_TYPE>;
 
+export type TNoticeCategory = {
+  key: NOTICE_CATEGORY_KEYS;
+  value: NOTICE_CATEGORY_VALUES;
+};
+
 export type TNoticeMeta = {
   currentPage: number;
   nextPage: number;
