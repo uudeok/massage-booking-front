@@ -7,7 +7,7 @@ import Paging from "../../pagination/Paging";
 import { NOTICE_CATEGORY_KEYS } from "../../../@types/notice";
 import { useGetNoticeListQuery } from "../../../api/notice/noticeQuery";
 import LoadingBar from "../../loading/LoadingBar";
-import RenderList from "../../common/UI/map/RenderList";
+import RenderList from "../../common/map/RenderList";
 import { TNoticeCategory } from "../../../@types/notice";
 
 const NOTICE_LIST_PAGE_SIZE = 10;

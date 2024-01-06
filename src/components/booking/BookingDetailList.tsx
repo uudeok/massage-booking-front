@@ -2,26 +2,31 @@ import { useSelector } from "react-redux/es/hooks/useSelector";
 import styled from "styled-components";
 import { getMassageItem } from "../../stores/massageSlice";
 import { useGetMassageItemQuery } from "../../api/massage/massageQuery";
-import LoadingBar from "../loading/LoadingBar";
-import RenderList from "../common/UI/map/RenderList";
+import RenderList from "../common/map/RenderList";
 import BookingDetail from "./BookingDetail";
-import { TMassageDetail } from "../../@types/massage";
+import { TMassageDetail, TMassageTable } from "../../@types/massage";
 import Card from "../common/card/Card";
 import CommonButton from "../common/button/CommonButton";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../stores/store";
 import { subTabNum } from "../../stores/tabSlice";
+import FetchWithLoading from "../loading/FetchWithLoading";
+import useLoader from "../../hooks/useLoader";
 
 const BookingDetailList = () => {
   const dispatch = useDispatch<AppDispatch>();
   const massageItem = useSelector(getMassageItem);
-  const { data: selectedMassage } = useGetMassageItemQuery(massageItem);
 
-  if (!selectedMassage) return <LoadingBar />;
+  const { data: selectedMassage, isLoading } =
+    useGetMassageItemQuery(massageItem);
+
+  const { fetchData } = useLoader(selectedMassage) as {
+    fetchData: TMassageTable;
+  };
 
   const renderDetailItem = (detail: TMassageDetail) => (
     <Card key={detail.time}>
-      <BookingDetail detail={detail} massage={selectedMassage} />
+      <BookingDetail detail={detail} massage={fetchData} />
     </Card>
   );
 
@@ -34,10 +39,9 @@ const BookingDetailList = () => {
       </ButtonBoxStyle>
       <ContentBoxStyle>
         <ListBoxStyle>
-          <RenderList
-            data={selectedMassage.detail}
-            renderItem={renderDetailItem}
-          />
+          <FetchWithLoading isLoading={isLoading}>
+            <RenderList data={fetchData.detail} renderItem={renderDetailItem} />
+          </FetchWithLoading>
         </ListBoxStyle>
       </ContentBoxStyle>
     </>

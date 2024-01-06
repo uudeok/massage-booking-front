@@ -10,6 +10,7 @@ import dayjs from "dayjs";
 import { DAY_OF_WEEK_NUMBER } from "../../const/book/time";
 import { useModal } from "../../hooks/useModal";
 import LoginModal from "../common/UI/modal/LoginModal";
+import ConditionalDisplay from "../common/maybe/ConditionalDisplay";
 
 type TProps = {
   massageItem: TMassageTable;
@@ -80,13 +81,11 @@ const BookingConfirm = ({
     closeModal: closeLoginModal,
   } = useModal();
 
-  const showLoginForm = isLoginModalOpen && (
-    <LoginModal closeModal={closeLoginModal} path="/order/mypage" />
-  );
-
   return (
     <ButtonBoxStyle>
-      {showLoginForm}
+      <ConditionalDisplay isShow={isLoginModalOpen}>
+        <LoginModal closeModal={closeLoginModal} path="/order/mypage" />
+      </ConditionalDisplay>
       <CommonButton
         type="round"
         $border="2px solid grey"

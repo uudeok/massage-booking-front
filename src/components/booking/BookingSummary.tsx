@@ -9,7 +9,7 @@ import {
 import { makeSimpleTime } from "../../util/time";
 import { makeSimpleDate } from "../../util/date";
 import BookingConfirm from "./BookingConfirm";
-import RenderList from "../common/UI/map/RenderList";
+import RenderList from "../common/map/RenderList";
 import { BOOKING_ITEM_VALUE } from "../../@types/massage";
 
 type TProps = {

@@ -25,37 +25,37 @@ const BookingStartTimePicker = ({
     return day !== SUNDAY;
   };
 
-  const filterPassedTime = (() => {
-    let isThrottled = false;
-    let lastResult = false;
-    console.log("12345");
+  // const filterPassedTime = (() => {
+  //   let isThrottled = false;
+  //   let lastResult = false;
+  //   console.log("12345");
 
-    return (time: Date) => {
-      if (!isThrottled) {
-        console.log("678910");
-        const currentTime = new Date().getTime();
-        const selectedTime = time.getTime();
+  //   return (time: Date) => {
+  //     if (!isThrottled) {
+  //       console.log("678910");
+  //       const currentTime = new Date().getTime();
+  //       const selectedTime = time.getTime();
 
-        lastResult = currentTime < selectedTime;
-        console.log(lastResult);
+  //       lastResult = currentTime < selectedTime;
+  //       console.log(lastResult);
 
-        isThrottled = true;
+  //       isThrottled = true;
 
-        setTimeout(() => {
-          isThrottled = false;
-        }, 3000);
-      }
+  //       setTimeout(() => {
+  //         isThrottled = false;
+  //       }, 3000);
+  //     }
 
-      return lastResult;
-    };
-  })();
+  //     return lastResult;
+  //   };
+  // })();
 
-  // const filterPassedTime = (time: Date) => {
-  //   const currentTime = new Date().getTime();
-  //   const businessTime = time.getTime();
+  const filterPassedTime = (time: Date) => {
+    const currentTime = new Date().getTime();
+    const businessTime = time.getTime();
 
-  //   return currentTime < businessTime;
-  // };
+    return currentTime < businessTime;
+  };
 
   return (
     <StyledStartTimePicker

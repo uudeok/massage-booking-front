@@ -5,3 +5,7 @@ export const ORDER_ERROR_MESSAGE = {
   notice_past_time: "오늘보다 이전 날짜는 선택하실 수 없습니다.",
   notice_overlap_time: "시간이 중복됩니다. 다른 시간을 선택해주세요",
 };
+
+export const DATA_ERROR_MESSAGE = {
+  empty_data: "데이터가 존재하지 않습니다.",
+};

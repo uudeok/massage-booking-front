@@ -4,11 +4,11 @@ type TProps = {
   children: React.ReactNode;
 };
 
-const Title = ({ children }: TProps) => {
+const SectionTitle = ({ children }: TProps) => {
   return <TitleStyle>{children}</TitleStyle>;
 };
 
-export default Title;
+export default SectionTitle;
 
 const TitleStyle = styled.h2`
   font-size: 1.3rem;

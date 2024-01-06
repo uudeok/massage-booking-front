@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { MEDIA_QUERY } from "../../const/devise";
 import { BOOKING_NOTICE } from "../../const/book/massage";
-import RenderList from "../common/UI/map/RenderList";
+import RenderList from "../common/map/RenderList";
 
 type noticeItemType = {
   content: string;

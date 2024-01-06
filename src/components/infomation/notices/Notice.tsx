@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { MEDIA_QUERY } from "../../../const/devise";
 import { makeSimpleDate } from "../../../util/date";
 import CommonButton from "../../common/button/CommonButton";
-import RenderList from "../../common/UI/map/RenderList";
+import RenderList from "../../common/map/RenderList";
 
 type NoticeType = {
   key: string;

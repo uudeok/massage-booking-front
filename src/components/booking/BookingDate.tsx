@@ -7,7 +7,6 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getMassageDetail } from "../../stores/massageSlice";
 import { useGetBookedTimeListQuery } from "../../api/book/bookQuery";
-import LoadingBar from "../loading/LoadingBar";
 import BookingBreakDown from "./BookingBreakDown";
 import { CLOSE_TIME } from "../../const/book/time";
 import {
@@ -22,7 +21,9 @@ import { subTabNum } from "../../stores/tabSlice";
 import { ORDER_ERROR_MESSAGE } from "../../const/book/errorMessage";
 import BookingStartTimePicker from "./BookingStartTimePicker";
 import BookingEndTimePicker from "./BookingEndTimePicker";
-import Title from "./Title";
+import SectionTitle from "../common/shared/SectionTitle";
+import FetchWithLoading from "../loading/FetchWithLoading";
+import ConditionalDisplay from "../common/maybe/ConditionalDisplay";
 
 const BookingDate = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -39,15 +40,14 @@ const BookingDate = () => {
 
   const targetDate = makeSimpleDate(selectedDate);
 
-  const { data: bookedData } = useGetBookedTimeListQuery(targetDate);
+  const { data: bookedData = [], isLoading } =
+    useGetBookedTimeListQuery(targetDate);
 
   useEffect(() => {
     if (bookedData) {
       setBooked(calculateBookedData(bookedData));
     }
   }, [bookedData]);
-
-  if (!bookedData) return <LoadingBar />;
 
   const validBusinessTime = (date: Date) => {
     const start = makeSimpleTime(date);
@@ -104,24 +104,27 @@ const BookingDate = () => {
         뒤로가기
       </CommonButton>
       <CalendarStyle>
-        <Title>날짜 및 시간을 선택해주세요</Title>
-        <CalendarBoxStyle>
-          <BookingStartTimePicker
-            selectedDate={selectedDate}
-            changeDateHandler={changeDateHandler}
-            booked={booked}
-          />
-          <HyphenStyle>-</HyphenStyle>
-          <BookingEndTimePicker endTime={endTime} setEndTime={setEndTime} />
-        </CalendarBoxStyle>
+        <SectionTitle>날짜 및 시간을 선택해주세요</SectionTitle>
+        <FetchWithLoading isLoading={isLoading}>
+          <CalendarBoxStyle>
+            <BookingStartTimePicker
+              selectedDate={selectedDate}
+              changeDateHandler={changeDateHandler}
+              booked={booked}
+            />
+            <HyphenStyle>-</HyphenStyle>
+            <BookingEndTimePicker endTime={endTime} setEndTime={setEndTime} />
+          </CalendarBoxStyle>
+        </FetchWithLoading>
       </CalendarStyle>
       {error && <ErrorMessageStyle>{error}</ErrorMessageStyle>}
-      {isSelected && (
+
+      <ConditionalDisplay isShow={isSelected}>
         <BookingBreakDown
           selectedDate={selectedDate}
           massageEndTime={endTime}
         />
-      )}
+      </ConditionalDisplay>
     </ContainerStyle>
   );
 };

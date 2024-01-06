@@ -3,7 +3,7 @@ import { MEDIA_QUERY } from "../../const/devise";
 import BookingNotice from "./BookingNotice";
 import BookingSummary from "./BookingSummary";
 import { useMemo } from "react";
-import Title from "./Title";
+import SectionTitle from "../common/shared/SectionTitle";
 
 type TProps = {
   selectedDate: Date;
@@ -15,7 +15,7 @@ const BookingBreakDown = ({ selectedDate, massageEndTime }: TProps) => {
 
   return (
     <ReservationDetailStyle>
-      <Title>※ 예약 내역</Title>
+      <SectionTitle>※ 예약 내역</SectionTitle>
       <DetailBoxStyle>
         {bookingNotice}
         <BookingSummary

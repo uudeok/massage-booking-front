@@ -7,25 +7,45 @@ import { useSelector, useDispatch } from "react-redux";
 import { currTabNum, resetTabNum } from "../../stores/tabSlice";
 import BookingDate from "./BookingDate";
 import { font } from "../../fonts/font";
+import RenderList from "../common/map/RenderList";
+
+type TabType = {
+  key: string;
+  content: JSX.Element;
+  index: number;
+};
 
 const TAB_LIST = [
   {
     key: "마사지 선택",
     content: <BookingMassageList />,
+    index: 0,
   },
   {
     key: "종류 선택",
     content: <BookingDetailList />,
+    index: 1,
   },
   {
     key: "날짜 선택",
     content: <BookingDate />,
+    index: 2,
   },
 ];
 
 const BookingTab = () => {
   const dispatch = useDispatch();
   const tabNum = useSelector(currTabNum);
+
+  const renderTabItem = (item: TabType) => (
+    <TabButtonStyle
+      key={item.index}
+      disabled={item.index !== tabNum}
+      $isActive={item.index === tabNum}
+    >
+      {item.key}
+    </TabButtonStyle>
+  );
 
   useEffect(() => {
     return () => {
@@ -36,18 +56,8 @@ const BookingTab = () => {
   return (
     <>
       <TabListStyle>
-        {TAB_LIST.map((item, index) => (
-          <Fragment key={index}>
-            <TabButtonStyle
-              disabled={index !== tabNum}
-              $isActive={index === tabNum}
-            >
-              {item.key}
-            </TabButtonStyle>
-          </Fragment>
-        ))}
+        <RenderList data={TAB_LIST} renderItem={renderTabItem} />
       </TabListStyle>
-
       <ContentContainerStyle>{TAB_LIST[tabNum].content}</ContentContainerStyle>
     </>
   );
