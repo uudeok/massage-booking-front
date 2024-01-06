@@ -1,4 +1,5 @@
 import dayjs from "dayjs";
+import { splitTimeArraysBy30Minutes } from "../time";
 
 export const makeFullDate = (date: Date) => {
   return dayjs(date).format("YYYY-MM-DDTHH:mm:ss");
@@ -29,8 +30,14 @@ export const convertStringsToDates = (timeStrings: string[]) => {
   return dateObjects;
 };
 
+export const calculateBookedData = (bookedData: string[]) => {
+  const dividedMinutes = splitTimeArraysBy30Minutes(bookedData);
+  return convertStringsToDates(dividedMinutes);
+};
+
 export const spreadBookedData = (bookedData: string[]) => {
   let data = [];
+
   for (let i = 0; i < bookedData.length; i++) {
     for (let j = 0; j <= 1; j++) {
       data.push(bookedData[i][j]);

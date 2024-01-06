@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { MEDIA_QUERY } from "../../../const/devise";
 import LoadingBar from "../../loading/LoadingBar";
 import NoticeHeader from "./NoticeHeader";
-import Mapping from "../../common/UI/map/Mapping";
+import Mapping from "../../common/UI/map/RenderList";
 import { makeSimpleDate } from "../../../util/date";
 
 type TProps = {

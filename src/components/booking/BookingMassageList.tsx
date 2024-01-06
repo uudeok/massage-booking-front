@@ -1,15 +1,13 @@
 import styled from "styled-components";
-import LoadingBar from "../loading/LoadingBar";
 import BookingMassageItem from "./BookingMassageItem";
-import Mapping from "../common/UI/map/Mapping";
+import RenderList from "../common/UI/map/RenderList";
 import { useGetMassageListQuery } from "../../api/massage/massageQuery";
 import { TMassageTable } from "../../@types/massage";
 import Card from "../common/card/Card";
+import FetchWithLoading from "../loading/FetchWithLoading";
 
 const BookingMassageList = () => {
-  const { data: massageList } = useGetMassageListQuery();
-
-  if (!massageList) return <LoadingBar />;
+  const { data: massageList = [], isLoading } = useGetMassageListQuery();
 
   const renderBookingItem = (massage: TMassageTable) => (
     <Card key={massage.id}>
@@ -18,11 +16,14 @@ const BookingMassageList = () => {
   );
 
   return (
-    <ContentBoxStyle>
-      <ListBoxStyle>
-        <Mapping data={massageList} renderItem={renderBookingItem} />
-      </ListBoxStyle>
-    </ContentBoxStyle>
+    <>
+      <FetchWithLoading isLoading={isLoading} />
+      <ContentBoxStyle>
+        <ListBoxStyle>
+          <RenderList data={massageList} renderItem={renderBookingItem} />
+        </ListBoxStyle>
+      </ContentBoxStyle>
+    </>
   );
 };
 

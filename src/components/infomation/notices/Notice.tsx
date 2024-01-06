@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { MEDIA_QUERY } from "../../../const/devise";
 import { makeSimpleDate } from "../../../util/date";
 import CommonButton from "../../common/button/CommonButton";
-import Mapping from "../../common/UI/map/Mapping";
+import RenderList from "../../common/UI/map/RenderList";
 
 type NoticeType = {
   key: string;
@@ -31,7 +31,7 @@ const Notice = ({ detail }: { detail: TNoticeDetail }) => {
   return (
     <>
       <HeaderBoxStyle>
-        <Mapping data={NOTICE_DETAIL} renderItem={renderNoticeDetail} />
+        <RenderList data={NOTICE_DETAIL} renderItem={renderNoticeDetail} />
       </HeaderBoxStyle>
       <ContentBoxStyle>
         <p>{detail.content}</p>

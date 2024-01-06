@@ -7,7 +7,7 @@ import Paging from "../../pagination/Paging";
 import { NOTICE_CATEGORY_KEYS } from "../../../@types/notice";
 import { useGetNoticeListQuery } from "../../../api/notice/noticeQuery";
 import LoadingBar from "../../loading/LoadingBar";
-import Mapping from "../../common/UI/map/Mapping";
+import RenderList from "../../common/UI/map/RenderList";
 import { TNoticeCategory } from "../../../@types/notice";
 
 const NOTICE_LIST_PAGE_SIZE = 10;
@@ -48,7 +48,10 @@ const NoticesList = () => {
           <TitleStyle>📢공지사항</TitleStyle>
           <CategoryListStyle onChange={changeCategoryHandler}>
             <option value="">전체</option>
-            <Mapping data={NOTICE_CATEGORIES} renderItem={renderCategoryItem} />
+            <RenderList
+              data={NOTICE_CATEGORIES}
+              renderItem={renderCategoryItem}
+            />
           </CategoryListStyle>
         </HeaderStyle>
         <NoticeItem notice={noticeList} isFetching={isFetching} />

@@ -1,17 +1,9 @@
 import "react-datepicker/dist/react-datepicker.css";
 import styled from "styled-components";
-import DatePicker from "react-datepicker";
-import dayjs from "dayjs";
-import { ko } from "date-fns/esm/locale";
 import { MEDIA_QUERY } from "../../const/devise";
-import { setHours, setMinutes, getDay } from "date-fns";
-import {
-  addFewMinutes,
-  makeSimpleTime,
-  isTimeOverlaps,
-  splitTimeArraysBy30Minutes,
-} from "../../util/time";
-import { useState } from "react";
+import { setHours, setMinutes } from "date-fns";
+import { addFewMinutes, makeSimpleTime, isTimeOverlaps } from "../../util/time";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getMassageDetail } from "../../stores/massageSlice";
 import { useGetBookedTimeListQuery } from "../../api/book/bookQuery";
@@ -20,16 +12,17 @@ import BookingBreakDown from "./BookingBreakDown";
 import { CLOSE_TIME } from "../../const/book/time";
 import {
   spreadBookedData,
-  convertStringsToDates,
   makeSimpleDate,
+  calculateBookedData,
 } from "../../util/date";
 import { font } from "../../fonts/font";
 import CommonButton from "../common/button/CommonButton";
 import { AppDispatch } from "../../stores/store";
 import { subTabNum } from "../../stores/tabSlice";
 import { ORDER_ERROR_MESSAGE } from "../../const/book/errorMessage";
-
-const SUNDAY = 0;
+import BookingStartTimePicker from "./BookingStartTimePicker";
+import BookingEndTimePicker from "./BookingEndTimePicker";
+import Title from "./Title";
 
 const BookingDate = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -42,11 +35,17 @@ const BookingDate = () => {
   const [endTime, setEndTime] = useState<Date | null>(null);
   const [isSelected, setIsSelected] = useState(false);
   const [error, setError] = useState("");
-
-  const addTwoWeeks = dayjs().add(2, "weeks").format();
+  const [booked, setBooked] = useState<Date[]>([]);
 
   const targetDate = makeSimpleDate(selectedDate);
+
   const { data: bookedData } = useGetBookedTimeListQuery(targetDate);
+
+  useEffect(() => {
+    if (bookedData) {
+      setBooked(calculateBookedData(bookedData));
+    }
+  }, [bookedData]);
 
   if (!bookedData) return <LoadingBar />;
 
@@ -99,56 +98,21 @@ const BookingDate = () => {
     setIsSelected(true);
   };
 
-  const isOffDay = (date: Date | number) => {
-    const day = getDay(date);
-    return day !== SUNDAY;
-  };
-
-  const dividedMinutes = splitTimeArraysBy30Minutes(bookedData);
-  const booked = convertStringsToDates(dividedMinutes);
-
-  const filterPassedTime = (time: Date) => {
-    const currentTime = new Date().getTime();
-    const selectedTime = new Date(time).getTime();
-
-    return currentTime < selectedTime;
-  };
-
   return (
     <ContainerStyle>
       <CommonButton type="plain" onClickButton={() => dispatch(subTabNum())}>
         뒤로가기
       </CommonButton>
       <CalendarStyle>
-        <TitleStyle>날짜 및 시간을 선택해주세요</TitleStyle>
+        <Title>날짜 및 시간을 선택해주세요</Title>
         <CalendarBoxStyle>
-          <StyledStartTimePicker
-            dateFormat="yyyy-MM-dd aa h:mm "
-            minDate={new Date()}
-            maxDate={new Date(addTwoWeeks)}
-            selected={selectedDate}
-            onChange={changeDateHandler}
-            locale={ko}
-            filterDate={isOffDay}
-            showTimeSelect
-            minTime={setHours(setMinutes(new Date(), 0), 9)}
-            maxTime={setHours(setMinutes(new Date(), 0), 21)}
-            timeCaption="시간"
-            excludeTimes={booked}
-            filterTime={filterPassedTime}
-            onKeyDown={(e) => e.preventDefault()}
-            dateFormatCalendar="yyyy년 MM월"
+          <BookingStartTimePicker
+            selectedDate={selectedDate}
+            changeDateHandler={changeDateHandler}
+            booked={booked}
           />
           <HyphenStyle>-</HyphenStyle>
-          <StyledEndTimePicker
-            showTimeSelect
-            locale={ko}
-            selected={endTime}
-            onChange={(time) => setEndTime(time)}
-            placeholderText="종료 시간"
-            dateFormat="yyyy-MM-dd aa h:mm "
-            disabled
-          />
+          <BookingEndTimePicker endTime={endTime} setEndTime={setEndTime} />
         </CalendarBoxStyle>
       </CalendarStyle>
       {error && <ErrorMessageStyle>{error}</ErrorMessageStyle>}
@@ -189,13 +153,6 @@ const CalendarStyle = styled.div`
   }
 `;
 
-const TitleStyle = styled.h2`
-  font-size: 1.3rem;
-  width: 100%;
-  margin-bottom: 2rem;
-  text-align: center;
-`;
-
 const CalendarBoxStyle = styled.div`
   width: 100%;
   display: flex;
@@ -212,31 +169,6 @@ const HyphenStyle = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-`;
-
-const StyledStartTimePicker = styled(DatePicker)`
-  font-family: ${font.pretend};
-  padding: 0.5rem;
-  text-align: center;
-  border-radius: 30px;
-  font-size: 1rem;
-  border: 2px solid #555555;
-  cursor: pointer;
-  /* gap: 1rem; */
-
-  &:focus {
-    border: 2px solid blue;
-  }
-`;
-
-const StyledEndTimePicker = styled(DatePicker)`
-  font-family: ${font.pretend};
-  padding: 0.5rem;
-  text-align: center;
-  border-radius: 30px;
-  font-size: 1rem;
-  border: 2px solid #555555;
-  cursor: pointer;
 `;
 
 const ErrorMessageStyle = styled.span`

@@ -9,7 +9,7 @@ import {
 import { makeSimpleTime } from "../../util/time";
 import { makeSimpleDate } from "../../util/date";
 import BookingConfirm from "./BookingConfirm";
-import Mapping from "../common/UI/map/Mapping";
+import RenderList from "../common/UI/map/RenderList";
 import { BOOKING_ITEM_VALUE } from "../../@types/massage";
 
 type TProps = {
@@ -52,7 +52,7 @@ const BookingSummary = ({ massageEndTime, selectedDate }: TProps) => {
   return (
     <SummaryBoxStyle>
       <SummaryListStyle>
-        <Mapping data={SUMMARY_LIST} renderItem={renderSummaryItem} />
+        <RenderList data={SUMMARY_LIST} renderItem={renderSummaryItem} />
       </SummaryListStyle>
 
       <BookingConfirm

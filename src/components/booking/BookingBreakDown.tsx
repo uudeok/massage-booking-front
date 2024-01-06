@@ -3,6 +3,7 @@ import { MEDIA_QUERY } from "../../const/devise";
 import BookingNotice from "./BookingNotice";
 import BookingSummary from "./BookingSummary";
 import { useMemo } from "react";
+import Title from "./Title";
 
 type TProps = {
   selectedDate: Date;
@@ -14,7 +15,7 @@ const BookingBreakDown = ({ selectedDate, massageEndTime }: TProps) => {
 
   return (
     <ReservationDetailStyle>
-      <TitleStyle>※ 예약 내역</TitleStyle>
+      <Title>※ 예약 내역</Title>
       <DetailBoxStyle>
         {bookingNotice}
         <BookingSummary
@@ -34,13 +35,6 @@ const ReservationDetailStyle = styled.div`
   background-color: whitesmoke;
   display: flex;
   flex-direction: column;
-  text-align: center;
-`;
-
-const TitleStyle = styled.h2`
-  font-size: 1.3rem;
-  width: 100%;
-  margin-bottom: 2rem;
   text-align: center;
 `;
 

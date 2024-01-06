@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { MEDIA_QUERY } from "../../const/devise";
 import { BOOKING_NOTICE } from "../../const/book/massage";
-import Mapping from "../common/UI/map/Mapping";
+import RenderList from "../common/UI/map/RenderList";
 
 type noticeItemType = {
   content: string;
@@ -17,7 +17,7 @@ const BookingNotice = () => {
 
   return (
     <NoticeBoxStyle>
-      <Mapping data={BOOKING_NOTICE} renderItem={renderNoticeItem} />
+      <RenderList data={BOOKING_NOTICE} renderItem={renderNoticeItem} />
     </NoticeBoxStyle>
   );
 };

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { getMassageItem } from "../../stores/massageSlice";
 import { useGetMassageItemQuery } from "../../api/massage/massageQuery";
 import LoadingBar from "../loading/LoadingBar";
-import Mapping from "../common/UI/map/Mapping";
+import RenderList from "../common/UI/map/RenderList";
 import BookingDetail from "./BookingDetail";
 import { TMassageDetail } from "../../@types/massage";
 import Card from "../common/card/Card";
@@ -34,7 +34,7 @@ const BookingDetailList = () => {
       </ButtonBoxStyle>
       <ContentBoxStyle>
         <ListBoxStyle>
-          <Mapping
+          <RenderList
             data={selectedMassage.detail}
             renderItem={renderDetailItem}
           />
