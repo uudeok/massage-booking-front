@@ -1,8 +1,8 @@
 import "react-datepicker/dist/react-datepicker.css";
 import styled from "styled-components";
 import DatePicker from "react-datepicker";
-import { font } from "../../fonts/font";
 import { ko } from "date-fns/esm/locale";
+import theme from "../../styles/theme";
 
 type TProps = {
   endTime: Date | null;
@@ -26,7 +26,7 @@ const BookingEndTimePicker = ({ endTime, setEndTime }: TProps) => {
 export default BookingEndTimePicker;
 
 const StyledEndTimePicker = styled(DatePicker)`
-  font-family: ${font.pretend};
+  font-family: ${theme.fonts.pretend};
   padding: 0.5rem;
   text-align: center;
   border-radius: 30px;

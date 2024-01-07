@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { MEDIA_QUERY } from "../../const/devise";
 import { addComma } from "../../util/price";
 import { useSelector } from "react-redux";
 import {
@@ -11,6 +10,7 @@ import { makeSimpleDate } from "../../util/date";
 import BookingConfirm from "./BookingConfirm";
 import RenderList from "../common/map/RenderList";
 import { BOOKING_ITEM_VALUE } from "../../@types/massage";
+import theme from "../../styles/theme";
 
 type TProps = {
   selectedDate: Date;
@@ -75,13 +75,13 @@ const SummaryBoxStyle = styled.div`
   width: 40%;
   margin-right: 1rem;
 
-  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+  @media only screen and (max-width: ${theme.devise.tabletWidth}) {
     width: 85%;
     margin: auto;
     margin-top: 1rem;
   }
 
-  @media only screen and (max-width: ${MEDIA_QUERY.bigMobileWidth}) {
+  @media only screen and (max-width: ${theme.devise.bigMobileWidth}) {
     width: 100%;
   }
 `;
@@ -94,7 +94,7 @@ const SummaryItemStyle = styled.div`
   padding: 1rem;
   display: flex;
 
-  @media only screen and (max-width: ${MEDIA_QUERY.bigMobileWidth}) {
+  @media only screen and (max-width: ${theme.devise.bigMobileWidth}) {
     font-size: 0.9rem;
     padding: 0.5rem;
   }

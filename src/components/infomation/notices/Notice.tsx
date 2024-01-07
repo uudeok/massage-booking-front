@@ -1,10 +1,10 @@
 import { TNoticeDetail } from "../../../@types/notice";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { MEDIA_QUERY } from "../../../const/devise";
 import { makeSimpleDate } from "../../../util/date";
 import CommonButton from "../../common/button/CommonButton";
 import RenderList from "../../common/map/RenderList";
+import theme from "../../../styles/theme";
 
 type NoticeType = {
   key: string;
@@ -63,7 +63,7 @@ const HeaderItemStyle = styled.div`
     width: 10%;
   }
 
-  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+  @media only screen and (max-width: ${theme.devise.tabletWidth}) {
     padding: 0.3rem;
 
     span:first-child {
@@ -82,7 +82,7 @@ const ContentBoxStyle = styled.div`
   line-height: 2rem;
   font-size: 1.2rem;
 
-  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+  @media only screen and (max-width: ${theme.devise.tabletWidth}) {
     font-size: 0.8rem;
   }
 `;

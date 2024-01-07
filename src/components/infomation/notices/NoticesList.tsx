@@ -1,28 +1,35 @@
 import styled from "styled-components";
-import { NOTICE_CATEGORIES } from "../../../const/notices";
 import NoticeItem from "./NoticeItem";
-import { useState } from "react";
-import { MEDIA_QUERY } from "../../../const/devise";
 import Paging from "../../pagination/Paging";
-import { NOTICE_CATEGORY_KEYS } from "../../../@types/notice";
-import { useGetNoticeListQuery } from "../../../api/notice/noticeQuery";
 import LoadingBar from "../../loading/LoadingBar";
 import RenderList from "../../common/map/RenderList";
+
+import { NOTICE_CATEGORIES } from "../../../const/notices";
+import { useState } from "react";
+import { NOTICE_CATEGORY_KEYS } from "../../../@types/notice";
+import { useGetNoticeListQuery } from "../../../api/notice/noticeQuery";
 import { TNoticeCategory } from "../../../@types/notice";
+import ErrorDisplay from "../../error/ErrorDisplay";
+import { DATA_ERROR_MESSAGE } from "../../../const/book/errorMessage";
+import theme from "../../../styles/theme";
 
 const NOTICE_LIST_PAGE_SIZE = 10;
 
 const NoticesList = () => {
   const [category, setCategory] = useState<NOTICE_CATEGORY_KEYS>();
   const [page, setPage] = useState(1);
+  const [message, setMessage] = useState("");
 
-  const { data, isFetching } = useGetNoticeListQuery({
+  const { data, isLoading } = useGetNoticeListQuery({
     pageNumber: page,
     pageSize: NOTICE_LIST_PAGE_SIZE,
     category: category,
   });
 
-  if (!data) return <LoadingBar />;
+  if (data === undefined) return <LoadingBar />;
+  if (data && data.notices.length === 0) {
+    setMessage(DATA_ERROR_MESSAGE.empty_data);
+  }
 
   const noticeList = data.notices;
   const meta = data.meta;
@@ -54,7 +61,8 @@ const NoticesList = () => {
             />
           </CategoryListStyle>
         </HeaderStyle>
-        <NoticeItem notice={noticeList} isFetching={isFetching} />
+        <ErrorDisplay errorMessage={message} />
+        <NoticeItem notice={noticeList} isLoading={isLoading} />
         <Paging
           page={page}
           changePageHandler={changePageHandler}
@@ -71,7 +79,7 @@ export default NoticesList;
 const ContainerStyle = styled.div`
   display: flex;
   flex-direction: column;
-  font-family: "Pretendard-Regular";
+  font-family: ${theme.fonts.pretend};
 `;
 
 const InnerBoxStyle = styled.div`
@@ -79,7 +87,7 @@ const InnerBoxStyle = styled.div`
   margin: auto;
   padding: 3rem;
 
-  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+  @media only screen and (max-width: ${theme.devise.tabletWidth}) {
     width: 21rem;
     padding: 1rem;
   }
@@ -96,7 +104,7 @@ const TitleStyle = styled.h1`
   font-size: 2rem;
   flex: 1;
 
-  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+  @media only screen and (max-width: ${theme.devise.tabletWidth}) {
     font-size: 1.5rem;
   }
 `;

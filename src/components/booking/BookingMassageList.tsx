@@ -5,6 +5,7 @@ import { useGetMassageListQuery } from "../../api/massage/massageQuery";
 import { TMassageTable } from "../../@types/massage";
 import Card from "../common/card/Card";
 import FetchWithLoading from "../loading/FetchWithLoading";
+import theme from "../../styles/theme";
 
 const BookingMassageList = () => {
   const { data: massageList = [], isLoading } = useGetMassageListQuery();
@@ -41,5 +42,5 @@ const ListBoxStyle = styled.ul`
   flex-wrap: wrap;
   width: 1200px;
   margin: auto;
-  font-family: "Pretendard-Regular";
+  font-family: ${theme.fonts.pretend};
 `;

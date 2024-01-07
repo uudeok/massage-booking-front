@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import { TNoticeDetail } from "../../../../@types/notice";
 import { Link } from "react-router-dom";
-import { MEDIA_QUERY } from "../../../../const/devise";
 import { makeSimpleDate } from "../../../../util/date";
+import theme from "../../../../styles/theme";
 
 const NoticeMainItem = ({ notice }: { notice: TNoticeDetail }) => {
   const createdAt = makeSimpleDate(notice.createdAt);
@@ -31,15 +31,15 @@ const NoticeItemTitleStyle = styled.span`
     text-decoration: underline;
   }
 
-  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+  @media only screen and (max-width: ${theme.devise.tabletWidth}) {
     font-size: 0.9rem;
   }
 `;
 
 const NoticeItemDateStyle = styled.div`
-  color: grey;
+  color: ${theme.palette.grey};
 
-  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+  @media only screen and (max-width: ${theme.devise.tabletWidth}) {
     font-size: 0.85rem;
   }
 `;

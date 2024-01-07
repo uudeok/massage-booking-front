@@ -11,22 +11,29 @@ import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../stores/store";
 import { subTabNum } from "../../stores/tabSlice";
 import FetchWithLoading from "../loading/FetchWithLoading";
-import useLoader from "../../hooks/useLoader";
+import { useEffect, useState } from "react";
+import theme from "../../styles/theme";
 
 const BookingDetailList = () => {
   const dispatch = useDispatch<AppDispatch>();
   const massageItem = useSelector(getMassageItem);
+  const [detail, setDetail] = useState<TMassageDetail[]>([]);
 
   const { data: selectedMassage, isLoading } =
     useGetMassageItemQuery(massageItem);
 
-  const { fetchData } = useLoader(selectedMassage) as {
-    fetchData: TMassageTable;
-  };
+  useEffect(() => {
+    if (selectedMassage !== undefined) {
+      setDetail(selectedMassage.detail);
+    }
+  }, [selectedMassage]);
 
   const renderDetailItem = (detail: TMassageDetail) => (
     <Card key={detail.time}>
-      <BookingDetail detail={detail} massage={fetchData} />
+      <BookingDetail
+        detail={detail}
+        massage={selectedMassage as TMassageTable}
+      />
     </Card>
   );
 
@@ -40,7 +47,7 @@ const BookingDetailList = () => {
       <ContentBoxStyle>
         <ListBoxStyle>
           <FetchWithLoading isLoading={isLoading}>
-            <RenderList data={fetchData.detail} renderItem={renderDetailItem} />
+            <RenderList data={detail} renderItem={renderDetailItem} />
           </FetchWithLoading>
         </ListBoxStyle>
       </ContentBoxStyle>
@@ -61,7 +68,7 @@ const ListBoxStyle = styled.ul`
   flex-wrap: wrap;
   width: 1200px;
   margin: auto;
-  font-family: "Pretendard-Regular";
+  font-family: ${theme.fonts.pretend};
 `;
 
 const ButtonBoxStyle = styled.div`

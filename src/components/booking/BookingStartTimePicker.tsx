@@ -1,10 +1,10 @@
 import "react-datepicker/dist/react-datepicker.css";
 import styled from "styled-components";
 import DatePicker from "react-datepicker";
-import { font } from "../../fonts/font";
 import { ko } from "date-fns/esm/locale";
 import { getDay, setHours, setMinutes } from "date-fns";
 import dayjs from "dayjs";
+import theme from "../../styles/theme";
 
 const SUNDAY = 0;
 
@@ -81,7 +81,7 @@ const BookingStartTimePicker = ({
 export default BookingStartTimePicker;
 
 const StyledStartTimePicker = styled(DatePicker)`
-  font-family: ${font.pretend};
+  font-family: ${theme.fonts.pretend};
   padding: 0.5rem;
   text-align: center;
   border-radius: 30px;

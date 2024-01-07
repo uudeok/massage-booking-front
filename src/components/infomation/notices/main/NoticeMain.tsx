@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import NoticesMainList from "./NoticesMainList";
 import { Link } from "react-router-dom";
-import { MEDIA_QUERY } from "../../../../const/devise";
+import theme from "../../../../styles/theme";
 
 const NoticeMain = () => {
   return (
@@ -20,8 +20,7 @@ const NoticeMain = () => {
 export default NoticeMain;
 
 const ContainerStyle = styled.div`
-  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
-    /* box-shadow: 0 0 0.3rem 0 rgba(0, 0, 0, 0.1); */
+  @media only screen and (max-width: ${theme.devise.tabletWidth}) {
     padding: 0.5rem;
     width: 90%;
     margin: auto;
@@ -42,7 +41,7 @@ const HeaderBoxStyle = styled.div`
     text-decoration: underline;
   }
 
-  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+  @media only screen and (max-width: ${theme.devise.tabletWidth}) {
     a {
       font-size: 0.8rem;
     }
@@ -53,9 +52,9 @@ const HeaderStyle = styled.h1`
   font-size: 2rem;
   margin-bottom: 2rem;
   flex: 1;
-  font-family: "GmarketSansMedium";
+  font-family: ${theme.fonts.Gmarket};
 
-  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+  @media only screen and (max-width: ${theme.devise.tabletWidth}) {
     font-size: 1.7rem;
   }
 `;

@@ -1,6 +1,7 @@
 import { useRouteError, Link } from "react-router-dom";
 import styled from "styled-components";
 import { FcCancel } from "react-icons/fc";
+import theme from "../../styles/theme";
 
 type TError = {
   status: number;
@@ -33,7 +34,7 @@ const ErrorScreen = styled.div`
   flex-direction: column;
   text-align: center;
   padding: 1rem;
-  font-family: "Pretendard-Regular";
+  font-family: ${theme.fonts.pretend};
   gap: 1rem;
 `;
 
@@ -53,5 +54,5 @@ const ButtonStyle = styled.button`
   width: 6rem;
   border-radius: 10px;
   cursor: pointer;
-  font-family: "Pretendard-Regular";
+  font-family: ${theme.fonts.pretend};
 `;

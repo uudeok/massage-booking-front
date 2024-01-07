@@ -1,6 +1,7 @@
 import styled from "styled-components";
-import { MEDIA_QUERY } from "../../const/devise";
 import { Link } from "react-router-dom";
+import theme from "../../styles/theme";
+import { font } from "../../fonts/font";
 
 const Booking = () => {
   return (
@@ -29,7 +30,7 @@ const ContainerStyle = styled.div`
   flex-direction: column;
   justify-content: center;
 
-  @media only screen and (max-width: ${MEDIA_QUERY.notebookWidth}) {
+  @media only screen and (max-width: ${theme.devise.notebookWidth}) {
     height: 35vh;
   }
 `;
@@ -37,7 +38,7 @@ const ContainerStyle = styled.div`
 const ImgBoxStyle = styled.div`
   width: 100%;
   height: 100%;
-  font-family: "Pretendard-Regular";
+  font-family: ${theme.fonts.pretend};
 
   img {
     object-fit: cover;
@@ -60,7 +61,7 @@ const InnerBoxStyle = styled.div`
     color: black;
   }
 
-  @media only screen and (max-width: ${MEDIA_QUERY.notebookWidth}) {
+  @media only screen and (max-width: ${theme.devise.notebookWidth}) {
     width: 100%;
   }
 `;
@@ -73,27 +74,27 @@ const ButtonBoxStyle = styled.div`
   text-align: center;
   margin-right: 3.2rem;
   color: white;
-  background-color: #819977;
+  background-color: ${theme.palette.greenDk};
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: "KBO-Dia-Gothic_bold";
+  font-family: ${theme.fonts.KBO};
 
   &:hover {
-    background-color: #97a393;
+    background-color: ${theme.palette.greenLg};
   }
 
-  @media only screen and (max-width: ${MEDIA_QUERY.bigNotebookWidth}) {
+  @media only screen and (max-width: ${theme.devise.bigNotebookWidth}) {
     width: 13rem;
     font-size: 1.5rem;
   }
 
-  @media only screen and (max-width: ${MEDIA_QUERY.notebookWidth}) {
+  @media only screen and (max-width: ${theme.devise.notebookWidth}) {
     width: 11rem;
     font-size: 1.3rem;
   }
 
-  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+  @media only screen and (max-width: ${theme.devise.tabletWidth}) {
     width: 9rem;
     font-size: 1rem;
     margin-right: 0.8rem;

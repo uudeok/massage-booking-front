@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Map, MapMarker } from "react-kakao-maps-sdk";
-import { MEDIA_QUERY } from "../../const/devise";
 import Banner from "../banner/Banner";
+import theme from "../../styles/theme";
 
 const CONTACT_INFO = [
   { key: "주소", value: "경기도 파주시 가람로 134번길 53" },
@@ -59,9 +59,9 @@ const ContentBoxStyle = styled.div`
   margin: 2rem auto;
   padding: 3rem;
   display: flex;
-  font-family: "Pretendard-Regular";
+  font-family: ${theme.fonts.pretend};
 
-  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+  @media only screen and (max-width: ${theme.devise.tabletWidth}) {
     flex-direction: column;
     width: 100%;
     border-top: none;
@@ -74,7 +74,7 @@ const LeftBoxStyle = styled.div`
   padding: 1rem;
   font-size: 2rem;
 
-  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+  @media only screen and (max-width: ${theme.devise.tabletWidth}) {
     width: 100%;
     font-size: 1.5rem;
   }
@@ -94,7 +94,7 @@ const RightBoxStyle = styled.div`
     padding: 0.25rem;
   }
 
-  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+  @media only screen and (max-width: ${theme.devise.tabletWidth}) {
     width: 100%;
     font-size: 0.7rem;
     padding: 0.5rem;
@@ -104,7 +104,7 @@ const RightBoxStyle = styled.div`
 const MapBoxStyle = styled.div`
   width: 45%;
 
-  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+  @media only screen and (max-width: ${theme.devise.tabletWidth}) {
     width: 100%;
     border: 1px solid black;
   }
@@ -115,7 +115,7 @@ const MapStyle = styled(Map)`
   height: 360px;
   padding: 1rem;
 
-  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+  @media only screen and (max-width: ${theme.devise.tabletWidth}) {
     padding: 0;
     height: 300px;
   }

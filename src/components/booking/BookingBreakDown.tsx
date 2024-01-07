@@ -1,9 +1,9 @@
 import styled from "styled-components";
-import { MEDIA_QUERY } from "../../const/devise";
 import BookingNotice from "./BookingNotice";
 import BookingSummary from "./BookingSummary";
 import { useMemo } from "react";
 import SectionTitle from "../common/shared/SectionTitle";
+import theme from "../../styles/theme";
 
 type TProps = {
   selectedDate: Date;
@@ -45,7 +45,7 @@ const DetailBoxStyle = styled.div`
   padding: 1rem;
   gap: 0.5rem;
 
-  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+  @media only screen and (max-width: ${theme.devise.tabletWidth}) {
     flex-direction: column;
   }
 `;

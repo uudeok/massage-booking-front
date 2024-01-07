@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { TfiAlignJustify, TfiClose } from "react-icons/tfi";
 import { useState } from "react";
+import theme from "../../styles/theme";
 
 const HEADER_MENU_LIST = [
   { key: "book", value: "예약하기", id: 1 },
@@ -54,7 +55,7 @@ const MenuListStyle = styled.ul<{ $isOpen: boolean }>`
   background-color: #f9f9f9;
   width: 100%;
   text-align: center;
-  font-family: "Pretendard-Regular";
+  font-family: ${theme.fonts.pretend};
 
   a {
     display: block;
@@ -72,7 +73,6 @@ const MenuListStyle = styled.ul<{ $isOpen: boolean }>`
 const MenuButtonStyle = styled.button`
   padding: 12px;
   cursor: pointer;
-  /* border: 1px solid blue; */
   background-color: transparent;
   color: black;
   border: none;

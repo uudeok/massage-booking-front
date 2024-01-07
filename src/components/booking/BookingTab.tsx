@@ -1,13 +1,12 @@
-import React, { useEffect, Fragment } from "react";
+import { useEffect } from "react";
 import styled from "styled-components";
 import BookingMassageList from "./BookingMassageList";
-import { MEDIA_QUERY } from "../../const/devise";
 import BookingDetailList from "./BookingDetailList";
 import { useSelector, useDispatch } from "react-redux";
 import { currTabNum, resetTabNum } from "../../stores/tabSlice";
 import BookingDate from "./BookingDate";
-import { font } from "../../fonts/font";
 import RenderList from "../common/map/RenderList";
+import theme from "../../styles/theme";
 
 type TabType = {
   key: string;
@@ -81,7 +80,7 @@ const TabButtonStyle = styled.button<{ $isActive: boolean }>`
   align-items: center;
   border: none;
   font-size: 1.5rem;
-  font-family: ${font.Gmarket};
+  font-family: ${theme.fonts.Gmarket};
 
   background-color: ${({ $isActive }) =>
     $isActive ? "#819977" : "whitesmoke"};
@@ -90,11 +89,11 @@ const TabButtonStyle = styled.button<{ $isActive: boolean }>`
   box-shadow: ${({ $isActive }) =>
     $isActive ? "0 0 0.3rem 0 rgba(0, 0, 0, 0.2)" : ""};
 
-  @media only screen and (max-width: ${MEDIA_QUERY.notebookWidth}) {
+  @media only screen and (max-width: ${theme.devise.notebookWidth}) {
     font-size: 1.2rem;
   }
 
-  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+  @media only screen and (max-width: ${theme.devise.tabletWidth}) {
     font-size: 0.8rem;
     width: 100%;
   }

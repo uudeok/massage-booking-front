@@ -1,6 +1,6 @@
 type TProps = {
   children: JSX.Element;
-  isShow: boolean;
+  isShow?: boolean;
 };
 
 const ConditionalDisplay = ({ isShow, children }: TProps) => {

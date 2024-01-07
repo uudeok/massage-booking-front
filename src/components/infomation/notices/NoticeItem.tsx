@@ -2,18 +2,18 @@ import styled from "styled-components";
 import { TNoticeDetail } from "../../../@types/notice";
 import { NOTICE_CATEGORY } from "../../../const/notices";
 import { Link } from "react-router-dom";
-import { MEDIA_QUERY } from "../../../const/devise";
-import LoadingBar from "../../loading/LoadingBar";
 import NoticeHeader from "./NoticeHeader";
 import Mapping from "../../common/map/RenderList";
 import { makeSimpleDate } from "../../../util/date";
+import FetchWithLoading from "../../loading/FetchWithLoading";
+import theme from "../../../styles/theme";
 
 type TProps = {
   notice: TNoticeDetail[];
-  isFetching: boolean;
+  isLoading: boolean;
 };
 
-const NoticeItem = ({ notice, isFetching }: TProps) => {
+const NoticeItem = ({ notice, isLoading }: TProps) => {
   const renderNoticeItem = (notice: TNoticeDetail) => (
     <ContentStyle key={notice.id}>
       <ContentSortStyle>{NOTICE_CATEGORY[notice.category]}</ContentSortStyle>
@@ -29,8 +29,9 @@ const NoticeItem = ({ notice, isFetching }: TProps) => {
     <>
       <NoticeHeader />
       <ContentBoxStyle>
-        {isFetching && <LoadingBar />}
-        <Mapping data={notice} renderItem={renderNoticeItem} />
+        <FetchWithLoading isLoading={isLoading}>
+          <Mapping data={notice} renderItem={renderNoticeItem} />
+        </FetchWithLoading>
       </ContentBoxStyle>
     </>
   );
@@ -50,7 +51,7 @@ const ContentStyle = styled.div`
   flex-direction: row;
   padding: 1rem;
 
-  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+  @media only screen and (max-width: ${theme.devise.tabletWidth}) {
     border-bottom: 1px solid lightgrey;
   }
 `;
@@ -58,7 +59,7 @@ const ContentStyle = styled.div`
 const ContentSortStyle = styled.div`
   width: 20%;
 
-  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+  @media only screen and (max-width: ${theme.devise.tabletWidth}) {
     display: none;
   }
 `;
@@ -70,7 +71,7 @@ const ContentTitleStyle = styled.div`
     text-decoration: underline;
   }
 
-  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+  @media only screen and (max-width: ${theme.devise.tabletWidth}) {
     text-align: left;
     font-size: 0.9rem;
   }
@@ -80,7 +81,7 @@ const ContentDateStyle = styled.div`
   width: 10%;
   font-size: 0.8rem;
 
-  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+  @media only screen and (max-width: ${theme.devise.tabletWidth}) {
     text-align: right;
     width: 20%;
     font-size: 0.5rem;
@@ -91,7 +92,7 @@ const ContentViewStyle = styled.div`
   width: 10%;
   font-size: 0.8rem;
 
-  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+  @media only screen and (max-width: ${theme.devise.tabletWidth}) {
     display: none;
   }
 `;

@@ -5,8 +5,8 @@ import { setSelectedMassageItem } from "../../stores/massageSlice";
 import { addTabNum } from "../../stores/tabSlice";
 import CardImage from "../common/card/CardImage";
 import CardContent from "../common/card/CardContent";
-import { palette } from "../../styles/palette";
 import CommonButton from "../common/button/CommonButton";
+import theme from "../../styles/theme";
 
 type TProps = {
   massage: TMassageTable;
@@ -28,7 +28,7 @@ const BookingMassageItem = ({ massage }: TProps) => {
         type="round"
         onClickButton={() => selectMassageItem(massage.item)}
         $padding="0.7rem"
-        $border={`2px solid ${palette.grey}`}
+        $border={`2px solid ${theme.palette.grey}`}
       >
         선택하기
       </CommonButton>

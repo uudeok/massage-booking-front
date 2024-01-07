@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { MEDIA_QUERY } from "../../../const/devise";
+import theme from "../../../styles/theme";
 
 type TProps = {
   children: React.ReactNode;
@@ -20,14 +20,14 @@ const CardLayoutStyle = styled.li`
   border: 1px solid lightgrey;
   border-radius: 10px;
 
-  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+  @media only screen and (max-width: ${theme.devise.tabletWidth}) {
     width: 360px;
     height: 450px;
     margin: 10px;
     margin-top: 3rem;
   }
 
-  @media only screen and (max-width: ${MEDIA_QUERY.mobileWidth}) {
+  @media only screen and (max-width: ${theme.devise.mobileWidth}) {
     width: 335px;
     height: 450px;
     margin: 15px;

@@ -7,5 +7,3 @@ export const palette = {
   greenLg: "#97a393",
   greenDk: "#819977",
 };
-
-export type PaletteKeyType = keyof typeof palette;

@@ -6,8 +6,8 @@ import { addTabNum } from "../../stores/tabSlice";
 import { addComma } from "../../util/price";
 import CardImage from "../common/card/CardImage";
 import CardContent from "../common/card/CardContent";
-import { palette } from "../../styles/palette";
 import CommonButton from "../common/button/CommonButton";
+import theme from "../../styles/theme";
 
 type TProps = {
   detail: TMassageDetail;
@@ -35,7 +35,7 @@ const BookingDetail = ({ detail, massage }: TProps) => {
       <CommonButton
         type="round"
         onClickButton={() => setAvailableTime(detail.time)}
-        $border={`2px solid ${palette.grey}`}
+        $border={`2px solid ${theme.palette.grey}`}
         $padding="0.7rem"
       >
         선택하기

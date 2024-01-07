@@ -1,8 +1,8 @@
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import Notice from "./Notice";
-import { MEDIA_QUERY } from "../../../const/devise";
 import { useGetNoticeDetailQuery } from "../../../api/notice/noticeQuery";
+import theme from "../../../styles/theme";
 
 const NoticeDetail = () => {
   const { id } = useParams();
@@ -26,7 +26,7 @@ export default NoticeDetail;
 const ContainerStyle = styled.div`
   display: flex;
   flex-direction: column;
-  font-family: "Pretendard-Regular";
+  font-family: ${theme.fonts.pretend};
 `;
 
 const InnerBoxStyle = styled.div`
@@ -34,7 +34,7 @@ const InnerBoxStyle = styled.div`
   margin: auto;
   padding: 3rem;
 
-  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+  @media only screen and (max-width: ${theme.devise.tabletWidth}) {
     width: 21rem;
     padding: 1rem;
   }
@@ -46,7 +46,7 @@ const NoticeBoxStyle = styled.div`
   margin-top: 3rem;
   border-bottom: 2px solid black;
 
-  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+  @media only screen and (max-width: ${theme.devise.tabletWidth}) {
     justify-content: center;
   }
 `;
@@ -54,7 +54,7 @@ const NoticeBoxStyle = styled.div`
 const TitleStyle = styled.h1`
   font-size: 2rem;
 
-  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+  @media only screen and (max-width: ${theme.devise.tabletWidth}) {
     font-size: 1.5rem;
   }
 `;

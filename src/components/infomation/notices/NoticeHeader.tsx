@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { MEDIA_QUERY } from "../../../const/devise";
+import theme from "../../../styles/theme";
 
 const NoticeHeader = () => {
   return (
@@ -20,7 +20,7 @@ const HeaderStyle = styled.div`
   padding: 1rem;
   border-bottom: 1px solid black;
 
-  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+  @media only screen and (max-width: ${theme.devise.tabletWidth}) {
     display: none;
   }
 `;

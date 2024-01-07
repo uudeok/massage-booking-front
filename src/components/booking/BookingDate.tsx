@@ -1,6 +1,5 @@
 import "react-datepicker/dist/react-datepicker.css";
 import styled from "styled-components";
-import { MEDIA_QUERY } from "../../const/devise";
 import { setHours, setMinutes } from "date-fns";
 import { addFewMinutes, makeSimpleTime, isTimeOverlaps } from "../../util/time";
 import { useEffect, useState } from "react";
@@ -14,7 +13,6 @@ import {
   makeSimpleDate,
   calculateBookedData,
 } from "../../util/date";
-import { font } from "../../fonts/font";
 import CommonButton from "../common/button/CommonButton";
 import { AppDispatch } from "../../stores/store";
 import { subTabNum } from "../../stores/tabSlice";
@@ -24,6 +22,8 @@ import BookingEndTimePicker from "./BookingEndTimePicker";
 import SectionTitle from "../common/shared/SectionTitle";
 import FetchWithLoading from "../loading/FetchWithLoading";
 import ConditionalDisplay from "../common/maybe/ConditionalDisplay";
+import ErrorDisplay from "../error/ErrorDisplay";
+import theme from "../../styles/theme";
 
 const BookingDate = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -105,6 +105,7 @@ const BookingDate = () => {
       </CommonButton>
       <CalendarStyle>
         <SectionTitle>날짜 및 시간을 선택해주세요</SectionTitle>
+
         <FetchWithLoading isLoading={isLoading}>
           <CalendarBoxStyle>
             <BookingStartTimePicker
@@ -117,8 +118,7 @@ const BookingDate = () => {
           </CalendarBoxStyle>
         </FetchWithLoading>
       </CalendarStyle>
-      {error && <ErrorMessageStyle>{error}</ErrorMessageStyle>}
-
+      <ErrorDisplay errorMessage={error} />
       <ConditionalDisplay isShow={isSelected}>
         <BookingBreakDown
           selectedDate={selectedDate}
@@ -136,9 +136,9 @@ const ContainerStyle = styled.div`
   flex-direction: column;
   width: 60rem;
   margin: 2rem auto;
-  font-family: ${font.pretend};
+  font-family: ${theme.fonts.pretend};
 
-  @media only screen and (max-width: ${MEDIA_QUERY.notebookWidth}) {
+  @media only screen and (max-width: ${theme.devise.notebookWidth}) {
     width: 100%;
   }
 `;
@@ -150,7 +150,7 @@ const CalendarStyle = styled.div`
   box-shadow: 0 0 0.3rem 0 rgba(0, 0, 0, 0.2);
   margin-top: 1rem;
 
-  @media only screen and (max-width: ${MEDIA_QUERY.bigMobileWidth}) {
+  @media only screen and (max-width: ${theme.devise.bigMobileWidth}) {
     flex-direction: column;
     text-align: center;
   }
@@ -163,7 +163,7 @@ const CalendarBoxStyle = styled.div`
   gap: 1rem;
   text-align: center;
 
-  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+  @media only screen and (max-width: ${theme.devise.tabletWidth}) {
     flex-direction: column;
   }
 `;
@@ -172,10 +172,4 @@ const HyphenStyle = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-`;
-
-const ErrorMessageStyle = styled.span`
-  text-align: center;
-  padding: 1rem;
-  color: tomato;
 `;

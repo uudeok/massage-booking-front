@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { MEDIA_QUERY } from "../../const/devise";
 import { BOOKING_NOTICE } from "../../const/book/massage";
 import RenderList from "../common/map/RenderList";
+import theme from "../../styles/theme";
 
 type noticeItemType = {
   content: string;
@@ -36,7 +36,7 @@ const NoticeItemStyle = styled.li`
   padding: 0.5rem;
   font-size: 0.9rem;
 
-  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+  @media only screen and (max-width: ${theme.devise.tabletWidth}) {
     font-size: 0.8rem;
   }
 `;

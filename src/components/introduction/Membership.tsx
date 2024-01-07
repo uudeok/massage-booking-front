@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { MEDIA_QUERY } from "../../const/devise";
+import theme from "../../styles/theme";
 
 const Membership = () => {
   return (
@@ -39,7 +39,7 @@ const ImgBoxStyle = styled.div`
     border: 2px solid whitesmoke;
   }
 
-  @media only screen and (max-width: ${MEDIA_QUERY.notebookWidth}) {
+  @media only screen and (max-width: ${theme.devise.notebookWidth}) {
     height: 100%;
   }
 `;
@@ -52,7 +52,7 @@ const ContentStyle = styled.div`
   color: white;
   font-size: 1.6rem;
   z-index: 1;
-  font-family: "GmarketSansMedium";
+  font-family: ${theme.fonts.Gmarket};
   left: 2rem;
   font-weight: 900;
 
@@ -64,12 +64,12 @@ const ContentStyle = styled.div`
     cursor: pointer;
     border: 2px solid white;
     color: white;
-    font-family: "GmarketSansMedium";
+    font-family: ${theme.fonts.Gmarket};
     font-weight: bold;
     font-size: 1rem;
   }
 
-  @media only screen and (max-width: ${MEDIA_QUERY.notebookWidth}) {
+  @media only screen and (max-width: ${theme.devise.notebookWidth}) {
     font-size: 1.3rem;
   }
 `;

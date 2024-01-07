@@ -1,7 +1,6 @@
 import { css } from "styled-components";
 import { ButtonType } from "./CommonButton";
-import { font } from "../../../fonts/font";
-import { palette } from "../../../styles/palette";
+import theme from "../../../styles/theme";
 
 export const buttonRoleStyle = css<ButtonType>`
   ${({ type }) => {
@@ -22,12 +21,12 @@ export const buttonRoleStyle = css<ButtonType>`
         background-color: transparent;
         cursor: pointer;
         color: black;
-        font-family: ${font.pretend};
+        font-family: ${theme.fonts.pretend}
         font-size: 1rem;
         border: none;
         text-align: left;
         &:hover {
-          color: ${palette.grey};
+          color: ${theme.palette.grey};
         }
       `;
     }
@@ -38,8 +37,8 @@ export const oauthButtonStyle = css<ButtonType>`
   ${({ oauth }) => {
     if (oauth === "kakao") {
       return css`
-        font-family: ${font.pretend};
-        background-color: #fee500;
+        font-family: ${theme.fonts.pretend};
+        background-color: ${theme.palette.kakaoColor}
         background-image: url(//storage.keepgrow.com/admin/campaign/20200611043456590.svg);
         background-repeat: no-repeat;
         background-position: 28px;
@@ -57,7 +56,7 @@ export const oauthButtonStyle = css<ButtonType>`
 
     if (oauth === "naver") {
       return css`
-        font-family: ${font.pretend};
+        font-family: ${theme.fonts.pretend};
         background: url("/naverIcon.png") no-repeat center;
         background-position: 18px;
         background-size: 40px;
@@ -66,7 +65,7 @@ export const oauthButtonStyle = css<ButtonType>`
         cursor: pointer;
         width: 100%;
         color: #fff;
-        background-color: #03c75a;
+        background-color: ${theme.palette.naverColor};
         border-radius: 10px;
         text-align: center;
         border: none;

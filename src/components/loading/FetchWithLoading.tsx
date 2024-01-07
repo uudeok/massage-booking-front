@@ -6,7 +6,7 @@ type TProps = {
 };
 
 const FetchWithLoading = ({ isLoading, children }: TProps) => {
-  return <>{isLoading ? <LoadingBar /> : <>{children}</>}</>;
+  return <>{isLoading ? <LoadingBar /> : children}</>;
 };
 
 export default FetchWithLoading;
