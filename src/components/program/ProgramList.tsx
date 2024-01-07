@@ -1,9 +1,9 @@
 import ProgramItem from "./ProgramItem";
 import styled from "styled-components";
-import { MEDIA_QUERY } from "../../const/devise";
 import Banner from "../banner/Banner";
 import LoadingBar from "../loading/LoadingBar";
 import { useGetMassageListQuery } from "../../api/massage/massageQuery";
+import theme from "../../styles/theme";
 
 const ProgramList = () => {
   const { data: massageList, isFetching } = useGetMassageListQuery();
@@ -12,6 +12,7 @@ const ProgramList = () => {
   return (
     <>
       <Banner img="program.jpg">
+        <></>
         {/* <BannerTitleStyle>자연치유 쉼 프로그램</BannerTitleStyle>
         <span>자연치유 쉼이 준비한 프로그램!</span>
         <span>다양한 마사지를 경험해보세요.</span> */}
@@ -34,7 +35,7 @@ const BannerTitleStyle = styled.h2`
   font-size: 2rem;
   margin-bottom: 1rem;
 
-  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+  @media only screen and (max-width: ${theme.devise.tabletWidth}) {
     font-size: 1.2rem;
   }
 `;
@@ -50,11 +51,11 @@ const InnerBoxStyle = styled.ul`
   margin: auto;
   padding: 3rem;
 
-  @media only screen and (max-width: ${MEDIA_QUERY.bigNotebookWidth}) {
+  @media only screen and (max-width: ${theme.devise.bigNotebookWidth}) {
     width: 60%;
   }
 
-  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+  @media only screen and (max-width: ${theme.devise.tabletWidth}) {
     width: 100%;
   }
 `;
@@ -63,7 +64,7 @@ const TitleStyle = styled.h1`
   font-size: 2rem;
   margin-top: 3rem;
 
-  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+  @media only screen and (max-width: ${theme.devise.tabletWidth}) {
     font-size: 1.5rem;
   }
 `;

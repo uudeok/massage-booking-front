@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { MEDIA_QUERY } from "../../const/devise";
 import Banner from "../banner/Banner";
+import theme from "../../styles/theme";
 
 const MembershipList = () => {
   return (
@@ -27,7 +27,7 @@ const BannerTitleStyle = styled.h2`
   font-size: 2rem;
   margin-bottom: 1rem;
 
-  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+  @media only screen and (max-width: ${theme.devise.tabletWidth}) {
     font-size: 1.2rem;
   }
 `;
@@ -43,11 +43,11 @@ const InnerBoxStyle = styled.ul`
   margin: auto;
   padding: 3rem;
 
-  @media only screen and (max-width: ${MEDIA_QUERY.bigNotebookWidth}) {
+  @media only screen and (max-width: ${theme.devise.bigNotebookWidth}) {
     width: 60%;
   }
 
-  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+  @media only screen and (max-width: ${theme.devise.tabletWidth}) {
     width: 100%;
   }
 `;
@@ -56,7 +56,7 @@ const TitleStyle = styled.h1`
   font-size: 2rem;
   margin-top: 3rem;
 
-  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+  @media only screen and (max-width: ${theme.devise.tabletWidth}) {
     font-size: 1.5rem;
   }
 `;

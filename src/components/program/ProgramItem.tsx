@@ -2,8 +2,8 @@ import { TMassageTable } from "../../@types/massage";
 import styled from "styled-components";
 import { MASSAGE_ITEM } from "../../const/book/massage";
 import { addComma } from "../../util/price";
-import { MEDIA_QUERY } from "../../const/devise";
 import { addMinutesUnit } from "../../util/time";
+import theme from "../../styles/theme";
 
 const ProgramItem = ({ massage }: { massage: TMassageTable }) => {
   console.log(massage);
@@ -50,7 +50,7 @@ const ContentTitleStyle = styled.div`
 const ContentStyle = styled.div`
   margin-bottom: 1rem;
 
-  @media only screen and (max-width: ${MEDIA_QUERY.bigMobileWidth}) {
+  @media only screen and (max-width: ${theme.devise.bigMobileWidth}) {
     font-size: 0.8rem;
   }
 `;
@@ -60,12 +60,12 @@ const ContentPriceListStyle = styled.div`
   justify-content: center;
   gap: 1rem;
 
-  @media only screen and (max-width: ${MEDIA_QUERY.bigNotebookWidth}) {
+  @media only screen and (max-width: ${theme.devise.bigNotebookWidth}) {
     flex-direction: column;
     margin-top: 1rem;
   }
 
-  @media only screen and (max-width: ${MEDIA_QUERY.bigMobileWidth}) {
+  @media only screen and (max-width: ${theme.devise.bigMobileWidth}) {
     font-size: 0.8rem;
   }
 `;

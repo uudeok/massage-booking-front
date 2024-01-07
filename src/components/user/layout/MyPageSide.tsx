@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { MY_PAGE_TABLE } from "../../../const/mypage";
-import { MEDIA_QUERY } from "../../../const/devise";
+import theme from "../../../styles/theme";
 
 const MyPageSide = () => {
   return (
@@ -25,7 +25,7 @@ const SideLayoutStyle = styled.div`
   width: 25rem;
   font-family: "Pretendard-Regular";
 
-  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+  @media only screen and (max-width: ${theme.devise.tabletWidth}) {
     width: 100%;
   }
 `;
@@ -37,7 +37,7 @@ const HeaderStyle = styled.h2`
 const ListStyled = styled.ul`
   margin-top: 1rem;
 
-  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+  @media only screen and (max-width: ${theme.devise.tabletWidth}) {
     display: flex;
     flex-direction: row;
     border: 1px solid black;
@@ -51,12 +51,12 @@ const ItemStyled = styled.li`
   padding: 1rem;
   cursor: pointer;
 
-  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+  @media only screen and (max-width: ${theme.devise.tabletWidth}) {
     width: 100%;
     text-align: center;
   }
 
-  @media only screen and (max-width: ${MEDIA_QUERY.bigMobileWidth}) {
+  @media only screen and (max-width: ${theme.devise.bigMobileWidth}) {
     font-size: 0.8rem;
   }
 `;

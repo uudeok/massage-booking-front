@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { MEDIA_QUERY } from "../../const/devise";
 import KakaoLogin from "./KakaoLogin";
 import NaverLogin from "./NaverLogin";
+import theme from "../../styles/theme";
 
 const OauthLogin = () => {
   return (
@@ -39,12 +39,12 @@ const BottomBoxStyle = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+  @media only screen and (max-width: ${theme.devise.tabletWidth}) {
     width: 90%;
     margin: auto;
   }
 
-  @media only screen and (max-width: ${MEDIA_QUERY.bigMobileWidth}) {
+  @media only screen and (max-width: ${theme.devise.bigMobileWidth}) {
     width: 100%;
   }
 `;
@@ -64,7 +64,7 @@ const BannerStyle = styled.div`
     padding: 0.3rem;
   }
 
-  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+  @media only screen and (max-width: ${theme.devise.tabletWidth}) {
     font-size: 0.8rem;
   }
 `;
@@ -76,7 +76,7 @@ const MiddleBannerStyle = styled.div`
   flex-direction: column;
   gap: 0.5rem;
 
-  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+  @media only screen and (max-width: ${theme.devise.tabletWidth}) {
     font-size: 0.8rem;
   }
 `;

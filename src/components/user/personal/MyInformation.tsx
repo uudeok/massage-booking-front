@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { MEDIA_QUERY } from "../../../const/devise";
+import theme from "../../../styles/theme";
 
 const MyInformation = () => {
   return (
@@ -47,7 +47,7 @@ const CardBoxStyle = styled.div`
   border-radius: 10px;
   display: flex;
 
-  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+  @media only screen and (max-width: ${theme.devise.tabletWidth}) {
     flex-direction: column;
   }
 `;
@@ -69,7 +69,7 @@ const ItemBoxStyle = styled.div`
     font-weight: bold;
   }
 
-  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+  @media only screen and (max-width: ${theme.devise.tabletWidth}) {
     flex-direction: row;
     width: 100%;
 
@@ -79,7 +79,7 @@ const ItemBoxStyle = styled.div`
     }
   }
 
-  @media only screen and (max-width: ${MEDIA_QUERY.bigMobileWidth}) {
+  @media only screen and (max-width: ${theme.devise.bigMobileWidth}) {
     span:nth-child(1) {
       width: 30%;
     }

@@ -1,8 +1,8 @@
 import styled from "styled-components";
 import MassageSlide from "./MassageSlide";
-import { MEDIA_QUERY } from "../../const/devise";
 import LoadingBar from "../loading/LoadingBar";
 import { useGetMassageListQuery } from "../../api/massage/massageQuery";
+import theme from "../../styles/theme";
 
 const Massage = () => {
   const { data: massageList } = useGetMassageListQuery();
@@ -53,7 +53,7 @@ const HeaderStyle = styled.h2`
     margin: 0px 16px;
   }
 
-  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+  @media only screen and (max-width: ${theme.devise.tabletWidth}) {
     font-size: 2.5rem;
     margin: 1rem auto;
   }
@@ -64,15 +64,15 @@ const MassageContainerStyle = styled.div`
   height: 45vh;
   display: flex;
 
-  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+  @media only screen and (max-width: ${theme.devise.tabletWidth}) {
     height: 40vh;
   }
 
-  @media only screen and (max-width: ${MEDIA_QUERY.bigMobileWidth}) {
+  @media only screen and (max-width: ${theme.devise.bigMobileWidth}) {
     height: 35vh;
   }
 
-  @media only screen and (max-width: ${MEDIA_QUERY.mobileWidth}) {
+  @media only screen and (max-width: ${theme.devise.mobileWidth}) {
     height: 30vh;
   }
 `;
@@ -84,7 +84,7 @@ const MassageInnerBoxStyle = styled.div`
   align-items: center;
   display: flex;
 
-  /* @media only screen and (max-width: ${MEDIA_QUERY.mobileWidth}) {
+  /* @media only screen and (max-width: ${theme.devise.mobileWidth}) {
     height: 35vh;
   } */
 `;

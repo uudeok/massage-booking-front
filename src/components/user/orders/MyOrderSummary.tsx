@@ -1,10 +1,10 @@
 import styled from "styled-components";
-import { MEDIA_QUERY } from "../../../const/devise";
 import { useDeleteOrderDataMutation } from "../../../api/orders/ordersQuery";
 import { useNavigate, useParams } from "react-router-dom";
 import { FcInfo } from "react-icons/fc";
 import { useHover } from "../../../hooks/useHover";
 import CommonButton from "../../common/button/CommonButton";
+import theme from "../../../styles/theme";
 
 const MyOrderSummary = () => {
   /// orderStatus === "PENDING" or "CONFIRM" 일때만 예약 취소 가능
@@ -110,7 +110,7 @@ const KeyStyle = styled.span`
   width: 16%;
   color: #555555;
 
-  @media only screen and (max-width: ${MEDIA_QUERY.bigMobileWidth}) {
+  @media only screen and (max-width: ${theme.devise.bigMobileWidth}) {
     width: 40%;
   }
 `;

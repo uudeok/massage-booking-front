@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import theme from "../../styles/theme";
 import { font } from "../../fonts/font";
+import theme from "../../styles/theme";
 
 const Booking = () => {
   return (
@@ -25,7 +25,7 @@ export default Booking;
 
 const ContainerStyle = styled.div`
   width: 100%;
-  height: 45vh;
+  height: 40vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -38,7 +38,7 @@ const ContainerStyle = styled.div`
 const ImgBoxStyle = styled.div`
   width: 100%;
   height: 100%;
-  font-family: ${theme.fonts.pretend};
+  font-family: ${font.pretend};
 
   img {
     object-fit: cover;
@@ -78,7 +78,7 @@ const ButtonBoxStyle = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: ${theme.fonts.KBO};
+  font-family: ${font.KBO};
 
   &:hover {
     background-color: ${theme.palette.greenLg};

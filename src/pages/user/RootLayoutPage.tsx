@@ -1,10 +1,10 @@
 import { Outlet } from "react-router-dom";
-import { MEDIA_QUERY } from "../../const/devise";
 import styled from "styled-components";
 import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
 import MyPageSide from "../../components/user/layout/MyPageSide";
 import MyPageHeader from "../../components/user/layout/MyPageHeader";
+import theme from "../../styles/theme";
 
 const RootLayoutPage = () => {
   return (
@@ -35,15 +35,15 @@ const MainStyle = styled.main`
   display: flex;
   flex-direction: row;
 
-  @media only screen and (max-width: ${MEDIA_QUERY.bigNotebookWidth}) {
+  @media only screen and (max-width: ${theme.devise.bigNotebookWidth}) {
     width: 80%;
   }
 
-  @media only screen and (max-width: ${MEDIA_QUERY.notebookWidth}) {
+  @media only screen and (max-width: ${theme.devise.notebookWidth}) {
     width: 100%;
   }
 
-  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+  @media only screen and (max-width: ${theme.devise.tabletWidth}) {
     flex-direction: column;
   }
 `;

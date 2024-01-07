@@ -1,7 +1,7 @@
 import Layout from "../../layout/Layout";
 import styled from "styled-components";
-import { MEDIA_QUERY } from "../../const/devise";
 import OauthLogin from "../../components/auth/OauthLogin";
+import theme from "../../styles/theme";
 
 const LoginPage = () => {
   return (
@@ -20,11 +20,11 @@ const LoginLayoutStyle = styled.main`
   margin: 5rem auto;
   padding: 1rem;
 
-  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+  @media only screen and (max-width: ${theme.devise.tabletWidth}) {
     width: 24rem;
   }
 
-  @media only screen and (max-width: ${MEDIA_QUERY.bigMobileWidth}) {
+  @media only screen and (max-width: ${theme.devise.bigMobileWidth}) {
     width: 20rem;
   }
 `;

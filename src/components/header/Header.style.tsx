@@ -5,7 +5,7 @@ export const ContainerStyle = styled.div`
   width: 100%;
   height: 100px;
   display: flex;
-  font-family: ${theme.fonts.pretend};
+  font-family: "Pretendard-Regular";
   align-items: end;
   padding: 0.5rem;
 
@@ -41,7 +41,7 @@ export const LogoBoxStyle = styled.div`
 
 export const LogoStyle = styled.h1`
   font-size: 2rem;
-  font-family: ${theme.fonts.Gmarket};
+  font-family: "GmarketSansMedium";
   height: 100%;
 
   @media only screen and (max-width: ${theme.devise.notebookWidth}) {
@@ -89,7 +89,7 @@ export const LogoutBoxStyle = styled.div`
     margin-left: 0.5rem;
     border: none;
     background-color: white;
-    font-family: ${theme.fonts.pretend};
+    font-family: "Pretendard-Regular";
     font-size: 1rem;
     cursor: pointer;
     color: black;

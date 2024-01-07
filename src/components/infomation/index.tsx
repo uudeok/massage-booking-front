@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Membership from "../introduction/Membership";
-import NoticeMain from "./notices/main/NoticeMain";
 import theme from "../../styles/theme";
+import NoticeMain from "./notices/main/NoticeMain";
 
 const Information = () => {
   return (
@@ -24,7 +24,7 @@ const ContainerStyle = styled.div`
   width: 70%;
   min-height: 40vh;
   margin: 0 auto;
-  font-family: ${theme.fonts.pretend};
+  font-family: "Pretendard-Regular";
 
   @media only screen and (max-width: ${theme.devise.tabletWidth}) {
     width: 100%;
@@ -34,6 +34,7 @@ const ContainerStyle = styled.div`
 const InnerBoxStyle = styled.div`
   display: flex;
   width: 100%;
+  height: 100%;
 
   @media only screen and (max-width: ${theme.devise.tabletWidth}) {
     flex-direction: column;

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useEffect } from "react";
-import { MEDIA_QUERY } from "../../../../const/devise";
+import theme from "../../../../styles/theme";
 
 type TProps = {
   children: React.ReactNode;
@@ -55,12 +55,12 @@ const ModalStyle = styled.div<{ $height?: string }>`
   height: 19rem;
   height: ${({ $height }) => ($height ? $height : "19rem")};
 
-  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+  @media only screen and (max-width: ${theme.devise.tabletWidth}) {
     width: 26rem;
     left: calc(50% - 13rem);
   }
 
-  @media only screen and (max-width: ${MEDIA_QUERY.mobileWidth}) {
+  @media only screen and (max-width: ${theme.devise.mobileWidth}) {
     width: 20rem;
     left: calc(50% - 10rem);
   }

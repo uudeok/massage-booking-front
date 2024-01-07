@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { MEDIA_QUERY } from "../../../const/devise";
+import theme from "../../../styles/theme";
 
 const MyOrderHeader = () => {
   return (
@@ -24,7 +24,7 @@ const HeaderLayoutStyle = styled.div`
   margin-top: 1rem;
   text-align: center;
 
-  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+  @media only screen and (max-width: ${theme.devise.tabletWidth}) {
     display: none;
   }
 `;

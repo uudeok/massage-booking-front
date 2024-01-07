@@ -13,10 +13,11 @@ const ContactList = () => {
   return (
     <>
       <Banner img="contact.jpg">
-        <BannerTitleStyle>자연치유 쉼</BannerTitleStyle>
+        <></>
+        {/* <BannerTitleStyle>자연치유 쉼</BannerTitleStyle>
         <span>뻐근한 목과 어깨, 콕콕 쑤시는 허리</span>
         <span>단순히 뭉친 근육을 풀어주는 것이 아닌</span>
-        <span>체형 교정을 통해 밸런스를 잡아드려요</span>
+        <span>체형 교정을 통해 밸런스를 잡아드려요</span> */}
       </Banner>
       <ContentBoxStyle>
         <LeftBoxStyle>

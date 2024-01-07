@@ -1,10 +1,10 @@
 import styled from "styled-components";
 import { addComma } from "../../../util/price";
-import { MEDIA_QUERY } from "../../../const/devise";
 import { TOrderType } from "../../../@types/mypage/orders";
 import { Link } from "react-router-dom";
 import { makeSimpleDate } from "../../../util/date";
 import { makeSimpleTime } from "../../../util/time";
+import theme from "../../../styles/theme";
 
 const MyOrderItem = ({ order }: { order: TOrderType }) => {
   const createdAt = makeSimpleDate(order.createdAt);
@@ -46,7 +46,7 @@ const BookItemStyle = styled.div`
   text-align: center;
   font-family: "Pretendard-Regular";
 
-  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+  @media only screen and (max-width: ${theme.devise.tabletWidth}) {
     flex-direction: column;
     text-align: left;
     border-bottom: none;
@@ -59,7 +59,7 @@ const OrderDateBoxStyle = styled.div`
   display: flex;
   flex-direction: column;
 
-  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+  @media only screen and (max-width: ${theme.devise.tabletWidth}) {
     width: 100%;
     padding: 0.5rem;
     border-top: 1px solid lightgrey;
@@ -70,7 +70,7 @@ const OrderDateBoxStyle = styled.div`
 `;
 
 const OrderDateStyle = styled.span`
-  @media only screen and (max-width: ${MEDIA_QUERY.bigMobileWidth}) {
+  @media only screen and (max-width: ${theme.devise.bigMobileWidth}) {
     flex: 1;
     font-weight: bold;
   }
@@ -91,7 +91,7 @@ const ViewDetailsStyle = styled.span`
 const OrderItemStyle = styled.div`
   width: 20%;
 
-  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+  @media only screen and (max-width: ${theme.devise.tabletWidth}) {
     padding: 0.5rem;
     width: 100%;
   }
@@ -104,7 +104,7 @@ const OrderDetailStyle = styled.div`
   justify-content: center;
   gap: 0.5rem;
 
-  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+  @media only screen and (max-width: ${theme.devise.tabletWidth}) {
     padding: 0.5rem;
     width: 100%;
     flex-direction: row;
@@ -115,7 +115,7 @@ const OrderDetailStyle = styled.div`
 const OrderPriceStyle = styled.div`
   width: 15%;
 
-  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+  @media only screen and (max-width: ${theme.devise.tabletWidth}) {
     padding: 0.5rem;
     width: 100%;
   }
@@ -127,7 +127,7 @@ const OrderStatusStyle = styled.div`
   justify-content: center;
   /* font-weight: bold; */
 
-  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+  @media only screen and (max-width: ${theme.devise.tabletWidth}) {
     padding: 0.5rem;
     flex-direction: row;
     width: 100%;

@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import { MEDIA_QUERY } from "../../const/devise";
+
+import theme from "../../styles/theme";
 
 interface IProps {
   img: string;
@@ -45,16 +46,16 @@ const BannerBoxStyle = styled.div`
     padding: 0.3rem;
   }
 
-  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+  @media only screen and (max-width: ${theme.devise.tabletWidth}) {
     font-size: 0.8rem;
   }
 
-  @media only screen and (max-width: ${MEDIA_QUERY.bigMobileWidth}) {
+  @media only screen and (max-width: ${theme.devise.bigMobileWidth}) {
     font-size: 0.9rem;
     left: 43%;
   }
 
-  @media only screen and (max-width: ${MEDIA_QUERY.mobileWidth}) {
+  @media only screen and (max-width: ${theme.devise.mobileWidth}) {
     font-size: 0.8rem;
     left: 40%;
   }

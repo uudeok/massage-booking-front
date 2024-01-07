@@ -52,7 +52,7 @@ const HeaderStyle = styled.h1`
   font-size: 2rem;
   margin-bottom: 2rem;
   flex: 1;
-  font-family: ${theme.fonts.Gmarket};
+  font-family: ${theme.fonts.gmarket};
 
   @media only screen and (max-width: ${theme.devise.tabletWidth}) {
     font-size: 1.7rem;

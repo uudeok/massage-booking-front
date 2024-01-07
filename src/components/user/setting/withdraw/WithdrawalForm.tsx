@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { MEDIA_QUERY } from "../../../../const/devise";
+import theme from "../../../../styles/theme";
 
 type TProps = {
   onClose: () => void;
@@ -44,7 +44,7 @@ const ContentBoxStyle = styled.div`
   flex: 1;
   justify-content: center;
 
-  @media only screen and (max-width: ${MEDIA_QUERY.notebookWidth}) {
+  @media only screen and (max-width: ${theme.devise.notebookWidth}) {
     font-size: 1rem;
   }
 `;

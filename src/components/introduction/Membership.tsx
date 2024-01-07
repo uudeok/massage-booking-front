@@ -7,12 +7,12 @@ const Membership = () => {
     <ContainerStyle>
       <ImgBoxStyle>
         <img src="leaf.jpg" alt="자연치유 쉼" width="100%" height="100%" />
-        <ContentStyle>
-          <span>또 찾고 싶은 곳 자연치유 쉼</span>
-          <Link to="/information">
+        <Link to="/information">
+          <ContentStyle>
+            <span>또 찾고 싶은 곳 자연치유 쉼</span>
             <button>회원제 알아보기</button>
-          </Link>
-        </ContentStyle>
+          </ContentStyle>
+        </Link>
       </ImgBoxStyle>
     </ContainerStyle>
   );
@@ -26,6 +26,7 @@ const ContainerStyle = styled.div`
   padding: 1rem;
   opacity: 0.7;
   filter: brightness(0.95);
+  border: 1px solid red;
 `;
 
 const ImgBoxStyle = styled.div`
@@ -52,7 +53,7 @@ const ContentStyle = styled.div`
   color: white;
   font-size: 1.6rem;
   z-index: 1;
-  font-family: ${theme.fonts.Gmarket};
+  font-family: ${theme.fonts.gmarket};
   left: 2rem;
   font-weight: 900;
 
@@ -64,7 +65,7 @@ const ContentStyle = styled.div`
     cursor: pointer;
     border: 2px solid white;
     color: white;
-    font-family: ${theme.fonts.Gmarket};
+    font-family: ${theme.fonts.gmarket};
     font-weight: bold;
     font-size: 1rem;
   }

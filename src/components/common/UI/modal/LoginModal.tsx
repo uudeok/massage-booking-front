@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import { MEDIA_QUERY } from "../../../../const/devise";
 import { useEffect } from "react";
 import OauthLogin from "../../../auth/OauthLogin";
+import theme from "../../../../styles/theme";
 
 export type TLoginModalType = {
   path: string;
@@ -58,12 +58,12 @@ const ModalStyle = styled.div`
   background-color: white;
   height: 30rem;
 
-  @media only screen and (max-width: ${MEDIA_QUERY.tabletWidth}) {
+  @media only screen and (max-width: ${theme.devise.tabletWidth}) {
     width: 26rem;
     left: calc(50% - 13rem);
   }
 
-  @media only screen and (max-width: ${MEDIA_QUERY.mobileWidth}) {
+  @media only screen and (max-width: ${theme.devise.mobileWidth}) {
     width: 20rem;
     left: calc(50% - 10rem);
   }

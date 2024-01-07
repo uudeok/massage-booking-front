@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import MyOrderSummary from "./MyOrderSummary";
-import { MEDIA_QUERY } from "../../../const/devise";
+import theme from "../../../styles/theme";
 
 const MyOrderDetail = () => {
   // 오더 id 로 상세페이지 가져오기
@@ -20,7 +20,7 @@ const LayoutStyle = styled.div`
   width: 70%;
   font-family: "Pretendard-Regular";
 
-  @media only screen and (max-width: ${MEDIA_QUERY.bigNotebookWidth}) {
+  @media only screen and (max-width: ${theme.devise.bigNotebookWidth}) {
     width: 100%;
   }
 `;

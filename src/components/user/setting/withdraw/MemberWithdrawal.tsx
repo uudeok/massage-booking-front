@@ -1,6 +1,6 @@
-import { MEDIA_QUERY } from "../../../../const/devise";
 import styled from "styled-components";
 import CommonButton from "../../../common/button/CommonButton";
+import theme from "../../../../styles/theme";
 
 const MemberWithdrawal = () => {
   return (
@@ -60,7 +60,7 @@ const CardLayoutStyle = styled.div`
 
 const CardBoxStyle = styled.div`
   width: 60%;
-  @media only screen and (max-width: ${MEDIA_QUERY.notebookWidth}) {
+  @media only screen and (max-width: ${theme.devise.notebookWidth}) {
     padding: 1rem;
     width: 100%;
   }

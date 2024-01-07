@@ -80,7 +80,7 @@ const TabButtonStyle = styled.button<{ $isActive: boolean }>`
   align-items: center;
   border: none;
   font-size: 1.5rem;
-  font-family: ${theme.fonts.Gmarket};
+  font-family: ${theme.fonts.gmarket};
 
   background-color: ${({ $isActive }) =>
     $isActive ? "#819977" : "whitesmoke"};
