@@ -83,8 +83,4 @@ const MassageInnerBoxStyle = styled.div`
   justify-content: center;
   align-items: center;
   display: flex;
-
-  /* @media only screen and (max-width: ${theme.devise.mobileWidth}) {
-    height: 35vh;
-  } */
 `;

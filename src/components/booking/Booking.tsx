@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { font } from "../../fonts/font";
 import theme from "../../styles/theme";
 
 const Booking = () => {
@@ -38,7 +37,7 @@ const ContainerStyle = styled.div`
 const ImgBoxStyle = styled.div`
   width: 100%;
   height: 100%;
-  font-family: ${font.pretend};
+  font-family: ${theme.fonts.pretend};
 
   img {
     object-fit: cover;
@@ -78,7 +77,7 @@ const ButtonBoxStyle = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: ${font.KBO};
+  font-family: ${theme.fonts.KBO};
 
   &:hover {
     background-color: ${theme.palette.greenLg};

@@ -22,7 +22,7 @@ export default Information;
 
 const ContainerStyle = styled.div`
   width: 70%;
-  min-height: 40vh;
+  /* height: 40vh; */
   margin: 0 auto;
   font-family: "Pretendard-Regular";
 
@@ -34,7 +34,7 @@ const ContainerStyle = styled.div`
 const InnerBoxStyle = styled.div`
   display: flex;
   width: 100%;
-  height: 100%;
+  /* height: 100%; */
 
   @media only screen and (max-width: ${theme.devise.tabletWidth}) {
     flex-direction: column;

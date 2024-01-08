@@ -5,15 +5,13 @@ import theme from "../../styles/theme";
 const Membership = () => {
   return (
     <ContainerStyle>
-      <ImgBoxStyle>
-        <img src="leaf.jpg" alt="자연치유 쉼" width="100%" height="100%" />
-        <Link to="/information">
-          <ContentStyle>
-            <span>또 찾고 싶은 곳 자연치유 쉼</span>
-            <button>회원제 알아보기</button>
-          </ContentStyle>
-        </Link>
-      </ImgBoxStyle>
+      <ImgStyle src="leaf.jpg" alt="자연치유 쉼" width="100%" height="100%" />
+      <Link to="/information">
+        <ContentStyle>
+          <span>또 찾고 싶은 곳 자연치유 쉼</span>
+          <button>회원제 알아보기</button>
+        </ContentStyle>
+      </Link>
     </ContainerStyle>
   );
 };
@@ -26,22 +24,17 @@ const ContainerStyle = styled.div`
   padding: 1rem;
   opacity: 0.7;
   filter: brightness(0.95);
-  border: 1px solid red;
+  overflow: hidden;
 `;
 
-const ImgBoxStyle = styled.div`
-  border-radius: 15px;
+const ImgStyle = styled.img`
+  object-fit: cover;
+  height: 25rem;
   overflow: hidden;
-  height: 100%;
-  cursor: pointer;
-  z-index: 0;
+  border-radius: 15px;
 
   &:hover {
     border: 2px solid whitesmoke;
-  }
-
-  @media only screen and (max-width: ${theme.devise.notebookWidth}) {
-    height: 100%;
   }
 `;
 
