@@ -4,6 +4,7 @@ import {
   IoChevronForwardCircleOutline,
 } from "react-icons/io5";
 import React from "react";
+import theme from "../../styles/theme";
 
 type TProps = {
   curMonth: number;
@@ -78,12 +79,12 @@ const ControllerButton = styled.button`
   align-items: center;
   background-color: transparent;
   border: none;
-  font-size: 20px;
+  font-size: 25px;
 `;
 
 const Title = styled.span`
   width: 11rem;
-  font-size: 16px;
+  font-size: 18px;
   line-height: 22px;
   text-align: center;
   color: #262d39;
@@ -93,4 +94,5 @@ const Title = styled.span`
   flex-grow: 0;
   margin: 0px 2rem;
   justify-content: center;
+  font-family: ${theme.fonts.pretend};
 `;

@@ -25,10 +25,14 @@ const BookingDate = () => {
 
   const { data } = useGetBookedTimeListQuery(targetDate);
 
+  const onClick = (date: string) => {
+    console.log(date);
+  };
+
   return (
     <>
       <ConditionalDisplay isShow={isOpen}>
-        <BookingModal closeModal={closeModal} />
+        <BookingModal closeModal={closeModal} onClick={onClick} />
       </ConditionalDisplay>
 
       <ContainerStyle>

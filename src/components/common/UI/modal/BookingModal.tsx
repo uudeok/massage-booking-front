@@ -1,13 +1,14 @@
 import styled from "styled-components";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import theme from "../../../../styles/theme";
 import Calendar from "../../../calendar";
 
 export type TProps = {
   closeModal: () => void;
+  onClick: (date: string, e?: React.MouseEvent) => void;
 };
 
-const BookingModal = ({ closeModal }: TProps) => {
+const BookingModal = ({ closeModal, onClick }: TProps) => {
   useEffect(() => {
     document.body.style.overflow = "hidden";
     return () => {
@@ -23,7 +24,7 @@ const BookingModal = ({ closeModal }: TProps) => {
           <CloseButtonStyle onClick={() => closeModal()}>X</CloseButtonStyle>
         </CloseButtonBoxStyle>
 
-        <Calendar />
+        <Calendar onClick={onClick} />
       </ModalStyle>
     </>
   );
