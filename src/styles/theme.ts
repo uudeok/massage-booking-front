@@ -20,7 +20,7 @@ const devise = {
 const fonts = {
   pretend: "Pretendard-Regular",
   gmarket: "GmarketSansMedium",
-  KBO: 'KBO-Dia-Gothic_bold"',
+  KBO: "KBO-Dia-Gothic_bold",
 };
 
 const theme = {

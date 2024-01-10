@@ -23,6 +23,7 @@ type ButtonProps<T> = {
   $border?: string;
   hoverBackgroundColor?: string;
   oauth?: Oauth;
+  textAlign?: string;
 };
 
 const CommonButton = <T,>({

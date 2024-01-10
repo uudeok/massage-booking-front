@@ -25,6 +25,7 @@ const ContainerStyle = styled.div`
   opacity: 0.7;
   filter: brightness(0.95);
   overflow: hidden;
+  margin-bottom: 1rem;
 `;
 
 const ImgStyle = styled.img`
