@@ -6,7 +6,7 @@ import SectionTitle from "../common/shared/SectionTitle";
 import theme from "../../styles/theme";
 
 type TProps = {
-  selectedDate: Date;
+  selectedDate: string;
   massageEndTime: Date | null;
 };
 

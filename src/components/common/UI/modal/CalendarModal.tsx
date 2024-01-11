@@ -2,13 +2,15 @@ import styled from "styled-components";
 import React, { useEffect } from "react";
 import theme from "../../../../styles/theme";
 import Calendar from "../../../calendar";
+import CommonButton from "../../button/CommonButton";
 
 export type TProps = {
   closeModal: () => void;
   onClick: (date: string, e?: React.MouseEvent) => void;
+  value: string;
 };
 
-const BookingModal = ({ closeModal, onClick }: TProps) => {
+const CalendarModal = ({ closeModal, onClick }: TProps) => {
   useEffect(() => {
     document.body.style.overflow = "hidden";
     return () => {
@@ -20,17 +22,47 @@ const BookingModal = ({ closeModal, onClick }: TProps) => {
     <>
       <BackDropStyle onClick={() => closeModal()} />
       <ModalStyle>
-        <CloseButtonBoxStyle>
-          <CloseButtonStyle onClick={() => closeModal()}>X</CloseButtonStyle>
-        </CloseButtonBoxStyle>
-
-        <Calendar onClick={onClick} />
+        <InnerBoxStyle>
+          <Calendar
+            onClick={onClick}
+            timePicker={true}
+            curMonthOnly={true}
+            value={value}
+          />
+        </InnerBoxStyle>
+        <ButtonWrapper>
+          <CommonButton
+            $padding="0.7rem"
+            $border="1px solid grey"
+            onClickButton={() => closeModal()}
+            width="40%"
+          >
+            취소하기
+          </CommonButton>
+          <CommonButton $padding="0.7rem" $border="1px solid grey" width="40%">
+            선택하기
+          </CommonButton>
+        </ButtonWrapper>
       </ModalStyle>
     </>
   );
 };
 
-export default BookingModal;
+export default CalendarModal;
+
+const InnerBoxStyle = styled.div`
+  display: flex;
+  justify-content: center;
+  height: 80%;
+  margin-top: 1rem;
+`;
+
+const ButtonWrapper = styled.div`
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+`;
 
 const BackDropStyle = styled.div`
   position: fixed;
@@ -47,17 +79,17 @@ const ModalStyle = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
-  top: 10%;
+  top: 3%;
   justify-content: center;
   align-items: center;
   left: calc(50% - 10rem);
   width: 26rem;
-  padding: 1.5rem;
+  /* padding: 1.2rem; */
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
   z-index: 30;
   animation: slide-down 300ms ease-out forwards;
   background-color: white;
-  height: 37rem;
+  height: 38rem;
   border-radius: 15px;
 
   @media only screen and (max-width: ${theme.devise.tabletWidth}) {
@@ -80,15 +112,4 @@ const ModalStyle = styled.div`
       transform: translateY(0);
     }
   }
-`;
-
-const CloseButtonBoxStyle = styled.div`
-  display: flex;
-  justify-content: right;
-`;
-
-const CloseButtonStyle = styled.button`
-  border: none;
-  cursor: pointer;
-  background-color: white;
 `;

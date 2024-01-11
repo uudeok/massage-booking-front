@@ -9,8 +9,8 @@ interface IDateCell {
   disabled: boolean;
   monthName: MONTH_NAME_VALUES;
   dateLabel: string;
-  selected: boolean;
   curMonthOnly?: boolean;
+  mode?: "duration";
 }
 
 const getDateCellColor = (month: MONTH_NAME_VALUES) => {
@@ -37,23 +37,26 @@ const DateCell: React.FC<IDateCell> = ({
   disabled,
   monthName,
   dateLabel,
-  selected,
+  curMonthOnly,
+  mode,
 }) => {
   return (
     <Self
       disabled={disabled}
       month={monthName}
-      selected={selected}
       isToday={isToday}
-      isCurMonth={monthName === MONTH_NAME.CURRENT}
+      $isCurMonth={monthName === MONTH_NAME.CURRENT}
+      mode={mode}
     >
-      {monthName !== MONTH_NAME.CURRENT ? null : (
+      {curMonthOnly && monthName !== MONTH_NAME.CURRENT ? null : (
         <button disabled={disabled} data-name={monthName}>
           {dateLabel}
         </button>
       )}
 
-      {isToday && monthName === MONTH_NAME.CURRENT && <div>오늘</div>}
+      {isToday && monthName === MONTH_NAME.CURRENT && (
+        <TodayLabel>오늘</TodayLabel>
+      )}
     </Self>
   );
 };
@@ -63,12 +66,13 @@ export default React.memo(DateCell);
 const Self = styled.td<{
   disabled: boolean;
   month: MONTH_NAME_VALUES;
-  selected: boolean;
+  selected?: boolean;
   isToday?: boolean;
-  isCurMonth?: boolean;
+  $isCurMonth?: boolean;
+  mode?: "duration";
 }>`
   position: relative;
-  padding-bottom: 1.6rem;
+  padding-bottom: 1rem;
 
   ${({ disabled }) =>
     !disabled &&
@@ -85,8 +89,11 @@ const Self = styled.td<{
     `}
 
   button {
-    width: 3.6rem;
-    height: 3.6rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
     ${({ month }) => getDateCellColor(month)}
 
     &:disabled {
@@ -99,7 +106,47 @@ const Self = styled.td<{
       css`
         border: 1px solid rgba(38, 45, 57, 0.16);
         box-sizing: border-box;
-        border-radius: 20px;
+        border-radius: 30px;
       `}
   }
+
+  ${({ disabled, $isCurMonth, mode }) =>
+    !disabled &&
+    $isCurMonth &&
+    css`
+      cursor: pointer;
+
+      &:hover {
+        button {
+          color: white;
+          background-color: #3581ff;
+          border-radius: ${mode !== "duration" && "50%"};
+          border: none;
+        }
+      }
+    `}
+
+  ${({ selected }) =>
+    selected &&
+    css`
+      color: red;
+      cursor: pointer;
+
+      button {
+        color: white !important;
+        background-color: #3581ff;
+        border-radius: 50%;
+      }
+    `}
+`;
+
+const TodayLabel = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 1.6rem;
+  font-size: 10px;
+  line-height: 16px;
+  text-align: center;
+  color: rgba(38, 45, 57, 0.52);
+  left: -0.1px;
 `;

@@ -24,7 +24,7 @@ const HeaderRow = styled.tr`
     width: 47.86px;
     height: 40px;
     font-size: 1.2rem;
-    font-weight: 400;
+    font-weight: 500;
     font-family: ${theme.fonts.pretend};
   }
 `;

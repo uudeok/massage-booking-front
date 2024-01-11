@@ -1,7 +1,7 @@
 import dayjs from "dayjs";
 import { splitTimeArraysBy30Minutes } from "../time";
 
-export const makeFullDate = (date: Date) => {
+export const makeFullDate = (date: Date | string) => {
   return dayjs(date).format("YYYY-MM-DDTHH:mm:ss");
 };
 
@@ -9,7 +9,22 @@ export const makeSimpleDate = (date: Date | string) => {
   return dayjs(date).format("YYYY-MM-DD");
 };
 
-export const validationDate = (selectedDate: Date) => {
+export const getMonthLabel = (
+  year: number,
+  month: number,
+  option: "short" | "long"
+): string => {
+  return new Date(year, month).toLocaleString("kr", { month: option });
+};
+
+export const calculateMonthInfo = (year: number, month: number) => {
+  const firstDay = new Date(year, month).getDay();
+  const numOfDays = new Date(year, month + 1, 0).getDate();
+
+  return { firstDay, numOfDays };
+};
+
+export const validationDate = (selectedDate: Date | string) => {
   const today = dayjs(new Date()).format("YYYY-MM-DD");
   const date = dayjs(selectedDate).format("YYYY-MM-DD");
 
@@ -44,4 +59,18 @@ export const spreadBookedData = (bookedData: string[]) => {
     }
   }
   return data;
+};
+
+export const getDateLabel = (fullDate: string): string => {
+  const dateObj = new Date(fullDate);
+
+  const year = dateObj.getFullYear();
+
+  const date = dateObj.getDate().toString();
+  const dateLabel = date.length > 1 ? date : `0${date}`;
+
+  const month = dateObj.getMonth() + 1;
+  const monthLabel = `${month}`.length > 1 ? month : `0${month}`;
+
+  return `${year}-${monthLabel}-${dateLabel}`;
 };

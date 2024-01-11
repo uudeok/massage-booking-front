@@ -14,7 +14,7 @@ import ConditionalDisplay from "../common/maybe/ConditionalDisplay";
 
 type TProps = {
   massageItem: TMassageTable;
-  selectedDate: Date;
+  selectedDate: string;
   massageTime: number;
   massagePrice: number;
   startTime: string;

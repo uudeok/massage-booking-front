@@ -1,38 +1,44 @@
 import "react-datepicker/dist/react-datepicker.css";
 import styled from "styled-components";
-import { setHours, setMinutes } from "date-fns";
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useGetBookedTimeListQuery } from "../../api/book/bookQuery";
 import BookingBreakDown from "./BookingBreakDown";
-import { makeSimpleDate } from "../../util/date";
+import { makeSimpleDate, spreadBookedData } from "../../util/date";
 import CommonButton from "../common/button/CommonButton";
 import { AppDispatch } from "../../stores/store";
 import { subTabNum } from "../../stores/tabSlice";
 import theme from "../../styles/theme";
 import { useModal } from "../../hooks/useModal";
 import ConditionalDisplay from "../common/maybe/ConditionalDisplay";
-import BookingModal from "../common/UI/modal/BookingModal";
+import CalendarModal from "../common/UI/modal/CalendarModal";
 
 const BookingDate = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const { isOpen, showModal, closeModal } = useModal();
-  const [selectedDate, setSelectedDate] = useState<Date>(
-    setHours(setMinutes(new Date(), 0), 9)
-  );
   const [endTime, setEndTime] = useState<Date | null>(null);
+  const { isOpen, showModal, closeModal } = useModal();
+  const [selectedDate, setSelectedDate] = useState<Date>(new Date());
+
   const targetDate = makeSimpleDate(selectedDate);
 
-  const { data } = useGetBookedTimeListQuery(targetDate);
+  const { data = [] } = useGetBookedTimeListQuery(targetDate);
 
   const onClick = (date: string) => {
-    console.log(date);
+    const selected = new Date(date);
+    setSelectedDate(selected);
   };
+
+  // useEffect(() => {
+  //   const spreadData = spreadBookedData(data)
+  // },[data])
+
+  const spreadData = useMemo(() => spreadBookedData(data), [data]);
+  console.log(spreadData);
 
   return (
     <>
       <ConditionalDisplay isShow={isOpen}>
-        <BookingModal closeModal={closeModal} onClick={onClick} />
+        <CalendarModal closeModal={closeModal} onClick={onClick} />
       </ConditionalDisplay>
 
       <ContainerStyle>
