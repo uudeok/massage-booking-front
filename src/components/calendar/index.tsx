@@ -19,22 +19,24 @@ import {
 
 type CalendarType = {
   onClick: (date: string, e?: React.MouseEvent) => void;
-  timePicker?: boolean;
   curMonthOnly?: boolean;
   maxDate?: Date;
   minDate?: Date;
   value?: string;
   filterDate?: (date: Date | string) => boolean;
+  showTimePicker?: boolean;
+  timeInterval?: number;
 };
 
 const Calendar = ({
   onClick,
-  timePicker,
+  showTimePicker,
   curMonthOnly,
   minDate,
   maxDate,
   value,
   filterDate,
+  timeInterval,
 }: CalendarType) => {
   const base = new Date();
   const [curYear, setCurYear] = useState(base.getFullYear());
@@ -215,6 +217,10 @@ const Calendar = ({
     return cellRows;
   };
 
+  if (!timeInterval) {
+    timeInterval = 0;
+  }
+
   return (
     <Self>
       <Header>
@@ -233,8 +239,12 @@ const Calendar = ({
         <DayOfWeek />
         <tbody onClick={handleClickDate}>{renderCells()}</tbody>
       </Table>
-      {timePicker && (
-        <TimePicker timeInterval={30} minTime="09:00" maxTime="21:00" />
+      {showTimePicker && (
+        <TimePicker
+          timeInterval={timeInterval}
+          minTime="09:00"
+          maxTime="21:00"
+        />
       )}
     </Self>
   );

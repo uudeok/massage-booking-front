@@ -1,38 +1,52 @@
 import styled from "styled-components";
 import React from "react";
 import theme from "../../../styles/theme";
-import { filterTimeRange, generateTimeArray } from "../../../util/time";
-import RenderList from "../../common/map/RenderList";
+import {
+  calculateMaxTime,
+  calculateMinTime,
+  generateTimeArray,
+} from "../../../util/time";
+import DropDown, { TDropDownItem } from "../../common/dropdown";
+import { useState } from "react";
 
 type TimePickerType = {
   timeInterval: number;
   minTime?: string;
   maxTime?: string;
-  excludeTime?: string[];
+  excludeTimes?: string[];
 };
 
 const TimePicker = ({
   timeInterval,
   minTime,
   maxTime,
-  excludeTime,
+  excludeTimes,
 }: TimePickerType) => {
-  let timeIntervalList = generateTimeArray(timeInterval);
+  const [selectedTime, setSelectedTime] = useState("");
 
-  if (minTime && maxTime) {
-    timeIntervalList = filterTimeRange(timeIntervalList, minTime, maxTime);
+  let timeList: TDropDownItem[] = generateTimeArray(timeInterval);
+
+  const onClick = (value: any) => {
+    console.log(value);
+    setSelectedTime(value);
+  };
+
+  if (minTime) {
+    timeList = calculateMinTime(timeList, minTime);
   }
 
-  const renderTimeList = (interval: string) => (
-    <Option key={interval}>{interval}</Option>
-  );
+  if (maxTime) {
+    timeList = calculateMaxTime(timeList, maxTime);
+  }
 
   return (
     <Self>
-      <Select>
-        <option>시간 선택</option>
-        <RenderList data={timeIntervalList} renderItem={renderTimeList} />
-      </Select>
+      <StyleTimePicker
+        list={timeList}
+        placeHolder="시간 선택"
+        onClick={onClick}
+        currentValue={selectedTime}
+      />
     </Self>
   );
 };
@@ -45,14 +59,7 @@ const Self = styled.div`
   width: 100%;
 `;
 
-const Select = styled.select`
-  width: 90%;
-  padding: 0.6rem;
+const StyleTimePicker = styled(DropDown)`
   font-family: ${theme.fonts.pretend};
-  font-size: 16px;
-  cursor: pointer;
-`;
-
-const Option = styled.option`
-  font-size: 18px;
+  background-color: aliceblue;
 `;

@@ -25,7 +25,6 @@ const CalendarModal = ({ closeModal, onClick, value }: TProps) => {
 
   const isOffDay = (date: Date | string) => {
     const day = new Date(date).getDay();
-
     return day !== SUNDAY;
   };
 
@@ -36,12 +35,13 @@ const CalendarModal = ({ closeModal, onClick, value }: TProps) => {
         <InnerBoxStyle>
           <Calendar
             onClick={onClick}
-            timePicker={true}
+            showTimePicker={true}
             curMonthOnly={true}
             value={value}
             minDate={new Date()}
             maxDate={addTwoWeeks}
             filterDate={isOffDay}
+            // timeInterval={30}
           />
         </InnerBoxStyle>
         <ButtonWrapper>

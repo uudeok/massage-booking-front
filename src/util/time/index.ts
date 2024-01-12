@@ -1,4 +1,5 @@
 import dayjs from "dayjs";
+import { TDropDownItem } from "../../components/common/dropdown";
 
 export const addMinutesUnit = (minute: number) => {
   return minute + "분";
@@ -49,13 +50,16 @@ export const generateTimeArray = (interval: number) => {
     for (let minute = 0; minute < minutes; minute += interval) {
       const formattedHour = hour.toString().padStart(2, "0");
       const formattedMinute = minute.toString().padStart(2, "0");
-      result.push(`${formattedHour}:${formattedMinute}`);
+      const timeObject = {
+        label: `${formattedHour}:${formattedMinute}`,
+        value: `${formattedHour}:${formattedMinute}`,
+      };
+      result.push(timeObject);
     }
   }
 
   return result;
 };
-
 export const filterTimeRange = (
   timeList: string[],
   minTime: string,
@@ -69,4 +73,30 @@ export const filterTimeRange = (
   }
 
   return timeList.slice(startTime, endTime + 1);
+};
+
+export const calculateMinTime = (
+  timeList: TDropDownItem[],
+  minTime: string
+) => {
+  let result = [];
+  for (let i = 0; i < timeList.length; i++) {
+    if (timeList[i].label >= minTime) {
+      result.push(timeList[i]);
+    }
+  }
+  return result;
+};
+
+export const calculateMaxTime = (
+  timeList: TDropDownItem[],
+  maxTime: string
+) => {
+  let result = [];
+  for (let i = 0; i < timeList.length; i++) {
+    if (timeList[i].label <= maxTime) {
+      result.push(timeList[i]);
+    }
+  }
+  return result;
 };
