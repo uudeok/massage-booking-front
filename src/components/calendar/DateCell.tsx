@@ -5,12 +5,13 @@ import styled from "styled-components";
 import React from "react";
 
 interface IDateCell {
-  isToday?: boolean;
+  $isToday?: boolean;
   disabled: boolean;
   monthName: MONTH_NAME_VALUES;
   dateLabel: string;
   curMonthOnly?: boolean;
   mode?: "duration";
+  selected: boolean;
 }
 
 const getDateCellColor = (month: MONTH_NAME_VALUES) => {
@@ -33,20 +34,22 @@ const getDateCellColor = (month: MONTH_NAME_VALUES) => {
 };
 
 const DateCell: React.FC<IDateCell> = ({
-  isToday,
+  $isToday,
+  dateLabel,
   disabled,
   monthName,
-  dateLabel,
   curMonthOnly,
+  selected,
   mode,
 }) => {
   return (
     <Self
       disabled={disabled}
-      month={monthName}
-      isToday={isToday}
+      $month={monthName}
+      $isToday={$isToday}
       $isCurMonth={monthName === MONTH_NAME.CURRENT}
       mode={mode}
+      selected={selected}
     >
       {curMonthOnly && monthName !== MONTH_NAME.CURRENT ? null : (
         <button disabled={disabled} data-name={monthName}>
@@ -54,7 +57,7 @@ const DateCell: React.FC<IDateCell> = ({
         </button>
       )}
 
-      {isToday && monthName === MONTH_NAME.CURRENT && (
+      {$isToday && monthName === MONTH_NAME.CURRENT && (
         <TodayLabel>오늘</TodayLabel>
       )}
     </Self>
@@ -65,9 +68,9 @@ export default React.memo(DateCell);
 
 const Self = styled.td<{
   disabled: boolean;
-  month: MONTH_NAME_VALUES;
+  $month: MONTH_NAME_VALUES;
   selected?: boolean;
-  isToday?: boolean;
+  $isToday?: boolean;
   $isCurMonth?: boolean;
   mode?: "duration";
 }>`
@@ -75,17 +78,9 @@ const Self = styled.td<{
   padding-bottom: 1rem;
 
   ${({ disabled }) =>
-    !disabled &&
+    disabled &&
     css`
-      cursor: pointer;
-
-      &:hover {
-        button {
-          color: white;
-          background-color: #3581ff;
-          border: none;
-        }
-      }
+      color: rgba(38, 45, 57, 0.16);
     `}
 
   button {
@@ -94,15 +89,15 @@ const Self = styled.td<{
     background-color: transparent;
     border: none;
     cursor: pointer;
-    ${({ month }) => getDateCellColor(month)}
+    ${({ $month }) => getDateCellColor($month)}
 
     &:disabled {
       cursor: default;
       color: rgba(38, 45, 57, 0.16);
     }
 
-    ${({ isToday }) =>
-      isToday &&
+    ${({ $isToday }) =>
+      $isToday &&
       css`
         border: 1px solid rgba(38, 45, 57, 0.16);
         box-sizing: border-box;
@@ -129,7 +124,7 @@ const Self = styled.td<{
   ${({ selected }) =>
     selected &&
     css`
-      color: red;
+      color: white;
       cursor: pointer;
 
       button {

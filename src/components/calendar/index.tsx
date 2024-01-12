@@ -7,8 +7,8 @@ import theme from "../../styles/theme";
 import DayOfWeek from "./DayOfWeek";
 import { MONTH_NAME } from "../../const/calendar";
 import { MONTH_NAME_VALUES } from "../../@types/calendar";
-import { format, isToday } from "date-fns";
-import React, { useState } from "react";
+import { compareAsc, format, isToday } from "date-fns";
+import React, { useState, useEffect } from "react";
 import DateCell from "./DateCell";
 import TimePicker from "./timePicker/index";
 import {
@@ -23,7 +23,8 @@ type CalendarType = {
   curMonthOnly?: boolean;
   maxDate?: Date;
   minDate?: Date;
-  value: string;
+  value?: string;
+  filterDate?: (date: Date | string) => boolean;
 };
 
 const Calendar = ({
@@ -33,10 +34,65 @@ const Calendar = ({
   minDate,
   maxDate,
   value,
+  filterDate,
 }: CalendarType) => {
   const base = new Date();
   const [curYear, setCurYear] = useState(base.getFullYear());
   const [curMonth, setCurMonth] = useState(base.getMonth());
+
+  useEffect(() => {
+    if (value) {
+      const forced = new Date(value);
+      setCurMonth(forced.getMonth());
+      setCurYear(forced.getFullYear());
+    }
+  }, [value]);
+
+  const validFilterDate = (date: string) => {
+    if (!filterDate) {
+      return true;
+    }
+
+    return filterDate(date);
+  };
+
+  const validIsPassedDate = (selectedMonth: number, cellDate: number) => {
+    if (!minDate) {
+      return false;
+    }
+
+    const thisYear = minDate.getFullYear();
+    const thisMonth = minDate.getMonth();
+    const today = minDate.getDate();
+
+    if (curYear < thisYear) {
+      return true;
+    }
+
+    if (curYear > thisYear) {
+      return false;
+    }
+
+    if (curYear === thisYear) {
+      if (selectedMonth < thisMonth) {
+        return true;
+      } else if (selectedMonth === thisMonth && cellDate < today) {
+        return true;
+      }
+    }
+    return false;
+  };
+
+  const validIsDateBeyondMax = (date: string) => {
+    if (!maxDate) {
+      return true;
+    }
+
+    const targetDate = new Date(date).setHours(0);
+    const max = new Date(maxDate).setHours(0);
+
+    return compareAsc(targetDate, max) <= 0;
+  };
 
   const handleClickPrevButton = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -86,6 +142,7 @@ const Calendar = ({
     }
 
     const selectedMonth = calculateSelectedMonth(month, curMonth);
+
     let selectedYear = curYear;
 
     if (month === "next" && selectedMonth === 0) {
@@ -95,6 +152,7 @@ const Calendar = ({
     }
 
     const formattedMonth = (selectedMonth + 1).toString().padStart(2, "0");
+
     const pickDate = getDateLabel(`${selectedYear}-${formattedMonth}-${date}`);
 
     onClick(pickDate, e);
@@ -129,14 +187,19 @@ const Calendar = ({
         "yyyy-MM-dd"
       );
 
+      const filteredDate = validFilterDate(renderingDate);
+      const isPassed = validIsPassedDate(month, dateLabel);
+      const isSafeDate = validIsDateBeyondMax(renderingDate);
+
       cells.push(
         <DateCell
-          isToday={isToday(new Date(curYear, month, dateLabel))}
+          $isToday={isToday(new Date(curYear, month, dateLabel))}
           dateLabel={`${dateLabel}`}
-          disabled={false}
+          disabled={isPassed || !isSafeDate || !filteredDate}
           monthName={monthName}
           key={cellCount}
           curMonthOnly={curMonthOnly}
+          selected={value === renderingDate}
         />
       );
 

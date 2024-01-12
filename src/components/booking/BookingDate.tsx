@@ -1,6 +1,6 @@
 import "react-datepicker/dist/react-datepicker.css";
 import styled from "styled-components";
-import { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useGetBookedTimeListQuery } from "../../api/book/bookQuery";
 import BookingBreakDown from "./BookingBreakDown";
@@ -12,33 +12,33 @@ import theme from "../../styles/theme";
 import { useModal } from "../../hooks/useModal";
 import ConditionalDisplay from "../common/maybe/ConditionalDisplay";
 import CalendarModal from "../common/UI/modal/CalendarModal";
+import { format } from "date-fns";
+import { ko } from "date-fns/locale";
 
 const BookingDate = () => {
   const dispatch = useDispatch<AppDispatch>();
   const [endTime, setEndTime] = useState<Date | null>(null);
   const { isOpen, showModal, closeModal } = useModal();
-  const [selectedDate, setSelectedDate] = useState<Date>(new Date());
-
-  const targetDate = makeSimpleDate(selectedDate);
+  const [date, setDate] = useState("");
+  const targetDate = makeSimpleDate(date);
 
   const { data = [] } = useGetBookedTimeListQuery(targetDate);
 
-  const onClick = (date: string) => {
-    const selected = new Date(date);
-    setSelectedDate(selected);
+  useEffect(() => {
+    const value = format(new Date(), "yyyy-MM-dd", { locale: ko });
+    setDate(value);
+  }, []);
+
+  const onClick = (date: string, e?: React.MouseEvent) => {
+    setDate(format(new Date(date), "yyyy-MM-dd", { locale: ko }));
   };
 
-  // useEffect(() => {
-  //   const spreadData = spreadBookedData(data)
-  // },[data])
-
   const spreadData = useMemo(() => spreadBookedData(data), [data]);
-  console.log(spreadData);
 
   return (
     <>
       <ConditionalDisplay isShow={isOpen}>
-        <CalendarModal closeModal={closeModal} onClick={onClick} />
+        <CalendarModal closeModal={closeModal} onClick={onClick} value={date} />
       </ConditionalDisplay>
 
       <ContainerStyle>
@@ -56,10 +56,7 @@ const BookingDate = () => {
             날짜 선택하기
           </CommonButton>
         </CalendarStyle>
-        <BookingBreakDown
-          selectedDate={selectedDate}
-          massageEndTime={endTime}
-        />
+        <BookingBreakDown selectedDate={date} massageEndTime={endTime} />
       </ContainerStyle>
     </>
   );

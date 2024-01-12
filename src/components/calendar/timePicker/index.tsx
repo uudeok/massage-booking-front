@@ -41,6 +41,8 @@ export default React.memo(TimePicker);
 
 const Self = styled.div`
   padding: 0.5rem;
+  position: absolute;
+  width: 100%;
 `;
 
 const Select = styled.select`

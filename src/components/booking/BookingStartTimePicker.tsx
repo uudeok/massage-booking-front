@@ -20,10 +20,6 @@ const BookingStartTimePicker = ({
   booked,
 }: TProps) => {
   const addTwoWeeks = dayjs().add(2, "weeks").format();
-  const isOffDay = (date: Date | number) => {
-    const day = getDay(date);
-    return day !== SUNDAY;
-  };
 
   // const filterPassedTime = (() => {
   //   let isThrottled = false;
@@ -55,6 +51,11 @@ const BookingStartTimePicker = ({
     const businessTime = time.getTime();
 
     return currentTime < businessTime;
+  };
+
+  const isOffDay = (date: Date | number) => {
+    const day = getDay(date);
+    return day !== SUNDAY;
   };
 
   return (
