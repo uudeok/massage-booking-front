@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
-import styled from "styled-components";
-import { css } from "styled-components";
+import React, { useState } from "react";
+import styled, { css } from "styled-components";
 import RenderList from "../map/RenderList";
 import { SlArrowDown } from "react-icons/sl";
 import theme from "../../../styles/theme";
@@ -14,14 +13,14 @@ export type TDropDownItem = {
 export type TDropDownProps = {
   disabled?: boolean;
   list: TDropDownItem[];
-  onClick: (value: any) => void;
-  currentValue?: string | number;
-  placeHolder: string;
+  handleTimePicker: (value: string | number) => void;
+  currentValue: string | number;
+  placeHolder?: string;
 };
 
 const DropDown = ({
   list,
-  onClick,
+  handleTimePicker,
   currentValue,
   placeHolder,
 }: TDropDownProps) => {
@@ -31,15 +30,15 @@ const DropDown = ({
     setIsFolded((prev) => !prev);
   };
 
-  const handleClickValue = (value: string | number) => {
-    onClick(value);
+  const handleClickTime = (value: string | number) => {
+    handleTimePicker(value);
     setIsFolded(true);
   };
 
   const renderLisItem = (item: TDropDownItem) => (
     <Option
       key={item.value}
-      onClick={() => handleClickValue(item.value)}
+      onClick={() => handleClickTime(item.value)}
       disabled={!item.selectable}
     >
       {item.label}
@@ -48,7 +47,7 @@ const DropDown = ({
 
   return (
     <Self>
-      <TopListItem isFolded={isFolded} onClick={handleClick}>
+      <TopListItem $isFolded={isFolded} onClick={handleClick}>
         {currentValue ? currentValue : placeHolder}
         {/* <Icon /> */}
       </TopListItem>
@@ -75,7 +74,7 @@ const Self = styled.div`
   position: relative;
 `;
 
-const TopListItem = styled.ul<{ isFolded: boolean }>`
+const TopListItem = styled.ul<{ $isFolded: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -92,8 +91,8 @@ const TopListItem = styled.ul<{ isFolded: boolean }>`
   border-radius: 4px;
   font-family: ${theme.fonts.pretend};
 
-  ${({ isFolded }) =>
-    isFolded
+  ${({ $isFolded }) =>
+    $isFolded
       ? css`
           border-radius: 4px;
         `

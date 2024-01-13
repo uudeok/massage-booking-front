@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import React, { useState } from "react";
+import React from "react";
 import theme from "../../../styles/theme";
 import {
   calculateMaxTime,
@@ -15,6 +15,9 @@ type TimePickerType = {
   minTime?: string;
   maxTime?: string;
   excludeTimes?: string[];
+  handleTimePicker: (value: number | string) => void;
+  selectedTime: string;
+  placeHolder?: string;
 };
 
 const TimePicker = ({
@@ -22,9 +25,10 @@ const TimePicker = ({
   minTime,
   maxTime,
   excludeTimes,
+  handleTimePicker,
+  selectedTime,
+  placeHolder,
 }: TimePickerType) => {
-  const [curTime, setCurTime] = useState("");
-
   let timeList: TDropDownItem[] = generateTimeArray(timeInterval);
 
   if (minTime) {
@@ -40,18 +44,13 @@ const TimePicker = ({
     timeList = disableSelectability(timeList, splitTimeList);
   }
 
-  const onClick = (value: any) => {
-    console.log("value", value);
-    setCurTime(value);
-  };
-
   return (
     <Self>
       <StyleTimePicker
         list={timeList}
-        placeHolder="시간 선택"
-        onClick={onClick}
-        currentValue={curTime}
+        placeHolder={placeHolder}
+        handleTimePicker={handleTimePicker}
+        currentValue={selectedTime}
       />
     </Self>
   );

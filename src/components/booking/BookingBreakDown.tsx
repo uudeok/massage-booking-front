@@ -7,10 +7,10 @@ import theme from "../../styles/theme";
 
 type TProps = {
   selectedDate: string;
-  massageEndTime: Date | null;
+  selectedTime: string;
 };
 
-const BookingBreakDown = ({ selectedDate, massageEndTime }: TProps) => {
+const BookingBreakDown = ({ selectedDate, selectedTime }: TProps) => {
   const bookingNotice = useMemo(() => <BookingNotice />, []);
 
   return (
@@ -20,7 +20,7 @@ const BookingBreakDown = ({ selectedDate, massageEndTime }: TProps) => {
         {bookingNotice}
         <BookingSummary
           selectedDate={selectedDate}
-          massageEndTime={massageEndTime}
+          selectedTime={selectedTime}
         />
       </DetailBoxStyle>
     </ReservationDetailStyle>

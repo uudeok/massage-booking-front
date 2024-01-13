@@ -12,26 +12,27 @@ import theme from "../../styles/theme";
 import { useModal } from "../../hooks/useModal";
 import ConditionalDisplay from "../common/maybe/ConditionalDisplay";
 import CalendarModal from "../common/UI/modal/CalendarModal";
-import { format } from "date-fns";
-import { ko } from "date-fns/locale";
 
 const BookingDate = () => {
   const dispatch = useDispatch<AppDispatch>();
 
   const { isOpen, showModal, closeModal } = useModal();
-  const [date, setDate] = useState("");
+  const [date, setDate] = useState(new Date().toString());
+  const [selectedTime, setSelectedTime] = useState("");
+  const [isSelected, setIsSelected] = useState(false);
 
   const targetDate = makeSimpleDate(date);
 
   const { data: bookedData = [] } = useGetBookedTimeListQuery(targetDate);
 
-  useEffect(() => {
-    const value = format(new Date(), "yyyy-MM-dd", { locale: ko });
-    setDate(value);
-  }, []);
-
   const handleDatePicker = (date: string, e?: React.MouseEvent) => {
-    setDate(format(new Date(date), "yyyy-MM-dd", { locale: ko }));
+    setDate(date);
+  };
+
+  const handleTimePicker = (value: string | number) => {
+    console.log(value);
+    setSelectedTime(String(value));
+    setIsSelected(true);
   };
 
   return (
@@ -42,6 +43,9 @@ const BookingDate = () => {
           onClick={handleDatePicker}
           value={date}
           bookedData={bookedData}
+          handleTimePicker={handleTimePicker}
+          selectedTime={selectedTime}
+          isSelected={isSelected}
         />
       </ConditionalDisplay>
 
@@ -60,7 +64,7 @@ const BookingDate = () => {
             날짜 선택하기
           </CommonButton>
         </CalendarStyle>
-        <BookingBreakDown selectedDate={date} massageEndTime={new Date()} />
+        <BookingBreakDown selectedDate={date} selectedTime={selectedTime} />
       </ContainerStyle>
     </>
   );

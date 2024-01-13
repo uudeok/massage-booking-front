@@ -10,11 +10,22 @@ export type TProps = {
   onClick: (date: string, e?: React.MouseEvent) => void;
   value: string;
   bookedData?: string[];
+  handleTimePicker: (value: string | number) => void;
+  selectedTime: string;
+  isSelected: boolean;
 };
 
 const SUNDAY = 0;
 
-const CalendarModal = ({ closeModal, onClick, value, bookedData }: TProps) => {
+const CalendarModal = ({
+  closeModal,
+  onClick,
+  value,
+  bookedData,
+  handleTimePicker,
+  selectedTime,
+  isSelected,
+}: TProps) => {
   useEffect(() => {
     document.body.style.overflow = "hidden";
     return () => {
@@ -36,27 +47,37 @@ const CalendarModal = ({ closeModal, onClick, value, bookedData }: TProps) => {
         <InnerBoxStyle>
           <Calendar
             onClick={onClick}
-            curMonthOnly={true}
-            value={value}
             minDate={new Date()}
             maxDate={addTwoWeeks}
+            curMonthOnly={true}
+            value={value}
             filterDate={isOffDay}
             showTimePicker={true}
             timeInterval={30}
             minTime="09:00"
             maxTime="21:00"
             excludeTimes={bookedData}
+            handleTimePicker={handleTimePicker}
+            selectedTime={selectedTime}
+            placeHolder="시간 선택"
           />
         </InnerBoxStyle>
         <ButtonWrapper>
           <CommonButton
-            $border="1px solid grey"
             onClickButton={() => closeModal()}
             width="40%"
+            borderRadius="8px"
+            $border="1px solid lightgrey"
           >
             취소 하기
           </CommonButton>
-          <CommonButton $border="1px solid grey" width="40%">
+          <CommonButton
+            width="40%"
+            borderRadius="8px"
+            $border="1px solid lightgrey"
+            disabled={!isSelected}
+            onClickButton={() => closeModal()}
+          >
             선택 완료
           </CommonButton>
         </ButtonWrapper>

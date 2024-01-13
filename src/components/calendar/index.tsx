@@ -8,7 +8,7 @@ import DayOfWeek from "./DayOfWeek";
 import { MONTH_NAME } from "../../const/calendar";
 import { MONTH_NAME_VALUES } from "../../@types/calendar";
 import { compareAsc, format, isToday } from "date-fns";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import DateCell from "./DateCell";
 import TimePicker from "./timePicker/index";
 import {
@@ -29,6 +29,9 @@ type CalendarType = {
   minTime?: string;
   maxTime?: string;
   excludeTimes?: string[];
+  handleTimePicker: (value: string | number) => void;
+  selectedTime: string;
+  placeHolder?: string;
 };
 
 const Calendar = ({
@@ -43,18 +46,14 @@ const Calendar = ({
   minTime,
   maxTime,
   excludeTimes,
+  handleTimePicker,
+  selectedTime,
+  placeHolder,
 }: CalendarType) => {
-  const base = new Date();
+  const base = value ? new Date(value) : new Date();
+
   const [curYear, setCurYear] = useState(base.getFullYear());
   const [curMonth, setCurMonth] = useState(base.getMonth());
-
-  useEffect(() => {
-    if (value) {
-      const forced = new Date(value);
-      setCurMonth(forced.getMonth());
-      setCurYear(forced.getFullYear());
-    }
-  }, [value]);
 
   const validFilterDate = (date: string) => {
     if (!filterDate) {
@@ -247,10 +246,13 @@ const Calendar = ({
       </Table>
       {showTimePicker && (
         <TimePicker
+          handleTimePicker={handleTimePicker}
           timeInterval={timeInterval}
           minTime={minTime}
           maxTime={maxTime}
           excludeTimes={excludeTimes}
+          selectedTime={selectedTime}
+          placeHolder={placeHolder}
         />
       )}
     </Self>

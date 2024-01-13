@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { buttonRoleStyle, oauthButtonStyle } from "./ButtonBase";
 
 type Type = "round" | "rectangle" | "plain";
@@ -8,6 +8,23 @@ export interface ButtonType {
   oauth?: Oauth;
   type?: Type;
 }
+
+type ButtonStyleProps = {
+  width?: string;
+  height?: string;
+  color?: string;
+  fontFamily?: string;
+  backgroundColor?: string;
+  fontSize?: string;
+  type?: Type;
+  $padding?: string;
+  $border?: string;
+  hoverBackgroundColor?: string;
+  oauth?: Oauth;
+  textAlign?: string;
+  borderRadius?: string;
+  disabled?: boolean;
+};
 
 type ButtonProps<T> = {
   children: React.ReactNode;
@@ -24,6 +41,8 @@ type ButtonProps<T> = {
   hoverBackgroundColor?: string;
   oauth?: Oauth;
   textAlign?: string;
+  borderRadius?: string;
+  disabled?: boolean;
 };
 
 const CommonButton = <T,>({
@@ -39,6 +58,8 @@ const CommonButton = <T,>({
   $border,
   hoverBackgroundColor,
   oauth,
+  borderRadius,
+  disabled,
 }: ButtonProps<T>) => {
   return (
     <ButtonStyled
@@ -53,6 +74,8 @@ const CommonButton = <T,>({
       onClick={() => onClickButton && onClickButton()}
       type={type}
       oauth={oauth}
+      borderRadius={borderRadius}
+      disabled={disabled}
     >
       {children}
     </ButtonStyled>
@@ -61,7 +84,7 @@ const CommonButton = <T,>({
 
 export default CommonButton;
 
-const ButtonStyled = styled.button<ButtonProps<any>>`
+const ButtonStyled = styled.button<ButtonStyleProps>`
   transition: background-color 0.1s ease;
   cursor: pointer;
 
@@ -74,6 +97,16 @@ const ButtonStyled = styled.button<ButtonProps<any>>`
   font-size: ${($props) => ($props.fontSize ? $props.fontSize : "")};
   padding: ${($props) => ($props.$padding ? $props.$padding : "")};
   border: ${($props) => ($props.$border ? $props.$border : "")};
+  border-radius: ${($props) =>
+    $props.borderRadius ? $props.borderRadius : ""};
+
+  ${({ disabled }) =>
+    disabled &&
+    css`
+      pointer-events: none;
+      opacity: 0.6;
+      background-color: #dddddd;
+    `}
 
   ${buttonRoleStyle};
   ${oauthButtonStyle};

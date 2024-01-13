@@ -5,16 +5,15 @@ import {
   getMassageDetail,
   getSelectedMassageItem,
 } from "../../stores/massageSlice";
-import { makeSimpleTime } from "../../util/time";
-import { makeSimpleDate } from "../../util/date";
+import { addFewMinutes } from "../../util/time";
 import BookingConfirm from "./BookingConfirm";
 import RenderList from "../common/map/RenderList";
 import { BOOKING_ITEM_VALUE } from "../../@types/massage";
 import theme from "../../styles/theme";
-
+import { makeSimpleDate } from "../../util/date";
 type TProps = {
   selectedDate: string;
-  massageEndTime: Date | null;
+  selectedTime: string;
 };
 
 type SummaryListType = {
@@ -22,22 +21,30 @@ type SummaryListType = {
   value: string | number | BOOKING_ITEM_VALUE;
 };
 
-const BookingSummary = ({ massageEndTime, selectedDate }: TProps) => {
+const BookingSummary = ({ selectedDate, selectedTime }: TProps) => {
   const massageItem = useSelector(getSelectedMassageItem);
   const massageDetail = useSelector(getMassageDetail);
   const selectedMassageTime = massageDetail[0].time;
   const selectedMassagePrice = massageDetail[0].price;
 
-  const simpleDate = makeSimpleDate(selectedDate);
-  const startTime = makeSimpleTime(selectedDate);
-  const endTime = makeSimpleTime(massageEndTime);
+  const calculateEndTime = (selectedDate: string, selectedTime: string) => {
+    const fullDate = `${selectedDate}T${selectedTime}:00`;
+    const endTime = addFewMinutes(fullDate, selectedMassageTime).format(
+      "HH:mm"
+    );
+
+    return endTime;
+  };
+
+  const endTime = calculateEndTime(selectedDate, selectedTime);
+  const timeLabel = `${selectedTime}-${endTime} (${selectedMassageTime}분)`;
 
   const SUMMARY_LIST: SummaryListType[] = [
     { key: "받으실 마사지", value: massageItem.displayItem },
-    { key: "받으실 날짜", value: simpleDate },
+    { key: "받으실 날짜", value: makeSimpleDate(selectedDate) },
     {
       key: "받으실 시간",
-      value: `${startTime}-${endTime} (${selectedMassageTime}분)`,
+      value: selectedTime ? timeLabel : "미정",
     },
     { key: "금액", value: addComma(selectedMassagePrice) },
   ];
@@ -60,7 +67,7 @@ const BookingSummary = ({ massageEndTime, selectedDate }: TProps) => {
         selectedDate={selectedDate}
         massageTime={selectedMassageTime}
         massagePrice={selectedMassagePrice}
-        startTime={startTime}
+        startTime={selectedTime}
         endTime={endTime}
       />
     </SummaryBoxStyle>
