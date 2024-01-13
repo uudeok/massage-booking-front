@@ -9,11 +9,12 @@ export type TProps = {
   closeModal: () => void;
   onClick: (date: string, e?: React.MouseEvent) => void;
   value: string;
+  bookedData?: string[];
 };
 
 const SUNDAY = 0;
 
-const CalendarModal = ({ closeModal, onClick, value }: TProps) => {
+const CalendarModal = ({ closeModal, onClick, value, bookedData }: TProps) => {
   useEffect(() => {
     document.body.style.overflow = "hidden";
     return () => {
@@ -35,13 +36,16 @@ const CalendarModal = ({ closeModal, onClick, value }: TProps) => {
         <InnerBoxStyle>
           <Calendar
             onClick={onClick}
-            showTimePicker={true}
             curMonthOnly={true}
             value={value}
             minDate={new Date()}
             maxDate={addTwoWeeks}
             filterDate={isOffDay}
-            // timeInterval={30}
+            showTimePicker={true}
+            timeInterval={30}
+            minTime="09:00"
+            maxTime="21:00"
+            excludeTimes={bookedData}
           />
         </InnerBoxStyle>
         <ButtonWrapper>

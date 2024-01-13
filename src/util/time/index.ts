@@ -5,7 +5,7 @@ export const addMinutesUnit = (minute: number) => {
   return minute + "분";
 };
 
-export const splitTimeArraysBy30Minutes = (timeArrays: string[]) => {
+export const splitTimeArrays = (timeArrays: string[], timeInterval: number) => {
   let result = [] as string[];
 
   timeArrays.forEach((timeArray) => {
@@ -17,7 +17,7 @@ export const splitTimeArraysBy30Minutes = (timeArrays: string[]) => {
       const minutes = startTime.getMinutes().toString().padStart(2, "0");
       result.push(`${hours}:${minutes}`);
 
-      startTime.setMinutes(startTime.getMinutes() + 30);
+      startTime.setMinutes(startTime.getMinutes() + timeInterval);
     }
   });
 
@@ -53,6 +53,7 @@ export const generateTimeArray = (interval: number) => {
       const timeObject = {
         label: `${formattedHour}:${formattedMinute}`,
         value: `${formattedHour}:${formattedMinute}`,
+        selectable: true,
       };
       result.push(timeObject);
     }
@@ -60,6 +61,7 @@ export const generateTimeArray = (interval: number) => {
 
   return result;
 };
+
 export const filterTimeRange = (
   timeList: string[],
   minTime: string,
@@ -98,5 +100,17 @@ export const calculateMaxTime = (
       result.push(timeList[i]);
     }
   }
+  return result;
+};
+
+export const disableSelectability = (
+  timeList: TDropDownItem[],
+  bookedData: string[]
+) => {
+  const result = timeList.map((time) => ({
+    ...time,
+    selectable: !bookedData.includes(time.value.toString()),
+  }));
+
   return result;
 };

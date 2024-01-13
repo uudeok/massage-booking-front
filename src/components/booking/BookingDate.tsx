@@ -4,7 +4,7 @@ import React, { useEffect, useMemo, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useGetBookedTimeListQuery } from "../../api/book/bookQuery";
 import BookingBreakDown from "./BookingBreakDown";
-import { makeSimpleDate, spreadBookedData } from "../../util/date";
+import { makeSimpleDate } from "../../util/date";
 import CommonButton from "../common/button/CommonButton";
 import { AppDispatch } from "../../stores/store";
 import { subTabNum } from "../../stores/tabSlice";
@@ -17,28 +17,32 @@ import { ko } from "date-fns/locale";
 
 const BookingDate = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const [endTime, setEndTime] = useState<Date | null>(null);
+
   const { isOpen, showModal, closeModal } = useModal();
   const [date, setDate] = useState("");
+
   const targetDate = makeSimpleDate(date);
 
-  const { data = [] } = useGetBookedTimeListQuery(targetDate);
+  const { data: bookedData = [] } = useGetBookedTimeListQuery(targetDate);
 
   useEffect(() => {
     const value = format(new Date(), "yyyy-MM-dd", { locale: ko });
     setDate(value);
   }, []);
 
-  const onClick = (date: string, e?: React.MouseEvent) => {
+  const handleDatePicker = (date: string, e?: React.MouseEvent) => {
     setDate(format(new Date(date), "yyyy-MM-dd", { locale: ko }));
   };
-
-  const spreadData = useMemo(() => spreadBookedData(data), [data]);
 
   return (
     <>
       <ConditionalDisplay isShow={isOpen}>
-        <CalendarModal closeModal={closeModal} onClick={onClick} value={date} />
+        <CalendarModal
+          closeModal={closeModal}
+          onClick={handleDatePicker}
+          value={date}
+          bookedData={bookedData}
+        />
       </ConditionalDisplay>
 
       <ContainerStyle>
@@ -56,7 +60,7 @@ const BookingDate = () => {
             날짜 선택하기
           </CommonButton>
         </CalendarStyle>
-        <BookingBreakDown selectedDate={date} massageEndTime={endTime} />
+        <BookingBreakDown selectedDate={date} massageEndTime={new Date()} />
       </ContainerStyle>
     </>
   );

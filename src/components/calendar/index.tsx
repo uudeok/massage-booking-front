@@ -26,6 +26,9 @@ type CalendarType = {
   filterDate?: (date: Date | string) => boolean;
   showTimePicker?: boolean;
   timeInterval?: number;
+  minTime?: string;
+  maxTime?: string;
+  excludeTimes?: string[];
 };
 
 const Calendar = ({
@@ -37,6 +40,9 @@ const Calendar = ({
   value,
   filterDate,
   timeInterval,
+  minTime,
+  maxTime,
+  excludeTimes,
 }: CalendarType) => {
   const base = new Date();
   const [curYear, setCurYear] = useState(base.getFullYear());
@@ -218,7 +224,7 @@ const Calendar = ({
   };
 
   if (!timeInterval) {
-    timeInterval = 0;
+    timeInterval = 60;
   }
 
   return (
@@ -242,8 +248,9 @@ const Calendar = ({
       {showTimePicker && (
         <TimePicker
           timeInterval={timeInterval}
-          minTime="09:00"
-          maxTime="21:00"
+          minTime={minTime}
+          maxTime={maxTime}
+          excludeTimes={excludeTimes}
         />
       )}
     </Self>

@@ -1,13 +1,14 @@
 import styled from "styled-components";
-import React from "react";
+import React, { useState } from "react";
 import theme from "../../../styles/theme";
 import {
   calculateMaxTime,
   calculateMinTime,
+  disableSelectability,
   generateTimeArray,
+  splitTimeArrays,
 } from "../../../util/time";
 import DropDown, { TDropDownItem } from "../../common/dropdown";
-import { useState } from "react";
 
 type TimePickerType = {
   timeInterval: number;
@@ -22,14 +23,9 @@ const TimePicker = ({
   maxTime,
   excludeTimes,
 }: TimePickerType) => {
-  const [selectedTime, setSelectedTime] = useState("");
+  const [curTime, setCurTime] = useState("");
 
   let timeList: TDropDownItem[] = generateTimeArray(timeInterval);
-
-  const onClick = (value: any) => {
-    console.log(value);
-    setSelectedTime(value);
-  };
 
   if (minTime) {
     timeList = calculateMinTime(timeList, minTime);
@@ -39,13 +35,23 @@ const TimePicker = ({
     timeList = calculateMaxTime(timeList, maxTime);
   }
 
+  if (excludeTimes) {
+    const splitTimeList = splitTimeArrays(excludeTimes, timeInterval);
+    timeList = disableSelectability(timeList, splitTimeList);
+  }
+
+  const onClick = (value: any) => {
+    console.log("value", value);
+    setCurTime(value);
+  };
+
   return (
     <Self>
       <StyleTimePicker
         list={timeList}
         placeHolder="시간 선택"
         onClick={onClick}
-        currentValue={selectedTime}
+        currentValue={curTime}
       />
     </Self>
   );

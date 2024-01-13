@@ -8,6 +8,7 @@ import theme from "../../../styles/theme";
 export type TDropDownItem = {
   label: string;
   value: string | number;
+  selectable: boolean;
 };
 
 export type TDropDownProps = {
@@ -19,7 +20,6 @@ export type TDropDownProps = {
 };
 
 const DropDown = ({
-  disabled = false,
   list,
   onClick,
   currentValue,
@@ -37,18 +37,18 @@ const DropDown = ({
   };
 
   const renderLisItem = (item: TDropDownItem) => (
-    <Option key={item.value} onClick={() => handleClickValue(item.value)}>
+    <Option
+      key={item.value}
+      onClick={() => handleClickValue(item.value)}
+      disabled={!item.selectable}
+    >
       {item.label}
     </Option>
   );
 
   return (
     <Self>
-      <TopListItem
-        disabled={disabled}
-        isFolded={isFolded}
-        onClick={handleClick}
-      >
+      <TopListItem isFolded={isFolded} onClick={handleClick}>
         {currentValue ? currentValue : placeHolder}
         {/* <Icon /> */}
       </TopListItem>
@@ -73,15 +73,14 @@ const Self = styled.div`
   cursor: pointer;
   z-index: 100;
   position: relative;
-  /* label : DropDown; */
 `;
 
-const TopListItem = styled.ul<{ disabled: boolean; isFolded: boolean }>`
+const TopListItem = styled.ul<{ isFolded: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
-  height: 4.8rem;
+  height: 4.5rem;
   max-height: 56px;
   padding: 16px 12px 16px 16px;
   background-color: #f8f8f8;
@@ -93,8 +92,8 @@ const TopListItem = styled.ul<{ disabled: boolean; isFolded: boolean }>`
   border-radius: 4px;
   font-family: ${theme.fonts.pretend};
 
-  ${({ disabled, isFolded }) =>
-    isFolded && disabled
+  ${({ isFolded }) =>
+    isFolded
       ? css`
           border-radius: 4px;
         `
@@ -102,12 +101,6 @@ const TopListItem = styled.ul<{ disabled: boolean; isFolded: boolean }>`
           border-top-left-radius: 4px;
           border-top-right-radius: 4px;
         `}
-
-  ${({ disabled }) =>
-    disabled &&
-    css`
-      opacity: 0.5;
-    `}
 `;
 
 const List = styled.ul`
@@ -115,7 +108,7 @@ const List = styled.ul`
   width: 100%;
   overflow-y: auto;
   overflow-x: hidden;
-  max-height: 25rem;
+  max-height: 10rem;
   background-color: #f8f8f8;
   border-top: none;
   box-sizing: border-box;
@@ -124,17 +117,24 @@ const List = styled.ul`
   font-family: ${theme.fonts.pretend};
 `;
 
-const Option = styled.div`
-  height: 4rem;
+const Option = styled.li<{ disabled: boolean }>`
+  height: 3rem;
   font-size: 1.2rem;
   background-color: #f8f8f8;
   text-align: left;
   padding: 8px 16px;
   cursor: pointer;
-  line-height: 36px;
+  line-height: 30px;
   user-select: none;
   box-sizing: border-box;
   border-left: 1px solid rgba(38, 45, 7, 0.08);
   border-right: 1px solid rgba(38, 45, 7, 0.08);
-  /* label : DropDownItme; */
+
+  ${({ disabled }) =>
+    disabled &&
+    css`
+      pointer-events: none;
+      opacity: 0.6;
+      background-color: #dddddd;
+    `}
 `;
