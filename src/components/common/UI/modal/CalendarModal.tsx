@@ -66,14 +66,14 @@ const CalendarModal = ({
           <CommonButton
             onClickButton={() => closeModal()}
             width="40%"
-            borderRadius="8px"
+            $borderRadius="8px"
             $border="1px solid lightgrey"
           >
             취소 하기
           </CommonButton>
           <CommonButton
             width="40%"
-            borderRadius="8px"
+            $borderRadius="8px"
             $border="1px solid lightgrey"
             disabled={!isSelected}
             onClickButton={() => closeModal()}

@@ -22,7 +22,7 @@ type ButtonStyleProps = {
   hoverBackgroundColor?: string;
   oauth?: Oauth;
   textAlign?: string;
-  borderRadius?: string;
+  $borderRadius?: string;
   disabled?: boolean;
 };
 
@@ -41,7 +41,7 @@ type ButtonProps<T> = {
   hoverBackgroundColor?: string;
   oauth?: Oauth;
   textAlign?: string;
-  borderRadius?: string;
+  $borderRadius?: string;
   disabled?: boolean;
 };
 
@@ -58,7 +58,7 @@ const CommonButton = <T,>({
   $border,
   hoverBackgroundColor,
   oauth,
-  borderRadius,
+  $borderRadius,
   disabled,
 }: ButtonProps<T>) => {
   return (
@@ -74,7 +74,7 @@ const CommonButton = <T,>({
       onClick={() => onClickButton && onClickButton()}
       type={type}
       oauth={oauth}
-      borderRadius={borderRadius}
+      $borderRadius={$borderRadius}
       disabled={disabled}
     >
       {children}
@@ -98,7 +98,7 @@ const ButtonStyled = styled.button<ButtonStyleProps>`
   padding: ${($props) => ($props.$padding ? $props.$padding : "")};
   border: ${($props) => ($props.$border ? $props.$border : "")};
   border-radius: ${($props) =>
-    $props.borderRadius ? $props.borderRadius : ""};
+    $props.$borderRadius ? $props.$borderRadius : ""};
 
   ${({ disabled }) =>
     disabled &&

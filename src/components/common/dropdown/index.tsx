@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled, { css } from "styled-components";
 import RenderList from "../map/RenderList";
 import { SlArrowDown } from "react-icons/sl";
@@ -7,7 +7,7 @@ import theme from "../../../styles/theme";
 export type TDropDownItem = {
   label: string;
   value: string | number;
-  selectable: boolean;
+  selectable?: boolean;
 };
 
 export type TDropDownProps = {
@@ -15,7 +15,7 @@ export type TDropDownProps = {
   handleTimePicker: (value: string | number) => void;
   currentValue: string | number;
   placeHolder?: string;
-  disabled?: boolean;
+  selectable?: boolean;
 };
 
 const DropDown = ({
@@ -23,7 +23,7 @@ const DropDown = ({
   handleTimePicker,
   currentValue,
   placeHolder,
-  disabled = false,
+  selectable = false,
 }: TDropDownProps) => {
   const [isFolded, setIsFolded] = useState(true);
 
@@ -51,13 +51,13 @@ const DropDown = ({
       <TopListItem
         $isFolded={isFolded}
         onClick={handleClick}
-        disabled={disabled}
+        disabled={!selectable}
       >
         {currentValue ? currentValue : placeHolder}
         {/* <Icon /> */}
       </TopListItem>
 
-      {!disabled && !isFolded && (
+      {selectable && !isFolded && (
         <List>
           <RenderList data={list} renderItem={renderLisItem} />
         </List>

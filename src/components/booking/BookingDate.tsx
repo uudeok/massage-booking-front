@@ -30,7 +30,6 @@ const BookingDate = () => {
   };
 
   const handleTimePicker = (value: string | number) => {
-    console.log("value", value);
     setSelectedTime(String(value));
     setIsSelected(true);
   };

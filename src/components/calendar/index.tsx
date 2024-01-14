@@ -8,7 +8,7 @@ import DayOfWeek from "./DayOfWeek";
 import { MONTH_NAME } from "../../const/calendar";
 import { MONTH_NAME_VALUES } from "../../@types/calendar";
 import { compareAsc, format, isToday } from "date-fns";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import DateCell from "./DateCell";
 import TimePicker from "./timePicker/index";
 import {
@@ -16,26 +16,6 @@ import {
   calculateMonthInfo,
   getDateLabel,
 } from "../../util/date";
-
-type CalendarProps = {
-  onClick: (date: string, e?: React.MouseEvent) => void;
-  curMonthOnly?: boolean;
-  maxDate?: Date;
-  minDate?: Date;
-  value?: string;
-  filterDate?: (date: Date | string) => boolean;
-  showTimePicker?: boolean;
-};
-
-type TimePickerProps = {
-  timeInterval?: number;
-  minTime?: string;
-  maxTime?: string;
-  excludeTimes?: string[];
-  handleTimePicker: (value: string | number) => void;
-  selectedTime: string;
-  placeHolder?: string;
-};
 
 type CalendarType = {
   onClick: (date: string, e?: React.MouseEvent) => void;
@@ -71,9 +51,9 @@ const Calendar = ({
   placeHolder,
 }: CalendarType) => {
   const base = value ? new Date(value) : new Date();
-
   const [curYear, setCurYear] = useState(base.getFullYear());
   const [curMonth, setCurMonth] = useState(base.getMonth());
+  const [isSelected, setIsSelected] = useState(false);
 
   const validFilterDate = (date: string) => {
     if (!filterDate) {
@@ -160,6 +140,7 @@ const Calendar = ({
   };
 
   const handleClickDate = (e: React.MouseEvent): void => {
+    setIsSelected(true);
     const cell = e.target as HTMLTableElement;
     const date = cell.textContent!.padStart(2, "0");
     const month = cell.dataset.name as MONTH_NAME_VALUES;
@@ -181,6 +162,9 @@ const Calendar = ({
     const formattedMonth = (selectedMonth + 1).toString().padStart(2, "0");
 
     const pickDate = getDateLabel(`${selectedYear}-${formattedMonth}-${date}`);
+
+    // <--! 날짜 선택할때마다 timePicker 초기화 !-->
+    handleTimePicker("");
 
     onClick(pickDate, e);
   };
@@ -265,17 +249,16 @@ const Calendar = ({
           <DayOfWeek />
           <tbody onClick={handleClickDate}>{renderCells()}</tbody>
         </Table>
-        {showTimePicker && (
-          <TimePicker
-            handleTimePicker={handleTimePicker}
-            timeInterval={timeInterval}
-            minTime={minTime}
-            maxTime={maxTime}
-            excludeTimes={excludeTimes}
-            selectedTime={selectedTime}
-            placeHolder={placeHolder}
-          />
-        )}
+        <TimePicker
+          handleTimePicker={handleTimePicker}
+          timeInterval={timeInterval}
+          minTime={minTime}
+          maxTime={maxTime}
+          excludeTimes={excludeTimes}
+          selectedTime={selectedTime}
+          placeHolder={placeHolder}
+          selectable={isSelected}
+        />
       </Self>
     );
   } else {

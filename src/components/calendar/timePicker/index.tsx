@@ -18,7 +18,7 @@ type TimePickerType = {
   maxTime?: string;
   excludeTimes?: string[];
   placeHolder?: string;
-  disabled?: boolean;
+  selectable?: boolean;
 };
 
 const TimePicker = ({
@@ -29,8 +29,9 @@ const TimePicker = ({
   handleTimePicker,
   selectedTime,
   placeHolder,
-  disabled,
+  selectable,
 }: TimePickerType) => {
+  console.log(selectable);
   let timeList: TDropDownItem[] = generateTimeArray(timeInterval);
 
   if (minTime) {
@@ -53,7 +54,7 @@ const TimePicker = ({
         placeHolder={placeHolder}
         handleTimePicker={handleTimePicker}
         currentValue={selectedTime}
-        disabled={disabled}
+        selectable={selectable}
       />
     </Self>
   );
