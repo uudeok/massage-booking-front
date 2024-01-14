@@ -4,10 +4,7 @@ import { getAuthUser } from "../../util/auth";
 import { useNavigate } from "react-router-dom";
 import { usePostOrderDataMutation } from "../../api/orders/ordersQuery";
 import { TMassageTable } from "../../@types/massage";
-import { makeSimpleDate, makeFullDate } from "../../util/date";
-import { addFewMinutes } from "../../util/time";
-import dayjs from "dayjs";
-import { DAY_OF_WEEK_NUMBER } from "../../const/book/time";
+import { WEEK_DAYS } from "../../const/book/time";
 import { useModal } from "../../hooks/useModal";
 import LoginModal from "../common/UI/modal/LoginModal";
 import ConditionalDisplay from "../common/maybe/ConditionalDisplay";
@@ -33,12 +30,9 @@ const BookingConfirm = ({
   const navigate = useNavigate();
   const [postOrder] = usePostOrderDataMutation();
 
-  const simpleDate = makeSimpleDate(selectedDate);
-  const fullStartDate = makeFullDate(selectedDate);
-  const fullEndDate = addFewMinutes(selectedDate, massageTime).format(
-    "YYYY-MM-DDTHH:mm:ss"
-  );
-  const dayNum = dayjs(simpleDate).day();
+  const fullStartDate = `${selectedDate}T${startTime}`;
+  const fullEndDate = `${selectedDate}T${endTime}`;
+  const selectedDay = new Date(selectedDate).getDay();
 
   const changeBookHandler = async () => {
     try {
@@ -50,10 +44,10 @@ const BookingConfirm = ({
           endReservedAt: fullEndDate,
         },
         event: {
-          targetDate: simpleDate,
+          targetDate: selectedDate,
           startReservedTime: startTime,
           endReservedTime: endTime,
-          dayOfWeek: DAY_OF_WEEK_NUMBER[dayNum],
+          dayOfWeek: WEEK_DAYS[selectedDay],
           itemId: massageItem.id,
           tutorId: -1,
         },

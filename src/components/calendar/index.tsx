@@ -17,6 +17,26 @@ import {
   getDateLabel,
 } from "../../util/date";
 
+type CalendarProps = {
+  onClick: (date: string, e?: React.MouseEvent) => void;
+  curMonthOnly?: boolean;
+  maxDate?: Date;
+  minDate?: Date;
+  value?: string;
+  filterDate?: (date: Date | string) => boolean;
+  showTimePicker?: boolean;
+};
+
+type TimePickerProps = {
+  timeInterval?: number;
+  minTime?: string;
+  maxTime?: string;
+  excludeTimes?: string[];
+  handleTimePicker: (value: string | number) => void;
+  selectedTime: string;
+  placeHolder?: string;
+};
+
 type CalendarType = {
   onClick: (date: string, e?: React.MouseEvent) => void;
   curMonthOnly?: boolean;
@@ -226,37 +246,60 @@ const Calendar = ({
     timeInterval = 60;
   }
 
-  return (
-    <Self>
-      <Header>
-        <ControllerButton onClick={handleClickPrevButton}>
-          <IoChevronBackCircleOutline />
-        </ControllerButton>
-        <Title>
-          {curYear}년 {getMonthLabel(curYear, curMonth, "short")}
-        </Title>
-        <ControllerButton onClick={handleClickNextButton}>
-          <IoChevronForwardCircleOutline />
-        </ControllerButton>
-      </Header>
+  if (showTimePicker) {
+    return (
+      <Self>
+        <Header>
+          <ControllerButton onClick={handleClickPrevButton}>
+            <IoChevronBackCircleOutline />
+          </ControllerButton>
+          <Title>
+            {curYear}년 {getMonthLabel(curYear, curMonth, "short")}
+          </Title>
+          <ControllerButton onClick={handleClickNextButton}>
+            <IoChevronForwardCircleOutline />
+          </ControllerButton>
+        </Header>
 
-      <Table>
-        <DayOfWeek />
-        <tbody onClick={handleClickDate}>{renderCells()}</tbody>
-      </Table>
-      {showTimePicker && (
-        <TimePicker
-          handleTimePicker={handleTimePicker}
-          timeInterval={timeInterval}
-          minTime={minTime}
-          maxTime={maxTime}
-          excludeTimes={excludeTimes}
-          selectedTime={selectedTime}
-          placeHolder={placeHolder}
-        />
-      )}
-    </Self>
-  );
+        <Table>
+          <DayOfWeek />
+          <tbody onClick={handleClickDate}>{renderCells()}</tbody>
+        </Table>
+        {showTimePicker && (
+          <TimePicker
+            handleTimePicker={handleTimePicker}
+            timeInterval={timeInterval}
+            minTime={minTime}
+            maxTime={maxTime}
+            excludeTimes={excludeTimes}
+            selectedTime={selectedTime}
+            placeHolder={placeHolder}
+          />
+        )}
+      </Self>
+    );
+  } else {
+    return (
+      <Self>
+        <Header>
+          <ControllerButton onClick={handleClickPrevButton}>
+            <IoChevronBackCircleOutline />
+          </ControllerButton>
+          <Title>
+            {curYear}년 {getMonthLabel(curYear, curMonth, "short")}
+          </Title>
+          <ControllerButton onClick={handleClickNextButton}>
+            <IoChevronForwardCircleOutline />
+          </ControllerButton>
+        </Header>
+
+        <Table>
+          <DayOfWeek />
+          <tbody onClick={handleClickDate}>{renderCells()}</tbody>
+        </Table>
+      </Self>
+    );
+  }
 };
 
 export default Calendar;

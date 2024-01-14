@@ -11,13 +11,14 @@ import {
 import DropDown, { TDropDownItem } from "../../common/dropdown";
 
 type TimePickerType = {
+  handleTimePicker: (value: number | string) => void;
+  selectedTime: string;
   timeInterval: number;
   minTime?: string;
   maxTime?: string;
   excludeTimes?: string[];
-  handleTimePicker: (value: number | string) => void;
-  selectedTime: string;
   placeHolder?: string;
+  disabled?: boolean;
 };
 
 const TimePicker = ({
@@ -28,6 +29,7 @@ const TimePicker = ({
   handleTimePicker,
   selectedTime,
   placeHolder,
+  disabled,
 }: TimePickerType) => {
   let timeList: TDropDownItem[] = generateTimeArray(timeInterval);
 
@@ -51,6 +53,7 @@ const TimePicker = ({
         placeHolder={placeHolder}
         handleTimePicker={handleTimePicker}
         currentValue={selectedTime}
+        disabled={disabled}
       />
     </Self>
   );

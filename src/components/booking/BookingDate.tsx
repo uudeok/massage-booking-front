@@ -30,7 +30,7 @@ const BookingDate = () => {
   };
 
   const handleTimePicker = (value: string | number) => {
-    console.log(value);
+    console.log("value", value);
     setSelectedTime(String(value));
     setIsSelected(true);
   };
@@ -86,6 +86,7 @@ const ContainerStyle = styled.div`
 
 const CalendarStyle = styled.div`
   display: flex;
+  flex-direction: column;
   padding: 1rem;
   box-shadow: 0 0 0.3rem 0 rgba(0, 0, 0, 0.2);
   margin-top: 1rem;

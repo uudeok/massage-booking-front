@@ -11,11 +11,11 @@ export type TDropDownItem = {
 };
 
 export type TDropDownProps = {
-  disabled?: boolean;
   list: TDropDownItem[];
   handleTimePicker: (value: string | number) => void;
   currentValue: string | number;
   placeHolder?: string;
+  disabled?: boolean;
 };
 
 const DropDown = ({
@@ -23,6 +23,7 @@ const DropDown = ({
   handleTimePicker,
   currentValue,
   placeHolder,
+  disabled = false,
 }: TDropDownProps) => {
   const [isFolded, setIsFolded] = useState(true);
 
@@ -47,12 +48,16 @@ const DropDown = ({
 
   return (
     <Self>
-      <TopListItem $isFolded={isFolded} onClick={handleClick}>
+      <TopListItem
+        $isFolded={isFolded}
+        onClick={handleClick}
+        disabled={disabled}
+      >
         {currentValue ? currentValue : placeHolder}
         {/* <Icon /> */}
       </TopListItem>
 
-      {!isFolded && (
+      {!disabled && !isFolded && (
         <List>
           <RenderList data={list} renderItem={renderLisItem} />
         </List>
@@ -74,7 +79,7 @@ const Self = styled.div`
   position: relative;
 `;
 
-const TopListItem = styled.ul<{ $isFolded: boolean }>`
+const TopListItem = styled.ul<{ $isFolded: boolean; disabled: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -91,8 +96,8 @@ const TopListItem = styled.ul<{ $isFolded: boolean }>`
   border-radius: 4px;
   font-family: ${theme.fonts.pretend};
 
-  ${({ $isFolded }) =>
-    $isFolded
+  ${({ disabled, $isFolded }) =>
+    $isFolded && disabled
       ? css`
           border-radius: 4px;
         `
@@ -100,6 +105,12 @@ const TopListItem = styled.ul<{ $isFolded: boolean }>`
           border-top-left-radius: 4px;
           border-top-right-radius: 4px;
         `}
+
+  ${({ disabled }) =>
+    disabled &&
+    css`
+      opacity: 0.5;
+    `}
 `;
 
 const List = styled.ul`
