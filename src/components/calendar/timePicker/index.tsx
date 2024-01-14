@@ -31,7 +31,6 @@ const TimePicker = ({
   placeHolder,
   selectable,
 }: TimePickerType) => {
-  console.log(selectable);
   let timeList: TDropDownItem[] = generateTimeArray(timeInterval);
 
   if (minTime) {

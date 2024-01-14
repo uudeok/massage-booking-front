@@ -76,11 +76,13 @@ const Self = styled.td<{
 }>`
   position: relative;
   padding-bottom: 1rem;
+  /* border: 1px solid red; */
 
   ${({ disabled }) =>
     disabled &&
     css`
       color: rgba(38, 45, 57, 0.16);
+      pointer-events: none;
     `}
 
   button {

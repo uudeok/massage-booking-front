@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styled, { css } from "styled-components";
 import RenderList from "../map/RenderList";
-import { SlArrowDown } from "react-icons/sl";
 import theme from "../../../styles/theme";
 
 export type TDropDownItem = {
@@ -54,7 +53,6 @@ const DropDown = ({
         disabled={!selectable}
       >
         {currentValue ? currentValue : placeHolder}
-        {/* <Icon /> */}
       </TopListItem>
 
       {selectable && !isFolded && (
@@ -67,11 +65,6 @@ const DropDown = ({
 };
 
 export default DropDown;
-
-const Icon = styled(SlArrowDown)`
-  width: 3rem;
-  font-size: 13px;
-`;
 
 const Self = styled.div`
   cursor: pointer;
@@ -87,7 +80,8 @@ const TopListItem = styled.ul<{ $isFolded: boolean; disabled: boolean }>`
   height: 4.5rem;
   max-height: 56px;
   padding: 16px 12px 16px 16px;
-  background-color: #f8f8f8;
+  background-color: #3581ff;
+  color: white;
   border: 1px solid rgba(38, 45, 57, 0.08);
   font-size: 1.2rem;
   box-sizing: border-box;

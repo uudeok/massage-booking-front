@@ -13,6 +13,7 @@ export type TProps = {
   handleTimePicker: (value: string | number) => void;
   selectedTime: string;
   isSelected: boolean;
+  timeInterval: number;
 };
 
 const SUNDAY = 0;
@@ -25,6 +26,7 @@ const CalendarModal = ({
   handleTimePicker,
   selectedTime,
   isSelected,
+  timeInterval,
 }: TProps) => {
   useEffect(() => {
     document.body.style.overflow = "hidden";
@@ -53,7 +55,7 @@ const CalendarModal = ({
             value={value}
             filterDate={isOffDay}
             showTimePicker={true}
-            timeInterval={30}
+            timeInterval={timeInterval}
             minTime="09:00"
             maxTime="21:00"
             excludeTimes={bookedData}

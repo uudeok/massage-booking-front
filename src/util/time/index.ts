@@ -38,7 +38,7 @@ export const makeSimpleTime = (date: Date | string | null) => {
 };
 
 export const addFewMinutes = (date: string, time: number) => {
-  return dayjs(date).add(time, "minutes");
+  return dayjs(date).add(time, "minutes").format("HH:mm");
 };
 
 export const generateTimeArray = (interval: number) => {

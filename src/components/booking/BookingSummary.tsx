@@ -29,9 +29,7 @@ const BookingSummary = ({ selectedDate, selectedTime }: TProps) => {
 
   const calculateEndTime = (selectedDate: string, selectedTime: string) => {
     const fullDate = `${selectedDate}T${selectedTime}:00`;
-    const endTime = addFewMinutes(fullDate, selectedMassageTime).format(
-      "HH:mm"
-    );
+    const endTime = addFewMinutes(fullDate, selectedMassageTime);
 
     return endTime;
   };
@@ -44,7 +42,7 @@ const BookingSummary = ({ selectedDate, selectedTime }: TProps) => {
     { key: "받으실 날짜", value: makeSimpleDate(selectedDate) },
     {
       key: "받으실 시간",
-      value: selectedTime ? timeLabel : "미정",
+      value: selectedTime ? timeLabel : "",
     },
     { key: "금액", value: addComma(selectedMassagePrice) },
   ];
