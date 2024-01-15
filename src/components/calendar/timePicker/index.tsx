@@ -10,10 +10,10 @@ import {
 } from "../../../util/time";
 import DropDown, { TDropDownItem } from "../../common/dropdown";
 
-type TimePickerType = {
+export type TimePickerType = {
   handleTimePicker: (value: number | string) => void;
   selectedTime: string;
-  timeInterval: number;
+  timeInterval?: number;
   minTime?: string;
   maxTime?: string;
   excludeTimes?: string[];
@@ -31,6 +31,10 @@ const TimePicker = ({
   placeHolder,
   selectable,
 }: TimePickerType) => {
+  if (!timeInterval) {
+    timeInterval = 60;
+  }
+
   let timeList: TDropDownItem[] = generateTimeArray(timeInterval);
 
   if (minTime) {

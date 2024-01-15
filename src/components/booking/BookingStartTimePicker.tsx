@@ -5,6 +5,7 @@ import { ko } from "date-fns/esm/locale";
 import { getDay, setHours, setMinutes } from "date-fns";
 import dayjs from "dayjs";
 import theme from "../../styles/theme";
+import "./styles/datePicer.css";
 
 const SUNDAY = 0;
 
@@ -20,6 +21,8 @@ const BookingStartTimePicker = ({
   booked,
 }: TProps) => {
   const addTwoWeeks = dayjs().add(2, "weeks").format();
+
+  console.log(booked);
 
   // const filterPassedTime = (() => {
   //   let isThrottled = false;
@@ -60,6 +63,7 @@ const BookingStartTimePicker = ({
 
   return (
     <StyledStartTimePicker
+      className="form-control"
       dateFormat="yyyy-MM-dd aa h:mm "
       minDate={new Date()}
       maxDate={new Date(addTwoWeeks)}

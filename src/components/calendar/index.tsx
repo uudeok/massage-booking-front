@@ -16,6 +16,7 @@ import {
   getDateLabel,
 } from "../../util/date";
 import dayjs from "dayjs";
+import { TimePickerType } from "./timePicker/index";
 
 type CalendarType = {
   onClick: (date: string, e?: React.MouseEvent) => void;
@@ -29,10 +30,20 @@ type CalendarType = {
   minTime?: string;
   maxTime?: string;
   excludeTimes?: string[];
-  handleTimePicker: (value: string | number) => void;
-  selectedTime: string;
   placeHolder?: string;
 };
+
+type CalendarWithTimePicker = CalendarType & {
+  showTimePicker: true;
+} & TimePickerType;
+
+type CalendarWithOutTimePicker = CalendarType & {
+  showTimePicker?: false;
+  handleTimePicker?: never;
+  selectedTime?: never;
+};
+
+type CombinedProps = CalendarWithTimePicker | CalendarWithOutTimePicker;
 
 const Calendar = ({
   onClick,
@@ -49,7 +60,7 @@ const Calendar = ({
   handleTimePicker,
   selectedTime,
   placeHolder,
-}: CalendarType) => {
+}: CombinedProps) => {
   const base = value ? new Date(value) : new Date();
   const [curYear, setCurYear] = useState(base.getFullYear());
   const [curMonth, setCurMonth] = useState(base.getMonth());
@@ -166,7 +177,9 @@ const Calendar = ({
     const pickDate = getDateLabel(`${selectedYear}-${formattedMonth}-${date}`);
 
     // <--! 날짜 선택할때마다 timePicker 초기화 !-->
-    handleTimePicker("");
+    if (handleTimePicker) {
+      handleTimePicker("");
+    }
 
     onClick(pickDate, e);
   };
@@ -227,10 +240,6 @@ const Calendar = ({
 
     return cellRows;
   };
-
-  if (!timeInterval) {
-    timeInterval = 60;
-  }
 
   if (showTimePicker) {
     return (
