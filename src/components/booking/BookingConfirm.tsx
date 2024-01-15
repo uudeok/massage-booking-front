@@ -12,7 +12,6 @@ import ConditionalDisplay from "../common/maybe/ConditionalDisplay";
 type TProps = {
   massageItem: TMassageTable;
   selectedDate: string;
-  massageTime: number;
   massagePrice: number;
   startTime: string;
   endTime: string;
@@ -21,7 +20,6 @@ type TProps = {
 const BookingConfirm = ({
   massageItem,
   selectedDate,
-  massageTime,
   massagePrice,
   startTime,
   endTime,
@@ -33,6 +31,9 @@ const BookingConfirm = ({
   const fullStartDate = `${selectedDate}T${startTime}`;
   const fullEndDate = `${selectedDate}T${endTime}`;
   const selectedDay = new Date(selectedDate).getDay();
+
+  // console.log("start", startTime);
+  // console.log("end", endTime);
 
   const changeBookHandler = async () => {
     try {

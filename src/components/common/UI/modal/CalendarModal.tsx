@@ -3,7 +3,7 @@ import React, { useEffect } from "react";
 import theme from "../../../../styles/theme";
 import Calendar from "../../../calendar";
 import CommonButton from "../../button/CommonButton";
-import { addDays } from "date-fns";
+import dayjs from "dayjs";
 
 export type TProps = {
   closeModal: () => void;
@@ -35,7 +35,7 @@ const CalendarModal = ({
     };
   }, []);
 
-  const addTwoWeeks = addDays(new Date(), 14);
+  const addTwoWeeks = dayjs(new Date()).add(14, "day").toDate();
 
   const isOffDay = (date: Date | string) => {
     const day = new Date(date).getDay();

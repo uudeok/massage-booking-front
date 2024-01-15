@@ -7,8 +7,7 @@ import theme from "../../styles/theme";
 import DayOfWeek from "./DayOfWeek";
 import { MONTH_NAME } from "../../const/calendar";
 import { MONTH_NAME_VALUES } from "../../@types/calendar";
-import { compareAsc, format, isToday } from "date-fns";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import DateCell from "./DateCell";
 import TimePicker from "./timePicker/index";
 import {
@@ -16,6 +15,7 @@ import {
   calculateMonthInfo,
   getDateLabel,
 } from "../../util/date";
+import dayjs from "dayjs";
 
 type CalendarType = {
   onClick: (date: string, e?: React.MouseEvent) => void;
@@ -98,7 +98,9 @@ const Calendar = ({
     const targetDate = new Date(date).setHours(0);
     const max = new Date(maxDate).setHours(0);
 
-    return compareAsc(targetDate, max) <= 0;
+    if (targetDate === max || targetDate < max) {
+      return true;
+    }
   };
 
   const handleClickPrevButton = (e: React.MouseEvent) => {
@@ -193,18 +195,18 @@ const Calendar = ({
         monthName = MONTH_NAME.NEXT;
       }
 
-      const renderingDate = format(
-        new Date(curYear, month, dateLabel),
-        "yyyy-MM-dd"
+      const renderingDate = dayjs(new Date(curYear, month, dateLabel)).format(
+        "YYYY-MM-DD"
       );
 
       const filteredDate = validFilterDate(renderingDate);
       const isPassed = validIsPassedDate(month, dateLabel);
       const isSafeDate = validIsDateBeyondMax(renderingDate);
+      const today = dayjs();
 
       cells.push(
         <DateCell
-          $isToday={isToday(new Date(curYear, month, dateLabel))}
+          $isToday={today.isSame(new Date(curYear, month, dateLabel), "day")}
           dateLabel={`${dateLabel}`}
           disabled={isPassed || !isSafeDate || !filteredDate}
           monthName={monthName}

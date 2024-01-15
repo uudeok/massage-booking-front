@@ -11,6 +11,7 @@ import RenderList from "../common/map/RenderList";
 import { BOOKING_ITEM_VALUE } from "../../@types/massage";
 import theme from "../../styles/theme";
 import { makeSimpleDate } from "../../util/date";
+
 type TProps = {
   selectedDate: string;
   selectedTime: string;
@@ -63,7 +64,6 @@ const BookingSummary = ({ selectedDate, selectedTime }: TProps) => {
       <BookingConfirm
         massageItem={massageItem}
         selectedDate={selectedDate}
-        massageTime={selectedMassageTime}
         massagePrice={selectedMassagePrice}
         startTime={selectedTime}
         endTime={endTime}

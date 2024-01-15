@@ -31,7 +31,6 @@ const BookingDate = () => {
 
   const targetDate = makeSimpleDate(date);
   const timeInterval = 30;
-
   const { data: bookedData = [] } = useGetBookedTimeListQuery(targetDate);
 
   const handleReset = () => {
@@ -39,7 +38,7 @@ const BookingDate = () => {
     setIsSelected(false);
   };
 
-  const checkBookAvailability = useCallback(() => {
+  const isValidSelectedTime = (selectedTime: string) => {
     const spreadData = splitTimeArrays(bookedData, timeInterval);
     const fullDate = `${date}T${selectedTime}`;
     const endTime = addFewMinutes(fullDate, selectedMassageTime);
@@ -49,7 +48,7 @@ const BookingDate = () => {
       alert(ORDER_ERROR_MESSAGE.notice_overlap_time);
       handleReset();
     }
-  }, [bookedData, date, selectedMassageTime, selectedTime]);
+  };
 
   const isInvalidBusinessHour = useCallback(() => {
     if (selectedTime === "19:30" && 90 < selectedMassageTime) {
@@ -65,13 +64,9 @@ const BookingDate = () => {
       alert(ORDER_ERROR_MESSAGE.notice_business_time);
       handleReset();
     } else {
-      return true;
+      return;
     }
   }, [selectedMassageTime, selectedTime]);
-
-  useEffect(() => {
-    checkBookAvailability();
-  }, [checkBookAvailability]);
 
   useEffect(() => {
     isInvalidBusinessHour();
@@ -87,6 +82,7 @@ const BookingDate = () => {
     // <--! 날짜 바뀔때마다 value 초기화하므로 handleTimePicker 함수가 실행됨 !-->
     if (value) {
       setIsSelected(true);
+      isValidSelectedTime(String(value));
     } else {
       setIsSelected(false);
     }
