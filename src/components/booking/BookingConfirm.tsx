@@ -32,9 +32,6 @@ const BookingConfirm = ({
   const fullEndDate = `${selectedDate}T${endTime}`;
   const selectedDay = new Date(selectedDate).getDay();
 
-  // console.log("start", startTime);
-  // console.log("end", endTime);
-
   const changeBookHandler = async () => {
     try {
       postOrder({
@@ -86,6 +83,7 @@ const BookingConfirm = ({
         $border="2px solid grey"
         onClickButton={bookMassageHandler}
         $padding="0.5rem"
+        disabled={!startTime}
       >
         예약하기
       </CommonButton>

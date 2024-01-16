@@ -50,6 +50,7 @@ const BookingStartTimePicker = ({
   // })();
 
   const filterPassedTime = (time: Date) => {
+    console.log("time", time);
     const currentTime = new Date().getTime();
     const businessTime = time.getTime();
 

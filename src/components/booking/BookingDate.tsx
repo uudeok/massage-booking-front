@@ -33,6 +33,8 @@ const BookingDate = () => {
   const timeInterval = 30;
   const { data: bookedData = [] } = useGetBookedTimeListQuery(targetDate);
 
+  const spreadData = splitTimeArrays(bookedData, timeInterval);
+
   const handleReset = () => {
     setSelectedTime("");
     setIsSelected(false);
@@ -95,7 +97,7 @@ const BookingDate = () => {
           closeModal={closeModal}
           onClick={handleDatePicker}
           value={date}
-          bookedData={bookedData}
+          bookedData={spreadData}
           handleTimePicker={handleTimePicker}
           selectedTime={selectedTime}
           isSelected={isSelected}

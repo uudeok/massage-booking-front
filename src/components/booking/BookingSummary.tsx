@@ -43,7 +43,7 @@ const BookingSummary = ({ selectedDate, selectedTime }: TProps) => {
     { key: "받으실 날짜", value: makeSimpleDate(selectedDate) },
     {
       key: "받으실 시간",
-      value: selectedTime ? timeLabel : "",
+      value: selectedTime ? timeLabel : "시간을 선택해주세요",
     },
     { key: "금액", value: addComma(selectedMassagePrice) },
   ];

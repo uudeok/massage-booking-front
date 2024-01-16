@@ -4,11 +4,10 @@ import theme from "../../../styles/theme";
 import {
   calculateMaxTime,
   calculateMinTime,
-  disableSelectability,
+  adjustSelectability,
   generateTimeArray,
-  splitTimeArrays,
 } from "../../../util/time";
-import DropDown, { TDropDownItem } from "../../common/dropdown";
+import DropDown, { Time } from "../../common/dropdown";
 
 export type TimePickerType = {
   handleTimePicker: (value: number | string) => void;
@@ -19,6 +18,7 @@ export type TimePickerType = {
   excludeTimes?: string[];
   placeHolder?: string;
   selectable?: boolean;
+  filterTime?: (time: Time) => boolean;
 };
 
 const TimePicker = ({
@@ -30,12 +30,13 @@ const TimePicker = ({
   selectedTime,
   placeHolder,
   selectable,
+  filterTime,
 }: TimePickerType) => {
   if (!timeInterval) {
     timeInterval = 60;
   }
 
-  let timeList: TDropDownItem[] = generateTimeArray(timeInterval);
+  let timeList: Time[] = generateTimeArray(timeInterval);
 
   if (minTime) {
     timeList = calculateMinTime(timeList, minTime);
@@ -46,8 +47,7 @@ const TimePicker = ({
   }
 
   if (excludeTimes) {
-    const splitTimeList = splitTimeArrays(excludeTimes, timeInterval);
-    timeList = disableSelectability(timeList, splitTimeList);
+    timeList = adjustSelectability(timeList, excludeTimes);
   }
 
   return (
@@ -58,6 +58,7 @@ const TimePicker = ({
         handleTimePicker={handleTimePicker}
         currentValue={selectedTime}
         selectable={selectable}
+        filterTime={filterTime}
       />
     </Self>
   );

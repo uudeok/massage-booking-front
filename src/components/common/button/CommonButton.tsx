@@ -106,6 +106,7 @@ const ButtonStyled = styled.button<ButtonStyleProps>`
       pointer-events: none;
       opacity: 0.6;
       background-color: #dddddd;
+      border: none;
     `}
 
   ${buttonRoleStyle};

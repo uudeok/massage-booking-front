@@ -3,18 +3,19 @@ import styled, { css } from "styled-components";
 import RenderList from "../map/RenderList";
 import theme from "../../../styles/theme";
 
-export type TDropDownItem = {
+export type Time = {
   label: string;
   value: string | number;
-  selectable?: boolean;
+  selectable: boolean;
 };
 
 export type TDropDownProps = {
-  list: TDropDownItem[];
+  list: Time[];
   handleTimePicker: (value: string | number) => void;
   currentValue: string | number;
   placeHolder?: string;
   selectable?: boolean;
+  filterTime?: (time: Time) => boolean;
 };
 
 const DropDown = ({
@@ -23,8 +24,10 @@ const DropDown = ({
   currentValue,
   placeHolder,
   selectable = false,
+  filterTime,
 }: TDropDownProps) => {
   const [isFolded, setIsFolded] = useState(true);
+  let result = false;
 
   const handleClick = (e: React.MouseEvent) => {
     setIsFolded((prev) => !prev);
@@ -35,15 +38,21 @@ const DropDown = ({
     setIsFolded(true);
   };
 
-  const renderLisItem = (item: TDropDownItem) => (
-    <Option
-      key={item.value}
-      onClick={() => handleClickTime(item.value)}
-      disabled={!item.selectable}
-    >
-      {item.label}
-    </Option>
-  );
+  const renderLisItem = (item: Time) => {
+    if (filterTime) {
+      result = filterTime(item);
+    }
+
+    return (
+      <Option
+        key={item.value}
+        onClick={() => handleClickTime(item.value)}
+        disabled={!item.selectable || !result}
+      >
+        {item.label}
+      </Option>
+    );
+  };
 
   return (
     <Self>

@@ -17,6 +17,7 @@ import {
 } from "../../util/date";
 import dayjs from "dayjs";
 import { TimePickerType } from "./timePicker/index";
+import { Time } from "../common/dropdown";
 
 type CalendarType = {
   onClick: (date: string, e?: React.MouseEvent) => void;
@@ -31,6 +32,8 @@ type CalendarType = {
   maxTime?: string;
   excludeTimes?: string[];
   placeHolder?: string;
+  onHover?: (date: string) => void;
+  filterTime?: (time: Time) => boolean;
 };
 
 type CalendarWithTimePicker = CalendarType & {
@@ -60,6 +63,8 @@ const Calendar = ({
   handleTimePicker,
   selectedTime,
   placeHolder,
+  onHover,
+  filterTime,
 }: CombinedProps) => {
   const base = value ? new Date(value) : new Date();
   const [curYear, setCurYear] = useState(base.getFullYear());
@@ -226,6 +231,7 @@ const Calendar = ({
           key={cellCount}
           curMonthOnly={curMonthOnly}
           selected={value === renderingDate}
+          onMouseEnter={() => onHover && onHover(renderingDate)}
         />
       );
 
@@ -269,6 +275,7 @@ const Calendar = ({
           selectedTime={selectedTime}
           placeHolder={placeHolder}
           selectable={isSelected}
+          filterTime={filterTime}
         />
       </Self>
     );

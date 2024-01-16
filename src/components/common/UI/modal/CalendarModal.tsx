@@ -4,6 +4,7 @@ import theme from "../../../../styles/theme";
 import Calendar from "../../../calendar";
 import CommonButton from "../../button/CommonButton";
 import dayjs from "dayjs";
+import { Time } from "../../dropdown";
 
 export type TProps = {
   closeModal: () => void;
@@ -42,6 +43,16 @@ const CalendarModal = ({
     return day !== SUNDAY;
   };
 
+  const filterTime = (time: Time) => {
+    const currentTime = new Date().getTime();
+    const [year, month, day] = value.split("-").map((str) => Number(str));
+    const [hour, minutes] = time.label.split(":").map((str) => Number(str));
+
+    const selectTime = new Date(year, month - 1, day, hour, minutes).getTime();
+
+    return currentTime < selectTime;
+  };
+
   return (
     <>
       <BackDropStyle onClick={() => closeModal()} />
@@ -62,6 +73,7 @@ const CalendarModal = ({
             handleTimePicker={handleTimePicker}
             selectedTime={selectedTime}
             placeHolder="시간 선택"
+            filterTime={filterTime}
           />
         </InnerBoxStyle>
         <ButtonWrapper>

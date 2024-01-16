@@ -12,6 +12,7 @@ interface IDateCell {
   curMonthOnly?: boolean;
   mode?: "duration";
   selected: boolean;
+  onMouseEnter: () => void;
 }
 
 const getDateCellColor = (month: MONTH_NAME_VALUES) => {
@@ -41,6 +42,7 @@ const DateCell: React.FC<IDateCell> = ({
   curMonthOnly,
   selected,
   mode,
+  onMouseEnter,
 }) => {
   return (
     <Self
@@ -50,6 +52,7 @@ const DateCell: React.FC<IDateCell> = ({
       $isCurMonth={monthName === MONTH_NAME.CURRENT}
       mode={mode}
       selected={selected}
+      onMouseEnter={onMouseEnter}
     >
       {curMonthOnly && monthName !== MONTH_NAME.CURRENT ? null : (
         <button disabled={disabled} data-name={monthName}>

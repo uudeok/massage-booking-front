@@ -1,10 +1,11 @@
 import dayjs from "dayjs";
-import { TDropDownItem } from "../../components/common/dropdown";
+import { Time } from "../../components/common/dropdown";
 
 export const addMinutesUnit = (minute: number) => {
   return minute + "분";
 };
 
+// <!-- bookedData 를 timeInterval 단위로 쪼개주는 역할 --!>
 export const splitTimeArrays = (timeArrays: string[], timeInterval: number) => {
   let result = [] as string[];
 
@@ -41,6 +42,7 @@ export const addFewMinutes = (date: string, time: number) => {
   return dayjs(date).add(time, "minutes").format("HH:mm");
 };
 
+// <!-- 24시간을 interval 단위로 생성 --!>
 export const generateTimeArray = (interval: number) => {
   const hours = 24;
   const minutes = 60;
@@ -77,10 +79,7 @@ export const filterTimeRange = (
   return timeList.slice(startTime, endTime + 1);
 };
 
-export const calculateMinTime = (
-  timeList: TDropDownItem[],
-  minTime: string
-) => {
+export const calculateMinTime = (timeList: Time[], minTime: string) => {
   let result = [];
   for (let i = 0; i < timeList.length; i++) {
     if (timeList[i].label >= minTime) {
@@ -90,10 +89,7 @@ export const calculateMinTime = (
   return result;
 };
 
-export const calculateMaxTime = (
-  timeList: TDropDownItem[],
-  maxTime: string
-) => {
+export const calculateMaxTime = (timeList: Time[], maxTime: string) => {
   let result = [];
   for (let i = 0; i < timeList.length; i++) {
     if (timeList[i].label <= maxTime) {
@@ -103,10 +99,8 @@ export const calculateMaxTime = (
   return result;
 };
 
-export const disableSelectability = (
-  timeList: TDropDownItem[],
-  bookedData: string[]
-) => {
+// <!-- 시간 리스트에서 예약된 시간 selectable : false 로 바꿔주는 함수 --!>
+export const adjustSelectability = (timeList: Time[], bookedData: string[]) => {
   const result = timeList.map((time) => ({
     ...time,
     selectable: !bookedData.includes(time.value.toString()),
