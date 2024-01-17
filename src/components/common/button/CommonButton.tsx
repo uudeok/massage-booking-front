@@ -5,7 +5,7 @@ type Type = "round" | "rectangle" | "plain";
 type Oauth = "kakao" | "naver";
 
 export interface ButtonType {
-  oauth?: Oauth;
+  $oauth?: Oauth;
   type?: Type;
 }
 
@@ -20,7 +20,7 @@ type ButtonStyleProps = {
   $padding?: string;
   $border?: string;
   hoverBackgroundColor?: string;
-  oauth?: Oauth;
+  $oauth?: Oauth;
   textAlign?: string;
   $borderRadius?: string;
   disabled?: boolean;
@@ -39,7 +39,7 @@ type ButtonProps<T> = {
   $padding?: string;
   $border?: string;
   hoverBackgroundColor?: string;
-  oauth?: Oauth;
+  $oauth?: Oauth;
   textAlign?: string;
   $borderRadius?: string;
   disabled?: boolean;
@@ -57,7 +57,7 @@ const CommonButton = <T,>({
   $padding,
   $border,
   hoverBackgroundColor,
-  oauth,
+  $oauth,
   $borderRadius,
   disabled,
 }: ButtonProps<T>) => {
@@ -73,7 +73,7 @@ const CommonButton = <T,>({
       $border={$border}
       onClick={() => onClickButton && onClickButton()}
       type={type}
-      oauth={oauth}
+      $oauth={$oauth}
       $borderRadius={$borderRadius}
       disabled={disabled}
     >

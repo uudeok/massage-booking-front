@@ -10,7 +10,7 @@ const KakaoLogin = () => {
 
   return (
     <Link to={KAKAO_URL}>
-      <CommonButton oauth="kakao">카카오톡 계정 로그인</CommonButton>
+      <CommonButton $oauth="kakao">카카오톡 계정 로그인</CommonButton>
     </Link>
   );
 };

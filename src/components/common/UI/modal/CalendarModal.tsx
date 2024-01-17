@@ -11,7 +11,7 @@ export type TProps = {
   onClick: (date: string, e?: React.MouseEvent) => void;
   value: string;
   bookedData?: string[];
-  handleTimePicker: (value: string | number) => void;
+  handleTimePicker: (value: string) => void;
   selectedTime: string;
   isSelected: boolean;
   timeInterval: number;
@@ -38,7 +38,7 @@ const CalendarModal = ({
 
   const addTwoWeeks = dayjs(new Date()).add(14, "day").toDate();
 
-  const isOffDay = (date: Date | string) => {
+  const isOffDay = (date: string) => {
     const day = new Date(date).getDay();
     return day !== SUNDAY;
   };

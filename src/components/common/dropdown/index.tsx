@@ -5,13 +5,13 @@ import theme from "../../../styles/theme";
 
 export type Time = {
   label: string;
-  value: string | number;
+  value: string;
   selectable: boolean;
 };
 
 export type TDropDownProps = {
   list: Time[];
-  handleTimePicker: (value: string | number) => void;
+  handleTimePicker: (value: string) => void;
   currentValue: string | number;
   placeHolder?: string;
   selectable?: boolean;
@@ -33,7 +33,7 @@ const DropDown = ({
     setIsFolded((prev) => !prev);
   };
 
-  const handleClickTime = (value: string | number) => {
+  const handleClickTime = (value: string) => {
     handleTimePicker(value);
     setIsFolded(true);
   };

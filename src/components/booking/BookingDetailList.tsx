@@ -1,32 +1,30 @@
 import { useSelector } from "react-redux/es/hooks/useSelector";
-import styled from "styled-components";
 import { getMassageItem } from "../../stores/massageSlice";
 import { useGetMassageItemQuery } from "../../api/massage/massageQuery";
-import RenderList from "../common/map/RenderList";
-import BookingDetail from "./BookingDetail";
 import { TMassageDetail, TMassageTable } from "../../@types/massage";
-import Card from "../common/card/Card";
-import CommonButton from "../common/button/CommonButton";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../stores/store";
 import { subTabNum } from "../../stores/tabSlice";
-import FetchWithLoading from "../loading/FetchWithLoading";
-import { useEffect, useState } from "react";
 import theme from "../../styles/theme";
+import ErrorDisplay from "../error/ErrorDisplay";
+import LoadingBar from "../loading/LoadingBar";
+import styled from "styled-components";
+import Card from "../common/card/Card";
+import CommonButton from "../common/button/CommonButton";
+import RenderList from "../common/map/RenderList";
+import BookingDetail from "./BookingDetail";
 
 const BookingDetailList = () => {
   const dispatch = useDispatch<AppDispatch>();
   const massageItem = useSelector(getMassageItem);
-  const [detail, setDetail] = useState<TMassageDetail[]>([]);
 
-  const { data: selectedMassage, isLoading } =
-    useGetMassageItemQuery(massageItem);
+  const { data: selectedMassage } = useGetMassageItemQuery(massageItem);
 
-  useEffect(() => {
-    if (selectedMassage !== undefined) {
-      setDetail(selectedMassage.detail);
-    }
-  }, [selectedMassage]);
+  if (!selectedMassage) return <LoadingBar />;
+
+  if (selectedMassage === undefined) {
+    return <ErrorDisplay errorMessage="일시적인 오류가 발생했습니다" />;
+  }
 
   const renderDetailItem = (detail: TMassageDetail) => (
     <Card key={detail.time}>
@@ -46,9 +44,10 @@ const BookingDetailList = () => {
       </ButtonBoxStyle>
       <ContentBoxStyle>
         <ListBoxStyle>
-          <FetchWithLoading isLoading={isLoading}>
-            <RenderList data={detail} renderItem={renderDetailItem} />
-          </FetchWithLoading>
+          <RenderList
+            data={selectedMassage.detail}
+            renderItem={renderDetailItem}
+          />
         </ListBoxStyle>
       </ContentBoxStyle>
     </>

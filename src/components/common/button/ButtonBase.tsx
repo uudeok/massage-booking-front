@@ -34,14 +34,14 @@ export const buttonRoleStyle = css<ButtonType>`
 `;
 
 export const oauthButtonStyle = css<ButtonType>`
-  ${({ oauth }) => {
-    if (oauth === "kakao") {
+  ${({ $oauth }) => {
+    if ($oauth === "kakao") {
       return css`
         font-family: ${theme.fonts.pretend};
-        background-color: ${theme.palette.kakaoColor}
-        background-image: url(//storage.keepgrow.com/admin/campaign/20200611043456590.svg);
-        background-repeat: no-repeat;
+        background: url(//storage.keepgrow.com/admin/campaign/20200611043456590.svg)
+          no-repeat center;
         background-position: 28px;
+        background-color: ${theme.palette.kakaoColor};
         font-size: 1rem;
         cursor: pointer;
         margin-top: 1rem;
@@ -54,7 +54,7 @@ export const oauthButtonStyle = css<ButtonType>`
       `;
     }
 
-    if (oauth === "naver") {
+    if ($oauth === "naver") {
       return css`
         font-family: ${theme.fonts.pretend};
         background: url("/naverIcon.png") no-repeat center;

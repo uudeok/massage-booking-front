@@ -10,7 +10,7 @@ import {
 import DropDown, { Time } from "../../common/dropdown";
 
 export type TimePickerType = {
-  handleTimePicker: (value: number | string) => void;
+  handleTimePicker: (value: string) => void;
   selectedTime: string;
   timeInterval?: number;
   minTime?: string;

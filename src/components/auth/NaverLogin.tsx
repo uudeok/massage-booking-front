@@ -10,7 +10,7 @@ const NaverLogin = () => {
   return (
     <>
       <Link to={NAVER_URL}>
-        <CommonButton oauth="naver">네이버 아이디 로그인</CommonButton>
+        <CommonButton $oauth="naver">네이버 아이디 로그인</CommonButton>
       </Link>
     </>
   );

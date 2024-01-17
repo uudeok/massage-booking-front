@@ -25,7 +25,7 @@ type CalendarType = {
   maxDate?: Date;
   minDate?: Date;
   value?: string;
-  filterDate?: (date: Date | string) => boolean;
+  filterDate?: (date: string) => boolean;
   showTimePicker?: boolean;
   timeInterval?: number;
   minTime?: string;

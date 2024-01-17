@@ -1,8 +1,21 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import theme from "../../styles/theme";
+import { getAuthUser } from "../../util/auth";
+import { useNavigate } from "react-router-dom";
 
 const Booking = () => {
+  const navigate = useNavigate();
+  const token = getAuthUser();
+
+  const handleRedirect = () => {
+    if (token === null) {
+      navigate("/login");
+    } else {
+      navigate("/book");
+    }
+  };
+
   return (
     <ContainerStyle>
       <ImgBoxStyle>
@@ -11,9 +24,8 @@ const Booking = () => {
           <Link to="/information/contact">
             <ButtonBoxStyle>오시는 길</ButtonBoxStyle>
           </Link>
-          <Link to="/book">
-            <ButtonBoxStyle>예약하기</ButtonBoxStyle>
-          </Link>
+
+          <ButtonBoxStyle onClick={handleRedirect}>예약하기</ButtonBoxStyle>
         </InnerBoxStyle>
       </ImgBoxStyle>
     </ContainerStyle>

@@ -25,6 +25,7 @@ const BookingDate = () => {
   const selectedMassageTime = selectedMassageDetail[0].time;
 
   const { isOpen, showModal, closeModal } = useModal();
+
   const [date, setDate] = useState(new Date().toString());
   const [selectedTime, setSelectedTime] = useState("");
   const [isSelected, setIsSelected] = useState(false);
@@ -78,13 +79,13 @@ const BookingDate = () => {
     setDate(date);
   };
 
-  const handleTimePicker = (value: string | number) => {
-    setSelectedTime(String(value));
+  const handleTimePicker = (value: string) => {
+    setSelectedTime(value);
 
     // <--! 날짜 바뀔때마다 value 초기화하므로 handleTimePicker 함수가 실행됨 !-->
     if (value) {
       setIsSelected(true);
-      isValidSelectedTime(String(value));
+      isValidSelectedTime(value);
     } else {
       setIsSelected(false);
     }
