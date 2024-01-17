@@ -6,6 +6,7 @@ const palette = {
   grey: "#D3D3D3",
   greenLg: "#97a393",
   greenDk: "#819977",
+  blue: "#3581ff",
 };
 
 const devise = {

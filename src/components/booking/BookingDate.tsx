@@ -1,16 +1,10 @@
-import styled from "styled-components";
 import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useGetBookedTimeListQuery } from "../../api/book/bookQuery";
-import BookingBreakDown from "./BookingBreakDown";
 import { makeSimpleDate } from "../../util/date";
-import CommonButton from "../common/button/CommonButton";
 import { AppDispatch } from "../../stores/store";
 import { subTabNum } from "../../stores/tabSlice";
-import theme from "../../styles/theme";
 import { useModal } from "../../hooks/useModal";
-import ConditionalDisplay from "../common/maybe/ConditionalDisplay";
-import CalendarModal from "../common/UI/modal/CalendarModal";
 import {
   addFewMinutes,
   isTimeOverlaps,
@@ -18,6 +12,13 @@ import {
 } from "../../util/time";
 import { getMassageDetail } from "../../stores/massageSlice";
 import { ORDER_ERROR_MESSAGE } from "../../const/book/errorMessage";
+import theme from "../../styles/theme";
+import styled from "styled-components";
+import CommonButton from "../common/button/CommonButton";
+import ConditionalDisplay from "../common/maybe/ConditionalDisplay";
+import CalendarModal from "../common/UI/modal/CalendarModal";
+import BookingNotice from "./BookingNotice";
+import BookingSummary from "./BookingSummary";
 
 const BookingDate = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -110,18 +111,18 @@ const BookingDate = () => {
         <CommonButton type="plain" onClickButton={() => dispatch(subTabNum())}>
           뒤로가기
         </CommonButton>
-        <CalendarStyle>
-          <Title>날짜 및 시간을 선택해주세요</Title>
-          <CommonButton
-            type="rectangle"
-            width="12rem"
-            $padding="0.5rem"
-            onClickButton={() => showModal()}
-          >
-            날짜 선택하기
-          </CommonButton>
-        </CalendarStyle>
-        <BookingBreakDown selectedDate={date} selectedTime={selectedTime} />
+        <TitleStyle>날짜와 시간을 선택해주세요</TitleStyle>
+        <InnerBoxStyle>
+          <LeftBoxStyle>
+            <BookingSummary
+              selectedDate={date}
+              selectedTime={selectedTime}
+              showModal={showModal}
+            />
+          </LeftBoxStyle>
+
+          <BookingNotice />
+        </InnerBoxStyle>
       </ContainerStyle>
     </>
   );
@@ -129,34 +130,49 @@ const BookingDate = () => {
 
 export default BookingDate;
 
-const ContainerStyle = styled.div`
+const TitleStyle = styled.div`
+  font-size: 2rem;
+  text-align: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid lightgrey;
+  line-height: 1.2;
+  font-family: ${theme.fonts.gmarket};
+  cursor: pointer;
+
+  @media only screen and (max-width: ${theme.devise.bigMobileWidth}) {
+    font-size: 1.5rem;
+    margin-top: 2rem;
+  }
+`;
+
+const InnerBoxStyle = styled.div`
   display: flex;
-  flex-direction: column;
-  width: 60rem;
-  margin: 2rem auto;
-  font-family: ${theme.fonts.pretend};
+  margin-top: 1rem;
+
+  @media only screen and (max-width: ${theme.devise.tabletWidth}) {
+    flex-direction: column;
+  }
+`;
+
+const LeftBoxStyle = styled.div`
+  width: 50%;
+  text-align: center;
+  margin-right: 1rem;
 
   @media only screen and (max-width: ${theme.devise.notebookWidth}) {
     width: 100%;
   }
 `;
 
-const CalendarStyle = styled.div`
+const ContainerStyle = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 1rem;
-  box-shadow: 0 0 0.3rem 0 rgba(0, 0, 0, 0.2);
-  margin-top: 1rem;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
+  width: 65rem;
+  margin: 2rem auto;
+  font-family: ${theme.fonts.pretend};
 
-  @media only screen and (max-width: ${theme.devise.bigMobileWidth}) {
-    flex-direction: column;
-    text-align: center;
+  @media only screen and (max-width: ${theme.devise.notebookWidth}) {
+    width: 100%;
   }
-`;
-
-const Title = styled.h2`
-  font-size: 1.2rem;
 `;

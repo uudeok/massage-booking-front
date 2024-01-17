@@ -1,4 +1,3 @@
-import styled from "styled-components";
 import { addComma } from "../../util/price";
 import { useSelector } from "react-redux";
 import {
@@ -6,23 +5,26 @@ import {
   getSelectedMassageItem,
 } from "../../stores/massageSlice";
 import { addFewMinutes } from "../../util/time";
+import { BOOKING_ITEM_VALUE } from "../../@types/massage";
+import { makeSimpleDate } from "../../util/date";
+import SectionTitle from "../common/shared/SectionTitle";
+import styled from "styled-components";
 import BookingConfirm from "./BookingConfirm";
 import RenderList from "../common/map/RenderList";
-import { BOOKING_ITEM_VALUE } from "../../@types/massage";
 import theme from "../../styles/theme";
-import { makeSimpleDate } from "../../util/date";
 
 type TProps = {
   selectedDate: string;
   selectedTime: string;
+  showModal: () => void;
 };
 
 type SummaryListType = {
   key: string;
-  value: string | number | BOOKING_ITEM_VALUE;
+  value: string | BOOKING_ITEM_VALUE | JSX.Element;
 };
 
-const BookingSummary = ({ selectedDate, selectedTime }: TProps) => {
+const BookingSummary = ({ selectedDate, selectedTime, showModal }: TProps) => {
   const massageItem = useSelector(getSelectedMassageItem);
   const massageDetail = useSelector(getMassageDetail);
   const selectedMassageTime = massageDetail[0].time;
@@ -43,7 +45,11 @@ const BookingSummary = ({ selectedDate, selectedTime }: TProps) => {
     { key: "받으실 날짜", value: makeSimpleDate(selectedDate) },
     {
       key: "받으실 시간",
-      value: selectedTime ? timeLabel : "시간을 선택해주세요",
+      value: (
+        <Button onClick={() => showModal()}>
+          {selectedTime ? timeLabel : "시간 선택 🕒"}
+        </Button>
+      ),
     },
     { key: "금액", value: addComma(selectedMassagePrice) },
   ];
@@ -57,6 +63,7 @@ const BookingSummary = ({ selectedDate, selectedTime }: TProps) => {
 
   return (
     <SummaryBoxStyle>
+      <SectionTitle>※ 예약 내역</SectionTitle>
       <SummaryListStyle>
         <RenderList data={SUMMARY_LIST} renderItem={renderSummaryItem} />
       </SummaryListStyle>
@@ -74,10 +81,26 @@ const BookingSummary = ({ selectedDate, selectedTime }: TProps) => {
 
 export default BookingSummary;
 
+const Button = styled.button`
+  border: 1px solid lightgrey;
+  padding: 0.5rem;
+  border-radius: 10px;
+  width: 100%;
+  cursor: pointer;
+  background-color: transparent;
+  font-family: ${theme.fonts.pretend};
+  font-size: 1rem;
+
+  &:hover {
+    background-color: ${theme.palette.greenDk};
+    color: ${theme.palette.white};
+  }
+`;
+
 const SummaryBoxStyle = styled.div`
   display: flex;
   flex-direction: column;
-  width: 40%;
+  width: 100%;
   margin-right: 1rem;
 
   @media only screen and (max-width: ${theme.devise.tabletWidth}) {
