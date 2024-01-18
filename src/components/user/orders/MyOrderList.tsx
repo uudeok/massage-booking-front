@@ -1,11 +1,14 @@
+import { useGetOrderListQuery } from "../../../api/orders/ordersQuery";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { TOrderType } from "../../../@types/mypage/orders";
 import styled from "styled-components";
 import MyOrderItem from "./MyOrderItem";
-import { useGetOrderListQuery } from "../../../api/orders/ordersQuery";
 import MyOrderHeader from "./MyOrderHeader";
 import Paging from "../../pagination/Paging";
 import LoadingBar from "../../loading/LoadingBar";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import RenderList from "../../common/map/RenderList";
+import theme from "../../../styles/theme";
 
 const MY_ORDER_LIST_PAGESIZE = 5;
 
@@ -27,16 +30,17 @@ const MyOrderList = () => {
     navigate(`/mypage/order/?page=${page}`);
   };
 
+  const renderOrderItem = (item: TOrderType) => (
+    <MyOrderItem key={item.id} order={item} />
+  );
+
   return (
     <LayoutStyle>
       <HeaderStyle>‖ 예약 내역</HeaderStyle>
       <MyOrderHeader />
 
       <ContentLayoutStyle>
-        {orderList &&
-          orderList.map((order) => (
-            <MyOrderItem key={order.id} order={order} />
-          ))}
+        <RenderList data={orderList} renderItem={renderOrderItem} />
       </ContentLayoutStyle>
       <Paging
         count={meta.totalCount}
@@ -56,7 +60,7 @@ const LayoutStyle = styled.div`
 `;
 
 const HeaderStyle = styled.h2`
-  font-family: "Pretendard-Regular";
+  font-family: ${theme.fonts.pretend};
   font-size: 1.5rem;
 `;
 

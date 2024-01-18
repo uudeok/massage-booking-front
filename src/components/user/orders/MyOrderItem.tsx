@@ -1,9 +1,9 @@
-import styled from "styled-components";
 import { addComma } from "../../../util/price";
 import { TOrderType } from "../../../@types/mypage/orders";
 import { Link } from "react-router-dom";
 import { makeSimpleDate } from "../../../util/date";
 import { makeSimpleTime } from "../../../util/time";
+import styled from "styled-components";
 import theme from "../../../styles/theme";
 
 const MyOrderItem = ({ order }: { order: TOrderType }) => {
@@ -13,32 +13,34 @@ const MyOrderItem = ({ order }: { order: TOrderType }) => {
   const endTime = makeSimpleTime(order.endReservedAt);
 
   return (
-    <BookItemStyle>
+    <Self>
       <OrderDateBoxStyle>
-        <OrderDateStyle>{createdAt}</OrderDateStyle>
-        <ViewDetailsStyle>
+        <OrderDate>{createdAt}</OrderDate>
+        <ViewDetails>
           <Link to={`${order.id}`}>상세보기</Link>
-        </ViewDetailsStyle>
+        </ViewDetails>
       </OrderDateBoxStyle>
-      <OrderItemStyle>{order.item}</OrderItemStyle>
 
-      <OrderDetailStyle>
+      <OrderItem>{order.item}</OrderItem>
+
+      <OrderDetail>
         <span>{startDate}</span>
         <span>
           {startTime} - {endTime}
         </span>
-      </OrderDetailStyle>
-      <OrderPriceStyle>{addComma(order.price)}</OrderPriceStyle>
-      <OrderStatusStyle>
+      </OrderDetail>
+
+      <OrderPrice>{addComma(order.price)}</OrderPrice>
+      <OrderStatus>
         <span>{order.displayStatus}</span>
-      </OrderStatusStyle>
-    </BookItemStyle>
+      </OrderStatus>
+    </Self>
   );
 };
 
 export default MyOrderItem;
 
-const BookItemStyle = styled.div`
+const Self = styled.div`
   display: flex;
   flex-direction: row;
   border-bottom: 1px solid lightgrey;
@@ -69,14 +71,14 @@ const OrderDateBoxStyle = styled.div`
   }
 `;
 
-const OrderDateStyle = styled.span`
+const OrderDate = styled.span`
   @media only screen and (max-width: ${theme.devise.bigMobileWidth}) {
     flex: 1;
     font-weight: bold;
   }
 `;
 
-const ViewDetailsStyle = styled.span`
+const ViewDetails = styled.span`
   cursor: pointer;
 
   a {
@@ -88,7 +90,7 @@ const ViewDetailsStyle = styled.span`
   }
 `;
 
-const OrderItemStyle = styled.div`
+const OrderItem = styled.div`
   width: 20%;
 
   @media only screen and (max-width: ${theme.devise.tabletWidth}) {
@@ -97,7 +99,7 @@ const OrderItemStyle = styled.div`
   }
 `;
 
-const OrderDetailStyle = styled.div`
+const OrderDetail = styled.div`
   width: 30%;
   display: flex;
   flex-direction: column;
@@ -112,7 +114,7 @@ const OrderDetailStyle = styled.div`
   }
 `;
 
-const OrderPriceStyle = styled.div`
+const OrderPrice = styled.div`
   width: 15%;
 
   @media only screen and (max-width: ${theme.devise.tabletWidth}) {
@@ -121,11 +123,10 @@ const OrderPriceStyle = styled.div`
   }
 `;
 
-const OrderStatusStyle = styled.div`
+const OrderStatus = styled.div`
   width: 15%;
   display: flex;
   justify-content: center;
-  /* font-weight: bold; */
 
   @media only screen and (max-width: ${theme.devise.tabletWidth}) {
     padding: 0.5rem;

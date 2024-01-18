@@ -6,18 +6,13 @@ import { useGetMassageListQuery } from "../../api/massage/massageQuery";
 import theme from "../../styles/theme";
 
 const ProgramList = () => {
-  const { data: massageList, isFetching } = useGetMassageListQuery();
-  console.log(massageList);
+  const { data: massageList } = useGetMassageListQuery();
+
+  if (!massageList) return <LoadingBar />;
 
   return (
     <>
-      <Banner img="program.jpg">
-        <></>
-        {/* <BannerTitleStyle>자연치유 쉼 프로그램</BannerTitleStyle>
-        <span>자연치유 쉼이 준비한 프로그램!</span>
-        <span>다양한 마사지를 경험해보세요.</span> */}
-      </Banner>
-      {isFetching && <LoadingBar />}
+      <Banner img="program.jpg" />
       <ContainerStyle>
         <InnerBoxStyle>
           <TitleStyle>프로그램 안내</TitleStyle>

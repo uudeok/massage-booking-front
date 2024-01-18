@@ -7,15 +7,15 @@ import {
 import { addFewMinutes } from "../../util/time";
 import { BOOKING_ITEM_VALUE } from "../../@types/massage";
 import { makeSimpleDate } from "../../util/date";
+import { getAuthUser } from "../../util/auth";
+import { useModal } from "../../hooks/useModal";
+import ConditionalDisplay from "../common/maybe/ConditionalDisplay";
+import BookingModal from "../common/UI/modal/BookingModal";
 import SectionTitle from "../common/shared/SectionTitle";
 import styled from "styled-components";
 import RenderList from "../common/map/RenderList";
 import theme from "../../styles/theme";
 import CommonButton from "../common/button/CommonButton";
-import { getAuthUser } from "../../util/auth";
-import { useModal } from "../../hooks/useModal";
-import ConditionalDisplay from "../common/maybe/ConditionalDisplay";
-import BookingModal from "../common/UI/modal/BookingModal";
 
 type TProps = {
   selectedDate: string;

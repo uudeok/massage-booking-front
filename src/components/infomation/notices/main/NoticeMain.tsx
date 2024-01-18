@@ -1,6 +1,6 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import NoticesMainList from "./NoticesMainList";
-import { Link } from "react-router-dom";
 import theme from "../../../../styles/theme";
 
 const NoticeMain = () => {

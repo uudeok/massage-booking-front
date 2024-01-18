@@ -1,13 +1,13 @@
-import theme from "../../../../styles/theme";
-import Modal from "./Modal";
 import { FcOk } from "react-icons/fc";
 import { usePostOrderDataMutation } from "../../../../api/orders/ordersQuery";
-import styled, { css } from "styled-components";
-import SectionTitle from "../../shared/SectionTitle";
 import { TMassageTable } from "../../../../@types/massage";
 import { WEEK_DAYS } from "../../../../const/book/time";
 import { useNavigate } from "react-router-dom";
+import styled, { css } from "styled-components";
+import SectionTitle from "../../shared/SectionTitle";
 import LoadingBar from "../../../loading/LoadingBar";
+import theme from "../../../../styles/theme";
+import Modal from "./Modal";
 
 type TBookingModalType = {
   closeModal: () => void;

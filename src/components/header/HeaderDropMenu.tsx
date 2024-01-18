@@ -1,22 +1,35 @@
 import { Link } from "react-router-dom";
-import styled from "styled-components";
 import { TfiAlignJustify, TfiClose } from "react-icons/tfi";
 import { useState } from "react";
+import styled from "styled-components";
 import theme from "../../styles/theme";
+import RenderList from "../common/map/RenderList";
+
+type HeaderDrop = {
+  key: string;
+  value: string;
+};
 
 const HEADER_MENU_LIST = [
-  { key: "book", value: "예약하기", id: 1 },
-  { key: "program", value: "프로그램 안내", id: 2 },
-  { key: "information", value: "회원권 안내", id: 3 },
-  { key: "notice", value: "공지사항", id: 4 },
-  { key: "information/contact", value: "오시는 길", id: 5 },
-];
+  { key: "book", value: "예약하기" },
+  { key: "program", value: "프로그램 안내" },
+  { key: "information", value: "회원권 안내" },
+  { key: "notice", value: "공지사항" },
+  { key: "information/contact", value: "오시는 길" },
+] as HeaderDrop[];
 
 const HeaderDropMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
+
   const openMenuBarHandler = () => {
     setIsOpen((prev) => !prev);
   };
+
+  const renderHeaderItem = (item: HeaderDrop) => (
+    <li key={item.key}>
+      <Link to={`/${item.key}`}>{item.value}</Link>
+    </li>
+  );
 
   return (
     <MenuBarStyle>
@@ -24,11 +37,7 @@ const HeaderDropMenu = () => {
         {isOpen ? <TfiClose /> : <TfiAlignJustify />}
       </MenuButtonStyle>
       <MenuListStyle $isOpen={isOpen}>
-        {HEADER_MENU_LIST.map((menu) => (
-          <li key={menu.id}>
-            <Link to={`/${menu.key}`}>{menu.value}</Link>
-          </li>
-        ))}
+        <RenderList data={HEADER_MENU_LIST} renderItem={renderHeaderItem} />
       </MenuListStyle>
     </MenuBarStyle>
   );

@@ -11,22 +11,33 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 import { getAuthUser, logout } from "../../util/auth";
 import HeaderDropMenu from "./HeaderDropMenu";
+import RenderList from "../common/map/RenderList";
+
+type MenuType = {
+  key: string;
+  value: string;
+};
 
 export const MENU_LIST = [
-  { key: "program", value: "프로그램 안내", id: 1 },
-  { key: "information", value: "회원권 안내", id: 2 },
-  { key: "notice", value: "공지사항", id: 3 },
-];
+  { key: "program", value: "프로그램 안내" },
+  { key: "information", value: "회원권 안내" },
+  { key: "notice", value: "공지사항" },
+] as MenuType[];
 
 const Header = () => {
   const getAuth = getAuthUser();
-  // console.log("Header", getAuth);
   const navigate = useNavigate();
 
   const logoutHandler = () => {
     logout();
     navigate("/");
   };
+
+  const renderMenuItem = (item: MenuType) => (
+    <li key={item.key}>
+      <Link to={`/${item.key}`}>{item.value}</Link>
+    </li>
+  );
 
   return (
     <>
@@ -40,13 +51,10 @@ const Header = () => {
           </LogoBoxStyle>
           <MenuBoxStyle>
             <MenuListStyle>
-              {MENU_LIST.map((item) => (
-                <li key={item.id}>
-                  <Link to={`/${item.key}`}>{item.value}</Link>
-                </li>
-              ))}
+              <RenderList data={MENU_LIST} renderItem={renderMenuItem} />
             </MenuListStyle>
           </MenuBoxStyle>
+
           <LoginBoxStyle>
             {!getAuth && <Link to="/login">로그인</Link>}
             {getAuth && (

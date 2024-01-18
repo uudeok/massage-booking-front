@@ -30,13 +30,13 @@ const Notice = ({ detail }: { detail: TNoticeDetail }) => {
 
   return (
     <>
-      <HeaderBoxStyle>
+      <HeaderStyle>
         <RenderList data={NOTICE_DETAIL} renderItem={renderNoticeDetail} />
-      </HeaderBoxStyle>
-      <ContentBoxStyle>
+      </HeaderStyle>
+      <ContentStyle>
         <p>{detail.content}</p>
-      </ContentBoxStyle>
-      <ButtonBoxStyle>
+      </ContentStyle>
+      <ButtonStyle>
         <CommonButton
           type="rectangle"
           onClickButton={() => navigate("..")}
@@ -44,14 +44,14 @@ const Notice = ({ detail }: { detail: TNoticeDetail }) => {
         >
           목록
         </CommonButton>
-      </ButtonBoxStyle>
+      </ButtonStyle>
     </>
   );
 };
 
 export default Notice;
 
-const HeaderBoxStyle = styled.div`
+const HeaderStyle = styled.div`
   border-bottom: 1px solid black;
 `;
 
@@ -76,7 +76,7 @@ const HeaderItemStyle = styled.div`
   }
 `;
 
-const ContentBoxStyle = styled.div`
+const ContentStyle = styled.div`
   padding: 1rem;
   border-bottom: 1px solid grey;
   line-height: 2rem;
@@ -87,7 +87,7 @@ const ContentBoxStyle = styled.div`
   }
 `;
 
-const ButtonBoxStyle = styled.div`
+const ButtonStyle = styled.div`
   text-align: right;
   padding: 1rem;
 `;

@@ -1,13 +1,11 @@
+import { useGetMassageListQuery } from "../../api/massage/massageQuery";
 import styled from "styled-components";
 import MassageSlide from "./MassageSlide";
 import LoadingBar from "../loading/LoadingBar";
-import { useGetMassageListQuery } from "../../api/massage/massageQuery";
 import theme from "../../styles/theme";
 
 const Massage = () => {
-  const { data: massageList } = useGetMassageListQuery();
-
-  // data 가 빈배열일 경우?
+  const { data: massageList = [] } = useGetMassageListQuery();
 
   if (!massageList) {
     return <LoadingBar />;

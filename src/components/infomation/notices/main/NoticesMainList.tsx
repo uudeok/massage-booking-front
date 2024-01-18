@@ -1,7 +1,11 @@
-import NoticeMainItem from "./NoticeMainItem";
-import styled from "styled-components";
 import { useGetNoticeListQuery } from "../../../../api/notice/noticeQuery";
+import { TNoticeDetail } from "../../../../@types/notice";
+import { Link } from "react-router-dom";
+import { makeSimpleDate } from "../../../../util/date";
+import theme from "../../../../styles/theme";
+import styled from "styled-components";
 import LoadingBar from "../../../loading/LoadingBar";
+import RenderList from "../../../common/map/RenderList";
 
 const NoticesMainList = () => {
   const { data } = useGetNoticeListQuery({
@@ -11,29 +15,59 @@ const NoticesMainList = () => {
   });
 
   if (!data) return <LoadingBar />;
+
   const noticeList = data.notices;
 
+  const renderNoticeItem = (item: TNoticeDetail) => (
+    <Self key={item.id}>
+      <Title>
+        <Link to={`/notice/${item.id}`}>{item.title}</Link>
+      </Title>
+      <Date>{makeSimpleDate(item.createdAt)}</Date>
+    </Self>
+  );
+
   return (
-    <NoticeBoxStyle>
-      {noticeList &&
-        noticeList.map((notice) => (
-          <NoticeItemBoxStyle key={notice.id}>
-            <NoticeMainItem notice={notice} />
-          </NoticeItemBoxStyle>
-        ))}
-    </NoticeBoxStyle>
+    <Container>
+      <RenderList data={noticeList} renderItem={renderNoticeItem} />
+    </Container>
   );
 };
 
 export default NoticesMainList;
 
-const NoticeBoxStyle = styled.ul`
+const Container = styled.ul`
   border-top: 1px solid lightgrey;
   margin-bottom: 1rem;
 `;
 
-const NoticeItemBoxStyle = styled.li`
+const Self = styled.li`
   border-bottom: 1px solid lightgrey;
   padding: 1.2rem;
   display: flex;
+`;
+
+const Title = styled.span`
+  flex: 1;
+
+  a {
+    text-decoration: none;
+    color: black;
+  }
+
+  a:hover {
+    text-decoration: underline;
+  }
+
+  @media only screen and (max-width: ${theme.devise.tabletWidth}) {
+    font-size: 0.9rem;
+  }
+`;
+
+const Date = styled.div`
+  color: ${theme.palette.grey};
+
+  @media only screen and (max-width: ${theme.devise.tabletWidth}) {
+    font-size: 0.85rem;
+  }
 `;

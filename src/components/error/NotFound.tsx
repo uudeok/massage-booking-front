@@ -1,7 +1,8 @@
 import { useRouteError, Link } from "react-router-dom";
+
 import styled from "styled-components";
-import { FcCancel } from "react-icons/fc";
 import theme from "../../styles/theme";
+import CommonButton from "../common/button/CommonButton";
 
 type TError = {
   status: number;
@@ -16,12 +17,17 @@ const NotFound = () => {
 
   return (
     <ErrorScreen>
-      <IconStyle>
-        <FcCancel />
-      </IconStyle>
       <MessageStyle>존재하지 않는 페이지입니다.</MessageStyle>
       <Link to="/">
-        <ButtonStyle>홈으로</ButtonStyle>
+        <CommonButton
+          type="round"
+          width="15rem"
+          $padding="1rem"
+          fontSize="1rem"
+          $border="1px solid grey"
+        >
+          홈으로
+        </CommonButton>
       </Link>
     </ErrorScreen>
   );
@@ -35,24 +41,11 @@ const ErrorScreen = styled.div`
   text-align: center;
   padding: 1rem;
   font-family: ${theme.fonts.pretend};
-  gap: 1rem;
-`;
-
-const IconStyle = styled.div`
-  font-size: 10rem;
+  gap: 2rem;
+  margin: 5rem auto;
 `;
 
 const MessageStyle = styled.h2`
   font-weight: bold;
-  font-size: 1.5rem;
-`;
-
-const ButtonStyle = styled.button`
-  background-color: #002ead;
-  color: white;
-  padding: 1rem;
-  width: 6rem;
-  border-radius: 10px;
-  cursor: pointer;
-  font-family: ${theme.fonts.pretend};
+  font-size: 3rem;
 `;

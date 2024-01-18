@@ -1,27 +1,32 @@
 import styled from "styled-components";
 import theme from "../../../styles/theme";
+import RenderList from "../../common/map/RenderList";
+
+type MyInfoType = {
+  key: string;
+  value: string;
+};
+
+const MY_INFO = [
+  { key: "성명", value: "홍길동" },
+  { key: "이메일", value: "abc@defg.com" },
+  { key: "성별", value: "여성" },
+  { key: "SNS 연동", value: "카카오톡" },
+] as MyInfoType[];
 
 const MyInformation = () => {
+  const renderMyInfo = (item: MyInfoType) => (
+    <ItemBoxStyle key={item.key}>
+      <span>{item.key}</span>
+      <span>{item.value}</span>
+    </ItemBoxStyle>
+  );
+
   return (
     <ContainerStyle>
       <HeaderStyle>‖ 나의 정보</HeaderStyle>
       <CardBoxStyle>
-        <ItemBoxStyle>
-          <span>성명</span>
-          <span>홍길동</span>
-        </ItemBoxStyle>
-        <ItemBoxStyle>
-          <span>이메일</span>
-          <span>abc@defg.com</span>
-        </ItemBoxStyle>
-        <ItemBoxStyle>
-          <span>성별</span>
-          <span>여성</span>
-        </ItemBoxStyle>
-        <ItemBoxStyle>
-          <span>SNS 연동</span>
-          <span>카카오톡</span>
-        </ItemBoxStyle>
+        <RenderList data={MY_INFO} renderItem={renderMyInfo} />
       </CardBoxStyle>
     </ContainerStyle>
   );

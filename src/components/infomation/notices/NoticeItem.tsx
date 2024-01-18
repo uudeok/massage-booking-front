@@ -1,10 +1,10 @@
-import styled from "styled-components";
 import { TNoticeDetail } from "../../../@types/notice";
 import { NOTICE_CATEGORY } from "../../../const/notices";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
+import { makeSimpleDate } from "../../../util/date";
 import NoticeHeader from "./NoticeHeader";
 import Mapping from "../../common/map/RenderList";
-import { makeSimpleDate } from "../../../util/date";
 import FetchWithLoading from "../../loading/FetchWithLoading";
 import theme from "../../../styles/theme";
 

@@ -1,18 +1,31 @@
-import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { MY_PAGE_TABLE } from "../../../const/mypage";
+import styled from "styled-components";
 import theme from "../../../styles/theme";
+import RenderList from "../../common/map/RenderList";
+
+type MypageMenuType = {
+  key: string;
+  value: string;
+};
+
+const MY_PAGE_TABLE = [
+  { key: "order", value: "나의 예약" },
+  { key: "information", value: "회원정보" },
+  { key: "withdraw", value: "회원탈퇴" },
+] as MypageMenuType[];
 
 const MyPageSide = () => {
+  const renderSideMenu = (item: MypageMenuType) => (
+    <ItemStyled key={item.key}>
+      <Link to={`/mypage/${item.key}`}>{item.value}</Link>
+    </ItemStyled>
+  );
+
   return (
     <SideLayoutStyle>
       <HeaderStyle>‖ 나의 정보</HeaderStyle>
       <ListStyled>
-        {MY_PAGE_TABLE.map((item, index) => (
-          <ItemStyled key={index}>
-            <Link to={`/mypage/${item.key}`}>{item.value}</Link>
-          </ItemStyled>
-        ))}
+        <RenderList data={MY_PAGE_TABLE} renderItem={renderSideMenu} />
       </ListStyled>
     </SideLayoutStyle>
   );

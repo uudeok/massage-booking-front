@@ -4,7 +4,7 @@ import theme from "../../styles/theme";
 
 interface IProps {
   img: string;
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 const Banner = ({ img, children }: IProps) => {

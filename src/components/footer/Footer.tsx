@@ -1,3 +1,4 @@
+import RenderList from "../common/map/RenderList";
 import {
   FooterContainerStyle,
   FooterInnerContainerStyle,
@@ -6,20 +7,33 @@ import {
   FooterInfoListStyle,
   FooterInfoItemStyle,
 } from "./Footer.style";
-import { FOOTER_BUSINESS } from "../../const/footer";
+
+type FooterType = {
+  key: string;
+  value: string;
+};
+
+const FOOTER_BUSINESS = [
+  { key: "대표", value: "홍길동" },
+  { key: "주소", value: "경기 파주시 가람로134번길 53" },
+  { key: "전화번호", value: "031-123-4567" },
+  { key: "사업자등록번호", value: "110-05-05" },
+] as FooterType[];
 
 const Footer = () => {
+  const renderFooterItem = (item: FooterType) => (
+    <FooterInfoItemStyle key={item.key}>
+      {item.key} : {item.value}
+    </FooterInfoItemStyle>
+  );
+
   return (
     <FooterContainerStyle>
       <FooterInnerContainerStyle>
         <FooterTopBoxStyle>
           <FooterSymbolBoxStyle>자연치유 쉼</FooterSymbolBoxStyle>
           <FooterInfoListStyle>
-            {FOOTER_BUSINESS.map((info) => (
-              <FooterInfoItemStyle key={info.id}>
-                {info.key} : {info.value}
-              </FooterInfoItemStyle>
-            ))}
+            <RenderList data={FOOTER_BUSINESS} renderItem={renderFooterItem} />
           </FooterInfoListStyle>
         </FooterTopBoxStyle>
       </FooterInnerContainerStyle>

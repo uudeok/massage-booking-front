@@ -24,7 +24,6 @@ const Booking = () => {
           <Link to="/information/contact">
             <ButtonBoxStyle>오시는 길</ButtonBoxStyle>
           </Link>
-
           <ButtonBoxStyle onClick={handleRedirect}>예약하기</ButtonBoxStyle>
         </InnerBoxStyle>
       </ImgBoxStyle>

@@ -1,14 +1,12 @@
-import styled from "styled-components";
 import { useDeleteOrderDataMutation } from "../../../api/orders/ordersQuery";
 import { useNavigate, useParams } from "react-router-dom";
 import { FcInfo } from "react-icons/fc";
 import { useHover } from "../../../hooks/useHover";
+import styled from "styled-components";
 import CommonButton from "../../common/button/CommonButton";
 import theme from "../../../styles/theme";
 import RenderList from "../../common/map/RenderList";
 import ConditionalDisplay from "../../common/maybe/ConditionalDisplay";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../../stores/store";
 
 type OrderDetailType = {
   key: string;
@@ -25,14 +23,7 @@ const MyOrderSummary = () => {
   const { ref, isHover } = useHover();
   const { id } = useParams();
   const navigate = useNavigate();
-
-  let buttonLabel = "다시 예약 하기";
-
   const [deleteOrder] = useDeleteOrderDataMutation();
-
-  if (Number(id) % 2 === 1) {
-    buttonLabel = "예약 취소";
-  }
 
   const cancelOrderHandler = () => {
     const process = window.confirm("예약을 취소하시겠습니까?");
@@ -45,12 +36,6 @@ const MyOrderSummary = () => {
         navigate("/mypage/order");
       }
     }
-  };
-
-  const copyOrderHandler = () => {
-    const process = window.confirm(
-      "건식 마사지 (60분) 예약하시겠습니까? 확인을 누르시면 날짜 선택 페이지로 이동 됩니다."
-    );
   };
 
   const ORDER_DETAIL: OrderDetailType[] = [
@@ -73,13 +58,11 @@ const MyOrderSummary = () => {
         <OrderedDateStyle>2023-11-15 예약</OrderedDateStyle>
         <CommonButton
           type="rectangle"
-          onClickButton={
-            Number(id) % 2 === 1 ? cancelOrderHandler : copyOrderHandler
-          }
+          onClickButton={cancelOrderHandler}
           width="6.5rem"
           fontFamily={theme.fonts.pretend}
         >
-          {buttonLabel}
+          예약 취소하기
         </CommonButton>
       </HeaderStyle>
 

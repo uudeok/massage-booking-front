@@ -5,11 +5,7 @@ import theme from "../../styles/theme";
 const MembershipList = () => {
   return (
     <>
-      <Banner img="membership.jpg">
-        <BannerTitleStyle>자연치유 쉼 멤버쉽 할인</BannerTitleStyle>
-        <span>자연치유 쉼 회원권으로</span>
-        <span>합리적인 가격으로 마사지를 받아보세요.</span>
-      </Banner>
+      <Banner img="membership.jpg" />
       <ContainerStyle>
         <InnerBoxStyle>
           <TitleStyle>회원권 안내</TitleStyle>
@@ -22,15 +18,6 @@ const MembershipList = () => {
 };
 
 export default MembershipList;
-
-const BannerTitleStyle = styled.h2`
-  font-size: 2rem;
-  margin-bottom: 1rem;
-
-  @media only screen and (max-width: ${theme.devise.tabletWidth}) {
-    font-size: 1.2rem;
-  }
-`;
 
 const ContainerStyle = styled.div`
   display: flex;
@@ -59,11 +46,6 @@ const TitleStyle = styled.h1`
   @media only screen and (max-width: ${theme.devise.tabletWidth}) {
     font-size: 1.5rem;
   }
-`;
-
-const ItemBoxStyle = styled.li`
-  text-align: center;
-  padding: 1rem;
 `;
 
 const ImgBoxStyle = styled.img`

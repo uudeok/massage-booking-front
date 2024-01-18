@@ -7,20 +7,18 @@ const MemberWithdrawal = () => {
     <ContainerStyle>
       <HeaderStyle>‖ 회원 탈퇴</HeaderStyle>
       <CardBoxStyle>
-        <CardLayoutStyle>
-          <TitleBoxStyle>
-            <h2>회원탈퇴</h2>
-            <CommonButton
-              type="round"
-              width="3rem"
-              $padding="0.5rem"
-              $border="1px solid lightgrey"
-            >
-              탈퇴
-            </CommonButton>
-          </TitleBoxStyle>
-          <p>자연치유 쉼 회원 탈퇴하기.</p>
-        </CardLayoutStyle>
+        <TitleBoxStyle>
+          <h2>회원탈퇴</h2>
+          <CommonButton
+            type="round"
+            width="3rem"
+            $padding="0.5rem"
+            $border="1px solid lightgrey"
+          >
+            탈퇴
+          </CommonButton>
+        </TitleBoxStyle>
+        <p>자연치유 쉼 회원 탈퇴하기.</p>
       </CardBoxStyle>
     </ContainerStyle>
   );
@@ -33,7 +31,7 @@ const ContainerStyle = styled.div`
 `;
 
 const HeaderStyle = styled.h2`
-  font-family: "Pretendard-Regular";
+  font-family: ${theme.fonts.pretend};
   font-size: 1.5rem;
   padding: 1rem;
 `;
@@ -47,19 +45,15 @@ const TitleBoxStyle = styled.div`
     font-size: 1.2rem;
   }
 `;
-
-const CardLayoutStyle = styled.div`
+const CardBoxStyle = styled.div`
+  width: 60%;
   border-radius: 10px;
   border: 1px solid lightgrey;
   padding: 1rem;
   min-height: 6rem;
   margin-bottom: 1rem;
-  width: 100%;
-  font-family: "Pretendard-Regular";
-`;
+  font-family: ${theme.fonts.pretend};
 
-const CardBoxStyle = styled.div`
-  width: 60%;
   @media only screen and (max-width: ${theme.devise.notebookWidth}) {
     padding: 1rem;
     width: 100%;

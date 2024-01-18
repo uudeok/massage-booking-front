@@ -1,8 +1,8 @@
+import { useGetMassageListQuery } from "../../api/massage/massageQuery";
+import { TMassageTable } from "../../@types/massage";
 import styled from "styled-components";
 import BookingMassageItem from "./BookingMassageItem";
 import RenderList from "../common/map/RenderList";
-import { useGetMassageListQuery } from "../../api/massage/massageQuery";
-import { TMassageTable } from "../../@types/massage";
 import Card from "../common/card/Card";
 import FetchWithLoading from "../loading/FetchWithLoading";
 import theme from "../../styles/theme";
@@ -17,15 +17,13 @@ const BookingMassageList = () => {
   );
 
   return (
-    <>
-      <ContentBoxStyle>
-        <ListBoxStyle>
-          <FetchWithLoading isLoading={isLoading}>
-            <RenderList data={massageList} renderItem={renderBookingItem} />
-          </FetchWithLoading>
-        </ListBoxStyle>
-      </ContentBoxStyle>
-    </>
+    <ContentBoxStyle>
+      <ListBoxStyle>
+        <FetchWithLoading isLoading={isLoading}>
+          <RenderList data={massageList} renderItem={renderBookingItem} />
+        </FetchWithLoading>
+      </ListBoxStyle>
+    </ContentBoxStyle>
   );
 };
 
