@@ -90,6 +90,7 @@ const ButtonBoxStyle = styled.div`
   justify-content: center;
   align-items: center;
   font-family: ${theme.fonts.KBO};
+  cursor: pointer;
 
   &:hover {
     background-color: ${theme.palette.greenLg};

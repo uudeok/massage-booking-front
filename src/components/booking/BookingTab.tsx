@@ -7,6 +7,8 @@ import { currTabNum, resetTabNum } from "../../stores/tabSlice";
 import BookingDate from "./BookingDate";
 import RenderList from "../common/map/RenderList";
 import theme from "../../styles/theme";
+import { getAuthUser } from "../../util/auth";
+import { useNavigate } from "react-router-dom";
 
 type TabType = {
   key: string;
@@ -33,8 +35,23 @@ const TAB_LIST = [
 ];
 
 const BookingTab = () => {
+  const navigate = useNavigate();
+  const token = getAuthUser();
   const dispatch = useDispatch();
   const tabNum = useSelector(currTabNum);
+
+  useEffect(() => {
+    if (token === null) {
+      alert("로그인이 필요한 서비스 입니다.");
+      navigate("/login");
+    }
+  }, [navigate, token]);
+
+  useEffect(() => {
+    return () => {
+      dispatch(resetTabNum());
+    };
+  }, [dispatch]);
 
   const renderTabItem = (item: TabType) => (
     <TabButtonStyle
@@ -45,12 +62,6 @@ const BookingTab = () => {
       {item.key}
     </TabButtonStyle>
   );
-
-  useEffect(() => {
-    return () => {
-      dispatch(resetTabNum());
-    };
-  }, [dispatch]);
 
   return (
     <>

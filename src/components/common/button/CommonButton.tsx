@@ -14,7 +14,7 @@ type ButtonStyleProps = {
   height?: string;
   color?: string;
   fontFamily?: string;
-  backgroundColor?: string;
+  $backgroundColor?: string;
   fontSize?: string;
   type?: Type;
   $padding?: string;
@@ -33,7 +33,7 @@ type ButtonProps<T> = {
   height?: string;
   color?: string;
   fontFamily?: string;
-  backgroundColor?: string;
+  $backgroundColor?: string;
   fontSize?: string;
   type?: Type;
   $padding?: string;
@@ -51,7 +51,7 @@ const CommonButton = <T,>({
   width,
   height,
   fontFamily,
-  backgroundColor,
+  $backgroundColor,
   fontSize,
   type,
   $padding,
@@ -60,13 +60,14 @@ const CommonButton = <T,>({
   $oauth,
   $borderRadius,
   disabled,
+  color,
 }: ButtonProps<T>) => {
   return (
     <ButtonStyled
       width={width}
       height={height}
       fontFamily={fontFamily}
-      backgroundColor={backgroundColor}
+      $backgroundColor={$backgroundColor}
       fontSize={fontSize}
       $padding={$padding}
       hoverBackgroundColor={hoverBackgroundColor}
@@ -76,6 +77,7 @@ const CommonButton = <T,>({
       $oauth={$oauth}
       $borderRadius={$borderRadius}
       disabled={disabled}
+      color={color}
     >
       {children}
     </ButtonStyled>
@@ -92,13 +94,15 @@ const ButtonStyled = styled.button<ButtonStyleProps>`
   height: ${($props) => $props.height || "auto"};
   color: ${($props) => ($props.color ? $props.color : "black")};
   background-color: ${($props) =>
-    $props.backgroundColor ? $props.backgroundColor : "transparent"};
+    $props.$backgroundColor ? $props.$backgroundColor : "transparent"};
   font-family: ${($props) => ($props.fontFamily ? $props.fontFamily : "")};
   font-size: ${($props) => ($props.fontSize ? $props.fontSize : "")};
   padding: ${($props) => ($props.$padding ? $props.$padding : "")};
+
   border: ${($props) => ($props.$border ? $props.$border : "")};
   border-radius: ${($props) =>
     $props.$borderRadius ? $props.$borderRadius : ""};
+  color: ${($props) => ($props.color ? $props.color : "black")};
 
   ${({ disabled }) =>
     disabled &&
@@ -106,7 +110,7 @@ const ButtonStyled = styled.button<ButtonStyleProps>`
       pointer-events: none;
       opacity: 0.6;
       background-color: #dddddd;
-      border: none;
+      border: none !important;
     `}
 
   ${buttonRoleStyle};

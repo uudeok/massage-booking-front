@@ -9,9 +9,13 @@ import { BOOKING_ITEM_VALUE } from "../../@types/massage";
 import { makeSimpleDate } from "../../util/date";
 import SectionTitle from "../common/shared/SectionTitle";
 import styled from "styled-components";
-import BookingConfirm from "./BookingConfirm";
 import RenderList from "../common/map/RenderList";
 import theme from "../../styles/theme";
+import CommonButton from "../common/button/CommonButton";
+import { getAuthUser } from "../../util/auth";
+import { useModal } from "../../hooks/useModal";
+import ConditionalDisplay from "../common/maybe/ConditionalDisplay";
+import BookingModal from "../common/UI/modal/BookingModal";
 
 type TProps = {
   selectedDate: string;
@@ -25,10 +29,16 @@ type SummaryListType = {
 };
 
 const BookingSummary = ({ selectedDate, selectedTime, showModal }: TProps) => {
+  const token = getAuthUser();
   const massageItem = useSelector(getSelectedMassageItem);
   const massageDetail = useSelector(getMassageDetail);
   const selectedMassageTime = massageDetail[0].time;
   const selectedMassagePrice = massageDetail[0].price;
+  const {
+    isOpen: isBookingModalOpen,
+    showModal: showBookingModal,
+    closeModal: closeBookingModal,
+  } = useModal();
 
   const calculateEndTime = (selectedDate: string, selectedTime: string) => {
     const fullDate = `${selectedDate}T${selectedTime}:00`;
@@ -61,20 +71,39 @@ const BookingSummary = ({ selectedDate, selectedTime, showModal }: TProps) => {
     </SummaryItemStyle>
   );
 
+  const checkLogin = () => {
+    if (token === null) return;
+    showBookingModal();
+  };
+
   return (
     <SummaryBoxStyle>
+      <ConditionalDisplay isShow={isBookingModalOpen}>
+        <BookingModal
+          closeModal={closeBookingModal}
+          massageItem={massageItem}
+          selectedDate={selectedDate}
+          massagePrice={selectedMassagePrice}
+          startTime={selectedTime}
+          endTime={endTime}
+        />
+      </ConditionalDisplay>
+
       <SectionTitle>※ 예약 내역</SectionTitle>
       <SummaryListStyle>
         <RenderList data={SUMMARY_LIST} renderItem={renderSummaryItem} />
       </SummaryListStyle>
 
-      <BookingConfirm
-        massageItem={massageItem}
-        selectedDate={selectedDate}
-        massagePrice={selectedMassagePrice}
-        startTime={selectedTime}
-        endTime={endTime}
-      />
+      <CommonButton
+        type="rectangle"
+        $border="2px solid grey"
+        onClickButton={checkLogin}
+        $padding="0.6rem"
+        disabled={!selectedTime}
+        $borderRadius="10px"
+      >
+        예약하기
+      </CommonButton>
     </SummaryBoxStyle>
   );
 };
@@ -131,4 +160,6 @@ const SummaryItemStyle = styled.div`
 const KeyStyle = styled.span`
   flex: 1;
   text-align: left;
+  align-items: center;
+  display: flex;
 `;

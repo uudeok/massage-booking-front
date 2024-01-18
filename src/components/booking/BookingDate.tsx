@@ -120,7 +120,6 @@ const BookingDate = () => {
               showModal={showModal}
             />
           </LeftBoxStyle>
-
           <BookingNotice />
         </InnerBoxStyle>
       </ContainerStyle>
