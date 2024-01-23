@@ -78,6 +78,7 @@ const BookingDate = () => {
 
   const handleDatePicker = (date: string, e?: React.MouseEvent) => {
     setDate(date);
+    setSelectedTime("");
   };
 
   const handleTimePicker = (value: string) => {

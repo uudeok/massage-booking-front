@@ -19,14 +19,14 @@ import dayjs from "dayjs";
 import theme from "../../styles/theme";
 import DayOfWeek from "./DayOfWeek";
 
-type CalendarType = {
+type CalendarType<T = boolean> = {
   onClick: (date: string, e?: React.MouseEvent) => void;
   curMonthOnly?: boolean;
   maxDate?: Date;
   minDate?: Date;
   value?: string;
   filterDate?: (date: string) => boolean;
-  showTimePicker?: boolean;
+  showTimePicker?: T;
   timeInterval?: number;
   minTime?: string;
   maxTime?: string;
@@ -36,12 +36,9 @@ type CalendarType = {
   filterTime?: (time: Time) => boolean;
 };
 
-type CalendarWithTimePicker = CalendarType & {
-  showTimePicker: true;
-} & TimePickerType;
+type CalendarWithTimePicker = CalendarType<true> & TimePickerType;
 
-type CalendarWithOutTimePicker = CalendarType & {
-  showTimePicker?: false;
+type CalendarWithOutTimePicker = CalendarType<false> & {
   handleTimePicker?: never;
   selectedTime?: never;
 };
@@ -79,7 +76,7 @@ const Calendar = ({
     return filterDate(date);
   };
 
-  const validIsPassedDate = (selectedMonth: number, cellDate: number) => {
+  const validPassedDate = (selectedMonth: number, cellDate: number) => {
     if (!minDate) {
       return false;
     }
@@ -106,11 +103,12 @@ const Calendar = ({
     return false;
   };
 
-  const validIsDateBeyondMax = (date: string) => {
+  const validOverDate = (date: string) => {
     if (!maxDate) {
       return true;
     }
 
+    // <-! 순수하게 날짜만 비교하기 위해 !->
     const targetDate = new Date(date).setHours(0);
     const max = new Date(maxDate).setHours(0);
 
@@ -119,7 +117,7 @@ const Calendar = ({
     }
   };
 
-  const handleClickPrevButton = (e: React.MouseEvent) => {
+  const handlePrevButton = (e: React.MouseEvent) => {
     e.stopPropagation();
 
     if (curMonth === 0) {
@@ -130,7 +128,7 @@ const Calendar = ({
     }
   };
 
-  const handleClickNextButton = (e: React.MouseEvent) => {
+  const handleNextButton = (e: React.MouseEvent) => {
     e.stopPropagation();
 
     if (curMonth === 11) {
@@ -157,7 +155,7 @@ const Calendar = ({
     }
   };
 
-  const handleClickDate = (e: React.MouseEvent): void => {
+  const handleDate = (e: React.MouseEvent): void => {
     setIsSelected(true);
     const cell = e.target as HTMLTableElement;
     const date = cell.textContent!.padStart(2, "0");
@@ -181,11 +179,6 @@ const Calendar = ({
 
     const pickDate = getDateLabel(`${selectedYear}-${formattedMonth}-${date}`);
 
-    // <--! 날짜 선택할때마다 timePicker 초기화 !-->
-    if (handleTimePicker) {
-      handleTimePicker("");
-    }
-
     onClick(pickDate, e);
   };
 
@@ -193,7 +186,7 @@ const Calendar = ({
     const cells = [];
     const cellRows = [];
 
-    const { firstDay, numOfDays } = calculateMonthInfo(curYear, curMonth);
+    const { firstDay, lastDay } = calculateMonthInfo(curYear, curMonth);
 
     let dateLabel = new Date(curYear, curMonth, -(firstDay - 1)).getDate();
     let cellCount = 0;
@@ -207,7 +200,7 @@ const Calendar = ({
         monthName = MONTH_NAME.CURRENT;
       }
 
-      if (cellCount > firstDay && dateLabel > numOfDays) {
+      if (cellCount > firstDay && dateLabel > lastDay) {
         dateLabel = 1;
         month++;
         monthName = MONTH_NAME.NEXT;
@@ -218,8 +211,8 @@ const Calendar = ({
       );
 
       const filteredDate = validFilterDate(renderingDate);
-      const isPassed = validIsPassedDate(month, dateLabel);
-      const isSafeDate = validIsDateBeyondMax(renderingDate);
+      const isPassed = validPassedDate(month, dateLabel);
+      const isSafeDate = validOverDate(renderingDate);
       const today = dayjs();
 
       cells.push(
@@ -231,7 +224,7 @@ const Calendar = ({
           key={cellCount}
           curMonthOnly={curMonthOnly}
           selected={value === renderingDate}
-          onMouseEnter={() => onHover && onHover(renderingDate)}
+          onMouseOver={() => onHover && onHover(renderingDate)}
         />
       );
 
@@ -251,20 +244,20 @@ const Calendar = ({
     return (
       <Self>
         <Header>
-          <ControllerButton onClick={handleClickPrevButton}>
+          <ControllerButton onClick={handlePrevButton}>
             <IoChevronBackCircleOutline />
           </ControllerButton>
           <Title>
             {curYear}년 {getMonthLabel(curYear, curMonth, "short")}
           </Title>
-          <ControllerButton onClick={handleClickNextButton}>
+          <ControllerButton onClick={handleNextButton}>
             <IoChevronForwardCircleOutline />
           </ControllerButton>
         </Header>
 
         <Table>
           <DayOfWeek />
-          <tbody onClick={handleClickDate}>{renderCells()}</tbody>
+          <tbody onClick={handleDate}>{renderCells()}</tbody>
         </Table>
         <TimePicker
           handleTimePicker={handleTimePicker}
@@ -283,20 +276,20 @@ const Calendar = ({
     return (
       <Self>
         <Header>
-          <ControllerButton onClick={handleClickPrevButton}>
+          <ControllerButton onClick={handlePrevButton}>
             <IoChevronBackCircleOutline />
           </ControllerButton>
           <Title>
             {curYear}년 {getMonthLabel(curYear, curMonth, "short")}
           </Title>
-          <ControllerButton onClick={handleClickNextButton}>
+          <ControllerButton onClick={handleNextButton}>
             <IoChevronForwardCircleOutline />
           </ControllerButton>
         </Header>
 
         <Table>
           <DayOfWeek />
-          <tbody onClick={handleClickDate}>{renderCells()}</tbody>
+          <tbody onClick={handleDate}>{renderCells()}</tbody>
         </Table>
       </Self>
     );

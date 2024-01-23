@@ -18,9 +18,9 @@ export const getMonthLabel = (
 
 export const calculateMonthInfo = (year: number, month: number) => {
   const firstDay = new Date(year, month).getDay();
-  const numOfDays = new Date(year, month + 1, 0).getDate();
+  const lastDay = new Date(year, month + 1, 0).getDate();
 
-  return { firstDay, numOfDays };
+  return { firstDay, lastDay };
 };
 
 export const validationDate = (selectedDate: Date | string) => {

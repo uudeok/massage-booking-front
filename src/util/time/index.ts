@@ -80,22 +80,12 @@ export const filterTimeRange = (
 };
 
 export const calculateMinTime = (timeList: Time[], minTime: string) => {
-  let result = [];
-  for (let i = 0; i < timeList.length; i++) {
-    if (timeList[i].label >= minTime) {
-      result.push(timeList[i]);
-    }
-  }
+  const result = timeList.filter((time) => time.label >= minTime);
   return result;
 };
 
 export const calculateMaxTime = (timeList: Time[], maxTime: string) => {
-  let result = [];
-  for (let i = 0; i < timeList.length; i++) {
-    if (timeList[i].label <= maxTime) {
-      result.push(timeList[i]);
-    }
-  }
+  const result = timeList.filter((time) => time.label <= maxTime);
   return result;
 };
 

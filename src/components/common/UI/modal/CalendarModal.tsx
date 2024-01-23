@@ -54,13 +54,13 @@ const CalendarModal = ({
   };
 
   return (
-    <Modal closeModal={closeModal} height="38rem" $top="3%" $radius="15px">
+    <Modal closeModal={closeModal} height="42rem" $top="3%" $radius="15px">
       <InnerBoxStyle>
         <Calendar
           onClick={onClick}
           minDate={new Date()}
           maxDate={addTwoWeeks}
-          curMonthOnly={true}
+          curMonthOnly={false}
           value={value}
           filterDate={isOffDay}
           showTimePicker={true}

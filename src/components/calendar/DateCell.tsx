@@ -10,9 +10,8 @@ interface IDateCell {
   monthName: MONTH_NAME_VALUES;
   dateLabel: string;
   curMonthOnly?: boolean;
-  mode?: "duration";
   selected: boolean;
-  onMouseEnter: () => void;
+  onMouseOver: () => void;
 }
 
 const getDateCellColor = (month: MONTH_NAME_VALUES) => {
@@ -41,8 +40,7 @@ const DateCell: React.FC<IDateCell> = ({
   monthName,
   curMonthOnly,
   selected,
-  mode,
-  onMouseEnter,
+  onMouseOver,
 }) => {
   return (
     <Self
@@ -50,9 +48,8 @@ const DateCell: React.FC<IDateCell> = ({
       $month={monthName}
       $isToday={$isToday}
       $isCurMonth={monthName === MONTH_NAME.CURRENT}
-      mode={mode}
       selected={selected}
-      onMouseEnter={onMouseEnter}
+      onMouseOver={onMouseOver}
     >
       {curMonthOnly && monthName !== MONTH_NAME.CURRENT ? null : (
         <button disabled={disabled} data-name={monthName}>
@@ -75,7 +72,6 @@ const Self = styled.td<{
   selected?: boolean;
   $isToday?: boolean;
   $isCurMonth?: boolean;
-  mode?: "duration";
 }>`
   position: relative;
   padding-bottom: 1rem;
@@ -110,7 +106,7 @@ const Self = styled.td<{
       `}
   }
 
-  ${({ disabled, $isCurMonth, mode }) =>
+  ${({ disabled, $isCurMonth }) =>
     !disabled &&
     $isCurMonth &&
     css`
@@ -120,7 +116,7 @@ const Self = styled.td<{
         button {
           color: white;
           background-color: #3581ff;
-          border-radius: ${mode !== "duration" && "50%"};
+          border-radius: 50%;
           border: none;
         }
       }

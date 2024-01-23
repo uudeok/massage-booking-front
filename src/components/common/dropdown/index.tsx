@@ -38,18 +38,18 @@ const DropDown = ({
     setIsFolded(true);
   };
 
-  const renderLisItem = (item: Time) => {
+  const renderLisItem = (time: Time) => {
     if (filterTime) {
-      result = filterTime(item);
+      result = filterTime(time);
     }
 
     return (
       <Option
-        key={item.value}
-        onClick={() => handleClickTime(item.value)}
-        disabled={!item.selectable || !result}
+        key={time.value}
+        onClick={() => handleClickTime(time.value)}
+        disabled={!time.selectable || !result}
       >
-        {item.label}
+        {time.label}
       </Option>
     );
   };

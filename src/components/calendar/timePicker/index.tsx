@@ -36,6 +36,7 @@ const TimePicker = ({
     timeInterval = 60;
   }
 
+  // <-! timeInterval 단위로 시간을 나눠준다 !->
   let timeList: Time[] = generateTimeArray(timeInterval);
 
   if (minTime) {
