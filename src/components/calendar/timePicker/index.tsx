@@ -22,7 +22,7 @@ export type TimePickerType = {
 };
 
 const TimePicker = ({
-  timeInterval,
+  timeInterval = 60,
   minTime,
   maxTime,
   excludeTimes,
@@ -32,10 +32,6 @@ const TimePicker = ({
   selectable,
   filterTime,
 }: TimePickerType) => {
-  if (!timeInterval) {
-    timeInterval = 60;
-  }
-
   // <-! timeInterval 단위로 시간을 나눠준다 !->
   let timeList: Time[] = generateTimeArray(timeInterval);
 

@@ -8,6 +8,10 @@ export const makeSimpleDate = (date: Date | string) => {
   return dayjs(date).format("YYYY-MM-DD");
 };
 
+export const makeSimpleMonth = (month: number) => {
+  return month + 1;
+};
+
 export const getMonthLabel = (
   year: number,
   month: number,
@@ -16,7 +20,7 @@ export const getMonthLabel = (
   return new Date(year, month).toLocaleString("kr", { month: option });
 };
 
-export const calculateMonthInfo = (year: number, month: number) => {
+export const getMonthInfo = (year: number, month: number) => {
   const firstDay = new Date(year, month).getDay();
   const lastDay = new Date(year, month + 1, 0).getDate();
 
@@ -60,11 +64,11 @@ export const getDateLabel = (fullDate: string): string => {
 
   const year = dateObj.getFullYear();
 
-  const date = dateObj.getDate().toString();
-  const dateLabel = date.length > 1 ? date : `0${date}`;
-
   const month = dateObj.getMonth() + 1;
-  const monthLabel = `${month}`.length > 1 ? month : `0${month}`;
+  const monthLabel = String(month).padStart(2, "0");
+
+  const date = dateObj.getDate().toString();
+  const dateLabel = date.padStart(2, "0");
 
   return `${year}-${monthLabel}-${dateLabel}`;
 };

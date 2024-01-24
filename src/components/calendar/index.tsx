@@ -1,14 +1,6 @@
-import {
-  IoChevronBackCircleOutline,
-  IoChevronForwardCircleOutline,
-} from "react-icons/io5";
 import { MONTH_NAME } from "../../const/calendar";
 import { MONTH_NAME_VALUES } from "../../@types/calendar";
-import {
-  getMonthLabel,
-  calculateMonthInfo,
-  getDateLabel,
-} from "../../util/date";
+import { getMonthInfo, getDateLabel } from "../../util/date";
 import { TimePickerType } from "./timePicker/index";
 import { Time } from "../common/dropdown";
 import React, { useState } from "react";
@@ -16,17 +8,17 @@ import styled from "styled-components";
 import DateCell from "./DateCell";
 import TimePicker from "./timePicker/index";
 import dayjs from "dayjs";
-import theme from "../../styles/theme";
 import DayOfWeek from "./DayOfWeek";
+import CalendarHeader from "./CalendarHeader";
 
-type CalendarType<T = boolean> = {
-  onClick: (date: string, e?: React.MouseEvent) => void;
+type CalendarType = {
+  onClick: (date: string) => void;
   curMonthOnly?: boolean;
   maxDate?: Date;
   minDate?: Date;
   value?: string;
   filterDate?: (date: string) => boolean;
-  showTimePicker?: T;
+  showTimePicker?: boolean;
   timeInterval?: number;
   minTime?: string;
   maxTime?: string;
@@ -36,9 +28,10 @@ type CalendarType<T = boolean> = {
   filterTime?: (time: Time) => boolean;
 };
 
-type CalendarWithTimePicker = CalendarType<true> & TimePickerType;
+type CalendarWithTimePicker = CalendarType & TimePickerType;
 
-type CalendarWithOutTimePicker = CalendarType<false> & {
+type CalendarWithOutTimePicker = CalendarType & {
+  showTimePicker?: false;
   handleTimePicker?: never;
   selectedTime?: never;
 };
@@ -117,28 +110,6 @@ const Calendar = ({
     }
   };
 
-  const handlePrevButton = (e: React.MouseEvent) => {
-    e.stopPropagation();
-
-    if (curMonth === 0) {
-      setCurYear(curYear - 1);
-      setCurMonth(11);
-    } else {
-      setCurMonth(curMonth - 1);
-    }
-  };
-
-  const handleNextButton = (e: React.MouseEvent) => {
-    e.stopPropagation();
-
-    if (curMonth === 11) {
-      setCurYear(curYear + 1);
-      setCurMonth(0);
-    } else {
-      setCurMonth(curMonth + 1);
-    }
-  };
-
   const calculateSelectedMonth = (
     month: MONTH_NAME_VALUES,
     curMonth: number
@@ -179,18 +150,19 @@ const Calendar = ({
 
     const pickDate = getDateLabel(`${selectedYear}-${formattedMonth}-${date}`);
 
-    onClick(pickDate, e);
+    onClick(pickDate);
   };
 
-  const renderCells = () => {
+  const renderDateCell = () => {
     const cells = [];
     const cellRows = [];
 
-    const { firstDay, lastDay } = calculateMonthInfo(curYear, curMonth);
+    const { firstDay, lastDay } = getMonthInfo(curYear, curMonth);
 
-    let dateLabel = new Date(curYear, curMonth, -(firstDay - 1)).getDate();
+    let dateLabel = new Date(curYear, curMonth, 1 - firstDay).getDate();
     let cellCount = 0;
     let monthName = MONTH_NAME.PREV as MONTH_NAME_VALUES;
+    // <--! 이전 월의 날짜부터 시작하므로 현재 월에서 -1를 해주고 시작한다 !-->
     let month = curMonth - 1;
 
     while (cellCount < 42) {
@@ -211,7 +183,7 @@ const Calendar = ({
       );
 
       const filteredDate = validFilterDate(renderingDate);
-      const isPassed = validPassedDate(month, dateLabel);
+      const isPassedDate = validPassedDate(month, dateLabel);
       const isSafeDate = validOverDate(renderingDate);
       const today = dayjs();
 
@@ -219,7 +191,7 @@ const Calendar = ({
         <DateCell
           $isToday={today.isSame(new Date(curYear, month, dateLabel), "day")}
           dateLabel={`${dateLabel}`}
-          disabled={isPassed || !isSafeDate || !filteredDate}
+          disabled={isPassedDate || !isSafeDate || !filteredDate}
           monthName={monthName}
           key={cellCount}
           curMonthOnly={curMonthOnly}
@@ -232,6 +204,7 @@ const Calendar = ({
       cellCount++;
     }
 
+    // <--! cells.length 가 있을때까지 while 문 반복 !-->
     while (cells.length) {
       const row = cells.splice(0, 7);
       cellRows.push(<tr key={cells.length}>{row}</tr>);
@@ -240,25 +213,19 @@ const Calendar = ({
     return cellRows;
   };
 
-  if (showTimePicker) {
-    return (
-      <Self>
-        <Header>
-          <ControllerButton onClick={handlePrevButton}>
-            <IoChevronBackCircleOutline />
-          </ControllerButton>
-          <Title>
-            {curYear}년 {getMonthLabel(curYear, curMonth, "short")}
-          </Title>
-          <ControllerButton onClick={handleNextButton}>
-            <IoChevronForwardCircleOutline />
-          </ControllerButton>
-        </Header>
-
-        <Table>
-          <DayOfWeek />
-          <tbody onClick={handleDate}>{renderCells()}</tbody>
-        </Table>
+  return (
+    <Self>
+      <CalendarHeader
+        curYear={curYear}
+        curMonth={curMonth}
+        setCurYear={setCurYear}
+        setCurMonth={setCurMonth}
+      />
+      <Table>
+        <DayOfWeek />
+        <tbody onClick={handleDate}>{renderDateCell()}</tbody>
+      </Table>
+      {showTimePicker && (
         <TimePicker
           handleTimePicker={handleTimePicker}
           timeInterval={timeInterval}
@@ -270,30 +237,9 @@ const Calendar = ({
           selectable={isSelected}
           filterTime={filterTime}
         />
-      </Self>
-    );
-  } else {
-    return (
-      <Self>
-        <Header>
-          <ControllerButton onClick={handlePrevButton}>
-            <IoChevronBackCircleOutline />
-          </ControllerButton>
-          <Title>
-            {curYear}년 {getMonthLabel(curYear, curMonth, "short")}
-          </Title>
-          <ControllerButton onClick={handleNextButton}>
-            <IoChevronForwardCircleOutline />
-          </ControllerButton>
-        </Header>
-
-        <Table>
-          <DayOfWeek />
-          <tbody onClick={handleDate}>{renderCells()}</tbody>
-        </Table>
-      </Self>
-    );
-  }
+      )}
+    </Self>
+  );
 };
 
 export default Calendar;
@@ -304,41 +250,6 @@ const Self = styled.div`
   display: block;
   cursor: pointer;
   font-size: 13px;
-`;
-
-const Header = styled.span`
-  display: flex;
-  line-height: 38px;
-  font-size: 1.6rem;
-  position: relative;
-  text-transform: uppercase;
-  justify-content: center;
-  margin-bottom: 3.1rem;
-  width: 100%;
-`;
-
-const ControllerButton = styled.button`
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  background-color: transparent;
-  border: none;
-  font-size: 25px;
-`;
-
-const Title = styled.span`
-  width: 11rem;
-  font-size: 18px;
-  line-height: 22px;
-  text-align: center;
-  color: #262d39;
-  display: flex;
-  align-items: center;
-  order: 0;
-  flex-grow: 0;
-  margin: 0px 2rem;
-  justify-content: center;
-  font-family: ${theme.fonts.pretend};
 `;
 
 const Table = styled.table`

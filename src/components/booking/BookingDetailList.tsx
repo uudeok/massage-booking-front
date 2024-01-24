@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import { getMassageItem } from "../../stores/massageSlice";
 import { useGetMassageItemQuery } from "../../api/massage/massageQuery";
-import { TMassageDetail, TMassageTable } from "../../@types/massage";
+import { TMassageDetail } from "../../@types/massage";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../stores/store";
 import { subTabNum } from "../../stores/tabSlice";
@@ -20,18 +20,15 @@ const BookingDetailList = () => {
 
   const { data: selectedMassage } = useGetMassageItemQuery(massageItem);
 
-  if (!selectedMassage) return <LoadingBar />;
+  if (selectedMassage === undefined) return <LoadingBar />;
 
-  if (selectedMassage === undefined) {
+  if (selectedMassage === null) {
     return <ErrorDisplay errorMessage="일시적인 오류가 발생했습니다" />;
   }
 
   const renderDetailItem = (detail: TMassageDetail) => (
     <Card key={detail.time}>
-      <BookingDetail
-        detail={detail}
-        massage={selectedMassage as TMassageTable}
-      />
+      <BookingDetail detail={detail} massage={selectedMassage} />
     </Card>
   );
 

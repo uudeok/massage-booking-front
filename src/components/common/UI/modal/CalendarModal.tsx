@@ -8,7 +8,7 @@ import Modal from "./Modal";
 
 export type TProps = {
   closeModal: () => void;
-  onClick: (date: string, e?: React.MouseEvent) => void;
+  onClick: (date: string) => void;
   value: string;
   bookedData?: string[];
   handleTimePicker: (value: string) => void;

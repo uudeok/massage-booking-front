@@ -18,60 +18,59 @@ export type TDropDownProps = {
   filterTime?: (time: Time) => boolean;
 };
 
-const DropDown = ({
-  list,
-  handleTimePicker,
-  currentValue,
-  placeHolder,
-  selectable = false,
-  filterTime,
-}: TDropDownProps) => {
-  const [isFolded, setIsFolded] = useState(true);
-  let result = false;
+const DropDown = React.memo(
+  ({
+    list,
+    handleTimePicker,
+    currentValue,
+    placeHolder,
+    selectable = false,
+    filterTime,
+  }: TDropDownProps) => {
+    const [isFolded, setIsFolded] = useState(true);
 
-  const handleClick = (e: React.MouseEvent) => {
-    setIsFolded((prev) => !prev);
-  };
+    const handleClick = (e: React.MouseEvent) => {
+      setIsFolded((prev) => !prev);
+    };
 
-  const handleClickTime = (value: string) => {
-    handleTimePicker(value);
-    setIsFolded(true);
-  };
+    const handleClickTime = (value: string) => {
+      handleTimePicker(value);
+      setIsFolded(true);
+    };
 
-  const renderLisItem = (time: Time) => {
-    if (filterTime) {
-      result = filterTime(time);
-    }
+    const renderLisItem = (time: Time) => {
+      const result = filterTime ? filterTime(time) : true;
+
+      return (
+        <Option
+          key={time.value}
+          onClick={() => handleClickTime(time.value)}
+          disabled={!time.selectable || !result}
+        >
+          {time.label}
+        </Option>
+      );
+    };
 
     return (
-      <Option
-        key={time.value}
-        onClick={() => handleClickTime(time.value)}
-        disabled={!time.selectable || !result}
-      >
-        {time.label}
-      </Option>
+      <Self>
+        <TopListItem
+          $isFolded={isFolded}
+          onClick={handleClick}
+          disabled={!selectable}
+        >
+          {currentValue ? currentValue : placeHolder}
+        </TopListItem>
+
+        {selectable && !isFolded && (
+          <List>
+            <RenderList data={list} renderItem={renderLisItem} />
+          </List>
+        )}
+      </Self>
     );
-  };
-
-  return (
-    <Self>
-      <TopListItem
-        $isFolded={isFolded}
-        onClick={handleClick}
-        disabled={!selectable}
-      >
-        {currentValue ? currentValue : placeHolder}
-      </TopListItem>
-
-      {selectable && !isFolded && (
-        <List>
-          <RenderList data={list} renderItem={renderLisItem} />
-        </List>
-      )}
-    </Self>
-  );
-};
+  }
+);
 
 export default DropDown;
 

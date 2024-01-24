@@ -1,13 +1,12 @@
-import ErrorDisplay from "../../error/ErrorDisplay";
+import { Nullable } from "../../../@types/common";
 
-type TProps<T> = {
-  data: T[];
+type RenderListProps<T> = {
+  data: Nullable<T[]>;
   renderItem: (item: T) => JSX.Element | void;
 };
 
-const RenderList = <T,>({ data, renderItem }: TProps<T>) => {
-  if (!data || !Array.isArray(data))
-    return <ErrorDisplay errorMessage="데이터가 없습니다😅" />;
+const RenderList = <T,>({ data, renderItem }: RenderListProps<T>) => {
+  if (!data || !Array.isArray(data)) return null;
 
   return <>{data.map((item: T) => renderItem(item))}</>;
 };

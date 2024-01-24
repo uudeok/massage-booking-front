@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useGetBookedTimeListQuery } from "../../api/book/bookQuery";
 import { makeSimpleDate } from "../../util/date";
@@ -43,7 +43,6 @@ const BookingDate = () => {
   };
 
   const isValidSelectedTime = (selectedTime: string) => {
-    const spreadData = splitTimeArrays(bookedData, timeInterval);
     const fullDate = `${date}T${selectedTime}`;
     const endTime = addFewMinutes(fullDate, selectedMassageTime);
     const result = isTimeOverlaps(spreadData, selectedTime, endTime);
@@ -54,29 +53,25 @@ const BookingDate = () => {
     }
   };
 
-  const isInvalidBusinessHour = useCallback(() => {
-    if (selectedTime === "19:30" && 90 < selectedMassageTime) {
+  const isInvalidBusinessHour = (value: string) => {
+    if (value === "19:30" && 90 < selectedMassageTime) {
       alert(ORDER_ERROR_MESSAGE.notice_over_time);
       handleReset();
-    } else if (selectedTime === "20:00" && 60 < selectedMassageTime) {
+    } else if (value === "20:00" && 60 < selectedMassageTime) {
       alert(ORDER_ERROR_MESSAGE.notice_over_time);
       handleReset();
-    } else if (selectedTime === "20:30") {
+    } else if (value === "20:30") {
       alert(ORDER_ERROR_MESSAGE.notice_available_time);
       handleReset();
-    } else if (selectedTime === "21:00") {
+    } else if (value === "21:00") {
       alert(ORDER_ERROR_MESSAGE.notice_business_time);
       handleReset();
     } else {
       return;
     }
-  }, [selectedMassageTime, selectedTime]);
+  };
 
-  useEffect(() => {
-    isInvalidBusinessHour();
-  }, [isInvalidBusinessHour]);
-
-  const handleDatePicker = (date: string, e?: React.MouseEvent) => {
+  const handleDatePicker = (date: string) => {
     setDate(date);
     setSelectedTime("");
   };
@@ -84,10 +79,11 @@ const BookingDate = () => {
   const handleTimePicker = (value: string) => {
     setSelectedTime(value);
 
-    // <--! 날짜 바뀔때마다 value 초기화하므로 handleTimePicker 함수가 실행됨 !-->
+    // <--! 날짜 바뀔때마다 selectedTime 초기화하므로 handleTimePicker 함수가 실행됨 !-->
     if (value) {
       setIsSelected(true);
       isValidSelectedTime(value);
+      isInvalidBusinessHour(value);
     } else {
       setIsSelected(false);
     }
