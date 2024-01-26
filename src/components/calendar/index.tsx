@@ -110,10 +110,7 @@ const Calendar = ({
     }
   };
 
-  const calculateSelectedMonth = (
-    month: MONTH_NAME_VALUES,
-    curMonth: number
-  ) => {
+  const getSelectedMonth = (month: MONTH_NAME_VALUES, curMonth: number) => {
     switch (month) {
       case MONTH_NAME.PREV:
         return curMonth === 0 ? 11 : curMonth - 1;
@@ -136,7 +133,7 @@ const Calendar = ({
       return;
     }
 
-    const selectedMonth = calculateSelectedMonth(month, curMonth);
+    const selectedMonth = getSelectedMonth(month, curMonth);
 
     let selectedYear = curYear;
 
@@ -256,9 +253,4 @@ const Table = styled.table`
   border-collapse: collapse;
   background-color: white;
   padding: 0.5rem;
-
-  /* td {
-    font-size: 14px;
-    line-height: 20px;
-  } */
 `;

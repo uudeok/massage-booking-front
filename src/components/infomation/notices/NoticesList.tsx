@@ -3,7 +3,6 @@ import NoticeItem from "./NoticeItem";
 import Paging from "../../pagination/Paging";
 import LoadingBar from "../../loading/LoadingBar";
 import RenderList from "../../common/map/RenderList";
-
 import { NOTICE_CATEGORIES } from "../../../const/notices";
 import { useState } from "react";
 import { NOTICE_CATEGORY_KEYS } from "../../../@types/notice";

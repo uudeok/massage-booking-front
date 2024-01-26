@@ -1,5 +1,5 @@
 import { Time } from "../../dropdown";
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
 import Calendar from "../../../calendar";
 import CommonButton from "../../button/CommonButton";
@@ -29,13 +29,6 @@ const CalendarModal = ({
   isSelected,
   timeInterval,
 }: TProps) => {
-  useEffect(() => {
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = "auto";
-    };
-  }, []);
-
   const addTwoWeeks = dayjs(new Date()).add(14, "day").toDate();
 
   const isOffDay = (date: string) => {
@@ -60,7 +53,7 @@ const CalendarModal = ({
           onClick={onClick}
           minDate={new Date()}
           maxDate={addTwoWeeks}
-          curMonthOnly={false}
+          curMonthOnly={true}
           value={value}
           filterDate={isOffDay}
           showTimePicker={true}

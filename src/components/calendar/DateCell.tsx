@@ -33,7 +33,7 @@ const getDateCellColor = (month: MONTH_NAME_VALUES) => {
   }
 };
 
-const DateCell: React.FC<IDateCell> = ({
+const DateCell = ({
   $isToday,
   dateLabel,
   disabled,
@@ -41,7 +41,7 @@ const DateCell: React.FC<IDateCell> = ({
   curMonthOnly,
   selected,
   onMouseOver,
-}) => {
+}: IDateCell) => {
   return (
     <Self
       disabled={disabled}
@@ -64,7 +64,7 @@ const DateCell: React.FC<IDateCell> = ({
   );
 };
 
-export default React.memo(DateCell);
+export default DateCell;
 
 const Self = styled.td<{
   disabled: boolean;

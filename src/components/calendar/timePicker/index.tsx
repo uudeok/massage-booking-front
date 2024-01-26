@@ -61,7 +61,7 @@ const TimePicker = ({
   );
 };
 
-export default React.memo(TimePicker);
+export default TimePicker;
 
 const Self = styled.div`
   padding: 0.5rem;

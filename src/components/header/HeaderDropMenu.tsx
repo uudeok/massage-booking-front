@@ -57,7 +57,7 @@ const MenuBarStyle = styled.nav`
 `;
 
 const MenuListStyle = styled.ul<{ $isOpen: boolean }>`
-  display: ${({ $isOpen }) => ($isOpen ? "block" : "none")};
+  display: block;
   position: absolute;
   z-index: 1;
   font-weight: 400;
@@ -65,6 +65,10 @@ const MenuListStyle = styled.ul<{ $isOpen: boolean }>`
   width: 100%;
   text-align: center;
   font-family: ${theme.fonts.pretend};
+  transition: transform 0.3s ease;
+
+  transform: ${({ $isOpen }) =>
+    $isOpen ? "translateY(0)" : "translateY(-100%)"};
 
   a {
     display: block;

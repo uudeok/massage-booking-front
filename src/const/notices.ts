@@ -13,3 +13,9 @@ export const NOTICE_CATEGORIES = [
   { key: "RULE", value: "운영방침" },
   { key: "ETC", value: "기타" },
 ] as TNoticeCategory[];
+
+export type Option = {
+  label: string;
+  value: string;
+  selectable: boolean;
+};

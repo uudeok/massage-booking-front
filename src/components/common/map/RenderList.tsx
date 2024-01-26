@@ -1,7 +1,5 @@
-import { Nullable } from "../../../@types/common";
-
 type RenderListProps<T> = {
-  data: Nullable<T[]>;
+  data: T[];
   renderItem: (item: T) => JSX.Element | void;
 };
 
