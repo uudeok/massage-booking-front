@@ -17,7 +17,7 @@ export type TProps = {
   timeInterval: number;
 };
 
-const SUNDAY = 0;
+const SUNDAY = 0 as const;
 
 const CalendarModal = ({
   closeModal,

@@ -89,7 +89,9 @@ const Calendar = ({
     if (curYear === thisYear) {
       if (selectedMonth < thisMonth) {
         return true;
-      } else if (selectedMonth === thisMonth && cellDate < today) {
+      }
+
+      if (selectedMonth === thisMonth && cellDate < today) {
         return true;
       }
     }
