@@ -1,5 +1,4 @@
 import { Time } from "../../dropdown";
-import React from "react";
 import styled from "styled-components";
 import Calendar from "../../../calendar";
 import CommonButton from "../../button/CommonButton";
