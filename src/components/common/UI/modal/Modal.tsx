@@ -5,20 +5,12 @@ import theme from "../../../../styles/theme";
 type TProps = {
   children: React.ReactNode;
   closeModal: () => void;
-  path?: string;
   height?: string;
   $top?: string;
   $radius?: string;
 };
 
-const Modal = ({
-  children,
-  closeModal,
-  path,
-  height,
-  $top,
-  $radius,
-}: TProps) => {
+const Modal = ({ children, closeModal, height, $top, $radius }: TProps) => {
   useEffect(() => {
     document.body.style.overflow = "hidden";
     return () => {

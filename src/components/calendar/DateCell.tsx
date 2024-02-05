@@ -2,7 +2,6 @@ import { css } from "styled-components";
 import { MONTH_NAME_VALUES } from "../../@types/calendar";
 import { MONTH_NAME } from "../../const/calendar";
 import styled from "styled-components";
-import React from "react";
 
 interface IDateCell {
   $isToday?: boolean;

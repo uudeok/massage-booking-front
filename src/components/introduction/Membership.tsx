@@ -30,7 +30,7 @@ const ContainerStyle = styled.div`
 
 const ImgStyle = styled.img`
   object-fit: cover;
-  height: 25rem;
+  height: 23rem;
   overflow: hidden;
   border-radius: 15px;
 
@@ -65,6 +65,6 @@ const ContentStyle = styled.div`
   }
 
   @media only screen and (max-width: ${theme.devise.notebookWidth}) {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
   }
 `;

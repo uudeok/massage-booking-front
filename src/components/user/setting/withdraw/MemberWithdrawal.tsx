@@ -18,7 +18,7 @@ const MemberWithdrawal = () => {
             탈퇴
           </CommonButton>
         </TitleBoxStyle>
-        <p>자연치유 쉼 회원 탈퇴하기.</p>
+        <p>자연치유 쉼 회원 탈퇴하기</p>
       </CardBoxStyle>
     </ContainerStyle>
   );
