@@ -1,14 +1,24 @@
-import ProgramItem from "./ProgramItem";
+import { useGetMassageListQuery } from "../../api/massage/massageQuery";
+import { TMassageTable } from "../../@types/massage";
 import styled from "styled-components";
 import Banner from "../banner/Banner";
 import LoadingBar from "../loading/LoadingBar";
-import { useGetMassageListQuery } from "../../api/massage/massageQuery";
 import theme from "../../styles/theme";
+import RenderList from "../common/map/RenderList";
+import CardImage from "../common/card/CardImage";
+import CardContent from "../common/card/CardContent";
 
 const ProgramList = () => {
-  const { data: massageList } = useGetMassageListQuery();
+  const { data: massageList = [] } = useGetMassageListQuery();
 
   if (!massageList) return <LoadingBar />;
+
+  const renderProgramItem = (item: TMassageTable) => (
+    <Self key={item.id}>
+      <CardImage image={item.image} alt={item.item} />
+      <CardContent title={item.displayItem} content={item.content} />
+    </Self>
+  );
 
   return (
     <>
@@ -16,8 +26,7 @@ const ProgramList = () => {
       <ContainerStyle>
         <InnerBoxStyle>
           <TitleStyle>프로그램 안내</TitleStyle>
-          <hr style={{ marginBottom: "3rem" }}></hr>
-          <ImgBoxStyle src="brochure.jpg" alt="가격표" />
+          <RenderList data={massageList} renderItem={renderProgramItem} />
         </InnerBoxStyle>
       </ContainerStyle>
     </>
@@ -25,15 +34,6 @@ const ProgramList = () => {
 };
 
 export default ProgramList;
-
-const BannerTitleStyle = styled.h2`
-  font-size: 2rem;
-  margin-bottom: 1rem;
-
-  @media only screen and (max-width: ${theme.devise.tabletWidth}) {
-    font-size: 1.2rem;
-  }
-`;
 
 const ContainerStyle = styled.div`
   display: flex;
@@ -58,18 +58,17 @@ const InnerBoxStyle = styled.ul`
 const TitleStyle = styled.h1`
   font-size: 2rem;
   margin-top: 3rem;
+  line-height: 2.5rem;
+  border-bottom: 1px solid black;
+  margin-bottom: 2rem;
 
   @media only screen and (max-width: ${theme.devise.tabletWidth}) {
     font-size: 1.5rem;
   }
 `;
 
-const ItemBoxStyle = styled.li`
-  text-align: center;
-  padding: 1rem;
-`;
-
-const ImgBoxStyle = styled.img`
-  margin: auto;
-  display: flex;
+const Self = styled.div`
+  height: 30rem;
+  width: 80%;
+  margin: 0 auto;
 `;
