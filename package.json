@@ -38,7 +38,7 @@
     "eject": "react-scripts eject",
     "deploy": "npm run build && npm run upload && npm run cache-purge",
     "upload": "aws s3 sync ./build s3://m.travelog.today",
-    "cache-purge": "aws cloudfront create-invalidation --distribution-id E2GS05NLU9OA8Z --paths \"/*\""
+    "cache-purge": "aws cloudfront create-invalidation --distribution-id E2PB8F9OXCSUNT --paths \"/*\""
   },
   "eslintConfig": {
     "extends": [
