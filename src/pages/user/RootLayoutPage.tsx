@@ -1,4 +1,6 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+import { getCookie } from "../../util/auth";
 import styled from "styled-components";
 import Header from "../../components/header/Header";
 import Footer from "../../components/footer/Footer";
@@ -7,6 +9,15 @@ import MyPageHeader from "../../components/user/layout/MyPageHeader";
 import theme from "../../styles/theme";
 
 const RootLayoutPage = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!getCookie("userId")) {
+      alert("로그인이 필요한 서비스입니다.");
+      navigate("/login");
+    }
+  }, [navigate]);
+
   return (
     <WrapperStyle>
       <Header />

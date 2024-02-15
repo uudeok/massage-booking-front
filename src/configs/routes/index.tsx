@@ -13,14 +13,15 @@ import RootLayoutPage from "../../pages/user/RootLayoutPage";
 import MyOrderPage from "../../pages/user/MyOrderPage";
 import MyOrderDetailPage from "../../pages/user/MyOrderDetail";
 import UserWithdrawalPage from "../../pages/user/UserWithdrawalPage";
-import NaverLoginPage from "../../pages/auth/NaverLoginPage";
 import KakaoLoginPage from "../../pages/auth/KakaoLoginPage";
 import MyInformationPage from "../../pages/user/MyInfomationPage";
 import NotFound from "../../components/error/NotFound";
+import AuthLayout from "../../layout/AuthLayout";
 
 const bookRouteObjects: RouteObject[] = [
   {
     path: "book",
+    element: <AuthLayout />,
     children: [
       {
         index: true,
@@ -83,7 +84,6 @@ const userRouteObjects: RouteObject[] = [
 
 const authRouteObjects: RouteObject[] = [
   { path: "login", element: <LoginPage /> },
-  { path: "naverCallback", element: <NaverLoginPage /> },
   { path: "kakaoCallback", element: <KakaoLoginPage /> },
 ];
 

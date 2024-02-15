@@ -1,19 +1,13 @@
-import styled from "styled-components";
 import { Link } from "react-router-dom";
-import theme from "../../styles/theme";
 import { useNavigate } from "react-router-dom";
-import { useCookies } from "react-cookie";
+import theme from "../../styles/theme";
+import styled from "styled-components";
 
 const Booking = () => {
   const navigate = useNavigate();
-  const [loginCookie] = useCookies(["userId"]);
 
   const handleRedirect = () => {
-    if (loginCookie.userId) {
-      navigate("/book");
-    } else {
-      navigate("/login");
-    }
+    navigate("/book");
   };
 
   return (

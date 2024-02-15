@@ -73,11 +73,7 @@ const BookingSummary = ({ selectedDate, selectedTime, showModal }: TProps) => {
     </SummaryItemStyle>
   );
 
-  const checkLogin = () => {
-    if (loginCookie.userId === undefined) {
-      alert("로그인이 필요한 서비스입니다");
-      navigate("/login");
-    }
+  const handleReservation = () => {
     showBookingModal();
   };
 
@@ -102,7 +98,7 @@ const BookingSummary = ({ selectedDate, selectedTime, showModal }: TProps) => {
       <CommonButton
         type="rectangle"
         $border="2px solid grey"
-        onClickButton={checkLogin}
+        onClickButton={handleReservation}
         $padding="0.6rem"
         disabled={!selectedTime}
         $borderRadius="10px"
