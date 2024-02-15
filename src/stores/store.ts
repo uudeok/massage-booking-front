@@ -8,6 +8,7 @@ import { bookApi } from "../api/book/bookQuery";
 import timeSlice from "./timeSlice";
 
 import { ordersApi } from "../api/orders/ordersQuery";
+import { userApi } from "../api/users/usersQuery";
 
 export const store = configureStore({
   reducer: {
@@ -19,6 +20,7 @@ export const store = configureStore({
     [noticeApi.reducerPath]: noticeApi.reducer,
     [bookApi.reducerPath]: bookApi.reducer,
     [ordersApi.reducerPath]: ordersApi.reducer,
+    [userApi.reducerPath]: userApi.reducer,
   },
   devTools: true,
   middleware: (getDefaultMiddleware) =>
@@ -26,7 +28,8 @@ export const store = configureStore({
       massageApi.middleware,
       noticeApi.middleware,
       bookApi.middleware,
-      ordersApi.middleware
+      ordersApi.middleware,
+      userApi.middleware
     ),
 });
 

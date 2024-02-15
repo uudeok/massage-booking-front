@@ -1,20 +1,29 @@
 import styled from "styled-components";
 import theme from "../../../styles/theme";
 import RenderList from "../../common/map/RenderList";
+import { useGetUserQuery } from "../../../api/users/usersQuery";
+import { useCookies } from "react-cookie";
+import LoadingBar from "../../loading/LoadingBar";
+import { makeSimpleDate } from "../../../util/date";
 
 type MyInfoType = {
   key: string;
   value: string;
 };
 
-const MY_INFO = [
-  { key: "성명", value: "홍길동" },
-  { key: "이메일", value: "abc@defg.com" },
-  { key: "성별", value: "여성" },
-  { key: "SNS 연동", value: "카카오톡" },
-] as MyInfoType[];
-
 const MyInformation = () => {
+  const [loginCookie] = useCookies(["userId"]);
+  const { data } = useGetUserQuery(loginCookie.userId);
+
+  if (!data) return <LoadingBar />;
+
+  const MY_INFO = [
+    { key: "성명", value: data?.nickname },
+    { key: "이메일", value: data.email ? data.email : <span>연동 안됨</span> },
+    { key: "가입일자", value: makeSimpleDate(data.createdAt) },
+    { key: "SNS 연동", value: "카카오톡" },
+  ] as MyInfoType[];
+
   const renderMyInfo = (item: MyInfoType) => (
     <ItemBoxStyle key={item.key}>
       <span>{item.key}</span>

@@ -6,15 +6,13 @@ import { useCookies } from "react-cookie";
 
 const Booking = () => {
   const navigate = useNavigate();
-  const [bookingCookie] = useCookies(["userId"]);
-
-  console.log("Booking", bookingCookie.userId);
+  const [loginCookie] = useCookies(["userId"]);
 
   const handleRedirect = () => {
-    if (bookingCookie.userId === undefined) {
-      navigate("/login");
-    } else {
+    if (loginCookie.userId) {
       navigate("/book");
+    } else {
+      navigate("/login");
     }
   };
 

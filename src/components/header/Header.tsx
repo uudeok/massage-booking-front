@@ -26,9 +26,7 @@ export const MENU_LIST = [
 
 const Header = () => {
   const navigate = useNavigate();
-  const [loginCookie, setCookie, removeCookie] = useCookies(["userId"]);
-
-  console.log("a", loginCookie.userId);
+  const [loginCookie, , removeCookie] = useCookies(["userId"]);
 
   const logoutHandler = () => {
     logout();

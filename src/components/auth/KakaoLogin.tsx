@@ -1,15 +1,21 @@
-import { Link } from "react-router-dom";
 import CommonButton from "../common/button/CommonButton";
 
-// 여기는 카카오 로그인 버튼 컴포넌트
+const KAKAO_URL = `http://localhost:5000/auth/kakao`;
 
 const KakaoLogin = () => {
-  const KAKAO_URL = `http://localhost:5000/auth/kakao`;
+  const handleLogin = async () => {
+    try {
+      window.location.href = KAKAO_URL;
+    } catch (error) {
+      console.error("카카오톡 로그인 에러:", error);
+      throw new Error("카카오톡 로그인에 실패했습니다.");
+    }
+  };
 
   return (
-    <Link to={KAKAO_URL}>
-      <CommonButton $oauth="kakao">카카오톡 계정 로그인</CommonButton>
-    </Link>
+    <CommonButton onClickButton={handleLogin} $oauth="kakao">
+      카카오톡 계정 로그인
+    </CommonButton>
   );
 };
 
