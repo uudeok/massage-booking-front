@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { currTabNum, resetTabNum } from "../../stores/tabSlice";
-import { getAuthUser } from "../../util/auth";
 import { useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
 import BookingDate from "./BookingDate";
 import RenderList from "../common/map/RenderList";
 import theme from "../../styles/theme";
@@ -36,16 +36,16 @@ const TAB_LIST = [
 
 const BookingTab = () => {
   const navigate = useNavigate();
-  const token = getAuthUser();
   const dispatch = useDispatch();
+  const [loginCookie] = useCookies(["userId"]);
   const tabNum = useSelector(currTabNum);
 
   useEffect(() => {
-    if (token === null) {
+    if (loginCookie.userId === undefined) {
       alert("로그인이 필요한 서비스 입니다.");
       navigate("/login");
     }
-  }, [navigate, token]);
+  }, [navigate, loginCookie]);
 
   useEffect(() => {
     return () => {

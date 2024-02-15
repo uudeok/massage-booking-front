@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 const KakaoCallback = () => {
   const navigate = useNavigate();
+  console.log("hsdas");
 
   const getToken = useCallback(() => {
     const code = new URL(window.location.href).searchParams.get("code");

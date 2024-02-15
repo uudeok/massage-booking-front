@@ -74,7 +74,7 @@ const MyOrderSummary = () => {
           <span>요청 중</span>
           <IconBoxStyle ref={ref}>
             <FcInfo />
-            <ConditionalDisplay isShow={isHover}>
+            <ConditionalDisplay condition={isHover}>
               <span>예약 확인 중 입니다.</span>
             </ConditionalDisplay>
           </IconBoxStyle>

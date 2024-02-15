@@ -1,15 +1,17 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import theme from "../../styles/theme";
-import { getAuthUser } from "../../util/auth";
 import { useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
 
 const Booking = () => {
   const navigate = useNavigate();
-  const token = getAuthUser();
+  const [bookingCookie] = useCookies(["userId"]);
+
+  console.log("Booking", bookingCookie.userId);
 
   const handleRedirect = () => {
-    if (token === null) {
+    if (bookingCookie.userId === undefined) {
       navigate("/login");
     } else {
       navigate("/book");

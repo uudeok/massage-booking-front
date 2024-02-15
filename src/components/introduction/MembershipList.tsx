@@ -9,8 +9,6 @@ const MembershipList = () => {
       <ContainerStyle>
         <InnerBoxStyle>
           <TitleStyle>회원권 안내</TitleStyle>
-          <hr style={{ marginBottom: "3rem" }}></hr>
-          {/* <ImgBoxStyle src="brochure.jpg" alt="가격표" /> */}
           <h2>Update soon...😉</h2>
         </InnerBoxStyle>
       </ContainerStyle>
@@ -45,13 +43,10 @@ const TitleStyle = styled.h1`
   font-size: 2rem;
   margin-top: 3rem;
   text-align: left;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid black;
 
   @media only screen and (max-width: ${theme.devise.tabletWidth}) {
     font-size: 1.5rem;
   }
-`;
-
-const ImgBoxStyle = styled.img`
-  margin: auto;
-  display: flex;
 `;

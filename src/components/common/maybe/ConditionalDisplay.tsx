@@ -1,11 +1,15 @@
 type TProps = {
   children: JSX.Element;
-  isShow: boolean;
-  fallbackChildren?: JSX.Element;
+  condition: boolean;
+  alternativeComponent?: JSX.Element;
 };
 
-const ConditionalDisplay = ({ isShow, children, fallbackChildren }: TProps) => {
-  return <>{isShow ? children : fallbackChildren ?? null}</>;
+const ConditionalDisplay = ({
+  condition,
+  children,
+  alternativeComponent,
+}: TProps) => {
+  return <>{condition ? children : alternativeComponent ?? null}</>;
 };
 
 export default ConditionalDisplay;

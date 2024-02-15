@@ -14,7 +14,6 @@ const NoticeDetail = () => {
         <NoticeBoxStyle>
           <TitleStyle>공지사항</TitleStyle>
         </NoticeBoxStyle>
-
         {noticeDetail && <Notice detail={noticeDetail} />}
       </InnerBoxStyle>
     </ContainerStyle>

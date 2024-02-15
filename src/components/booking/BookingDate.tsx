@@ -91,7 +91,7 @@ const BookingDate = () => {
 
   return (
     <>
-      <ConditionalDisplay isShow={isOpen}>
+      <ConditionalDisplay condition={isOpen}>
         <CalendarModal
           closeModal={closeModal}
           onClick={handleDatePicker}

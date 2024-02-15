@@ -1,14 +1,17 @@
-export const getAuthUser = () => {
-  const token = localStorage.getItem("code");
+import { Cookies } from "react-cookie";
 
-  if (!token) {
-    return null;
-  }
+const cookies = new Cookies();
 
-  return { token };
+console.log(cookies);
+
+export const setCookie = (name: string, value: string, option: any) => {
+  return cookies.set(name, value, { ...option });
 };
 
-export const logout = () => {
-  localStorage.removeItem("code");
-  localStorage.removeItem("com.naver.nid.access_token");
+export const getCookie = (name: string) => {
+  return cookies.get(name);
+};
+
+export const removeCookie = (name: string) => {
+  return cookies.remove(name);
 };

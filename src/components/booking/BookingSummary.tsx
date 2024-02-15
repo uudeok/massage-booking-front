@@ -7,8 +7,9 @@ import {
 import { addFewMinutes } from "../../util/time";
 import { BOOKING_ITEM_VALUE } from "../../@types/massage";
 import { makeSimpleDate } from "../../util/date";
-import { getAuthUser } from "../../util/auth";
 import { useModal } from "../../hooks/useModal";
+import { useCookies } from "react-cookie";
+import { useNavigate } from "react-router-dom";
 import ConditionalDisplay from "../common/maybe/ConditionalDisplay";
 import BookingModal from "../common/UI/modal/BookingModal";
 import SectionTitle from "../common/shared/SectionTitle";
@@ -29,7 +30,7 @@ type SummaryListType = {
 };
 
 const BookingSummary = ({ selectedDate, selectedTime, showModal }: TProps) => {
-  const token = getAuthUser();
+  const navigate = useNavigate();
   const massageItem = useSelector(getSelectedMassageItem);
   const massageDetail = useSelector(getMassageDetail);
   const selectedMassageTime = massageDetail[0].time;
@@ -39,6 +40,7 @@ const BookingSummary = ({ selectedDate, selectedTime, showModal }: TProps) => {
     showModal: showBookingModal,
     closeModal: closeBookingModal,
   } = useModal();
+  const [loginCookie] = useCookies(["userId"]);
 
   const calculateEndTime = (selectedDate: string, selectedTime: string) => {
     const fullDate = `${selectedDate}T${selectedTime}:00`;
@@ -72,13 +74,16 @@ const BookingSummary = ({ selectedDate, selectedTime, showModal }: TProps) => {
   );
 
   const checkLogin = () => {
-    if (token === null) return;
+    if (loginCookie.userId === undefined) {
+      alert("로그인이 필요한 서비스입니다");
+      navigate("/login");
+    }
     showBookingModal();
   };
 
   return (
     <SummaryBoxStyle>
-      <ConditionalDisplay isShow={isBookingModalOpen}>
+      <ConditionalDisplay condition={isBookingModalOpen}>
         <BookingModal
           closeModal={closeBookingModal}
           massageItem={massageItem}

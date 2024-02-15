@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import KakaoLogin from "./KakaoLogin";
-import NaverLogin from "./NaverLogin";
 import theme from "../../styles/theme";
 
 const OauthLogin = () => {
@@ -18,7 +17,7 @@ const OauthLogin = () => {
       </BannerStyle>
       <BottomBoxStyle>
         <KakaoLogin />
-        <NaverLogin />
+        {/* <NaverLogin /> */}
       </BottomBoxStyle>
     </>
   );
