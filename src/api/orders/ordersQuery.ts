@@ -6,6 +6,8 @@ import {
   TPostType,
 } from "../../@types/mypage/orders";
 
+// prepareheader
+
 export const ordersApi = createApi({
   reducerPath: "ordersApi",
   baseQuery: fetchBaseQuery({
