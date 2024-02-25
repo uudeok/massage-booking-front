@@ -38,7 +38,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "deploy": "npm run build && npm run upload && npm run cache-purge",
-    "upload": "aws s3 sync ./build s3://naturalhealingspa.co.kr",
+    "upload": "aws s3 sync ./build s3://www.naturalhealingspa.co.kr",
     "cache-purge": "aws cloudfront create-invalidation --distribution-id E39553E3GG7GU6 --paths \"/*\""
   },
   "eslintConfig": {
