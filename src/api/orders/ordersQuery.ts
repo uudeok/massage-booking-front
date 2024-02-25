@@ -10,6 +10,13 @@ export const ordersApi = createApi({
   reducerPath: "ordersApi",
   baseQuery: fetchBaseQuery({
     baseUrl: generate_ORDERS,
+    // prepareHeaders: (headers, { getState }) => {
+    //   const token = getState().auth.token;
+    //   if (token) {
+    //     headers.set("Authorization", `Bearer ${token}`);
+    //   }
+    //   return headers;
+    // },
   }),
   tagTypes: ["orders"],
   endpoints: (builder) => ({
@@ -22,6 +29,7 @@ export const ordersApi = createApi({
         return {
           url: "/",
           params: { pageNumber, pageSize },
+          // headers: {Authorization: `Bearer ${token}`}
         };
       },
 

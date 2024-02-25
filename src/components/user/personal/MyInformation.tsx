@@ -19,7 +19,7 @@ const MyInformation = () => {
 
   const MY_INFO = [
     { key: "성명", value: data?.nickname },
-    { key: "이메일", value: data.email ? data.email : <span>연동 안됨</span> },
+    { key: "이메일", value: data.email ? data.email : <h3>연동 안됨</h3> },
     { key: "가입일자", value: makeSimpleDate(data.createdAt) },
     { key: "SNS 연동", value: "카카오톡" },
   ] as MyInfoType[];
