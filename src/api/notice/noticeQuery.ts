@@ -1,4 +1,3 @@
-import { generate_NOTICE } from "..";
 import {
   NOTICE_CATEGORY_KEYS,
   NoticeType,
@@ -8,7 +7,9 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const noticeApi = createApi({
   reducerPath: "noticeApi",
-  baseQuery: fetchBaseQuery({ baseUrl: generate_NOTICE }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: `${process.env.REACT_APP_API_URL}/notices`,
+  }),
   tagTypes: ["notice"],
   endpoints: (builder) => ({
     getNoticeList: builder.query<

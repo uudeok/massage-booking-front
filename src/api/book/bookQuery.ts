@@ -1,9 +1,10 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { generate_EVENTS } from "..";
 
 export const bookApi = createApi({
   reducerPath: "bookApi",
-  baseQuery: fetchBaseQuery({ baseUrl: generate_EVENTS }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: `${process.env.REACT_APP_API_URL}/events`,
+  }),
   tagTypes: ["book"],
   endpoints: (builder) => ({
     getBookedTimeList: builder.query<string[], string>({
