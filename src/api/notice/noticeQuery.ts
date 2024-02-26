@@ -5,8 +5,6 @@ import {
 } from "../../@types/notice";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-// console.log("check", process.env.REACT_APP_API_URL);
-
 export const noticeApi = createApi({
   reducerPath: "noticeApi",
   baseQuery: fetchBaseQuery({

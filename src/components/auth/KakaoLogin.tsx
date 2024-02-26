@@ -1,6 +1,6 @@
 import CommonButton from "../common/button/CommonButton";
 
-const KAKAO_URL = `http://localhost:5000/auth/kakao`;
+const KAKAO_URL = `${process.env.REACT_APP_API_URL}/auth/kakao/callback`;
 
 const KakaoLogin = () => {
   const handleLogin = async () => {

@@ -1,10 +1,11 @@
-import { generate_ITEM } from "..";
 import { BOOKING_ITEM_KEYS, TMassageTable } from "../../@types/massage";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const massageApi = createApi({
   reducerPath: "massageApi",
-  baseQuery: fetchBaseQuery({ baseUrl: generate_ITEM }),
+  baseQuery: fetchBaseQuery({
+    baseUrl: `${process.env.REACT_APP_API_URL}/items`,
+  }),
   tagTypes: ["massage"],
   endpoints: (builder) => ({
     getMassageList: builder.query<TMassageTable[], void>({

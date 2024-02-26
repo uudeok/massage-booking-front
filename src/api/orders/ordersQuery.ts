@@ -1,5 +1,4 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { generate_ORDERS } from "..";
 import {
   MyOrderType,
   TDeleteType,
@@ -11,7 +10,7 @@ import {
 export const ordersApi = createApi({
   reducerPath: "ordersApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: generate_ORDERS,
+    baseUrl: `${process.env.REACT_APP_API_URL}/orders`,
     // prepareHeaders: (headers, { getState }) => {
     //   const token = getState().auth.token;
     //   if (token) {
@@ -31,7 +30,6 @@ export const ordersApi = createApi({
         return {
           url: "/",
           params: { pageNumber, pageSize },
-          // headers: {Authorization: `Bearer ${token}`}
         };
       },
 
