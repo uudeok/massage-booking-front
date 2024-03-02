@@ -5,8 +5,6 @@ import {
   TPostType,
 } from "../../@types/mypage/orders";
 
-// prepareheader
-
 export const ordersApi = createApi({
   reducerPath: "ordersApi",
   baseQuery: fetchBaseQuery({
@@ -35,6 +33,14 @@ export const ordersApi = createApi({
 
       providesTags: [{ type: "orders" }],
     }),
+    getOrderDetail: builder.query({
+      query: (id) => {
+        return {
+          url: `/${id}`,
+        };
+      },
+    }),
+
     postOrderData: builder.mutation<any, TPostType>({
       query: (arg) => {
         const { event, order } = arg;
@@ -61,6 +67,7 @@ export const ordersApi = createApi({
 
 export const {
   useGetOrderListQuery,
+  useGetOrderDetailQuery,
   usePostOrderDataMutation,
   useDeleteOrderDataMutation,
 } = ordersApi;

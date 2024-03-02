@@ -26,7 +26,7 @@ export const MENU_LIST = [
 
 const Header = () => {
   const navigate = useNavigate();
-  const [loginCookie, , removeCookie] = useCookies(["userId"]);
+  // const [loginCookie, , removeCookie] = useCookies(["userId"]);
 
   const logoutHandler = () => {
     logout();
@@ -34,7 +34,7 @@ const Header = () => {
   };
 
   const logout = () => {
-    removeCookie("userId");
+    // removeCookie("userId");
   };
 
   const renderMenuItem = (item: MenuType) => (
@@ -60,7 +60,8 @@ const Header = () => {
           </MenuBoxStyle>
 
           <LoginBoxStyle>
-            {!loginCookie.userId && <Link to="/login">로그인</Link>}
+            <Link to="/login">로그인</Link>
+            {/* {!loginCookie.userId && <Link to="/login">로그인</Link>}
             {loginCookie.userId && (
               <LogoutBoxStyle>
                 <button onClick={() => navigate("/mypage/order")}>
@@ -68,7 +69,7 @@ const Header = () => {
                 </button>
                 <button onClick={logoutHandler}>로그아웃</button>
               </LogoutBoxStyle>
-            )}
+            )} */}
           </LoginBoxStyle>
         </InnerContainerStyle>
       </ContainerStyle>

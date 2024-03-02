@@ -11,12 +11,12 @@ import theme from "../../styles/theme";
 const RootLayoutPage = () => {
   const navigate = useNavigate();
 
-  useEffect(() => {
-    if (!getCookie("userId")) {
-      alert("로그인이 필요한 서비스입니다.");
-      navigate("/login");
-    }
-  }, [navigate]);
+  // useEffect(() => {
+  //   if (!getCookie("userId")) {
+  //     alert("로그인이 필요한 서비스입니다.");
+  //     navigate("/login");
+  //   }
+  // }, [navigate]);
 
   return (
     <WrapperStyle>

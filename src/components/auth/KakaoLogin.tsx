@@ -1,15 +1,13 @@
 import CommonButton from "../common/button/CommonButton";
 
-const KAKAO_URL = `${process.env.REACT_APP_API_URL}/auth/kakao/callback`;
+const Rest_api_key = `${process.env.REACT_APP_KAKAO_REST_KEY}`;
+const redirect_uri = "http://localhost:3000/auth/kakao/callback";
+
+const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${Rest_api_key}&redirect_uri=${redirect_uri}&response_type=code`;
 
 const KakaoLogin = () => {
   const handleLogin = async () => {
-    try {
-      window.location.href = KAKAO_URL;
-    } catch (error) {
-      console.error("카카오톡 로그인 에러:", error);
-      throw new Error("카카오톡 로그인에 실패했습니다.");
-    }
+    window.location.href = kakaoURL;
   };
 
   return (

@@ -1,10 +1,6 @@
 import styled from "styled-components";
 import theme from "../../../styles/theme";
 import RenderList from "../../common/map/RenderList";
-import { useGetUserQuery } from "../../../api/users/usersQuery";
-import { useCookies } from "react-cookie";
-import LoadingBar from "../../loading/LoadingBar";
-import { makeSimpleDate } from "../../../util/date";
 
 type MyInfoType = {
   key: string;
@@ -12,15 +8,10 @@ type MyInfoType = {
 };
 
 const MyInformation = () => {
-  const [loginCookie] = useCookies(["userId"]);
-  const { data } = useGetUserQuery(loginCookie.userId);
-
-  if (!data) return <LoadingBar />;
-
   const MY_INFO = [
-    { key: "성명", value: data?.nickname },
-    { key: "이메일", value: data.email ? data.email : <h3>연동 안됨</h3> },
-    { key: "가입일자", value: makeSimpleDate(data.createdAt) },
+    { key: "성명", value: "홍길동" },
+    { key: "이메일", value: "www.example.com" },
+    { key: "가입일자", value: "2024-02-15" },
     { key: "SNS 연동", value: "카카오톡" },
   ] as MyInfoType[];
 

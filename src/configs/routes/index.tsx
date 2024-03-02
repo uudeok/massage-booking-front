@@ -17,11 +17,12 @@ import KakaoLoginPage from "../../pages/auth/KakaoLoginPage";
 import MyInformationPage from "../../pages/user/MyInfomationPage";
 import NotFound from "../../components/error/NotFound";
 import AuthLayout from "../../layout/AuthLayout";
+import KakaoCallback from "../../components/auth/KakaoCallback";
 
 const bookRouteObjects: RouteObject[] = [
   {
     path: "book",
-    element: <AuthLayout />,
+    // element: <AuthLayout />,
     children: [
       {
         index: true,
@@ -84,7 +85,8 @@ const userRouteObjects: RouteObject[] = [
 
 const authRouteObjects: RouteObject[] = [
   { path: "login", element: <LoginPage /> },
-  { path: "kakaoCallback", element: <KakaoLoginPage /> },
+  { path: "auth/kakao/callback", element: <KakaoLoginPage /> },
+  // { path: "kakaoCallback", element: <KakaoLoginPage /> },
 ];
 
 export const router = createBrowserRouter([

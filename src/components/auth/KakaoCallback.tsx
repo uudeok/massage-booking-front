@@ -8,27 +8,20 @@ import { useNavigate } from "react-router-dom";
 
 const KakaoCallback = () => {
   const navigate = useNavigate();
-  console.log("hsdas");
 
   const getToken = useCallback(() => {
     const code = new URL(window.location.href).searchParams.get("code");
-    // console.log("kakaoCode", code);
+    console.log("kakaoCode", code);
     localStorage.setItem("code", code!);
 
     if (code) {
       navigate("/");
     }
-
-    // code 가 카카오에서 받은 인가 코드이다. 이 코드를 백엔드로 전달하면 된다.
   }, [navigate]);
 
-  const userAccessToken = useCallback(() => {
-    window.location.href.includes("code") && getToken();
-  }, [getToken]);
-
   useEffect(() => {
-    userAccessToken();
-  }, [userAccessToken]);
+    getToken();
+  }, [getToken]);
 
   return (
     <BackGroundStyle>
