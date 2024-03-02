@@ -13,6 +13,7 @@ import HeaderDropMenu from "./HeaderDropMenu";
 import RenderList from "../common/map/RenderList";
 import { getUserName } from "../../util/auth";
 import { useEffect, useState } from "react";
+import { useLogoutMutation } from "../../api/users/usersQuery";
 
 type MenuType = {
   key: string;
@@ -27,6 +28,7 @@ export const MENU_LIST = [
 
 const Header = () => {
   const navigate = useNavigate();
+  const [logout] = useLogoutMutation();
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const userName = getUserName();
 
@@ -34,9 +36,14 @@ const Header = () => {
     setIsLoggedIn(!!userName);
   }, [userName]);
 
-  const logoutHandler = () => {
-    localStorage.clear();
-    setIsLoggedIn(false);
+  const logoutHandler = async () => {
+    try {
+      await logout();
+      localStorage.clear();
+      setIsLoggedIn(false);
+    } catch (error) {
+      console.error("로그아웃 중 에러 발생:", error);
+    }
   };
 
   const renderMenuItem = (item: MenuType) => (

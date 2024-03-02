@@ -1,17 +1,26 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { UserType } from "../../@types/user";
 
 export const userApi = createApi({
   reducerPath: "userApi",
   baseQuery: fetchBaseQuery({
     baseUrl: `${process.env.REACT_APP_API_URL}/users`,
+    prepareHeaders: (headers) => {
+      const token = localStorage.getItem("token");
+      if (token) {
+        headers.set("Authorization", `Bearer ${token}`);
+      }
+      return headers;
+    },
   }),
   tagTypes: ["user"],
   endpoints: (builder) => ({
-    getUser: builder.query<UserType, number>({
-      query: (userId) => `/${userId}`,
+    logout: builder.mutation<any, void>({
+      query: () => ({
+        url: "/sign-out",
+        method: "DELETE",
+      }),
     }),
   }),
 });
 
-export const { useGetUserQuery } = userApi;
+export const { useLogoutMutation } = userApi;

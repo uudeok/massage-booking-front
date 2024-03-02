@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import theme from "../../../styles/theme";
 import RenderList from "../../common/map/RenderList";
+import { makeSimpleDate } from "../../../util/date";
 
 type MyInfoType = {
   key: string;
@@ -8,10 +9,13 @@ type MyInfoType = {
 };
 
 const MyInformation = () => {
+  const userInfo = localStorage.getItem("user");
+  const user = JSON.parse(userInfo!);
+
   const MY_INFO = [
-    { key: "성명", value: "홍길동" },
-    { key: "이메일", value: "www.example.com" },
-    { key: "가입일자", value: "2024-02-15" },
+    { key: "성명", value: user.nickname },
+    { key: "이메일", value: user.email ? user.email : "연동안됨" },
+    { key: "가입일자", value: makeSimpleDate(user.createdAt) },
     { key: "SNS 연동", value: "카카오톡" },
   ] as MyInfoType[];
 

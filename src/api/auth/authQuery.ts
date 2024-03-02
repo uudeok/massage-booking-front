@@ -17,7 +17,7 @@ export const authApi = createApi({
       transformResponse: (response: { user: UserType }) => {
         return response.user;
       },
-      invalidatesTags: [{ type: "login" }], // 로그인 상태를 업데이트하는 경우 캐시를 무효화합니다.
+      invalidatesTags: [{ type: "login" }],
     }),
   }),
 });
