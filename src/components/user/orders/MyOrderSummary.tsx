@@ -1,11 +1,17 @@
-import { useDeleteOrderDataMutation } from "../../../api/orders/ordersQuery";
+import {
+  useDeleteOrderDataMutation,
+  useGetOrderDetailQuery,
+} from "../../../api/orders/ordersQuery";
 import { useNavigate, useParams } from "react-router-dom";
-import { FcInfo } from "react-icons/fc";
-import { useHover } from "../../../hooks/useHover";
 import styled from "styled-components";
 import CommonButton from "../../common/button/CommonButton";
 import theme from "../../../styles/theme";
 import RenderList from "../../common/map/RenderList";
+import LoadingBar from "../../loading/LoadingBar";
+import { makeSimpleDate } from "../../../util/date";
+import { addComma } from "../../../util/price";
+import { makeSimpleTime } from "../../../util/time";
+import OrderStatus from "./OrderStatus";
 import ConditionalDisplay from "../../common/maybe/ConditionalDisplay";
 
 type OrderDetailType = {
@@ -14,16 +20,13 @@ type OrderDetailType = {
 };
 
 const MyOrderSummary = () => {
-  /// orderStatus === "PENDING" or "CONFIRM" 일때만 예약 취소 가능
-  /// 30분 지나면 예약 취소 불가
-
-  // orderStat === "CANCEL" or "COMPLETED" 일때 이 마사지 그대로 예약하기 기능
-  // 지금은 id 가 홀수냐 짝수냐에 따라 구분함
-
-  const { ref, isHover } = useHover();
   const { id } = useParams();
   const navigate = useNavigate();
+
   const [deleteOrder] = useDeleteOrderDataMutation();
+  const { data: orderDetail } = useGetOrderDetailQuery(Number(id));
+
+  if (!orderDetail) return <LoadingBar />;
 
   const cancelOrderHandler = () => {
     const process = window.confirm("예약을 취소하시겠습니까?");
@@ -39,31 +42,41 @@ const MyOrderSummary = () => {
   };
 
   const ORDER_DETAIL: OrderDetailType[] = [
-    { key: "예약한 마사지", value: "건식 마사지" },
-    { key: "예약한 날짜", value: "2023-11-20" },
-    { key: "예약한 시간", value: "12:00 - 13:00" },
-    { key: "금액", value: "60,000원" },
+    { key: "예약한 마사지", value: orderDetail.item },
+    { key: "예약한 날짜", value: makeSimpleDate(orderDetail.startReservedAt) },
+    {
+      key: "예약한 시간",
+      value: `${makeSimpleTime(orderDetail.startReservedAt)} - ${makeSimpleTime(
+        orderDetail.endReservedAt
+      )}`,
+    },
+    { key: "금액", value: addComma(orderDetail.price) },
   ];
 
   const renderOrderDetail = (orderDetail: OrderDetailType) => (
-    <OrderItemBoxStyle key={orderDetail.value}>
+    <OrderItemBoxStyle key={orderDetail.key}>
       <KeyStyle>{orderDetail.key}</KeyStyle>
       <span>{orderDetail.value}</span>
     </OrderItemBoxStyle>
   );
 
   return (
-    <div>
+    <>
       <HeaderStyle>
-        <OrderedDateStyle>2023-11-15 예약</OrderedDateStyle>
-        <CommonButton
-          type="rectangle"
-          onClickButton={cancelOrderHandler}
-          width="6.5rem"
-          fontFamily={theme.fonts.pretend}
-        >
-          예약 취소하기
-        </CommonButton>
+        <OrderedDateStyle>
+          {makeSimpleDate(orderDetail.createdAt)} 예약
+        </OrderedDateStyle>
+        <ConditionalDisplay condition={orderDetail.status === "PENDING"}>
+          <CommonButton
+            type="rectangle"
+            onClickButton={cancelOrderHandler}
+            width="6.5rem"
+            color="grey"
+            fontFamily={theme.fonts.pretend}
+          >
+            예약 취소하기
+          </CommonButton>
+        </ConditionalDisplay>
       </HeaderStyle>
 
       <ContentBoxStyle>
@@ -71,30 +84,15 @@ const MyOrderSummary = () => {
 
         <OrderItemBoxStyle>
           <KeyStyle>예약 상태</KeyStyle>
-          <span>요청 중</span>
-          <IconBoxStyle ref={ref}>
-            <FcInfo />
-            <ConditionalDisplay condition={isHover}>
-              <span>예약 확인 중 입니다.</span>
-            </ConditionalDisplay>
-          </IconBoxStyle>
+          <span>{orderDetail.displayStatus}</span>
+          <OrderStatus status={orderDetail.status} />
         </OrderItemBoxStyle>
       </ContentBoxStyle>
-    </div>
+    </>
   );
 };
 
 export default MyOrderSummary;
-
-const IconBoxStyle = styled.div`
-  gap: 0.2rem;
-  cursor: pointer;
-
-  span {
-    font-size: 0.9rem;
-    color: #555555;
-  }
-`;
 
 const HeaderStyle = styled.div`
   display: flex;

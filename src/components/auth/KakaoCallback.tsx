@@ -16,6 +16,7 @@ const KakaoCallback = () => {
     const userInfo = await getToken(code!).unwrap();
 
     localStorage.setItem("nickname", userInfo.nickname);
+    localStorage.setItem("token", userInfo.accessToken);
     localStorage.setItem("user", JSON.stringify(userInfo));
 
     navigate("/");

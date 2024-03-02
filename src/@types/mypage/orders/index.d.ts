@@ -17,6 +17,7 @@ export type TOrderType = {
   endReservedAt: string;
   userId: number;
   updatedAt: string;
+  eventId: number;
 };
 
 export type TMyOrderMetaType = {
@@ -50,18 +51,4 @@ export type TPostEventType = {
 export type TPostType = {
   order: TPostOrderType;
   event: TPostEventType;
-};
-
-export type TDeleteType = {
-  id: number;
-  item: BOOKING_ITEM_VALUE;
-  status: ORDER_STATUS_TYPE_KEYS;
-  displayStatus: ORDER_STATUS_TYPE_VALUES;
-  price: price;
-  startReservedAt: string;
-  endReservedAt: string;
-  userId: number;
-  eventId: number;
-  createdAt: string;
-  updatedAt: string;
 };

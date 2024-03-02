@@ -1,21 +1,17 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import {
-  MyOrderType,
-  TDeleteType,
-  TPostType,
-} from "../../@types/mypage/orders";
+import { MyOrderType, TOrderType, TPostType } from "../../@types/mypage/orders";
 
 export const ordersApi = createApi({
   reducerPath: "ordersApi",
   baseQuery: fetchBaseQuery({
     baseUrl: `${process.env.REACT_APP_API_URL}/orders`,
-    // prepareHeaders: (headers, { getState }) => {
-    //   const token = getState().auth.token;
-    //   if (token) {
-    //     headers.set("Authorization", `Bearer ${token}`);
-    //   }
-    //   return headers;
-    // },
+    prepareHeaders: (headers) => {
+      const token = localStorage.getItem("token");
+      if (token) {
+        headers.set("Authorization", `Bearer ${token}`);
+      }
+      return headers;
+    },
   }),
   tagTypes: ["orders"],
   endpoints: (builder) => ({
@@ -33,11 +29,14 @@ export const ordersApi = createApi({
 
       providesTags: [{ type: "orders" }],
     }),
-    getOrderDetail: builder.query({
+    getOrderDetail: builder.query<TOrderType, number>({
       query: (id) => {
         return {
           url: `/${id}`,
         };
+      },
+      transformResponse: (response: { order: TOrderType }) => {
+        return response.order;
       },
     }),
 
@@ -52,7 +51,7 @@ export const ordersApi = createApi({
       },
       invalidatesTags: ["orders"],
     }),
-    deleteOrderData: builder.mutation<{ orders: TDeleteType }, number>({
+    deleteOrderData: builder.mutation<{ orders: TOrderType }, number>({
       query: (id) => {
         return {
           url: `/${id}`,

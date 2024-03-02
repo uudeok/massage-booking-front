@@ -12,6 +12,7 @@ import { Link, useNavigate } from "react-router-dom";
 import HeaderDropMenu from "./HeaderDropMenu";
 import RenderList from "../common/map/RenderList";
 import { getUserName } from "../../util/auth";
+import { useEffect, useState } from "react";
 
 type MenuType = {
   key: string;
@@ -26,11 +27,16 @@ export const MENU_LIST = [
 
 const Header = () => {
   const navigate = useNavigate();
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const userName = getUserName();
-  console.log(userName);
+
+  useEffect(() => {
+    setIsLoggedIn(!!userName);
+  }, [userName]);
 
   const logoutHandler = () => {
-    console.log("logout");
+    localStorage.clear();
+    setIsLoggedIn(false);
   };
 
   const renderMenuItem = (item: MenuType) => (
@@ -56,8 +62,8 @@ const Header = () => {
           </MenuBoxStyle>
 
           <LoginBoxStyle>
-            {!userName && <Link to="/login">로그인</Link>}
-            {userName && (
+            {!isLoggedIn && <Link to="/login">로그인</Link>}
+            {isLoggedIn && (
               <LogoutBoxStyle>
                 <button onClick={() => navigate("/mypage/order")}>
                   내정보
