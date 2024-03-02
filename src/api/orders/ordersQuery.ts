@@ -38,6 +38,7 @@ export const ordersApi = createApi({
       transformResponse: (response: { order: TOrderType }) => {
         return response.order;
       },
+      providesTags: [{ type: "orders" }],
     }),
 
     postOrderData: builder.mutation<any, TPostType>({

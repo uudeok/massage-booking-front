@@ -28,11 +28,11 @@ const MyOrderSummary = () => {
 
   if (!orderDetail) return <LoadingBar />;
 
-  const cancelOrderHandler = () => {
+  const cancelOrderHandler = async () => {
     const process = window.confirm("예약을 취소하시겠습니까?");
     if (process) {
       try {
-        deleteOrder(Number(id));
+        await deleteOrder(Number(id));
       } catch (error) {
         console.log(error);
       } finally {
@@ -81,12 +81,10 @@ const MyOrderSummary = () => {
 
       <ContentBoxStyle>
         <RenderList data={ORDER_DETAIL} renderItem={renderOrderDetail} />
-
-        <OrderItemBoxStyle>
-          <KeyStyle>예약 상태</KeyStyle>
-          <span>{orderDetail.displayStatus}</span>
-          <OrderStatus status={orderDetail.status} />
-        </OrderItemBoxStyle>
+        <OrderStatus
+          status={orderDetail.status}
+          displayStatus={orderDetail.displayStatus}
+        />
       </ContentBoxStyle>
     </>
   );
