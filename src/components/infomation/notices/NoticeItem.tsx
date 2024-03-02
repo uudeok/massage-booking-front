@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { makeSimpleDate } from "../../../util/date";
 import NoticeHeader from "./NoticeHeader";
-import Mapping from "../../common/map/RenderList";
+import RenderList from "../../common/map/RenderList";
 import FetchWithLoading from "../../loading/FetchWithLoading";
 import theme from "../../../styles/theme";
 
@@ -30,7 +30,7 @@ const NoticeItem = ({ notice, isLoading }: TProps) => {
       <NoticeHeader />
       <ContentBoxStyle>
         <FetchWithLoading isLoading={isLoading}>
-          <Mapping data={notice} renderItem={renderNoticeItem} />
+          <RenderList data={notice} renderItem={renderNoticeItem} />
         </FetchWithLoading>
       </ContentBoxStyle>
     </>
