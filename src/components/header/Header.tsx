@@ -9,9 +9,9 @@ import {
   LogoStyle,
 } from "./Header.style";
 import { Link, useNavigate } from "react-router-dom";
-import { useCookies } from "react-cookie";
 import HeaderDropMenu from "./HeaderDropMenu";
 import RenderList from "../common/map/RenderList";
+import { getUserName } from "../../util/auth";
 
 type MenuType = {
   key: string;
@@ -26,15 +26,11 @@ export const MENU_LIST = [
 
 const Header = () => {
   const navigate = useNavigate();
-  // const [loginCookie, , removeCookie] = useCookies(["userId"]);
+  const userName = getUserName();
+  console.log(userName);
 
   const logoutHandler = () => {
-    logout();
-    navigate("/");
-  };
-
-  const logout = () => {
-    // removeCookie("userId");
+    console.log("logout");
   };
 
   const renderMenuItem = (item: MenuType) => (
@@ -60,16 +56,15 @@ const Header = () => {
           </MenuBoxStyle>
 
           <LoginBoxStyle>
-            <Link to="/login">로그인</Link>
-            {/* {!loginCookie.userId && <Link to="/login">로그인</Link>}
-            {loginCookie.userId && (
+            {!userName && <Link to="/login">로그인</Link>}
+            {userName && (
               <LogoutBoxStyle>
                 <button onClick={() => navigate("/mypage/order")}>
                   내정보
                 </button>
                 <button onClick={logoutHandler}>로그아웃</button>
               </LogoutBoxStyle>
-            )} */}
+            )}
           </LoginBoxStyle>
         </InnerContainerStyle>
       </ContainerStyle>

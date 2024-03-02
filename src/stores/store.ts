@@ -9,6 +9,7 @@ import timeSlice from "./timeSlice";
 
 import { ordersApi } from "../api/orders/ordersQuery";
 import { userApi } from "../api/users/usersQuery";
+import { authApi } from "../api/auth/authQuery";
 
 export const store = configureStore({
   reducer: {
@@ -21,6 +22,7 @@ export const store = configureStore({
     [bookApi.reducerPath]: bookApi.reducer,
     [ordersApi.reducerPath]: ordersApi.reducer,
     [userApi.reducerPath]: userApi.reducer,
+    [authApi.reducerPath]: authApi.reducer,
   },
   devTools: true,
   middleware: (getDefaultMiddleware) =>
@@ -29,7 +31,8 @@ export const store = configureStore({
       noticeApi.middleware,
       bookApi.middleware,
       ordersApi.middleware,
-      userApi.middleware
+      userApi.middleware,
+      authApi.middleware
     ),
 });
 

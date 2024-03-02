@@ -5,4 +5,5 @@ export type UserType = {
   nickname: string;
   snsId: string;
   updatedAt: string;
+  accessToken: string;
 };

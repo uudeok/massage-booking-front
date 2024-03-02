@@ -1,12 +1,13 @@
 import { useEffect } from "react";
 import { useNavigate, Outlet } from "react-router-dom";
-import { getCookie } from "../util/auth";
+import { getUserName } from "../util/auth";
 
 const AuthLayout = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!getCookie("userId")) {
+    const name = getUserName();
+    if (!name) {
       alert("로그인이 필요한 서비스입니다.");
       navigate("/login");
     }

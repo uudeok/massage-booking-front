@@ -1,17 +1,11 @@
-import { Cookies } from "react-cookie";
-
-const cookies = new Cookies();
-
-console.log(cookies);
-
-export const setCookie = (name: string, value: string, option?: any) => {
-  return cookies.set(name, value, { ...option });
+export const getUserInfo = () => {
+  return localStorage.getItem("user");
 };
 
-export const getCookie = (name: string) => {
-  return cookies.get(name);
+export const getUserName = () => {
+  return localStorage.getItem("nickname");
 };
 
-export const removeCookie = (name: string) => {
-  return cookies.remove(name);
+export const logout = () => {
+  localStorage.removeItem("code");
 };
