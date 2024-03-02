@@ -5,7 +5,7 @@ import { RouterProvider } from "react-router-dom";
 import { router } from "./configs/routes";
 import { store } from "./stores/store";
 import { Provider } from "react-redux";
-import { CookiesProvider } from "react-cookie";
+// import { CookiesProvider } from "react-cookie";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -14,11 +14,11 @@ const root = ReactDOM.createRoot(
 root.render(
   <>
     <GlobalStyles />
-    <CookiesProvider>
-      <Provider store={store}>
-        <RouterProvider router={router} />
-      </Provider>
-    </CookiesProvider>
+    {/* <CookiesProvider> */}
+    <Provider store={store}>
+      <RouterProvider router={router} />
+    </Provider>
+    {/* </CookiesProvider> */}
   </>
 );
 
