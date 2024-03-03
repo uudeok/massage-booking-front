@@ -25,6 +25,8 @@ const MyOrderList = () => {
   const orderList = data.orders;
   const meta = data.meta;
 
+  console.log("list", orderList);
+
   const changePageHandler = (page: number) => {
     setPage(page);
     navigate(`/mypage/order/?page=${page}`);
