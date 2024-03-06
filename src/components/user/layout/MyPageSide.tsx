@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import theme from "../../../styles/theme";
-import RenderList from "../../common/map/RenderList";
+import RenderList from "../../common/map/DynamicRender";
 
 type MypageMenuType = {
   key: string;

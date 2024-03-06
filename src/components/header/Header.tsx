@@ -10,7 +10,7 @@ import {
 } from "./Header.style";
 import { Link, useNavigate } from "react-router-dom";
 import HeaderDropMenu from "./HeaderDropMenu";
-import RenderList from "../common/map/RenderList";
+import RenderList from "../common/map/DynamicRender";
 import { getUserName } from "../../util/auth";
 import { useEffect, useState } from "react";
 import { useLogoutMutation } from "../../api/users/usersQuery";

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { makeSimpleDate } from "../../../util/date";
 import CommonButton from "../../common/button/CommonButton";
-import RenderList from "../../common/map/RenderList";
+import RenderList from "../../common/map/DynamicRender";
 import theme from "../../../styles/theme";
 
 type NoticeType = {

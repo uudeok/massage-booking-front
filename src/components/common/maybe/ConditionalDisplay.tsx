@@ -1,15 +1,17 @@
-type TProps = {
-  children: JSX.Element;
+import React from "react";
+
+type ConditionalDisplayProps = {
   condition: boolean;
-  alternativeComponent?: JSX.Element;
+  children: React.ReactNode;
+  alternativeComponent?: React.ReactNode | null;
 };
 
-const ConditionalDisplay = ({
+const ConditionalDisplay: React.FC<ConditionalDisplayProps> = ({
   condition,
   children,
   alternativeComponent,
-}: TProps) => {
-  return <>{condition ? children : alternativeComponent ?? null}</>;
+}) => {
+  return condition ? <>{children}</> : <>{alternativeComponent}</>;
 };
 
 export default ConditionalDisplay;

@@ -12,7 +12,7 @@ import ConditionalDisplay from "../common/maybe/ConditionalDisplay";
 import BookingModal from "../common/UI/modal/BookingModal";
 import SectionTitle from "../common/shared/SectionTitle";
 import styled from "styled-components";
-import RenderList from "../common/map/RenderList";
+import RenderList from "../common/map/DynamicRender";
 import theme from "../../styles/theme";
 import CommonButton from "../common/button/CommonButton";
 

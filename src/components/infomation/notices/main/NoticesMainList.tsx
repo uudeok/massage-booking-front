@@ -5,7 +5,7 @@ import { makeSimpleDate } from "../../../../util/date";
 import theme from "../../../../styles/theme";
 import styled from "styled-components";
 import LoadingBar from "../../../loading/LoadingBar";
-import RenderList from "../../../common/map/RenderList";
+import RenderList from "../../../common/map/DynamicRender";
 
 const NoticesMainList = () => {
   const { data } = useGetNoticeListQuery({

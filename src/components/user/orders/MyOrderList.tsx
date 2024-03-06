@@ -7,7 +7,7 @@ import MyOrderItem from "./MyOrderItem";
 import MyOrderHeader from "./MyOrderHeader";
 import Paging from "../../pagination/Paging";
 import LoadingBar from "../../loading/LoadingBar";
-import RenderList from "../../common/map/RenderList";
+import RenderList from "../../common/map/DynamicRender";
 import theme from "../../../styles/theme";
 
 const MY_ORDER_LIST_PAGESIZE = 5;
@@ -24,8 +24,6 @@ const MyOrderList = () => {
 
   const orderList = data.orders;
   const meta = data.meta;
-
-  console.log("list", orderList);
 
   const changePageHandler = (page: number) => {
     setPage(page);

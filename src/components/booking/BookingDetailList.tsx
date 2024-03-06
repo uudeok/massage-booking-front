@@ -11,7 +11,7 @@ import LoadingBar from "../loading/LoadingBar";
 import styled from "styled-components";
 import Card from "../common/card/Card";
 import CommonButton from "../common/button/CommonButton";
-import RenderList from "../common/map/RenderList";
+import RenderList from "../common/map/DynamicRender";
 import BookingDetail from "./BookingDetail";
 
 const BookingDetailList = () => {

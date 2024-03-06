@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { currTabNum, resetTabNum } from "../../stores/tabSlice";
 import BookingDate from "./BookingDate";
-import RenderList from "../common/map/RenderList";
+import RenderList from "../common/map/DynamicRender";
 import theme from "../../styles/theme";
 import styled from "styled-components";
 import BookingMassageList from "./BookingMassageList";

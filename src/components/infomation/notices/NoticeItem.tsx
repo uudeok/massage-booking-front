@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { makeSimpleDate } from "../../../util/date";
 import NoticeHeader from "./NoticeHeader";
-import RenderList from "../../common/map/RenderList";
+import RenderList from "../../common/map/DynamicRender";
 import FetchWithLoading from "../../loading/FetchWithLoading";
 import theme from "../../../styles/theme";
 

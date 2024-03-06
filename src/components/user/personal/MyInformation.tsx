@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import theme from "../../../styles/theme";
-import RenderList from "../../common/map/RenderList";
+import RenderList from "../../common/map/DynamicRender";
 import { makeSimpleDate } from "../../../util/date";
 
 type MyInfoType = {

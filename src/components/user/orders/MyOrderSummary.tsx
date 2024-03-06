@@ -6,7 +6,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import CommonButton from "../../common/button/CommonButton";
 import theme from "../../../styles/theme";
-import RenderList from "../../common/map/RenderList";
+import RenderList from "../../common/map/DynamicRender";
 import LoadingBar from "../../loading/LoadingBar";
 import { makeSimpleDate } from "../../../util/date";
 import { addComma } from "../../../util/price";

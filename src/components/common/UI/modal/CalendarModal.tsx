@@ -35,7 +35,7 @@ const CalendarModal = ({
     return day !== SUNDAY;
   };
 
-  const filterTime = (time: Time) => {
+  const filterPassedTime = (time: Time) => {
     const currentTime = new Date().getTime();
     const [year, month, day] = value.split("-").map((str) => Number(str));
     const [hour, minutes] = time.label.split(":").map((str) => Number(str));
@@ -63,7 +63,7 @@ const CalendarModal = ({
           handleTimePicker={handleTimePicker}
           selectedTime={selectedTime}
           placeHolder="시간 선택"
-          filterTime={filterTime}
+          filterTime={filterPassedTime}
         />
       </InnerBoxStyle>
       <ButtonWrapper>

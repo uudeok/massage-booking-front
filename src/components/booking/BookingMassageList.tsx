@@ -2,7 +2,7 @@ import { useGetMassageListQuery } from "../../api/massage/massageQuery";
 import { TMassageTable } from "../../@types/massage";
 import styled from "styled-components";
 import BookingMassageItem from "./BookingMassageItem";
-import RenderList from "../common/map/RenderList";
+import RenderList from "../common/map/DynamicRender";
 import Card from "../common/card/Card";
 import FetchWithLoading from "../loading/FetchWithLoading";
 import theme from "../../styles/theme";

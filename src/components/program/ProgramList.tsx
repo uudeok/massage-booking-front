@@ -4,7 +4,7 @@ import styled from "styled-components";
 import Banner from "../banner/Banner";
 import LoadingBar from "../loading/LoadingBar";
 import theme from "../../styles/theme";
-import RenderList from "../common/map/RenderList";
+import RenderList from "../common/map/DynamicRender";
 import CardImage from "../common/card/CardImage";
 import CardContent from "../common/card/CardContent";
 
