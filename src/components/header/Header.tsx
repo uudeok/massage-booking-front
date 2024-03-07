@@ -14,6 +14,7 @@ import RenderList from "../common/map/DynamicRender";
 import { getUserName } from "../../util/auth";
 import { useEffect, useState } from "react";
 import { useLogoutMutation } from "../../api/users/usersQuery";
+import ConditionalDisplay from "../common/maybe/ConditionalDisplay";
 
 type MenuType = {
   key: string;
@@ -69,7 +70,19 @@ const Header = () => {
           </MenuBoxStyle>
 
           <LoginBoxStyle>
-            {!isLoggedIn && <Link to="/login">로그인</Link>}
+            <ConditionalDisplay
+              condition={isLoggedIn}
+              alternativeComponent={<Link to="/login">로그인</Link>}
+            >
+              <LogoutBoxStyle>
+                <button onClick={() => navigate("/mypage/order")}>
+                  내정보
+                </button>
+                <button onClick={logoutHandler}>로그아웃</button>
+              </LogoutBoxStyle>
+            </ConditionalDisplay>
+
+            {/* {!isLoggedIn && <Link to="/login">로그인</Link>}
             {isLoggedIn && (
               <LogoutBoxStyle>
                 <button onClick={() => navigate("/mypage/order")}>
@@ -77,7 +90,7 @@ const Header = () => {
                 </button>
                 <button onClick={logoutHandler}>로그아웃</button>
               </LogoutBoxStyle>
-            )}
+            )} */}
           </LoginBoxStyle>
         </InnerContainerStyle>
       </ContainerStyle>
