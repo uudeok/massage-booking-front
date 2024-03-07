@@ -5,7 +5,7 @@ import theme from "../../styles/theme";
 const MembershipList = () => {
   return (
     <>
-      <Banner img="membership.jpg" />
+      <Banner img="membershipbanner.webp" />
       <ContainerStyle>
         <InnerBoxStyle>
           <TitleStyle>회원권 안내</TitleStyle>

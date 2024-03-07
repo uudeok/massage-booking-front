@@ -13,7 +13,7 @@ const Booking = () => {
   return (
     <ContainerStyle>
       <ImgBoxStyle>
-        <img src="/5.jpg" alt="메인사진" width="100%" height="100%" />
+        <img src="/main.webp" alt="메인사진" width="100%" height="100%" />
         <InnerBoxStyle>
           <Link to="/information/contact">
             <ButtonBoxStyle>오시는 길</ButtonBoxStyle>

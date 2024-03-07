@@ -22,7 +22,7 @@ const ProgramList = () => {
 
   return (
     <>
-      <Banner img="program.jpg" />
+      <Banner img="programbanner.webp" />
       <ContainerStyle>
         <InnerBoxStyle>
           <TitleStyle>프로그램 안내</TitleStyle>
