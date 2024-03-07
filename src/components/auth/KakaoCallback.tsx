@@ -3,6 +3,7 @@ import LoadingBar from "../loading/LoadingBar";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { useGetTokenMutation } from "../../api/auth/authQuery";
+import theme from "../../styles/theme";
 
 //  여기서 카카오로부터 받은 인가 코드를 백엔드로 전달하고
 // 백엔드로부터 받은 토큰을 로컬스토리지에 저장하고 로그인 정보를 얻는다.
@@ -29,6 +30,7 @@ const KakaoCallback = () => {
   return (
     <BackGroundStyle>
       <LayoutStyle>
+        <LoginStyle>로그인중..</LoginStyle>
         <LoadingBar />
       </LayoutStyle>
     </BackGroundStyle>
@@ -44,13 +46,21 @@ const BackGroundStyle = styled.div`
   width: 100%;
   height: 100vh;
   z-index: 20;
-  background-color: rgba(0, 0, 0, 0.65);
+  background-color: #d9ead3;
   opacity: 0.8;
   display: flex;
   justify-content: center;
 `;
 
+const LoginStyle = styled.h2`
+  font-family: ${theme.fonts.gmarket};
+  color: ${theme.palette.greenDk};
+  font-size: 27px;
+`;
+
 const LayoutStyle = styled.div`
   display: flex;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
 `;

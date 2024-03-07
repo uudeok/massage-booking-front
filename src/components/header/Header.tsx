@@ -81,16 +81,6 @@ const Header = () => {
                 <button onClick={logoutHandler}>로그아웃</button>
               </LogoutBoxStyle>
             </ConditionalDisplay>
-
-            {/* {!isLoggedIn && <Link to="/login">로그인</Link>}
-            {isLoggedIn && (
-              <LogoutBoxStyle>
-                <button onClick={() => navigate("/mypage/order")}>
-                  내정보
-                </button>
-                <button onClick={logoutHandler}>로그아웃</button>
-              </LogoutBoxStyle>
-            )} */}
           </LoginBoxStyle>
         </InnerContainerStyle>
       </ContainerStyle>
