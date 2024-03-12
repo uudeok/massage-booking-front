@@ -17,7 +17,6 @@ const OauthLogin = () => {
       </BannerStyle>
       <BottomBoxStyle>
         <KakaoLogin />
-        {/* <NaverLogin /> */}
       </BottomBoxStyle>
     </>
   );

@@ -6,7 +6,7 @@ import { useGetTokenMutation } from "../../api/auth/authQuery";
 import theme from "../../styles/theme";
 
 //  여기서 카카오로부터 받은 인가 코드를 백엔드로 전달하고
-// 백엔드로부터 받은 토큰을 로컬스토리지에 저장하고 로그인 정보를 얻는다.
+// 백엔드로부터 받은 토큰을 로컬스토리지에 저장하고 로그인을 유지한다.
 
 const KakaoCallback = () => {
   const navigate = useNavigate();

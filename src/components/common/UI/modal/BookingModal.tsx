@@ -57,8 +57,6 @@ const BookingModal = ({
     }
   };
 
-  console.log(isLoading);
-
   return (
     <Modal closeModal={closeModal} height="15rem">
       <Self>

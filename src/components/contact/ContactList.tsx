@@ -10,7 +10,7 @@ type ContactInfo = {
 };
 
 const CONTACT_INFO = [
-  { key: "주소", value: "경기도 파주시 가람로 134번길 53" },
+  { key: "주소", value: "경기도 파주시 가람로" },
   { key: "전화번호", value: "010-1234-5678" },
   { key: "영업시간", value: "월-토 : AM 09:00 ~ PM 21:00" },
 ] as ContactInfo[];
