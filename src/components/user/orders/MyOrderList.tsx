@@ -15,6 +15,7 @@ const MY_ORDER_LIST_PAGESIZE = 5;
 const MyOrderList = () => {
   const navigate = useNavigate();
   const [page, setPage] = useState(1);
+
   const { data } = useGetOrderListQuery({
     pageSize: MY_ORDER_LIST_PAGESIZE,
     pageNumber: page,

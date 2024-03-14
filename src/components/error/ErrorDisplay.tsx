@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 type TProps = {
-  errorMessage: string;
+  errorMessage: string | undefined;
 };
 
 const ErrorDisplay = ({ errorMessage }: TProps) => {

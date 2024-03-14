@@ -24,7 +24,11 @@ const MyOrderSummary = () => {
   const navigate = useNavigate();
 
   const [deleteOrder] = useDeleteOrderDataMutation();
-  const { data: orderDetail } = useGetOrderDetailQuery(Number(id));
+  const { data: orderDetail, error } = useGetOrderDetailQuery(Number(id));
+
+  if (error && "message" in error) {
+    return <ErrorStyle>{error.message}</ErrorStyle>;
+  }
 
   if (!orderDetail) return <LoadingBar />;
 
@@ -125,4 +129,11 @@ const KeyStyle = styled.span`
   @media only screen and (max-width: ${theme.devise.bigMobileWidth}) {
     width: 40%;
   }
+`;
+
+const ErrorStyle = styled.div`
+  color: tomato;
+  margin: 2rem auto;
+  font-size: 24px;
+  text-align: center;
 `;

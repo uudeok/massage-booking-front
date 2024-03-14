@@ -3,6 +3,8 @@ import { valueOf } from "../common";
 
 export type BOOKING_TIME_TYPE = typeof BOOKING_TYPE;
 export type BOOKING_TIME_TYPE_KEYS = keyof BOOKING_TIME_TYPE;
+
+type VAlUES = BOOKING_TIME_TYPE[BOOKING_TIME_TYPE_KEYS];
 export type BOOKING_TIME_TYPE_VALUE = valueOf<BOOKING_TIME_TYPE>;
 
 const DAY_OF_WEEK = {
