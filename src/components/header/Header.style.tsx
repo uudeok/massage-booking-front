@@ -55,7 +55,7 @@ export const LogoStyle = styled.h1`
 `;
 
 export const MenuBoxStyle = styled.div`
-  width: 60%;
+  width: 65%;
 
   @media only screen and (max-width: ${theme.devise.tabletWidth}) {
     display: none;
@@ -64,7 +64,7 @@ export const MenuBoxStyle = styled.div`
 
 export const MenuListStyle = styled.ul`
   display: flex;
-  width: 60%;
+  width: 65%;
   margin: auto;
   justify-content: space-around;
   font-size: 1.2rem;

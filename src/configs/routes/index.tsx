@@ -17,6 +17,7 @@ import KakaoLoginPage from "../../pages/auth/KakaoLoginPage";
 import MyInformationPage from "../../pages/user/MyInfomationPage";
 import NotFound from "../../components/error/NotFound";
 import AuthLayout from "../../layout/AuthLayout";
+import QuestionPage from "../../pages/QuestionPage";
 
 const bookRouteObjects: RouteObject[] = [
   {
@@ -64,6 +65,13 @@ const informationRouteObjects: RouteObject[] = [
   },
 ];
 
+const questionObjects: RouteObject[] = [
+  {
+    path: "faq",
+    children: [{ index: true, element: <QuestionPage /> }],
+  },
+];
+
 const userRouteObjects: RouteObject[] = [
   {
     path: "mypage",
@@ -99,6 +107,7 @@ export const router = createBrowserRouter([
       ...programRouteObjects,
       ...noticeRouteObjects,
       ...informationRouteObjects,
+      ...questionObjects,
     ],
     errorElement: <NotFound />,
   },

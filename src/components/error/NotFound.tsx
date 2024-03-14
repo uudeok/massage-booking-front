@@ -17,7 +17,7 @@ const NotFound = () => {
 
   return (
     <ErrorScreen>
-      <MessageStyle>존재하지 않는 페이지입니다🚫</MessageStyle>
+      <MessageStyle>존재하지 않는 페이지입니다</MessageStyle>
       <Link to="/">
         <CommonButton
           type="round"

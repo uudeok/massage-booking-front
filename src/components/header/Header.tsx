@@ -25,6 +25,7 @@ export const MENU_LIST = [
   { key: "program", value: "프로그램 안내" },
   { key: "information", value: "회원권 안내" },
   { key: "notice", value: "공지사항" },
+  { key: "faq", value: "자주 묻는 질문" },
 ] as MenuType[];
 
 const Header = () => {
