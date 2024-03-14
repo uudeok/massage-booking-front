@@ -13,8 +13,6 @@ const Faq = () => {
     setPage(page);
   };
 
-  /// FAQ_LIST 를 API 통해 받아와서 갯수만큼 FaqList 에 전달해주면됨
-
   return (
     <>
       <HeaderStyle>자주하는 질문</HeaderStyle>

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Map, MapMarker } from "react-kakao-maps-sdk";
-import Banner from "../banner/Banner";
+import Banner from "../common/banner/Banner";
 import theme from "../../styles/theme";
 import RenderList from "../common/map/DynamicRender";
 

@@ -4,8 +4,7 @@ import { TMassageTable } from "../../../../@types/massage";
 import { WEEK_DAYS } from "../../../../const/book/time";
 import { useNavigate } from "react-router-dom";
 import styled, { css } from "styled-components";
-import SectionTitle from "../../shared/SectionTitle";
-import LoadingBar from "../../../loading/LoadingBar";
+import LoadingBar from "../../loading/LoadingBar";
 import theme from "../../../../styles/theme";
 import Modal from "./Modal";
 
@@ -62,7 +61,7 @@ const BookingModal = ({
       <Self>
         <ContentBoxStyle>
           <Icon />
-          <SectionTitle>예약을 진행하시겠습니까?</SectionTitle>
+          <TitleStyle>예약을 진행하시겠습니까?</TitleStyle>
         </ContentBoxStyle>
 
         <ButtonBoxStyle>
@@ -143,4 +142,11 @@ const Button = styled.button<{
 
 const Icon = styled(FcOk)`
   font-size: 2.5rem;
+`;
+
+const TitleStyle = styled.h2`
+  font-size: 1.3rem;
+  width: 100%;
+  margin-bottom: 2rem;
+  text-align: center;
 `;

@@ -7,7 +7,7 @@ import styled from "styled-components";
 import CommonButton from "../../common/button/CommonButton";
 import theme from "../../../styles/theme";
 import RenderList from "../../common/map/DynamicRender";
-import LoadingBar from "../../loading/LoadingBar";
+import LoadingBar from "../../common/loading/LoadingBar";
 import { makeSimpleDate } from "../../../util/date";
 import { addComma } from "../../../util/price";
 import { makeSimpleTime } from "../../../util/time";

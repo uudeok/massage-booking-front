@@ -6,7 +6,7 @@ import styled from "styled-components";
 import MyOrderItem from "./MyOrderItem";
 import MyOrderHeader from "./MyOrderHeader";
 import Paging from "../../pagination/Paging";
-import LoadingBar from "../../loading/LoadingBar";
+import LoadingBar from "../../common/loading/LoadingBar";
 import RenderList from "../../common/map/DynamicRender";
 import theme from "../../../styles/theme";
 

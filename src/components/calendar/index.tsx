@@ -2,7 +2,7 @@ import { MONTH_NAME } from "../../const/calendar";
 import { MONTH_NAME_VALUES } from "../../@types/calendar";
 import { getMonthInfo, getDateLabel } from "../../util/date";
 import { TimePickerType } from "./timePicker/index";
-import { Time } from "../common/dropdown";
+import { Time } from "./timePicker/Dropdown";
 import React, { useState } from "react";
 import styled from "styled-components";
 import DateCell from "./DateCell";

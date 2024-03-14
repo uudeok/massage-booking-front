@@ -7,7 +7,7 @@ import {
   adjustSelectability,
   generateTimeArray,
 } from "../../../util/time";
-import DropDown, { Time } from "../../common/dropdown";
+import DropDown, { Time } from "./Dropdown";
 
 export type TimePickerType = {
   handleTimePicker: (value: string) => void;

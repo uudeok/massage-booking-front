@@ -15,6 +15,7 @@ const HEADER_MENU_LIST = [
   { key: "program", value: "프로그램 안내" },
   { key: "information", value: "회원권 안내" },
   { key: "notice", value: "공지사항" },
+  { key: "faq", value: "자주하는 질문" },
   { key: "information/contact", value: "오시는 길" },
 ] as HeaderDrop[];
 

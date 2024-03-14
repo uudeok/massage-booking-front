@@ -4,7 +4,7 @@ import styled from "styled-components";
 import BookingMassageItem from "./BookingMassageItem";
 import RenderList from "../common/map/DynamicRender";
 import Card from "../common/card/Card";
-import FetchWithLoading from "../loading/FetchWithLoading";
+import FetchWithLoading from "../common/loading/FetchWithLoading";
 import theme from "../../styles/theme";
 
 const BookingMassageList = () => {

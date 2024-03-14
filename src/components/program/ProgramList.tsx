@@ -1,8 +1,8 @@
 import { useGetMassageListQuery } from "../../api/massage/massageQuery";
 import { TMassageTable } from "../../@types/massage";
 import styled from "styled-components";
-import Banner from "../banner/Banner";
-import LoadingBar from "../loading/LoadingBar";
+import Banner from "../common/banner/Banner";
+import LoadingBar from "../common/loading/LoadingBar";
 import theme from "../../styles/theme";
 import RenderList from "../common/map/DynamicRender";
 import CardImage from "../common/card/CardImage";

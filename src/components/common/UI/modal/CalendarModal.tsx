@@ -1,4 +1,4 @@
-import { Time } from "../../dropdown";
+import { Time } from "../../../calendar/timePicker/Dropdown";
 import styled from "styled-components";
 import Calendar from "../../../calendar";
 import CommonButton from "../../button/CommonButton";

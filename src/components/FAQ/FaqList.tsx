@@ -44,6 +44,14 @@ const ContainerStyle = styled.div`
   width: 60rem;
   margin: 3rem auto;
   font-family: ${theme.fonts.pretend};
+
+  @media only screen and (max-width: ${theme.devise.notebookWidth}) {
+    width: 80%;
+  }
+
+  @media only screen and (max-width: ${theme.devise.tabletWidth}) {
+    width: 100%;
+  }
 `;
 
 const Self = styled.div`
@@ -62,6 +70,10 @@ const QuestionStyle = styled.p`
   display: flex;
   align-items: center;
   justify-content: left;
+
+  @media only screen and (max-width: ${theme.devise.tabletWidth}) {
+    font-size: 16px;
+  }
 `;
 
 const ButtonStyle = styled.button`

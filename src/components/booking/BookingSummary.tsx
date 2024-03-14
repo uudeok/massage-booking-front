@@ -10,7 +10,6 @@ import { makeSimpleDate } from "../../util/date";
 import { useModal } from "../../hooks/useModal";
 import ConditionalDisplay from "../common/maybe/ConditionalDisplay";
 import BookingModal from "../common/UI/modal/BookingModal";
-import SectionTitle from "../common/shared/SectionTitle";
 import styled from "styled-components";
 import RenderList from "../common/map/DynamicRender";
 import theme from "../../styles/theme";
@@ -86,7 +85,7 @@ const BookingSummary = ({ selectedDate, selectedTime, showModal }: TProps) => {
         />
       </ConditionalDisplay>
 
-      <SectionTitle>※ 예약 내역</SectionTitle>
+      <TitleStyle>※ 예약 내역</TitleStyle>
       <SummaryListStyle>
         <RenderList data={SUMMARY_LIST} renderItem={renderSummaryItem} />
       </SummaryListStyle>
@@ -159,4 +158,11 @@ const KeyStyle = styled.span`
   text-align: left;
   align-items: center;
   display: flex;
+`;
+
+const TitleStyle = styled.h2`
+  font-size: 1.3rem;
+  width: 100%;
+  margin-bottom: 2rem;
+  text-align: center;
 `;

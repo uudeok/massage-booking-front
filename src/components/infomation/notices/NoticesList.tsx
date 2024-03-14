@@ -1,14 +1,14 @@
 import styled from "styled-components";
 import NoticeItem from "./NoticeItem";
 import Paging from "../../pagination/Paging";
-import LoadingBar from "../../loading/LoadingBar";
+import LoadingBar from "../../common/loading/LoadingBar";
 import RenderList from "../../common/map/DynamicRender";
 import { NOTICE_CATEGORIES } from "../../../const/notices";
 import { useState } from "react";
 import { NOTICE_CATEGORY_KEYS } from "../../../@types/notice";
 import { useGetNoticeListQuery } from "../../../api/notice/noticeQuery";
 import { TNoticeCategory } from "../../../@types/notice";
-import ErrorDisplay from "../../error/ErrorDisplay";
+import ErrorDisplay from "../../common/error/ErrorDisplay";
 import { ERROR_MESSAGE } from "../../../const/book/errorMessage";
 import theme from "../../../styles/theme";
 

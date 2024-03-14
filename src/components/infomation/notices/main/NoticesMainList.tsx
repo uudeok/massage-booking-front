@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { makeSimpleDate } from "../../../../util/date";
 import theme from "../../../../styles/theme";
 import styled from "styled-components";
-import LoadingBar from "../../../loading/LoadingBar";
+import LoadingBar from "../../../common/loading/LoadingBar";
 import RenderList from "../../../common/map/DynamicRender";
 
 const NoticesMainList = () => {

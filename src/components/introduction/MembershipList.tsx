@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Banner from "../banner/Banner";
+import Banner from "../common/banner/Banner";
 import theme from "../../styles/theme";
 
 const MembershipList = () => {

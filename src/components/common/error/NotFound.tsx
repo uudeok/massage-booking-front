@@ -1,8 +1,8 @@
 import { useRouteError, Link } from "react-router-dom";
 
 import styled from "styled-components";
-import theme from "../../styles/theme";
-import CommonButton from "../common/button/CommonButton";
+import theme from "../../../styles/theme";
+import CommonButton from "../button/CommonButton";
 
 type TError = {
   status: number;

@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
 
-import { Time } from "../../components/common/dropdown";
+import { Time } from "../../components/calendar/timePicker/Dropdown";
 
 export const addMinutesUnit = (minute: number) => {
   return minute + "분";

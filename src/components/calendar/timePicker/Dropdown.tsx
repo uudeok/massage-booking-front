@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled, { css } from "styled-components";
-import RenderList from "../map/DynamicRender";
+import RenderList from "../../common/map/DynamicRender";
 import theme from "../../../styles/theme";
 
 export type Time = {
