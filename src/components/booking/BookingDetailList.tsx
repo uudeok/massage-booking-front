@@ -20,7 +20,7 @@ const BookingDetailList = () => {
 
   const { data: selectedMassage } = useGetMassageItemQuery(massageItem);
 
-  if (selectedMassage === undefined) return <LoadingBar />;
+  if (!selectedMassage) return <LoadingBar />;
 
   if (selectedMassage === null) {
     return <ErrorDisplay errorMessage="일시적인 오류가 발생했습니다" />;

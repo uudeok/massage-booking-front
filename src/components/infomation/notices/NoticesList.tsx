@@ -9,7 +9,7 @@ import { NOTICE_CATEGORY_KEYS } from "../../../@types/notice";
 import { useGetNoticeListQuery } from "../../../api/notice/noticeQuery";
 import { TNoticeCategory } from "../../../@types/notice";
 import ErrorDisplay from "../../error/ErrorDisplay";
-import { DATA_ERROR_MESSAGE } from "../../../const/book/errorMessage";
+import { ERROR_MESSAGE } from "../../../const/book/errorMessage";
 import theme from "../../../styles/theme";
 
 const NOTICE_LIST_PAGE_SIZE = 10;
@@ -19,15 +19,21 @@ const NoticesList = () => {
   const [page, setPage] = useState(1);
   const [message, setMessage] = useState("");
 
-  const { data, isLoading } = useGetNoticeListQuery({
+  const { data, isLoading, error } = useGetNoticeListQuery({
     pageNumber: page,
     pageSize: NOTICE_LIST_PAGE_SIZE,
     category: category,
   });
 
+  // <!-- null 일때 응답 --!>
+  if (error && "data" in error) {
+    setMessage(ERROR_MESSAGE.null_data);
+  }
+  // <!-- fetching 중일때 응답 --!>
   if (data === undefined) return <LoadingBar />;
+  // <!-- 성공적으로 받아왔는데 데이터가 없을때 --!>
   if (data && data.notices.length === 0) {
-    setMessage(DATA_ERROR_MESSAGE.empty_data);
+    setMessage(ERROR_MESSAGE.empty_data);
   }
 
   const noticeList = data.notices;

@@ -10,18 +10,25 @@ import theme from "../../styles/theme";
 
 const KakaoCallback = () => {
   const navigate = useNavigate();
-  const [getToken] = useGetTokenMutation();
+  const [getToken, { error: loginError }] = useGetTokenMutation();
 
   const getTokenHandler = useCallback(async () => {
     const code = new URL(window.location.href).searchParams.get("code");
-    const userInfo = await getToken(code!).unwrap();
 
-    localStorage.setItem("nickname", userInfo.nickname);
-    localStorage.setItem("token", userInfo.accessToken);
-    localStorage.setItem("user", JSON.stringify(userInfo));
+    try {
+      const userInfo = await getToken(code!).unwrap();
 
-    navigate("/");
-  }, [getToken, navigate]);
+      localStorage.setItem("nickname", userInfo.nickname);
+      localStorage.setItem("token", userInfo.accessToken);
+      localStorage.setItem("user", JSON.stringify(userInfo));
+    } catch (error) {
+      if (loginError && "message" in loginError) {
+        alert(loginError.message);
+      }
+    } finally {
+      navigate("/");
+    }
+  }, [getToken, navigate, loginError]);
 
   useEffect(() => {
     getTokenHandler();

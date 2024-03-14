@@ -7,6 +7,7 @@ export const ORDER_ERROR_MESSAGE = {
     "이미 예약되어 있는 시간과 겹치므로 다른 시간을 선택해주세요",
 };
 
-export const DATA_ERROR_MESSAGE = {
+export const ERROR_MESSAGE = {
   empty_data: "데이터가 존재하지 않습니다.",
+  null_data: "존재하지 않는 데이터입니다. ",
 };

@@ -17,6 +17,9 @@ export const authApi = createApi({
       transformResponse: (response: { user: UserType }) => {
         return response.user;
       },
+      transformErrorResponse: (error) => {
+        return error.data;
+      },
       invalidatesTags: [{ type: "login" }],
     }),
   }),

@@ -6,7 +6,7 @@ const redirect_uri = `${process.env.REACT_APP_KAKAO_API_URL}/auth/kakao/callback
 const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${Rest_api_key}&redirect_uri=${redirect_uri}&response_type=code`;
 
 const KakaoLogin = () => {
-  const handleLogin = async () => {
+  const handleLogin = () => {
     window.location.href = kakaoURL;
   };
 
