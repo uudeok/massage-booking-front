@@ -42,6 +42,14 @@ const SearchBoxStyle = styled.form`
   background-color: aliceblue;
   font-family: ${theme.fonts.pretend};
   position: relative;
+
+  @media only screen and (max-width: ${theme.devise.notebookWidth}) {
+    width: 90%;
+  }
+
+  @media only screen and (max-width: ${theme.devise.tabletWidth}) {
+    width: 80%;
+  }
 `;
 
 const SearchStyle = styled.input`
@@ -54,6 +62,10 @@ const SearchStyle = styled.input`
 
   &:hover {
     border: 1px solid ${theme.palette.greenDk};
+  }
+
+  @media only screen and (max-width: ${theme.devise.tabletWidth}) {
+    font-size: 13px;
   }
 `;
 
