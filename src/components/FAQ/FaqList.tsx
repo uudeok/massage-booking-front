@@ -3,38 +3,51 @@ import theme from "../../styles/theme";
 import DynamicRender from "../common/map/DynamicRender";
 import { FAQ_LIST } from "../../const/faq";
 import { FAQ_TYPE } from "../../@types/faq";
-import { CiSquarePlus } from "react-icons/ci";
+import { CiSquarePlus, CiSquareMinus } from "react-icons/ci";
+import { useState } from "react";
+import ConditionalDisplay from "../common/maybe/ConditionalDisplay";
 
 const FaqList = () => {
-  const renderFaq = (item: FAQ_TYPE) => (
-    <ArticleStyle key={item.id}>
-      <QuestionStyle>Q. {item.question}</QuestionStyle>
-      <ButtonStyle>
-        <CiSquarePlus />
-      </ButtonStyle>
-    </ArticleStyle>
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  const handleToggle = (index: number) => {
+    setOpenIndex(openIndex === index ? null : index);
+  };
+
+  const renderFaqItem = (item: FAQ_TYPE) => (
+    <Self key={item.id}>
+      <ArticleStyle>
+        <QuestionStyle>Q {item.question}</QuestionStyle>
+        <ButtonStyle onClick={() => handleToggle(item.id)}>
+          {openIndex === item.id ? <CiSquareMinus /> : <CiSquarePlus />}
+        </ButtonStyle>
+      </ArticleStyle>
+
+      <ConditionalDisplay condition={openIndex === item.id}>
+        <AnswerStyle>
+          <p>A {item.answer}</p>
+        </AnswerStyle>
+      </ConditionalDisplay>
+    </Self>
   );
 
   return (
-    <Self>
-      <ContainerStyle>
-        <DynamicRender data={FAQ_LIST} renderItem={renderFaq} />
-      </ContainerStyle>
-    </Self>
+    <ContainerStyle>
+      <DynamicRender data={FAQ_LIST} renderItem={renderFaqItem} />
+    </ContainerStyle>
   );
 };
 
 export default FaqList;
 
-const Self = styled.div`
+const ContainerStyle = styled.div`
   width: 60rem;
   margin: 3rem auto;
   font-family: ${theme.fonts.pretend};
 `;
 
-const ContainerStyle = styled.div`
-  display: flex;
-  flex-direction: column;
+const Self = styled.div`
+  margin-bottom: 2rem;
 `;
 
 const ArticleStyle = styled.article`
@@ -56,4 +69,10 @@ const ButtonStyle = styled.button`
   border: none;
   background-color: transparent;
   cursor: pointer;
+  transition: transform 0.8s ease;
+`;
+
+const AnswerStyle = styled.div`
+  background-color: #fafafa;
+  padding: 2rem;
 `;
