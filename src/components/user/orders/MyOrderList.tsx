@@ -16,10 +16,14 @@ const MyOrderList = () => {
   const navigate = useNavigate();
   const [page, setPage] = useState(1);
 
-  const { data } = useGetOrderListQuery({
+  const { data, error } = useGetOrderListQuery({
     pageSize: MY_ORDER_LIST_PAGESIZE,
     pageNumber: page,
   });
+
+  if (error && "message" in error) {
+    return <ErrorStyle>{error.message}</ErrorStyle>;
+  }
 
   if (!data) return <LoadingBar />;
 
@@ -68,4 +72,10 @@ const HeaderStyle = styled.h2`
 const ContentLayoutStyle = styled.div`
   display: flex;
   flex-direction: column;
+`;
+const ErrorStyle = styled.div`
+  color: tomato;
+  margin: 2rem auto;
+  font-size: 24px;
+  text-align: center;
 `;

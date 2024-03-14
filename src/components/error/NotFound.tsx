@@ -13,7 +13,7 @@ type TError = {
 
 const NotFound = () => {
   const error = useRouteError() as TError;
-  console.log("not", error);
+  console.log("Not Found", error);
 
   return (
     <ErrorScreen>

@@ -23,7 +23,7 @@ const MyOrderSummary = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
-  const [deleteOrder] = useDeleteOrderDataMutation();
+  const [deleteOrder, { error: deleteError }] = useDeleteOrderDataMutation();
   const { data: orderDetail, error } = useGetOrderDetailQuery(Number(id));
 
   if (error && "message" in error) {
@@ -38,7 +38,9 @@ const MyOrderSummary = () => {
       try {
         await deleteOrder(Number(id));
       } catch (error) {
-        console.log(error);
+        if (deleteError && "message" in deleteError) {
+          alert(deleteError.message);
+        }
       } finally {
         navigate("/mypage/order");
       }

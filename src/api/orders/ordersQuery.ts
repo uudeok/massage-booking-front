@@ -14,6 +14,7 @@ export const ordersApi = createApi({
     },
   }),
   tagTypes: ["orders"],
+
   endpoints: (builder) => ({
     getOrderList: builder.query<
       MyOrderType,
@@ -26,7 +27,9 @@ export const ordersApi = createApi({
           params: { pageNumber, pageSize },
         };
       },
-
+      transformErrorResponse: (error) => {
+        return error.data;
+      },
       providesTags: [{ type: "orders" }],
     }),
     getOrderDetail: builder.query<TOrderType, number>({
@@ -61,7 +64,9 @@ export const ordersApi = createApi({
           method: "DELETE",
         };
       },
-
+      transformErrorResponse: (error) => {
+        return error.data;
+      },
       invalidatesTags: ["orders"],
     }),
   }),

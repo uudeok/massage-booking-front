@@ -3,8 +3,6 @@ import MyOrderSummary from "./MyOrderSummary";
 import theme from "../../../styles/theme";
 
 const MyOrderDetail = () => {
-  // 오더 id 로 상세페이지 가져오기
-
   return (
     <LayoutStyle>
       <HeaderStyle>‖ 예약 상세</HeaderStyle>
