@@ -1,13 +1,12 @@
 import styled from "styled-components";
 import theme from "../../styles/theme";
 import DynamicRender from "../common/map/DynamicRender";
-import { FAQ_LIST } from "../../const/faq";
+import ConditionalDisplay from "../common/maybe/ConditionalDisplay";
 import { FAQ_TYPE } from "../../@types/faq";
 import { CiSquarePlus, CiSquareMinus } from "react-icons/ci";
 import { useState } from "react";
-import ConditionalDisplay from "../common/maybe/ConditionalDisplay";
 
-const FaqList = () => {
+const FaqList = ({ faqList }: { faqList: FAQ_TYPE[] }) => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const handleToggle = (index: number) => {
@@ -33,7 +32,7 @@ const FaqList = () => {
 
   return (
     <ContainerStyle>
-      <DynamicRender data={FAQ_LIST} renderItem={renderFaqItem} />
+      <DynamicRender data={faqList} renderItem={renderFaqItem} />
     </ContainerStyle>
   );
 };
@@ -87,4 +86,5 @@ const ButtonStyle = styled.button`
 const AnswerStyle = styled.div`
   background-color: #fafafa;
   padding: 2rem;
+  line-height: 1.5;
 `;
