@@ -1,11 +1,12 @@
+import { FAQ_LIST } from "../../const/faq";
+import { useState } from "react";
+import { paginateFAQList } from "../../util/page";
 import styled from "styled-components";
 import Search from "./Search";
 import FaqList from "./FaqList";
 import theme from "../../styles/theme";
 import Paging from "../pagination/Paging";
-import { FAQ_LIST } from "../../const/faq";
-import { useState } from "react";
-import { paginateFAQList } from "../../util/page";
+import ContactUsForm from "./ContactUsForm";
 
 const PAGE_SIZE = 7;
 
@@ -22,7 +23,7 @@ const Faq = () => {
   return (
     <>
       <HeaderStyle>자주하는 질문</HeaderStyle>
-      {/* <Search /> */}
+      <Search />
       <FaqList faqList={list} />
       <Paging
         count={FAQ_LIST.length}
@@ -30,6 +31,7 @@ const Faq = () => {
         page={page}
         pageSize={PAGE_SIZE}
       />
+      <ContactUsForm />
     </>
   );
 };
