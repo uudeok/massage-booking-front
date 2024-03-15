@@ -219,6 +219,8 @@ const Calendar = ({
         curMonth={curMonth}
         setCurYear={setCurYear}
         setCurMonth={setCurMonth}
+        minDate={minDate}
+        maxDate={maxDate}
       />
       <Table>
         <DayOfWeek />

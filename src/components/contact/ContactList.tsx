@@ -25,7 +25,7 @@ const ContactList = () => {
 
   return (
     <>
-      <Banner img="contact.jpg" />
+      <Banner img="contactbanner.webp" />
       <ContentBoxStyle>
         <LeftBoxStyle>
           <h3>자연치유 쉼</h3>

@@ -1,7 +1,5 @@
-import {
-  IoChevronBackCircleOutline,
-  IoChevronForwardCircleOutline,
-} from "react-icons/io5";
+import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
+
 import { makeSimpleMonth } from "../../util/date";
 import React from "react";
 import theme from "../../styles/theme";
@@ -12,6 +10,8 @@ type TCalendarHeader = {
   curYear: number;
   setCurYear: React.Dispatch<React.SetStateAction<number>>;
   setCurMonth: React.Dispatch<React.SetStateAction<number>>;
+  minDate?: Date;
+  maxDate?: Date;
 };
 
 const CalendarHeader = ({
@@ -19,7 +19,22 @@ const CalendarHeader = ({
   curYear,
   setCurYear,
   setCurMonth,
+  minDate,
+  maxDate,
 }: TCalendarHeader) => {
+  const handlePrevController = () => {
+    if (!minDate) return true;
+    const minMonth = minDate.getMonth();
+
+    return curMonth > minMonth;
+  };
+  const handleNextController = () => {
+    if (!maxDate) return true;
+    const maxMonth = maxDate.getMonth();
+
+    return curMonth < maxMonth;
+  };
+
   const handlePrevButton = (e: React.MouseEvent) => {
     // <--! 부모 컴포넌트에서 클릭 이벤트 핸들러가 있을때, 전파를 막아주어 충돌을 방지할 수 있다 --!>
     e.stopPropagation();
@@ -43,16 +58,19 @@ const CalendarHeader = ({
     }
   };
 
+  const isVisiblePrevBtn = handlePrevController();
+  const isVisibleNextBtn = handleNextController();
+
   return (
     <Header>
-      <ControllerButton onClick={handlePrevButton}>
-        <IoChevronBackCircleOutline />
+      <ControllerButton onClick={handlePrevButton} isVisible={isVisiblePrevBtn}>
+        <SlArrowLeft />
       </ControllerButton>
       <Title>
         {curYear}년 {makeSimpleMonth(curMonth)}월
       </Title>
-      <ControllerButton onClick={handleNextButton}>
-        <IoChevronForwardCircleOutline />
+      <ControllerButton onClick={handleNextButton} isVisible={isVisibleNextBtn}>
+        <SlArrowRight />
       </ControllerButton>
     </Header>
   );
@@ -71,13 +89,14 @@ const Header = styled.span`
   width: 100%;
 `;
 
-const ControllerButton = styled.button`
-  cursor: pointer;
+const ControllerButton = styled.button<{ isVisible: boolean }>`
+  cursor: ${({ isVisible }) => (isVisible ? "pointer" : "default")};
   display: flex;
   align-items: center;
   background-color: transparent;
   border: none;
   font-size: 25px;
+  visibility: ${({ isVisible }) => (isVisible ? "visible" : "hidden")};
 `;
 
 const Title = styled.span`

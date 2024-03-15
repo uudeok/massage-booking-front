@@ -36,7 +36,7 @@ const BookingDetail = ({ detail, massage }: TProps) => {
         type="round"
         onClickButton={() => setAvailableTime(detail.time)}
         $border={`2px solid ${theme.palette.grey}`}
-        $padding="0.7rem"
+        $padding="0.6rem"
       >
         선택하기
       </CommonButton>

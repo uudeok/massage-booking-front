@@ -108,13 +108,14 @@ export default BookingSummary;
 
 const Button = styled.button`
   border: 1px solid lightgrey;
-  padding: 0.5rem;
+  padding: 0.4rem;
   border-radius: 10px;
   width: 100%;
   cursor: pointer;
   background-color: transparent;
   font-family: ${theme.fonts.pretend};
   font-size: 1rem;
+  color: black;
 
   &:hover {
     background-color: ${theme.palette.greenDk};
@@ -141,6 +142,7 @@ const SummaryBoxStyle = styled.div`
 
 const SummaryListStyle = styled.div`
   flex: 1;
+  margin-bottom: 1rem;
 `;
 
 const SummaryItemStyle = styled.div`

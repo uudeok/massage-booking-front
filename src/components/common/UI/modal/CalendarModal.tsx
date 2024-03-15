@@ -28,8 +28,6 @@ const CalendarModal = ({
   isSelected,
   timeInterval,
 }: TProps) => {
-  const addTwoWeeks = dayjs(new Date()).add(14, "day").toDate();
-
   const isOffDay = (date: string) => {
     const day = new Date(date).getDay();
     return day !== SUNDAY;
@@ -45,13 +43,15 @@ const CalendarModal = ({
     return currentTime < selectTime;
   };
 
+  const laterOneMonth = dayjs(new Date()).add(1, "month").toDate();
+
   return (
     <Modal closeModal={closeModal} height="42rem" $top="3%" $radius="15px">
       <InnerBoxStyle>
         <Calendar
           onClick={onClick}
           minDate={new Date()}
-          maxDate={addTwoWeeks}
+          maxDate={laterOneMonth}
           curMonthOnly={true}
           value={value}
           filterDate={isOffDay}
