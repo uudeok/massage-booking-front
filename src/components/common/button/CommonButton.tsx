@@ -24,6 +24,7 @@ type ButtonStyleProps = {
   textAlign?: string;
   $borderRadius?: string;
   disabled?: boolean;
+  $hoverColor?: string;
 };
 
 type ButtonProps<T> = {
@@ -43,6 +44,7 @@ type ButtonProps<T> = {
   textAlign?: string;
   $borderRadius?: string;
   disabled?: boolean;
+  $hoverColor?: string;
 };
 
 const CommonButton = <T,>({
@@ -61,6 +63,7 @@ const CommonButton = <T,>({
   $borderRadius,
   disabled,
   color,
+  $hoverColor,
 }: ButtonProps<T>) => {
   return (
     <ButtonStyled
@@ -78,6 +81,7 @@ const CommonButton = <T,>({
       $borderRadius={$borderRadius}
       disabled={disabled}
       color={color}
+      $hoverColor={$hoverColor}
     >
       {children}
     </ButtonStyled>
@@ -103,6 +107,10 @@ const ButtonStyled = styled.button<ButtonStyleProps>`
   border-radius: ${($props) =>
     $props.$borderRadius ? $props.$borderRadius : ""};
   color: ${($props) => ($props.color ? $props.color : "black")};
+
+  &:hover {
+    color: ${($props) => ($props.$hoverColor ? $props.$hoverColor : "")};
+  }
 
   ${({ disabled }) =>
     disabled &&

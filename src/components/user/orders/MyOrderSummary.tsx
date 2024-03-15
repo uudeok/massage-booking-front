@@ -79,6 +79,7 @@ const MyOrderSummary = () => {
             width="6.5rem"
             color="grey"
             fontFamily={theme.fonts.pretend}
+            $hoverColor="black"
           >
             예약 취소하기
           </CommonButton>
