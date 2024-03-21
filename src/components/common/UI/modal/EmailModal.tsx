@@ -9,7 +9,7 @@ type EmailModalType = {
 
 const EmailModal = ({ closeModal }: EmailModalType) => {
 	return (
-		<Modal closeModal={closeModal} height="30rem">
+		<Modal closeModal={closeModal} height="30rem" $radius='10px'>
 			<HeaderStyle>문의 하기</HeaderStyle>
 			<ContactUsForm />
 		</Modal>
@@ -19,8 +19,8 @@ const EmailModal = ({ closeModal }: EmailModalType) => {
 export default EmailModal;
 
 const HeaderStyle = styled.h2`
-	border: 1px solid black;
 	text-align: center;
 	font-size: 30px;
-  margin-bottom: 1rem;
+  margin-bottom:2rem;
+  color : ${theme.palette.greenDk}
 `;

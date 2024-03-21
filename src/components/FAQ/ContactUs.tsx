@@ -43,7 +43,7 @@ const Self = styled.div`
 	justify-content: center;
 	align-items: center;
 	font-family: ${theme.fonts.pretend};
-	font-size: 22px;
+	font-size: 20px;
 	font-weight: bold;
 	gap: 2rem;
 `;
