@@ -6,7 +6,7 @@ import Search from "./Search";
 import FaqList from "./FaqList";
 import theme from "../../styles/theme";
 import Paging from "../pagination/Paging";
-import ContactUsForm from "./ContactUsForm";
+import ContactUs from "./ContactUs";
 
 const PAGE_SIZE = 7;
 
@@ -31,7 +31,7 @@ const Faq = () => {
         page={page}
         pageSize={PAGE_SIZE}
       />
-      <ContactUsForm />
+      <ContactUs />
     </>
   );
 };
