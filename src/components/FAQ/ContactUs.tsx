@@ -46,4 +46,4 @@ const Self = styled.div`
 	font-size: 20px;
 	font-weight: bold;
 	gap: 2rem;
-`;
+`

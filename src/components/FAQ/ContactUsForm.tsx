@@ -3,7 +3,6 @@ import { useForm } from 'react-hook-form';
 import emailjs from '@emailjs/browser';
 import styled from 'styled-components';
 import theme from '../../styles/theme';
-import CommonButton from '../common/button/CommonButton';
 import ErrorDisplay from '../common/error/ErrorDisplay';
 
 type FormValue = {
@@ -27,14 +26,8 @@ const ContactUsForm: FC = () => {
 	} = useForm<FormValue>();
 
 	const onSubmit = (data: FormValue) => {
-		console.log(data);
-	};
-
-	const sendEmail = (e: React.FormEvent<HTMLFormElement>) => {
-		e.preventDefault();
-
 		if (!form.current) {
-			console.log('error');
+			console.log('form error');
 			return;
 		} else {
 			emailjs
@@ -53,92 +46,105 @@ const ContactUsForm: FC = () => {
 	};
 
 	return (
-		<Self onSubmit={handleSubmit(onSubmit)}>
+		<Self onSubmit={handleSubmit(onSubmit)} ref={form}>
 			<Wrapper>
-				<LabelBoxStyle>
+				<InputWrapper>
 					<LabelStyle>제목</LabelStyle>
-					<InputStyle {...register('title', { required: true, maxLength: 20 })} />
-				</LabelBoxStyle>
-				{errors.title && <ErrorDisplay errorMessage="제목을 입력해주세요" $padding="0rem" fontSize="14px" />}
-			</Wrapper>
-			<Wrapper>
-				<LabelBoxStyle>
-					<LabelStyle>이메일</LabelStyle>
-					<InputStyle {...register('email', { required: true, pattern: /^\S+@\S+$/i })} type="email" />
-				</LabelBoxStyle>
-				{errors.email && (
-					<ErrorDisplay errorMessage="올바른 이메일을 입력해주세요" $padding="0rem" fontSize="14px" />
-				)}
+					<InputStyle
+						{...register('title', { required: true, maxLength: 20 })}
+						placeholder="제목을 입력하세요"
+					/>
+				</InputWrapper>
+				{errors.title && <ErrorDisplay errorMessage="제목을 입력해주세요" fontSize="12px" $padding="0px" />}
 			</Wrapper>
 
-			<LabelStyle>문의 내용</LabelStyle>
-			<FooterStyle>
-				<ContentBoxStyle {...register('content', { required: true })} />
-				{errors.content && (
-					<ErrorDisplay errorMessage="3글자 이상 입력해주세요" $padding="0rem" fontSize="14px" />
+			<Wrapper>
+				<InputWrapper>
+					<LabelStyle>이메일</LabelStyle>
+					<InputStyle
+						{...register('email', { required: true, pattern:/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i})}
+						type="email"
+						placeholder="이메일 주소를 입력해주세요"
+					/>
+				</InputWrapper>
+				{errors.email && (
+					<ErrorDisplay errorMessage="올바른 이메일 주소를 입력해주세요" fontSize="12px" $padding="0px" />
 				)}
-			</FooterStyle>
-			<div>
-				<ButtonStyle type="submit">제출하기</ButtonStyle>
-			</div>
+			</Wrapper>
+			<ContentLabelStyle>
+				<LabelStyle>문의 내용</LabelStyle>
+				{errors.content && (
+					<ErrorDisplay errorMessage="3글자 이상 작성해주세요" fontSize="12px" $padding="0px" />
+				)}
+			</ContentLabelStyle>
+			<ContentStyle
+				{...register('content', { required: true, minLength: 3 })}
+				placeholder="문의하실 내용을 작성해주세요"
+			/>
+			<ButtonStyle type="submit" value="제출하기" />
 		</Self>
 	);
 };
 
 export default ContactUsForm;
 
-const Wrapper = styled.div`
-	height: 3.5rem;
-	text-align: center;
-`;
-
-const FooterStyle = styled.div`
-	height : 10rem;
-	text-align: center;
-`;
-
 const Self = styled.form`
 	display: flex;
 	flex-direction: column;
-	gap: 1rem;
 `;
 
-const LabelBoxStyle = styled.div`
+const Wrapper = styled.div`
 	display: flex;
+	flex-direction: column;
+	padding: 0.5rem;
+	align-items: center;
+	height: 4rem;
+	justify-content: center;
+`;
+
+const InputWrapper = styled.div`
+	display: flex;
+	width: 100%;
+	margin-bottom: 0.5rem;
 `;
 
 const LabelStyle = styled.label`
 	width: 5rem;
-	text-align: center;
-	color: ${theme.palette.greenDk};
-	`;
-
+`;
 const InputStyle = styled.input`
-	border-radius: 10px;
-	flex: 1;
+	width: 100%;
 	padding: 0.5rem;
+	border-radius: 10px;
 	outline-style: none;
 	background-color: whitesmoke;
 	border: none;
 `;
 
-const ContentBoxStyle = styled.textarea`
+const ContentStyle = styled.textarea`
 	background-color: whitesmoke;
 	border: none;
 	border-radius: 10px;
 	width: 100%;
-	height: 8rem;
+	height: 10rem;
 	resize: none;
 	outline-style: none;
-	margin-top : 1rem;
 `;
 
-const ButtonStyle = styled.button`
-	width: 5rem;
-	padding: 0.3rem;
+const ButtonStyle = styled.input`
+	padding: 0.5rem;
 	background-color: ${theme.palette.greenDk};
 	color: white;
 	border: none;
 	border-radius: 10px;
-	float: right;
+	cursor: pointer;
+	margin-top: 1rem;
+`;
+
+const ContentLabelStyle = styled.div`
+	display: flex;
+	text-align: center;
+	align-items: center;
+	gap: 1rem;
+	margin-top: 0.5rem;
+	margin-bottom: 0.5rem;
 `;
