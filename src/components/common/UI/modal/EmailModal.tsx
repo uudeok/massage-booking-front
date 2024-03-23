@@ -11,7 +11,7 @@ const EmailModal = ({ closeModal }: EmailModalType) => {
 	return (
 		<Modal closeModal={closeModal} height="30rem" $radius="10px">
 			<HeaderStyle>문의 하기</HeaderStyle>
-			<ContactUsForm />
+			<ContactUsForm closeEmailModal={closeModal} />
 		</Modal>
 	);
 };

@@ -46,4 +46,8 @@ const Self = styled.div`
 	font-size: 20px;
 	font-weight: bold;
 	gap: 2rem;
-`
+
+	@media only screen and (max-width: ${theme.devise.tabletWidth}) {
+		font-size: 15px;
+	}
+`;

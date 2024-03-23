@@ -1,10 +1,10 @@
-import React, { FC, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import emailjs from '@emailjs/browser';
 import styled from 'styled-components';
 import theme from '../../styles/theme';
 import ErrorDisplay from '../common/error/ErrorDisplay';
-import { useModal } from '../../hooks/useModal';
+import LoadingBar from '../common/loading/LoadingBar';
 
 type FormValue = {
 	title: string;
@@ -12,13 +12,17 @@ type FormValue = {
 	content: string;
 };
 
+type TProps = {
+	closeEmailModal: () => void;
+};
+
 const service_id = `${process.env.REACT_APP_SERVICE_ID}`;
 const template_id = `${process.env.REACT_APP_TEMPLATE_ID}`;
 const public_key = `${process.env.REACT_APP_PUBLIC_KEY}`;
 
-const ContactUsForm: FC = () => {
+const ContactUsForm = ({ closeEmailModal }: TProps) => {
 	const form = useRef<HTMLFormElement>(null);
-	const { isOpen, showModal, closeModal } = useModal();
+	const [isSubmitting, setIsSubmitting] = useState(false);
 
 	const {
 		register,
@@ -27,23 +31,25 @@ const ContactUsForm: FC = () => {
 		formState: { errors },
 	} = useForm<FormValue>();
 
-	const onSubmit = (data: FormValue) => {
+	const onSubmit = async (data: FormValue) => {
 		if (!form.current) {
 			console.log('form error');
 			return;
-		} else {
-			emailjs
-				.sendForm(service_id, template_id, form.current, {
-					publicKey: public_key,
-				})
-				.then(
-					() => {
-						console.log('SUCCESS!');
-					},
-					(error) => {
-						console.log('FAILED...', error.text);
-					},
-				);
+		}
+		try {
+			if (!isSubmitting) {
+				// 디바운싱 체크
+				setIsSubmitting(true); // 클릭되면 버튼을 비활성화
+				// await emailjs.sendForm(service_id, template_id, form.current, {
+				//     publicKey: public_key,
+				// });
+				console.log('SUCCESS!');
+				setTimeout(() => {
+					setIsSubmitting(false); // 지정된 시간 후에 버튼을 다시 활성화
+				}, 2000); // 3초 후
+			}
+		} catch (error: any) {
+			console.log('FAILED...', error.text);
 		}
 	};
 
@@ -83,7 +89,8 @@ const ContactUsForm: FC = () => {
 				{...register('content', { required: true, minLength: 3 })}
 				placeholder="문의하실 내용을 작성해주세요"
 			/>
-			<ButtonStyle type="submit" value="제출하기" />
+			{/* <ButtonStyle type="submit" value="제출하기" disabled={isSubmitting} /> */}
+			<ButtonStyle type="submit">{isSubmitting ? <LoadingBar /> : '제출하기'}</ButtonStyle>
 		</Self>
 	);
 };
@@ -132,7 +139,7 @@ const ContentStyle = styled.textarea`
 	outline-style: none;
 `;
 
-const ButtonStyle = styled.input`
+const ButtonStyle = styled.button`
 	padding: 0.5rem;
 	background-color: ${theme.palette.greenDk};
 	color: white;
