@@ -4,6 +4,7 @@ import emailjs from '@emailjs/browser';
 import styled from 'styled-components';
 import theme from '../../styles/theme';
 import ErrorDisplay from '../common/error/ErrorDisplay';
+import { useModal } from '../../hooks/useModal';
 
 type FormValue = {
 	title: string;
@@ -17,6 +18,7 @@ const public_key = `${process.env.REACT_APP_PUBLIC_KEY}`;
 
 const ContactUsForm: FC = () => {
 	const form = useRef<HTMLFormElement>(null);
+	const {isOpen, showModal, closeModal} = useModal()
 
 	const {
 		register,
