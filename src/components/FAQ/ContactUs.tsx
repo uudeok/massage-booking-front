@@ -1,21 +1,32 @@
 import { useModal } from '../../hooks/useModal';
+import { useState } from 'react';
 import styled from 'styled-components';
 import theme from '../../styles/theme';
 import CommonButton from '../common/button/CommonButton';
 import ConditionalDisplay from '../common/maybe/ConditionalDisplay';
 import EmailModal from '../common/UI/modal/EmailModal';
+import ConfirmModal from '../common/UI/modal/ConfirmModal';
 
 const ContactUs = () => {
 	const { isOpen, showModal, closeModal } = useModal();
+	const { isOpen: openConfirm, showModal: showConfirm, closeModal: closeConfirm } = useModal();
+	const [result, setResult] = useState('');
 
 	const handleModal = () => {
 		showModal();
 	};
 
+	const handleSubmitting = (result: string) => {
+		// console.log('Result', result);
+		setResult(result);
+		showConfirm();
+	};
+
 	return (
 		<Self>
+			{openConfirm && <ConfirmModal closeModal={closeConfirm} result={result} />}
 			<ConditionalDisplay condition={isOpen}>
-				<EmailModal closeModal={closeModal} />
+				<EmailModal closeModal={closeModal} handleSubmitting={handleSubmitting} />
 			</ConditionalDisplay>
 			<p>찾으시는 내용이 없다면 문의하기를 이용해주세요</p>
 			<CommonButton

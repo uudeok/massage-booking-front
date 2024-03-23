@@ -2,16 +2,20 @@ import theme from '../../../../styles/theme';
 import ContactUsForm from '../../../FAQ/ContactUsForm';
 import Modal from './Modal';
 import styled from 'styled-components';
+import { useState } from 'react';
+import { useModal } from '../../../../hooks/useModal';
 
 type EmailModalType = {
 	closeModal: () => void;
+	
+	handleSubmitting: (result: string) => void;
 };
 
-const EmailModal = ({ closeModal }: EmailModalType) => {
+const EmailModal = ({ closeModal, handleSubmitting }: EmailModalType) => {
 	return (
 		<Modal closeModal={closeModal} height="30rem" $radius="10px">
 			<HeaderStyle>문의 하기</HeaderStyle>
-			<ContactUsForm closeEmailModal={closeModal} />
+			<ContactUsForm closeEmailModal={closeModal} handleSubmitting={handleSubmitting} />
 		</Modal>
 	);
 };

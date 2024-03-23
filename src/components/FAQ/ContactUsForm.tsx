@@ -1,10 +1,12 @@
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import emailjs from '@emailjs/browser';
 import styled from 'styled-components';
 import theme from '../../styles/theme';
 import ErrorDisplay from '../common/error/ErrorDisplay';
 import LoadingBar from '../common/loading/LoadingBar';
+import { useModal } from '../../hooks/useModal';
+import ConfirmModal from '../common/UI/modal/ConfirmModal';
 
 type FormValue = {
 	title: string;
@@ -14,13 +16,14 @@ type FormValue = {
 
 type TProps = {
 	closeEmailModal: () => void;
+	handleSubmitting: (result: string) => void;
 };
 
 const service_id = `${process.env.REACT_APP_SERVICE_ID}`;
 const template_id = `${process.env.REACT_APP_TEMPLATE_ID}`;
 const public_key = `${process.env.REACT_APP_PUBLIC_KEY}`;
 
-const ContactUsForm = ({ closeEmailModal }: TProps) => {
+const ContactUsForm = ({ closeEmailModal, handleSubmitting }: TProps) => {
 	const form = useRef<HTMLFormElement>(null);
 	const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -41,15 +44,20 @@ const ContactUsForm = ({ closeEmailModal }: TProps) => {
 				// 디바운싱 체크
 				setIsSubmitting(true); // 클릭되면 버튼을 비활성화
 				// await emailjs.sendForm(service_id, template_id, form.current, {
-				//     publicKey: public_key,
+				// 	publicKey: public_key,
 				// });
 				console.log('SUCCESS!');
+				handleSubmitting('SUCCESS');
+
 				setTimeout(() => {
 					setIsSubmitting(false); // 지정된 시간 후에 버튼을 다시 활성화
-				}, 2000); // 3초 후
+				}, 2000);
 			}
 		} catch (error: any) {
 			console.log('FAILED...', error.text);
+			handleSubmitting('FAILED');
+		} finally {
+			closeEmailModal();
 		}
 	};
 
@@ -70,7 +78,10 @@ const ContactUsForm = ({ closeEmailModal }: TProps) => {
 				<InputWrapper>
 					<LabelStyle>이메일</LabelStyle>
 					<InputStyle
-						{...register('email', { required: true, pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i })}
+						{...register('email', {
+							required: true,
+							pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+						})}
 						type="email"
 						placeholder="이메일 주소를 입력해주세요"
 					/>
