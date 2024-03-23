@@ -2,13 +2,11 @@ import theme from '../../../../styles/theme';
 import ContactUsForm from '../../../FAQ/ContactUsForm';
 import Modal from './Modal';
 import styled from 'styled-components';
-import { useState } from 'react';
-import { useModal } from '../../../../hooks/useModal';
+import { RESULT_VALUES } from '../../../../@types/faq';
 
 type EmailModalType = {
 	closeModal: () => void;
-	
-	handleSubmitting: (result: string) => void;
+	handleSubmitting: (result: RESULT_VALUES) => void;
 };
 
 const EmailModal = ({ closeModal, handleSubmitting }: EmailModalType) => {
@@ -26,7 +24,7 @@ const HeaderStyle = styled.h2`
 	text-align: center;
 	font-size: 30px;
 	margin-bottom: 1.3rem;
-	color: ${theme.palette.greenDk};
+	color: ${theme.palette.fluorGreen};
 	font-family: ${theme.fonts.gmarket};
 	padding: 0.6rem;
 

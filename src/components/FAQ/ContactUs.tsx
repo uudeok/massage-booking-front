@@ -1,22 +1,23 @@
 import { useModal } from '../../hooks/useModal';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import theme from '../../styles/theme';
 import CommonButton from '../common/button/CommonButton';
 import ConditionalDisplay from '../common/maybe/ConditionalDisplay';
 import EmailModal from '../common/UI/modal/EmailModal';
 import ConfirmModal from '../common/UI/modal/ConfirmModal';
+import { RESULT_VALUES } from '../../@types/faq';
 
 const ContactUs = () => {
 	const { isOpen, showModal, closeModal } = useModal();
 	const { isOpen: openConfirm, showModal: showConfirm, closeModal: closeConfirm } = useModal();
-	const [result, setResult] = useState('');
+	const [result, setResult] = useState<RESULT_VALUES | null>(null);
 
 	const handleModal = () => {
 		showModal();
 	};
 
-	const handleSubmitting = (result: string) => {
+	const handleSubmitting = (result: RESULT_VALUES) => {
 		// console.log('Result', result);
 		setResult(result);
 		showConfirm();

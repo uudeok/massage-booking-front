@@ -1,12 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import emailjs from '@emailjs/browser';
 import styled from 'styled-components';
 import theme from '../../styles/theme';
 import ErrorDisplay from '../common/error/ErrorDisplay';
 import LoadingBar from '../common/loading/LoadingBar';
-import { useModal } from '../../hooks/useModal';
-import ConfirmModal from '../common/UI/modal/ConfirmModal';
+import { RESULT_VALUES } from '../../@types/faq';
 
 type FormValue = {
 	title: string;
@@ -16,7 +15,7 @@ type FormValue = {
 
 type TProps = {
 	closeEmailModal: () => void;
-	handleSubmitting: (result: string) => void;
+	handleSubmitting: (result: RESULT_VALUES) => void;
 };
 
 const service_id = `${process.env.REACT_APP_SERVICE_ID}`;
@@ -30,7 +29,6 @@ const ContactUsForm = ({ closeEmailModal, handleSubmitting }: TProps) => {
 	const {
 		register,
 		handleSubmit,
-		watch,
 		formState: { errors },
 	} = useForm<FormValue>();
 
@@ -43,10 +41,9 @@ const ContactUsForm = ({ closeEmailModal, handleSubmitting }: TProps) => {
 			if (!isSubmitting) {
 				// 디바운싱 체크
 				setIsSubmitting(true); // 클릭되면 버튼을 비활성화
-				// await emailjs.sendForm(service_id, template_id, form.current, {
-				// 	publicKey: public_key,
-				// });
-				console.log('SUCCESS!');
+				await emailjs.sendForm(service_id, template_id, form.current, {
+					publicKey: public_key,
+				});
 				handleSubmitting('SUCCESS');
 
 				setTimeout(() => {
@@ -100,7 +97,6 @@ const ContactUsForm = ({ closeEmailModal, handleSubmitting }: TProps) => {
 				{...register('content', { required: true, minLength: 3 })}
 				placeholder="문의하실 내용을 작성해주세요"
 			/>
-			{/* <ButtonStyle type="submit" value="제출하기" disabled={isSubmitting} /> */}
 			<ButtonStyle type="submit">{isSubmitting ? <LoadingBar /> : '제출하기'}</ButtonStyle>
 		</Self>
 	);
@@ -152,7 +148,7 @@ const ContentStyle = styled.textarea`
 
 const ButtonStyle = styled.button`
 	padding: 0.5rem;
-	background-color: ${theme.palette.greenDk};
+	background-color: ${theme.palette.fluorGreen};
 	color: white;
 	border: none;
 	border-radius: 10px;
