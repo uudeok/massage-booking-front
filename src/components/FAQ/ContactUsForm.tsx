@@ -18,7 +18,7 @@ const public_key = `${process.env.REACT_APP_PUBLIC_KEY}`;
 
 const ContactUsForm: FC = () => {
 	const form = useRef<HTMLFormElement>(null);
-	const {isOpen, showModal, closeModal} = useModal()
+	const { isOpen, showModal, closeModal } = useModal();
 
 	const {
 		register,
@@ -64,7 +64,7 @@ const ContactUsForm: FC = () => {
 				<InputWrapper>
 					<LabelStyle>이메일</LabelStyle>
 					<InputStyle
-						{...register('email', { required: true, pattern:/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i})}
+						{...register('email', { required: true, pattern: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i })}
 						type="email"
 						placeholder="이메일 주소를 입력해주세요"
 					/>
