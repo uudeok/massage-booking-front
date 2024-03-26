@@ -1,44 +1,44 @@
-import { useGetMassageListQuery } from "../../api/massage/massageQuery";
-import { TMassageTable } from "../../@types/massage";
-import styled from "styled-components";
-import BookingMassageItem from "./BookingMassageItem";
-import RenderList from "../common/map/DynamicRender";
-import Card from "../common/card/Card";
-import FetchWithLoading from "../common/loading/FetchWithLoading";
-import theme from "../../styles/theme";
+import { useGetMassageListQuery } from '../../api/massage/massageQuery';
+import { TMassageTable } from '../../@types/massage';
+import styled from 'styled-components';
+import BookingMassageItem from './BookingMassageItem';
+import RenderList from '../common/map/DynamicRender';
+import Card from '../common/card/Card';
+import FetchWithLoading from '../common/loading/FetchWithLoading';
+import theme from '../../styles/theme';
 
 const BookingMassageList = () => {
-  const { data: massageList = [], isLoading } = useGetMassageListQuery();
+	const { data: massageList = [], isLoading, isError } = useGetMassageListQuery();
 
-  const renderBookingItem = (massage: TMassageTable) => (
-    <Card key={massage.id}>
-      <BookingMassageItem massage={massage} />
-    </Card>
-  );
+	const renderBookingItem = (massage: TMassageTable) => (
+		<Card key={massage.id}>
+			<BookingMassageItem massage={massage} />
+		</Card>
+	);
 
-  return (
-    <ContentBoxStyle>
-      <ListBoxStyle>
-        <FetchWithLoading isLoading={isLoading}>
-          <RenderList data={massageList} renderItem={renderBookingItem} />
-        </FetchWithLoading>
-      </ListBoxStyle>
-    </ContentBoxStyle>
-  );
+	return (
+		<ContentBoxStyle>
+			<ListBoxStyle>
+				<FetchWithLoading isLoading={isLoading}>
+					<RenderList data={massageList} renderItem={renderBookingItem} />
+				</FetchWithLoading>
+			</ListBoxStyle>
+		</ContentBoxStyle>
+	);
 };
 
 export default BookingMassageList;
 
 const ContentBoxStyle = styled.div`
-  display: flex;
+	display: flex;
 `;
 
 const ListBoxStyle = styled.ul`
-  display: flex;
-  justify-content: flex-start;
-  flex-direction: row;
-  flex-wrap: wrap;
-  width: 1200px;
-  margin: auto;
-  font-family: ${theme.fonts.pretend};
+	display: flex;
+	justify-content: flex-start;
+	flex-direction: row;
+	flex-wrap: wrap;
+	width: 1200px;
+	margin: auto;
+	font-family: ${theme.fonts.pretend};
 `;

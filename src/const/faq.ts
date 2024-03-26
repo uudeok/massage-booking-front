@@ -82,3 +82,8 @@ export const FAQ_ERROR = {
 	success_sub: '확인 후 빠른 답장 드리겠습니다😁',
 	failed_sub: '잠시 후 다시 시도해주세요',
 };
+
+export const FAQ_RESULT = {
+	success: 'SUCCESS',
+	failed: 'FAILED',
+} as const;

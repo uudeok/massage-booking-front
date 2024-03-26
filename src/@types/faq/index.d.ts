@@ -1,4 +1,5 @@
 import { valueOf } from '../common';
+import { FAQ_RESULT } from '../../const/faq';
 
 export type FAQ_TYPE = {
 	id: number;
@@ -6,11 +7,6 @@ export type FAQ_TYPE = {
 	answer: string;
 };
 
-export const RESULT = {
-	success: 'SUCCESS',
-	failed: 'FAILED',
-} as const;
-
-export type RESULT_TYPE = typeof RESULT;
+export type RESULT_TYPE = typeof FAQ_RESULT;
 export type RESULT_KEYS = keyof RESULT_TYPE;
 export type RESULT_VALUES = valueOf<RESULT_TYPE>;

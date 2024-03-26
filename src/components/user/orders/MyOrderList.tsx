@@ -1,81 +1,79 @@
-import { useGetOrderListQuery } from "../../../api/orders/ordersQuery";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { TOrderType } from "../../../@types/mypage/orders";
-import styled from "styled-components";
-import MyOrderItem from "./MyOrderItem";
-import MyOrderHeader from "./MyOrderHeader";
-import Paging from "../../pagination/Paging";
-import LoadingBar from "../../common/loading/LoadingBar";
-import RenderList from "../../common/map/DynamicRender";
-import theme from "../../../styles/theme";
+import { useGetOrderListQuery } from '../../../api/orders/ordersQuery';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { TOrderType } from '../../../@types/mypage/orders';
+import styled from 'styled-components';
+import MyOrderItem from './MyOrderItem';
+import MyOrderHeader from './MyOrderHeader';
+import Paging from '../../pagination/Paging';
+import LoadingBar from '../../common/loading/LoadingBar';
+import RenderList from '../../common/map/DynamicRender';
+import theme from '../../../styles/theme';
 
 const MY_ORDER_LIST_PAGESIZE = 5;
 
 const MyOrderList = () => {
-  const navigate = useNavigate();
-  const [page, setPage] = useState(1);
+	const navigate = useNavigate();
+	const [page, setPage] = useState(1);
 
-  const { data, error } = useGetOrderListQuery({
-    pageSize: MY_ORDER_LIST_PAGESIZE,
-    pageNumber: page,
-  });
+	const { data, error, isLoading } = useGetOrderListQuery({
+		pageSize: MY_ORDER_LIST_PAGESIZE,
+		pageNumber: page,
+	});
 
-  if (error && "message" in error) {
-    return <ErrorStyle>{error.message}</ErrorStyle>;
-  }
+	if (error && 'message' in error) {
+		return <ErrorStyle>{error.message}</ErrorStyle>;
+	}
 
-  if (!data) return <LoadingBar />;
+	if (!data || isLoading) return <LoadingBar />;
 
-  const orderList = data.orders;
-  const meta = data.meta;
+	const orderList = data.orders;
+	const meta = data.meta;
 
-  const changePageHandler = (page: number) => {
-    setPage(page);
-    navigate(`/mypage/order/?page=${page}`);
-  };
+	const changePageHandler = (page: number) => {
+		setPage(page);
+		navigate(`/mypage/order/?page=${page}`);
+	};
 
-  const renderOrderItem = (item: TOrderType) => (
-    <MyOrderItem key={item.id} order={item} />
-  );
+	const renderOrderItem = (item: TOrderType) => <MyOrderItem key={item.id} order={item} />;
 
-  return (
-    <LayoutStyle>
-      <HeaderStyle>‖ 예약 내역</HeaderStyle>
-      <MyOrderHeader />
+	return (
+		<LayoutStyle>
+			<HeaderStyle>‖ 예약 내역</HeaderStyle>
+			<MyOrderHeader />
 
-      <ContentLayoutStyle>
-        <RenderList data={orderList} renderItem={renderOrderItem} />
-      </ContentLayoutStyle>
-      <Paging
-        count={meta.totalCount}
-        changePageHandler={changePageHandler}
-        page={page}
-        pageSize={MY_ORDER_LIST_PAGESIZE}
-      />
-    </LayoutStyle>
-  );
+			<ContentLayoutStyle>
+				<RenderList data={orderList} renderItem={renderOrderItem} />
+			</ContentLayoutStyle>
+			<Paging
+				count={meta.totalCount}
+				changePageHandler={changePageHandler}
+				page={page}
+				pageSize={MY_ORDER_LIST_PAGESIZE}
+			/>
+		</LayoutStyle>
+	);
 };
 
 export default MyOrderList;
 
 const LayoutStyle = styled.div`
-  padding: 1rem;
-  width: 100%;
+	padding: 1rem;
+	width: 100%;
 `;
 
 const HeaderStyle = styled.h2`
-  font-family: ${theme.fonts.pretend};
-  font-size: 1.5rem;
+	font-family: ${theme.fonts.pretend};
+	font-size: 1.5rem;
 `;
 
 const ContentLayoutStyle = styled.div`
-  display: flex;
-  flex-direction: column;
+	display: flex;
+	flex-direction: column;
 `;
 const ErrorStyle = styled.div`
-  color: tomato;
-  margin: 2rem auto;
-  font-size: 24px;
-  text-align: center;
+	color: tomato;
+	margin: 2rem auto;
+	font-size: 24px;
+	text-align: center;
 `;

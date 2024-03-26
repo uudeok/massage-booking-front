@@ -54,6 +54,7 @@ const ContactUsForm = ({ closeEmailModal, handleSubmitting }: TProps) => {
 			console.log('FAILED...', error.text);
 			handleSubmitting('FAILED');
 		} finally {
+			setIsSubmitting(false);
 			closeEmailModal();
 		}
 	};
