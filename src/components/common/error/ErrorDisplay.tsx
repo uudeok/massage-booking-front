@@ -4,16 +4,16 @@ type TProps = {
 	errorMessage: string | undefined;
 	$padding?: string;
 	fontSize?: string;
-  $float? : string;
+	$float?: string;
 };
 
 type ErrorDisplay = {
 	$padding?: string;
 	fontSize?: string;
-  $float? : string;
+	$float?: string;
 };
 
-const ErrorDisplay = ({ errorMessage, $padding, fontSize , $float}: TProps) => {
+const ErrorDisplay = ({ errorMessage, $padding, fontSize, $float }: TProps) => {
 	return (
 		<>
 			{errorMessage && (
@@ -33,5 +33,5 @@ const ErrorMessageStyle = styled.span<ErrorDisplay>`
 
 	padding: ${($props) => ($props.$padding ? $props.$padding : '1rem')};
 	font-size: ${($props) => ($props.fontSize ? $props.fontSize : '')};
-  float: ${($props) => $props.$float ? $props.$float : ''};
+	float: ${($props) => ($props.$float ? $props.$float : '')};
 `;

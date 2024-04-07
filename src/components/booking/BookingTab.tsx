@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { currTabNum, resetTabNum } from '../../stores/tabSlice';
 import BookingDate from './BookingDate';
 import RenderList from '../common/map/DynamicRender';
-import theme from '../../styles/theme';
 import styled from 'styled-components';
 import BookingMassageList from './BookingMassageList';
 import BookingDetailList from './BookingDetailList';
@@ -53,6 +52,7 @@ const BookingTab = () => {
 			<TabListStyle>
 				<RenderList data={TAB_LIST} renderItem={renderTabItem} />
 			</TabListStyle>
+
 			<ContentContainerStyle>{TAB_LIST[tabNum].content}</ContentContainerStyle>
 		</>
 	);
@@ -76,18 +76,18 @@ const TabButtonStyle = styled.button<{ $isActive: boolean }>`
 	align-items: center;
 	border: none;
 	font-size: 1.5rem;
-	font-family: ${theme.fonts.gmarket};
+	font-family: ${(props) => props.theme.fonts.gmarket};
 
 	background-color: ${({ $isActive }) => ($isActive ? '#819977' : 'whitesmoke')};
 	color: ${({ $isActive }) => ($isActive ? 'white' : 'grey')};
 	font-weight: ${({ $isActive }) => ($isActive ? 'bold' : '')};
 	box-shadow: ${({ $isActive }) => ($isActive ? '0 0 0.3rem 0 rgba(0, 0, 0, 0.2)' : '')};
 
-	@media only screen and (max-width: ${theme.devise.notebookWidth}) {
+	@media only screen and (max-width: ${(props) => props.theme.devise.notebookWidth}) {
 		font-size: 1.2rem;
 	}
 
-	@media only screen and (max-width: ${theme.devise.tabletWidth}) {
+	@media only screen and (max-width: ${(props) => props.theme.devise.tabletWidth}) {
 		font-size: 0.8rem;
 		width: 100%;
 	}

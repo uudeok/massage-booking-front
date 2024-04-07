@@ -1,4 +1,4 @@
-export const generate_URL = "http://localhost:5000";
+export const generate_URL = 'http://localhost:5000';
 
 // 1-1. 마사지 리스트가져오기
 // 1-2. /:item 으로 (DRY_MASSAGE) 아이템 가져오기

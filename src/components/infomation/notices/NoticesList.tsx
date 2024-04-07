@@ -25,9 +25,10 @@ const NoticesList = () => {
 	});
 
 	// <!-- null 일때 응답 --!>
-	if (error && 'data' in error) {
-		setMessage(ERROR_MESSAGE.null_data);
-	}
+	// if (error && 'data' in error) {
+	// 	setMessage(ERROR_MESSAGE.null_data);
+	// }
+
 	// <!-- fetching 중일때 응답 --!>
 	if (data === undefined) return <LoadingBar />;
 	// <!-- 성공적으로 받아왔는데 데이터가 없을때 --!>
