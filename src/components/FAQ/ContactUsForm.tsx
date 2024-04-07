@@ -2,7 +2,6 @@ import React, { useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import emailjs from '@emailjs/browser';
 import styled from 'styled-components';
-import theme from '../../styles/theme';
 import ErrorDisplay from '../common/error/ErrorDisplay';
 import LoadingBar from '../common/loading/LoadingBar';
 import { RESULT_VALUES } from '../../@types/faq';
@@ -149,7 +148,7 @@ const ContentStyle = styled.textarea`
 
 const ButtonStyle = styled.button`
 	padding: 0.5rem;
-	background-color: ${theme.palette.fluorGreen};
+	background-color: ${(props) => props.theme.palette.fluorGreen};
 	color: white;
 	border: none;
 	border-radius: 10px;

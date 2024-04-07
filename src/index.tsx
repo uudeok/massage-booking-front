@@ -5,15 +5,19 @@ import { RouterProvider } from 'react-router-dom';
 import { router } from './configs/routes';
 import { store } from './stores/store';
 import { Provider } from 'react-redux';
+import { ThemeProvider } from 'styled-components';
+import theme from './styles/theme';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
 root.render(
 	<>
 		<GlobalStyles />
-		<Provider store={store}>
-			<RouterProvider router={router} />
-		</Provider>
+		<ThemeProvider theme={theme}>
+			<Provider store={store}>
+				<RouterProvider router={router} />
+			</Provider>
+		</ThemeProvider>
 	</>,
 );
 

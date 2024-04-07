@@ -54,12 +54,12 @@ const Self = styled.div`
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	font-family: ${theme.fonts.pretend};
+	font-family: ${(props) => props.theme.fonts.pretend};
 	font-size: 20px;
 	font-weight: bold;
 	gap: 2rem;
 
-	@media only screen and (max-width: ${theme.devise.tabletWidth}) {
+	@media only screen and (max-width: ${(props) => props.theme.devise.tabletWidth}) {
 		font-size: 15px;
 	}
 `;

@@ -5,7 +5,6 @@ import { TMassageDetail } from '../../@types/massage';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../stores/store';
 import { subTabNum } from '../../stores/tabSlice';
-import theme from '../../styles/theme';
 import ErrorDisplay from '../common/error/ErrorDisplay';
 import LoadingBar from '../common/loading/LoadingBar';
 import styled from 'styled-components';
@@ -61,7 +60,7 @@ const ListBoxStyle = styled.ul`
 	flex-wrap: wrap;
 	width: 1200px;
 	margin: auto;
-	font-family: ${theme.fonts.pretend};
+	font-family: ${(props) => props.theme.fonts.pretend};
 `;
 
 const ButtonBoxStyle = styled.div`

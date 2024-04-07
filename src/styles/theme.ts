@@ -31,4 +31,6 @@ const theme = {
 	fonts,
 };
 
+export type ThemeType = typeof theme;
+
 export default theme;

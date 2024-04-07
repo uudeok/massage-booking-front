@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import styled from 'styled-components';
-import theme from '../../../../styles/theme';
 
 type TProps = {
 	children: React.ReactNode;
@@ -65,12 +64,12 @@ const ModalStyle = styled.div<{
 	top: ${({ $top }) => ($top ? $top : '10%')};
 	border-radius: ${({ $radius }) => ($radius ? $radius : '')};
 
-	@media only screen and (max-width: ${theme.devise.tabletWidth}) {
+	@media only screen and (max-width: ${(props) => props.theme.devise.tabletWidth}) {
 		width: 26rem;
 		left: calc(50% - 13rem);
 	}
 
-	@media only screen and (max-width: ${theme.devise.mobileWidth}) {
+	@media only screen and (max-width: ${(props) => props.theme.devise.mobileWidth}) {
 		width: 20rem;
 		left: calc(50% - 10rem);
 	}

@@ -8,7 +8,6 @@ import MyOrderHeader from './MyOrderHeader';
 import Paging from '../../pagination/Paging';
 import LoadingBar from '../../common/loading/LoadingBar';
 import RenderList from '../../common/map/DynamicRender';
-import theme from '../../../styles/theme';
 
 const MY_ORDER_LIST_PAGESIZE = 5;
 
@@ -63,7 +62,7 @@ const LayoutStyle = styled.div`
 `;
 
 const HeaderStyle = styled.h2`
-	font-family: ${theme.fonts.pretend};
+	font-family: ${(props) => props.theme.fonts.pretend};
 	font-size: 1.5rem;
 `;
 

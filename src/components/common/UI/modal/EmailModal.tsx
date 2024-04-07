@@ -1,4 +1,3 @@
-import theme from '../../../../styles/theme';
 import ContactUsForm from '../../../FAQ/ContactUsForm';
 import Modal from './Modal';
 import styled from 'styled-components';
@@ -24,11 +23,11 @@ const HeaderStyle = styled.h2`
 	text-align: center;
 	font-size: 30px;
 	margin-bottom: 1.3rem;
-	color: ${theme.palette.fluorGreen};
-	font-family: ${theme.fonts.gmarket};
+	color: ${(props) => props.theme.palette.fluorGreen};
+	font-family: ${(props) => props.theme.fonts.gmarket};
 	padding: 0.6rem;
 
-	@media only screen and (max-width: ${theme.devise.tabletWidth}) {
+	@media only screen and (max-width: ${(props) => props.theme.devise.tabletWidth}) {
 		padding: 0.3rem;
 	}
 `;

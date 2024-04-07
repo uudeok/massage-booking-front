@@ -1,11 +1,11 @@
 import { RESULT_VALUES } from '../../../../@types/faq';
 import { useState, useEffect } from 'react';
 import { CiCircleInfo } from 'react-icons/ci';
-import theme from '../../../../styles/theme';
 import Modal from './Modal';
 import styled from 'styled-components';
 import { FAQ_ERROR } from '../../../../const/faq';
 import CommonButton from '../../button/CommonButton';
+import theme from '../../../../styles/theme';
 
 type ConfirmModalType = {
 	closeModal: () => void;
@@ -59,16 +59,16 @@ export default ConfirmModal;
 const HeaderStyle = styled.h2`
 	font-size: 40px;
 	height: 5rem;
-	background-color: ${theme.palette.fluorGreen};
+	background-color: ${(props) => props.theme.palette.fluorGreen};
 	color: white;
-	font-family: ${theme.fonts.gmarket};
+	font-family: ${(props) => props.theme.fonts.gmarket};
 	display: flex;
 	justify-content: center;
 	align-items: center;
 `;
 
 const ContentStyle = styled.div`
-	font-family: ${theme.fonts.pretend};
+	font-family: ${(props) => props.theme.fonts.pretend};
 	text-align: left;
 	font-size: 20px;
 	height: 7rem;

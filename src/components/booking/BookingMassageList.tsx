@@ -5,7 +5,6 @@ import BookingMassageItem from './BookingMassageItem';
 import RenderList from '../common/map/DynamicRender';
 import Card from '../common/card/Card';
 import FetchWithLoading from '../common/loading/FetchWithLoading';
-import theme from '../../styles/theme';
 
 const BookingMassageList = () => {
 	const { data: massageList = [], isLoading } = useGetMassageListQuery();
@@ -40,5 +39,5 @@ const ListBoxStyle = styled.ul`
 	flex-wrap: wrap;
 	width: 1200px;
 	margin: auto;
-	font-family: ${theme.fonts.pretend};
+	font-family: ${(props) => props.theme.fonts.pretend};
 `;
