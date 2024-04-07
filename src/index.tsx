@@ -1,25 +1,20 @@
-import ReactDOM from "react-dom/client";
-import reportWebVitals from "./reportWebVitals";
-import GlobalStyles from "./styles/globalStyles";
-import { RouterProvider } from "react-router-dom";
-import { router } from "./configs/routes";
-import { store } from "./stores/store";
-import { Provider } from "react-redux";
-// import { CookiesProvider } from "react-cookie";
+import ReactDOM from 'react-dom/client';
+import reportWebVitals from './reportWebVitals';
+import GlobalStyles from './styles/globalStyles';
+import { RouterProvider } from 'react-router-dom';
+import { router } from './configs/routes';
+import { store } from './stores/store';
+import { Provider } from 'react-redux';
 
-const root = ReactDOM.createRoot(
-  document.getElementById("root") as HTMLElement
-);
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
 root.render(
-  <>
-    <GlobalStyles />
-    {/* <CookiesProvider> */}
-    <Provider store={store}>
-      <RouterProvider router={router} />
-    </Provider>
-    {/* </CookiesProvider> */}
-  </>
+	<>
+		<GlobalStyles />
+		<Provider store={store}>
+			<RouterProvider router={router} />
+		</Provider>
+	</>,
 );
 
 // If you want to start measuring performance in your app, pass a function

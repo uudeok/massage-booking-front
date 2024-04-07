@@ -1,24 +1,24 @@
-import { BOOKING_ITEM_KEYS, TMassageTable } from "../../@types/massage";
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { BOOKING_ITEM_KEYS, TMassageTable } from '../../@types/massage';
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 export const massageApi = createApi({
-  reducerPath: "massageApi",
-  baseQuery: fetchBaseQuery({
-    baseUrl: `${process.env.REACT_APP_API_URL}/items`,
-  }),
-  tagTypes: ["massage"],
-  endpoints: (builder) => ({
-    getMassageList: builder.query<TMassageTable[], void>({
-      query: () => "/",
-      transformResponse: (response: { items: TMassageTable[] }) => {
-        return response.items;
-      },
-      providesTags: [{ type: "massage" }],
-    }),
-    getMassageItem: builder.query<TMassageTable, BOOKING_ITEM_KEYS>({
-      query: (item) => `/${item}`,
-    }),
-  }),
+	reducerPath: 'massageApi',
+	baseQuery: fetchBaseQuery({
+		baseUrl: `${process.env.REACT_APP_API_URL}/items`,
+	}),
+	tagTypes: ['massage'],
+	endpoints: (builder) => ({
+		getMassageList: builder.query<TMassageTable[], void>({
+			query: () => '/',
+			transformResponse: (response: { items: TMassageTable[] }) => {
+				return response.items;
+			},
+			providesTags: [{ type: 'massage' }],
+		}),
+		getMassageItem: builder.query<TMassageTable, BOOKING_ITEM_KEYS>({
+			query: (item) => `/${item}`,
+		}),
+	}),
 });
 
 export const { useGetMassageListQuery, useGetMassageItemQuery } = massageApi;

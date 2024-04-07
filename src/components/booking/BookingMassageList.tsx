@@ -8,7 +8,7 @@ import FetchWithLoading from '../common/loading/FetchWithLoading';
 import theme from '../../styles/theme';
 
 const BookingMassageList = () => {
-	const { data: massageList = [], isLoading, isError } = useGetMassageListQuery();
+	const { data: massageList = [], isLoading } = useGetMassageListQuery();
 
 	const renderBookingItem = (massage: TMassageTable) => (
 		<Card key={massage.id}>
