@@ -1,12 +1,14 @@
+import { useNavigate } from 'react-router-dom';
+
 import { FcOk } from 'react-icons/fc';
 import { usePostOrderDataMutation } from '../../../../api/orders/ordersQuery';
 import { TMassageTable } from '../../../../@types/massage';
 import { WEEK_DAYS } from '../../../../const/book/time';
-import { useNavigate } from 'react-router-dom';
-import styled, { css } from 'styled-components';
-import LoadingBar from '../../loading/LoadingBar';
 import { BackDropStyle, ModalStyle } from '../../modal/styles/modal.styles';
 import { Content, Header, Button, ModalWrapper } from '../../modal/Modal';
+
+import styled from 'styled-components';
+import LoadingBar from '../../loading/LoadingBar';
 
 type TBookingModalType = {
 	closeModal: () => void;
@@ -32,28 +34,23 @@ const BookingModal = ({
 	const selectedDay = new Date(selectedDate).getDay();
 
 	const bookMassageHandler = async () => {
-		try {
-			await postOrder({
-				order: {
-					item: massageItem.displayItem,
-					price: massagePrice,
-					startReservedAt: fullStartDate,
-					endReservedAt: fullEndDate,
-				},
-				event: {
-					targetDate: selectedDate,
-					startReservedTime: startTime,
-					endReservedTime: endTime,
-					dayOfWeek: WEEK_DAYS[selectedDay],
-					itemId: massageItem.id,
-					tutorId: -1,
-				},
-			});
-		} catch (e) {
-			console.error(e);
-		} finally {
-			navigate('/mypage/order');
-		}
+		await postOrder({
+			order: {
+				item: massageItem.displayItem,
+				price: massagePrice,
+				startReservedAt: fullStartDate,
+				endReservedAt: fullEndDate,
+			},
+			event: {
+				targetDate: selectedDate,
+				startReservedTime: startTime,
+				endReservedTime: endTime,
+				dayOfWeek: WEEK_DAYS[selectedDay],
+				itemId: massageItem.id,
+				tutorId: -1,
+			},
+		});
+		navigate('/mypage/order');
 	};
 
 	return (

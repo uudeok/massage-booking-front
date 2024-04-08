@@ -8,6 +8,7 @@ const palette = {
 	greenDk: '#819977',
 	fluorGreen: '#3ab96f',
 	blue: '#3581ff',
+	bluehover: '#5f98f7',
 	warn: '#F65656',
 	confirm: '#4BAF50',
 };
