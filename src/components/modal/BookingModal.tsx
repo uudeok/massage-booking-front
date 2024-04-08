@@ -69,29 +69,6 @@ const BookingModal = ({
 				</ModalWrapper>
 			</ModalStyle>
 		</>
-
-		//   <Self>
-		//     <ContentBoxStyle>
-		//       <Icon />
-		//       <TitleStyle>예약을 진행하시겠습니까?</TitleStyle>
-		//     </ContentBoxStyle>
-
-		//     <ButtonBoxStyle>
-		//       <Button onClick={() => closeModal()} $backgroundColor="whitesmoke">
-		//         취소하기
-		//       </Button>
-		//       <Button
-		//         color="white"
-		//         $backgroundColor="#4CAF50"
-		//         $onHover={true}
-		//         onClick={bookMassageHandler}
-		//         disabled={isLoading}
-		//         $isLoading={isLoading}
-		//       >
-		//         {isLoading ? <LoadingBar /> : "예약하기"}
-		//       </Button>
-		//     </ButtonBoxStyle>
-		//   </Self>
 	);
 };
 

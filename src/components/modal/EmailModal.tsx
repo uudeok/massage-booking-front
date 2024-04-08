@@ -1,5 +1,6 @@
 import ContactUsForm from '../FAQ/ContactUsForm';
 import styled from 'styled-components';
+
 import { RESULT_VALUES } from '../../@types/faq';
 import { BackDropStyle, ModalStyle } from '../common/UI/modal/styles/modal.styles';
 import { Header, ModalWrapper } from '../common/UI/modal/Modal';
