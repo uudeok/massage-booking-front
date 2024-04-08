@@ -7,6 +7,7 @@ const palette = {
 	greenLg: '#97a393',
 	greenDk: '#819977',
 	fluorGreen: '#3ab96f',
+	fluorGreenHover: '#28a25b',
 	blue: '#3581ff',
 	bluehover: '#5f98f7',
 	warn: '#F65656',

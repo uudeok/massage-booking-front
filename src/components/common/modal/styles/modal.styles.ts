@@ -45,14 +45,13 @@ export const BackDropStyle = styled.div`
 export type ModalStyleType = {
 	height?: string;
 	width?: string;
+	$top?: string;
 };
 
 export const ModalStyle = styled.div<ModalStyleType>`
 	position: fixed;
 	top: 30%;
 	left: calc(50% - 11rem);
-	/* width: 22rem;
-	height: 15rem; */
 	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
 	z-index: 30;
 	animation: slide-down 300ms ease-out forwards;
@@ -63,6 +62,7 @@ export const ModalStyle = styled.div<ModalStyleType>`
 
 	width: ${({ width }) => (width ? width : '22rem')};
 	height: ${({ height }) => (height ? height : '15rem')};
+	top: ${({ $top }) => ($top ? $top : '30%')};
 
 	@keyframes slide-down {
 		from {

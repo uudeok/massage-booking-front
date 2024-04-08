@@ -107,6 +107,7 @@ export default ContactUsForm;
 const Self = styled.form`
 	display: flex;
 	flex-direction: column;
+	padding: 0.5rem;
 `;
 
 const Wrapper = styled.div`
@@ -147,13 +148,17 @@ const ContentStyle = styled.textarea`
 `;
 
 const ButtonStyle = styled.button`
-	padding: 0.5rem;
+	padding: 0.7rem;
 	background-color: ${(props) => props.theme.palette.fluorGreen};
 	color: white;
 	border: none;
 	border-radius: 10px;
 	cursor: pointer;
 	margin-top: 1rem;
+
+	&:hover {
+		background-color: ${(props) => props.theme.palette.fluorGreenHover};
+	}
 `;
 
 const ContentLabelStyle = styled.div`
