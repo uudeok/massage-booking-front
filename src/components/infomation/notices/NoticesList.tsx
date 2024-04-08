@@ -1,43 +1,27 @@
 import styled from 'styled-components';
 import NoticeItem from './NoticeItem';
 import Paging from '../../pagination/Paging';
-import LoadingBar from '../../common/loading/LoadingBar';
 import RenderList from '../../common/map/DynamicRender';
 import { NOTICE_CATEGORIES } from '../../../const/notices';
 import { useState } from 'react';
 import { NOTICE_CATEGORY_KEYS } from '../../../@types/notice';
 import { useGetNoticeListQuery } from '../../../api/notice/noticeQuery';
 import { TNoticeCategory } from '../../../@types/notice';
-import ErrorDisplay from '../../common/error/ErrorDisplay';
-import { ERROR_MESSAGE } from '../../../const/book/errorMessage';
 
 const NOTICE_LIST_PAGE_SIZE = 10;
 
 const NoticesList = () => {
 	const [category, setCategory] = useState<NOTICE_CATEGORY_KEYS>();
 	const [page, setPage] = useState(1);
-	const [message, setMessage] = useState('');
 
-	const { data, isLoading, error } = useGetNoticeListQuery({
+	const { data, isLoading } = useGetNoticeListQuery({
 		pageNumber: page,
 		pageSize: NOTICE_LIST_PAGE_SIZE,
 		category: category,
 	});
 
-	// <!-- null 일때 응답 --!>
-	// if (error && 'data' in error) {
-	// 	setMessage(ERROR_MESSAGE.null_data);
-	// }
-
-	// <!-- fetching 중일때 응답 --!>
-	if (data === undefined) return <LoadingBar />;
-	// <!-- 성공적으로 받아왔는데 데이터가 없을때 --!>
-	if (data && data.notices.length === 0) {
-		setMessage(ERROR_MESSAGE.empty_data);
-	}
-
-	const noticeList = data.notices;
-	const meta = data.meta;
+	const noticeList = data?.notices || [];
+	const meta = data?.meta || { totalCount: 0 };
 
 	const changePageHandler = (page: number) => {
 		setPage(page);
@@ -63,7 +47,6 @@ const NoticesList = () => {
 						<RenderList data={NOTICE_CATEGORIES} renderItem={renderCategoryItem} />
 					</CategoryListStyle>
 				</HeaderStyle>
-				<ErrorDisplay errorMessage={message} />
 				<NoticeItem notice={noticeList} isLoading={isLoading} />
 				<Paging
 					page={page}

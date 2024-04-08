@@ -8,6 +8,7 @@ const palette = {
 	greenDk: '#819977',
 	fluorGreen: '#3ab96f',
 	blue: '#3581ff',
+	warn: '#F65656',
 };
 
 const devise = {
