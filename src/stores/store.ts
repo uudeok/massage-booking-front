@@ -1,22 +1,22 @@
 import { configureStore } from '@reduxjs/toolkit';
-import massageSlice from './massageSlice';
-import tabSlice from './tabSlice';
 import { setupListeners } from '@reduxjs/toolkit/query';
 import { massageApi } from '../api/massage/massageQuery';
 import { noticeApi } from '../api/notice/noticeQuery';
 import { bookApi } from '../api/book/bookQuery';
-import timeSlice from './timeSlice';
-
 import { ordersApi } from '../api/orders/ordersQuery';
 import { userApi } from '../api/users/usersQuery';
 import { authApi } from '../api/auth/authQuery';
+
+import timeSlice from './timeSlice';
+import massageSlice from './massageSlice';
+import tabSlice from './tabSlice';
 
 import { Middleware, MiddlewareAPI, isRejected } from '@reduxjs/toolkit';
 import errorSlice, { setError } from './errorSlice';
 
 export const rtkQueryErrorLogger: Middleware = (api: MiddlewareAPI) => (next) => (action) => {
 	if (isRejected(action)) {
-		console.log('action', action.payload.originalStatus);
+		console.log('error logger : ', action.payload.originalStatus);
 		store.dispatch(setError(action.payload.originalStatus));
 	}
 

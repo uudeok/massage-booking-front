@@ -9,6 +9,7 @@ const palette = {
 	fluorGreen: '#3ab96f',
 	blue: '#3581ff',
 	warn: '#F65656',
+	confirm: '#4BAF50',
 };
 
 const devise = {

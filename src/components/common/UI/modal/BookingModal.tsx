@@ -1,152 +1,143 @@
-import { FcOk } from "react-icons/fc";
-import { usePostOrderDataMutation } from "../../../../api/orders/ordersQuery";
-import { TMassageTable } from "../../../../@types/massage";
-import { WEEK_DAYS } from "../../../../const/book/time";
-import { useNavigate } from "react-router-dom";
-import styled, { css } from "styled-components";
-import LoadingBar from "../../loading/LoadingBar";
-import theme from "../../../../styles/theme";
-import Modal from "./Modal";
+import { FcOk } from 'react-icons/fc';
+import { usePostOrderDataMutation } from '../../../../api/orders/ordersQuery';
+import { TMassageTable } from '../../../../@types/massage';
+import { WEEK_DAYS } from '../../../../const/book/time';
+import { useNavigate } from 'react-router-dom';
+import styled, { css } from 'styled-components';
+import LoadingBar from '../../loading/LoadingBar';
+import { BackDropStyle, ModalStyle } from '../../modal/styles/modal.styles';
+import { Content, Header, Button, ModalWrapper } from '../../modal/Modal';
 
 type TBookingModalType = {
-  closeModal: () => void;
-  massageItem: TMassageTable;
-  selectedDate: string;
-  massagePrice: number;
-  startTime: string;
-  endTime: string;
+	closeModal: () => void;
+	massageItem: TMassageTable;
+	selectedDate: string;
+	massagePrice: number;
+	startTime: string;
+	endTime: string;
 };
 
 const BookingModal = ({
-  closeModal,
-  massageItem,
-  selectedDate,
-  massagePrice,
-  startTime,
-  endTime,
+	closeModal,
+	massageItem,
+	selectedDate,
+	massagePrice,
+	startTime,
+	endTime,
 }: TBookingModalType) => {
-  const [postOrder, { isLoading }] = usePostOrderDataMutation();
-  const navigate = useNavigate();
-  const fullStartDate = `${selectedDate}T${startTime}`;
-  const fullEndDate = `${selectedDate}T${endTime}`;
-  const selectedDay = new Date(selectedDate).getDay();
+	const [postOrder, { isLoading }] = usePostOrderDataMutation();
+	const navigate = useNavigate();
+	const fullStartDate = `${selectedDate}T${startTime}`;
+	const fullEndDate = `${selectedDate}T${endTime}`;
+	const selectedDay = new Date(selectedDate).getDay();
 
-  const bookMassageHandler = async () => {
-    try {
-      await postOrder({
-        order: {
-          item: massageItem.displayItem,
-          price: massagePrice,
-          startReservedAt: fullStartDate,
-          endReservedAt: fullEndDate,
-        },
-        event: {
-          targetDate: selectedDate,
-          startReservedTime: startTime,
-          endReservedTime: endTime,
-          dayOfWeek: WEEK_DAYS[selectedDay],
-          itemId: massageItem.id,
-          tutorId: -1,
-        },
-      });
-    } catch (e) {
-      console.error(e);
-    } finally {
-      navigate("/mypage/order");
-    }
-  };
+	const bookMassageHandler = async () => {
+		try {
+			await postOrder({
+				order: {
+					item: massageItem.displayItem,
+					price: massagePrice,
+					startReservedAt: fullStartDate,
+					endReservedAt: fullEndDate,
+				},
+				event: {
+					targetDate: selectedDate,
+					startReservedTime: startTime,
+					endReservedTime: endTime,
+					dayOfWeek: WEEK_DAYS[selectedDay],
+					itemId: massageItem.id,
+					tutorId: -1,
+				},
+			});
+		} catch (e) {
+			console.error(e);
+		} finally {
+			navigate('/mypage/order');
+		}
+	};
 
-  return (
-    <Modal closeModal={closeModal} height="15rem">
-      <Self>
-        <ContentBoxStyle>
-          <Icon />
-          <TitleStyle>예약을 진행하시겠습니까?</TitleStyle>
-        </ContentBoxStyle>
+	return (
+		<>
+			<BackDropStyle onClick={() => closeModal()} />
+			<ModalStyle>
+				<ModalWrapper closeModal={closeModal}>
+					<ModalHeader>
+						<FcOk />
+					</ModalHeader>
+					<ModalContent>예약을 진행하시겠습니까?</ModalContent>
+					<CancelButton onClick={() => closeModal()}>취소하기</CancelButton>
+					<ConfirmButton onClick={bookMassageHandler}>
+						{isLoading ? <LoadingBar /> : '예약하기'}
+					</ConfirmButton>
+				</ModalWrapper>
+			</ModalStyle>
+		</>
 
-        <ButtonBoxStyle>
-          <Button onClick={() => closeModal()} $backgroundColor="whitesmoke">
-            취소하기
-          </Button>
-          <Button
-            color="white"
-            $backgroundColor="#4CAF50"
-            $onHover={true}
-            onClick={bookMassageHandler}
-            disabled={isLoading}
-            $isLoading={isLoading}
-          >
-            {isLoading ? <LoadingBar /> : "예약하기"}
-          </Button>
-        </ButtonBoxStyle>
-      </Self>
-    </Modal>
-  );
+		//   <Self>
+		//     <ContentBoxStyle>
+		//       <Icon />
+		//       <TitleStyle>예약을 진행하시겠습니까?</TitleStyle>
+		//     </ContentBoxStyle>
+
+		//     <ButtonBoxStyle>
+		//       <Button onClick={() => closeModal()} $backgroundColor="whitesmoke">
+		//         취소하기
+		//       </Button>
+		//       <Button
+		//         color="white"
+		//         $backgroundColor="#4CAF50"
+		//         $onHover={true}
+		//         onClick={bookMassageHandler}
+		//         disabled={isLoading}
+		//         $isLoading={isLoading}
+		//       >
+		//         {isLoading ? <LoadingBar /> : "예약하기"}
+		//       </Button>
+		//     </ButtonBoxStyle>
+		//   </Self>
+	);
 };
 
 export default BookingModal;
 
-const Self = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  font-family: ${theme.fonts.pretend};
+const ModalHeader = styled(Header)`
+	height: 30%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	svg {
+		font-size: 3.5rem;
+	}
 `;
 
-const ContentBoxStyle = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  flex: 1;
-  gap: 2rem;
+const ModalContent = styled(Content)`
+	height: 40%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 1.3rem;
 `;
 
-const ButtonBoxStyle = styled.div`
-  display: flex;
-  gap: 1rem;
-  justify-content: center;
+const CancelButton = styled(Button)`
+	border: none;
+	padding: 1rem;
+	color: black;
+	cursor: pointer;
+	width: 40%;
+	border-radius: 5px;
+	margin-right: 1rem;
 `;
 
-const Button = styled.button<{
-  color?: string;
-  $backgroundColor: string;
-  $onHover?: boolean;
-  $isLoading?: boolean;
-}>`
-  border: none;
-  padding: 1rem;
-  border-radius: 10px;
-  width: 45%;
-  font-family: ${theme.fonts.pretend};
-  font-size: 1rem;
-  cursor: pointer;
-  color: ${({ color }) => (color ? color : "black")};
-  background-color: ${({ $backgroundColor }) =>
-    $backgroundColor ? $backgroundColor : "transparent"};
+const ConfirmButton = styled(Button)`
+	border: none;
+	padding: 1rem;
+	background-color: ${(props) => props.theme.palette.confirm};
+	color: white;
+	cursor: pointer;
+	width: 40%;
 
-  ${({ $onHover }) =>
-    $onHover &&
-    css`
-      &:hover {
-        background-color: ${theme.palette.naverColor};
-      }
-    `}
-
-  ${({ $isLoading }) =>
-    $isLoading &&
-    css`
-      background-color: #ebebeb;
-      pointer-events: none;
-    `}
-`;
-
-const Icon = styled(FcOk)`
-  font-size: 2.5rem;
-`;
-
-const TitleStyle = styled.h2`
-  font-size: 1.3rem;
-  width: 100%;
-  margin-bottom: 2rem;
-  text-align: center;
+	&:hover {
+		background-color: ${(props) => props.theme.palette.fluorGreen};
+	}
 `;

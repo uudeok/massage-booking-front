@@ -28,7 +28,6 @@ const ErrorModal = ({ closeModal, message }: ErrorModalProps) => {
 export default ErrorModal;
 
 const ModalHeader = styled(Header)`
-	/* border: 1px solid black; */
 	height: 35%;
 	display: flex;
 	justify-content: center;
