@@ -42,12 +42,17 @@ export const BackDropStyle = styled.div`
 // 	}
 // `;
 
-export const ModalStyle = styled.div`
+export type ModalStyleType = {
+	height?: string;
+	width?: string;
+};
+
+export const ModalStyle = styled.div<ModalStyleType>`
 	position: fixed;
 	top: 30%;
 	left: calc(50% - 11rem);
-	width: 22rem;
-	height: 15rem;
+	/* width: 22rem;
+	height: 15rem; */
 	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
 	z-index: 30;
 	animation: slide-down 300ms ease-out forwards;
@@ -55,6 +60,9 @@ export const ModalStyle = styled.div`
 	text-align: center;
 	border-radius: 15px;
 	overflow: hidden;
+
+	width: ${({ width }) => (width ? width : '22rem')};
+	height: ${({ height }) => (height ? height : '15rem')};
 
 	@keyframes slide-down {
 		from {

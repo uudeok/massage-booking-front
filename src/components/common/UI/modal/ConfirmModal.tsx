@@ -1,11 +1,11 @@
 import { RESULT_VALUES } from '../../../../@types/faq';
 import { useState, useEffect } from 'react';
 import { CiCircleInfo } from 'react-icons/ci';
-import Modal from './Modal';
-import styled from 'styled-components';
 import { FAQ_ERROR } from '../../../../const/faq';
-import CommonButton from '../../button/CommonButton';
-import theme from '../../../../styles/theme';
+
+import { BackDropStyle, ModalStyle } from '../../modal/styles/modal.styles';
+import { Button, Content, Header, ModalWrapper } from '../../modal/Modal';
+import styled from 'styled-components';
 
 type ConfirmModalType = {
 	closeModal: () => void;
@@ -29,34 +29,27 @@ const ConfirmModal = ({ closeModal, result }: ConfirmModalType) => {
 	}, [result]);
 
 	return (
-		<Modal closeModal={closeModal} height="15rem" $padding="0px">
-			<HeaderStyle>
-				<CiCircleInfo />
-			</HeaderStyle>
-			<ContentStyle>
-				<p>{messageState.message}</p>
-				<p>{messageState.subMessage}</p>
-			</ContentStyle>
-			<ButtonBoxStyle>
-				<CommonButton
-					type="round"
-					width="5rem"
-					$padding="0.5rem"
-					$border="none"
-					$backgroundColor={`${theme.palette.fluorGreen}`}
-					color="white"
-					onClickButton={() => closeModal()}
-				>
-					확인
-				</CommonButton>
-			</ButtonBoxStyle>
-		</Modal>
+		<>
+			<BackDropStyle onClick={() => closeModal()} />
+			<ModalStyle height="15rem">
+				<ModalWrapper closeModal={closeModal}>
+					<ModalHeader>
+						<CiCircleInfo />
+					</ModalHeader>
+					<ModalContent>
+						<p>{messageState.message}</p>
+						<p>{messageState.subMessage}</p>
+					</ModalContent>
+					<ModalButton onClick={() => closeModal()}>확인</ModalButton>
+				</ModalWrapper>
+			</ModalStyle>
+		</>
 	);
 };
 
 export default ConfirmModal;
 
-const HeaderStyle = styled.h2`
+const ModalHeader = styled(Header)`
 	font-size: 40px;
 	height: 5rem;
 	background-color: ${(props) => props.theme.palette.fluorGreen};
@@ -67,7 +60,7 @@ const HeaderStyle = styled.h2`
 	align-items: center;
 `;
 
-const ContentStyle = styled.div`
+const ModalContent = styled(Content)`
 	font-family: ${(props) => props.theme.fonts.pretend};
 	text-align: left;
 	font-size: 20px;
@@ -77,7 +70,13 @@ const ContentStyle = styled.div`
 	line-height: 2;
 `;
 
-const ButtonBoxStyle = styled.div`
+const ModalButton = styled(Button)`
 	text-align: center;
 	padding: 0.5rem;
+	border: none;
+	color: white;
+	background-color: ${(props) => props.theme.palette.fluorGreen};
+	width: 5rem;
+	cursor: pointer;
+	border-radius: 50px;
 `;
