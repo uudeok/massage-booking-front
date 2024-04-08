@@ -1,5 +1,5 @@
-import { Button, Content, Header, ModalWrapper } from '../../modal/Modal';
-import { BackDropStyle } from '../../modal/styles/modal.styles';
+import { Button, Content, Header, ModalWrapper } from '../common/UI/modal/Modal';
+import { BackDropStyle } from '../common/UI/modal/styles/modal.styles';
 import { FcHighPriority } from 'react-icons/fc';
 import styled from 'styled-components';
 

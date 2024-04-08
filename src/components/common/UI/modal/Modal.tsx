@@ -1,16 +1,23 @@
-import { useEffect } from 'react';
-import styled from 'styled-components';
+import React, { ReactNode, createContext, useContext, useEffect } from 'react';
+import { Header } from './Modal.Header';
+import { Button } from './Modal.Button';
+import { Content } from './Modal.Content';
 
-type TProps = {
-	children: React.ReactNode;
+// 재사용 가능한 Modal 구현을 위해 기능별로 컴포넌트를 나누고
+// 조합해서 사용하도록 구현
+// Context API 를 이용해 데이터를 공유
+type ModalContextProps = {
 	closeModal: () => void;
-	height?: string;
-	$top?: string;
-	$radius?: string;
-	$padding?: string;
 };
 
-const Modal = ({ children, closeModal, height, $top, $radius, $padding }: TProps) => {
+const ModalContext = createContext<ModalContextProps | null>(null);
+
+type ModalWrapperProps = {
+	closeModal: () => void;
+	children: ReactNode;
+};
+
+const ModalWrapper: React.FC<ModalWrapperProps> = ({ closeModal, children }) => {
 	useEffect(() => {
 		document.body.style.overflow = 'hidden';
 		return () => {
@@ -18,70 +25,15 @@ const Modal = ({ children, closeModal, height, $top, $radius, $padding }: TProps
 		};
 	}, []);
 
-	return (
-		<>
-			<BackDropStyle onClick={() => closeModal()} />
-			<ModalStyle $height={height} $top={$top} $radius={$radius} $padding={$padding}>
-				{children}
-			</ModalStyle>
-		</>
-	);
+	return <ModalContext.Provider value={{ closeModal }}>{children}</ModalContext.Provider>;
 };
 
-export default Modal;
-
-const BackDropStyle = styled.div`
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100vh;
-	z-index: 20;
-	background-color: rgba(0, 0, 0, 0.75);
-`;
-
-const ModalStyle = styled.div<{
-	$height?: string;
-	$top?: string;
-	$radius?: string;
-	$padding?: string;
-}>`
-	position: fixed;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	justify-content: center;
-	align-items: center;
-	left: calc(50% - 11rem);
-	width: 26rem;
-	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
-	z-index: 30;
-	animation: slide-down 300ms ease-out forwards;
-	background-color: white;
-
-	padding: ${({ $padding }) => ($padding ? $padding : '1.5rem')};
-	height: ${({ $height }) => ($height ? $height : '19rem')};
-	top: ${({ $top }) => ($top ? $top : '10%')};
-	border-radius: ${({ $radius }) => ($radius ? $radius : '')};
-
-	@media only screen and (max-width: ${(props) => props.theme.devise.tabletWidth}) {
-		width: 26rem;
-		left: calc(50% - 13rem);
+const useModalContext = () => {
+	const context = useContext(ModalContext);
+	if (!context) {
+		throw new Error('useModalContext must be used within a ModalWrapper');
 	}
+	return context;
+};
 
-	@media only screen and (max-width: ${(props) => props.theme.devise.mobileWidth}) {
-		width: 20rem;
-		left: calc(50% - 10rem);
-	}
-
-	@keyframes slide-down {
-		from {
-			opacity: 0;
-			transform: translateY(-3rem);
-		}
-		to {
-			opacity: 1;
-			transform: translateY(0);
-		}
-	}
-`;
+export { ModalWrapper, useModalContext, Header, Content, Button };

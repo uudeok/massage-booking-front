@@ -2,10 +2,10 @@ import { useModal } from '../../hooks/useModal';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import theme from '../../styles/theme';
-import CommonButton from '../common/button/CommonButton';
+import CommonButton from '../common/UI/button/CommonButton';
 import ConditionalDisplay from '../common/maybe/ConditionalDisplay';
-import EmailModal from '../common/UI/modal/EmailModal';
-import ConfirmModal from '../common/UI/modal/ConfirmModal';
+import EmailModal from '../modal/EmailModal';
+import ConfirmModal from '../modal/ConfirmModal';
 import { RESULT_VALUES } from '../../@types/faq';
 
 const ContactUs = () => {

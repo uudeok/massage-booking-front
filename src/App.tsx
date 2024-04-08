@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom';
 import { errorStatus, clearError } from './stores/errorSlice';
 import { useEffect, useState } from 'react';
 
-import ErrorModal from './components/common/UI/modal/ErrorModal';
+import ErrorModal from './components/modal/ErrorModal';
 import styled from 'styled-components';
 
 function App() {

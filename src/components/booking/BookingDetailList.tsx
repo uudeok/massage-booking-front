@@ -6,10 +6,10 @@ import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../stores/store';
 import { subTabNum } from '../../stores/tabSlice';
 import ErrorDisplay from '../common/error/ErrorDisplay';
-import LoadingBar from '../common/loading/LoadingBar';
+import LoadingBar from '../common/UI/loading/LoadingBar';
 import styled from 'styled-components';
-import Card from '../common/card/Card';
-import CommonButton from '../common/button/CommonButton';
+import Card from '../common/UI/card/Card';
+import CommonButton from '../common/UI/button/CommonButton';
 import RenderList from '../common/map/DynamicRender';
 import BookingDetail from './BookingDetail';
 

@@ -1,11 +1,11 @@
 import { useGetMassageListQuery } from '../../api/massage/massageQuery';
 import { TMassageTable } from '../../@types/massage';
 import styled from 'styled-components';
-import Banner from '../common/banner/Banner';
-import LoadingBar from '../common/loading/LoadingBar';
+import Banner from '../common/UI/banner/Banner';
+import LoadingBar from '../common/UI/loading/LoadingBar';
 import RenderList from '../common/map/DynamicRender';
-import CardImage from '../common/card/CardImage';
-import CardContent from '../common/card/CardContent';
+import CardImage from '../common/UI/card/CardImage';
+import CardContent from '../common/UI/card/CardContent';
 
 const ProgramList = () => {
 	const { data: massageList = [] } = useGetMassageListQuery();

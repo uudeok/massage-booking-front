@@ -1,10 +1,10 @@
 import { useDeleteOrderDataMutation, useGetOrderDetailQuery } from '../../../api/orders/ordersQuery';
 import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import CommonButton from '../../common/button/CommonButton';
+import CommonButton from '../../common/UI/button/CommonButton';
 import theme from '../../../styles/theme';
 import RenderList from '../../common/map/DynamicRender';
-import LoadingBar from '../../common/loading/LoadingBar';
+import LoadingBar from '../../common/UI/loading/LoadingBar';
 import { makeSimpleDate } from '../../../util/date';
 import { addComma } from '../../../util/price';
 import { makeSimpleTime } from '../../../util/time';

@@ -4,9 +4,9 @@ import { AppDispatch } from '../../stores/store';
 import { setSelectedMassageType } from '../../stores/massageSlice';
 import { addTabNum } from '../../stores/tabSlice';
 import { addComma } from '../../util/price';
-import CardImage from '../common/card/CardImage';
-import CardContent from '../common/card/CardContent';
-import CommonButton from '../common/button/CommonButton';
+import CardImage from '../common/UI/card/CardImage';
+import CardContent from '../common/UI/card/CardContent';
+import CommonButton from '../common/UI/button/CommonButton';
 
 type TProps = {
 	detail: TMassageDetail;

@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import MyOrderItem from './MyOrderItem';
 import MyOrderHeader from './MyOrderHeader';
 import Paging from '../../pagination/Paging';
-import LoadingBar from '../../common/loading/LoadingBar';
+import LoadingBar from '../../common/UI/loading/LoadingBar';
 import RenderList from '../../common/map/DynamicRender';
 
 const MY_ORDER_LIST_PAGESIZE = 5;

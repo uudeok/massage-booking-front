@@ -1,14 +1,14 @@
 import { useNavigate } from 'react-router-dom';
 
 import { FcOk } from 'react-icons/fc';
-import { usePostOrderDataMutation } from '../../../../api/orders/ordersQuery';
-import { TMassageTable } from '../../../../@types/massage';
-import { WEEK_DAYS } from '../../../../const/book/time';
-import { BackDropStyle, ModalStyle } from '../../modal/styles/modal.styles';
-import { Content, Header, Button, ModalWrapper } from '../../modal/Modal';
+import { usePostOrderDataMutation } from '../../api/orders/ordersQuery';
+import { TMassageTable } from '../../@types/massage';
+import { WEEK_DAYS } from '../../const/book/time';
+import { BackDropStyle, ModalStyle } from '../common/UI/modal/styles/modal.styles';
+import { Content, Header, Button, ModalWrapper } from '../common/UI/modal/Modal';
 
 import styled from 'styled-components';
-import LoadingBar from '../../loading/LoadingBar';
+import LoadingBar from '../common/UI/loading/LoadingBar';
 
 type TBookingModalType = {
 	closeModal: () => void;

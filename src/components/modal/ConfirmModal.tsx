@@ -1,10 +1,10 @@
-import { RESULT_VALUES } from '../../../../@types/faq';
+import { RESULT_VALUES } from '../../@types/faq';
 import { useState, useEffect } from 'react';
 import { CiCircleInfo } from 'react-icons/ci';
-import { FAQ_ERROR } from '../../../../const/faq';
+import { FAQ_ERROR } from '../../const/faq';
 
-import { BackDropStyle, ModalStyle } from '../../modal/styles/modal.styles';
-import { Button, Content, Header, ModalWrapper } from '../../modal/Modal';
+import { BackDropStyle, ModalStyle } from '../common/UI/modal/styles/modal.styles';
+import { Button, Content, Header, ModalWrapper } from '../common/UI/modal/Modal';
 import styled from 'styled-components';
 
 type ConfirmModalType = {

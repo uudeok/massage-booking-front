@@ -1,39 +1,39 @@
-import { BOOKING_ITEM_KEYS, TMassageTable } from "../../@types/massage";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../stores/store";
-import { setSelectedMassageItem } from "../../stores/massageSlice";
-import { addTabNum } from "../../stores/tabSlice";
-import CardImage from "../common/card/CardImage";
-import CardContent from "../common/card/CardContent";
-import CommonButton from "../common/button/CommonButton";
-import theme from "../../styles/theme";
+import { BOOKING_ITEM_KEYS, TMassageTable } from '../../@types/massage';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '../../stores/store';
+import { setSelectedMassageItem } from '../../stores/massageSlice';
+import { addTabNum } from '../../stores/tabSlice';
+import CardImage from '../common/UI/card/CardImage';
+import CardContent from '../common/UI/card/CardContent';
+import CommonButton from '../common/UI/button/CommonButton';
+import theme from '../../styles/theme';
 
 type TProps = {
-  massage: TMassageTable;
+	massage: TMassageTable;
 };
 
 const BookingMassageItem = ({ massage }: TProps) => {
-  const dispatch = useDispatch<AppDispatch>();
+	const dispatch = useDispatch<AppDispatch>();
 
-  const selectMassageItem = (massageItem: BOOKING_ITEM_KEYS) => {
-    dispatch(setSelectedMassageItem(massageItem));
-    dispatch(addTabNum());
-  };
+	const selectMassageItem = (massageItem: BOOKING_ITEM_KEYS) => {
+		dispatch(setSelectedMassageItem(massageItem));
+		dispatch(addTabNum());
+	};
 
-  return (
-    <>
-      <CardImage image={massage.image} alt={massage.displayItem} />
-      <CardContent title={massage.displayItem} content={massage.content} />
-      <CommonButton
-        type="round"
-        onClickButton={() => selectMassageItem(massage.item)}
-        $padding="0.6rem"
-        $border={`2px solid ${theme.palette.grey}`}
-      >
-        선택하기
-      </CommonButton>
-    </>
-  );
+	return (
+		<>
+			<CardImage image={massage.image} alt={massage.displayItem} />
+			<CardContent title={massage.displayItem} content={massage.content} />
+			<CommonButton
+				type="round"
+				onClickButton={() => selectMassageItem(massage.item)}
+				$padding="0.6rem"
+				$border={`2px solid ${theme.palette.grey}`}
+			>
+				선택하기
+			</CommonButton>
+		</>
+	);
 };
 
 export default BookingMassageItem;
