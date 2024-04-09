@@ -14,10 +14,10 @@ import tabSlice from './tabSlice';
 import { Middleware, MiddlewareAPI, isRejected } from '@reduxjs/toolkit';
 import errorSlice, { setError } from './errorSlice';
 
-export const rtkQueryErrorLogger: Middleware = (api: MiddlewareAPI) => (next) => (action) => {
+export const rtkQueryErrorHandler: Middleware = (api: MiddlewareAPI) => (next) => (action) => {
 	if (isRejected(action)) {
 		console.log('error logger : ', action.payload.originalStatus);
-		store.dispatch(setError(action.payload.originalStatus));
+		next(setError(action.payload.originalStatus));
 	}
 
 	return next(action);
@@ -46,7 +46,7 @@ export const store = configureStore({
 			ordersApi.middleware,
 			userApi.middleware,
 			authApi.middleware,
-			rtkQueryErrorLogger,
+			rtkQueryErrorHandler,
 		),
 });
 

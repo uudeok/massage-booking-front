@@ -9,6 +9,7 @@ import { Content, Header, Button, ModalWrapper } from '../common/UI/modal/Modal'
 
 import styled from 'styled-components';
 import LoadingBar from '../common/UI/loading/LoadingBar';
+import useDebounce from '../../hooks/useDebounce';
 
 type TBookingModalType = {
 	closeModal: () => void;
@@ -32,24 +33,27 @@ const BookingModal = ({
 	const fullStartDate = `${selectedDate}T${startTime}`;
 	const fullEndDate = `${selectedDate}T${endTime}`;
 	const selectedDay = new Date(selectedDate).getDay();
+	const bookData = {
+		order: {
+			item: massageItem.displayItem,
+			price: massagePrice,
+			startReservedAt: fullStartDate,
+			endReservedAt: fullEndDate,
+		},
+		event: {
+			targetDate: selectedDate,
+			startReservedTime: startTime,
+			endReservedTime: endTime,
+			dayOfWeek: WEEK_DAYS[selectedDay],
+			itemId: massageItem.id,
+			tutorId: -1,
+		},
+	};
+
+	const debounceBookingData = useDebounce(bookData, 700);
 
 	const bookMassageHandler = async () => {
-		await postOrder({
-			order: {
-				item: massageItem.displayItem,
-				price: massagePrice,
-				startReservedAt: fullStartDate,
-				endReservedAt: fullEndDate,
-			},
-			event: {
-				targetDate: selectedDate,
-				startReservedTime: startTime,
-				endReservedTime: endTime,
-				dayOfWeek: WEEK_DAYS[selectedDay],
-				itemId: massageItem.id,
-				tutorId: -1,
-			},
-		});
+		await postOrder(debounceBookingData);
 		navigate('/mypage/order');
 	};
 
