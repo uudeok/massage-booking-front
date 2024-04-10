@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 import Calendar from '../calendar';
 import dayjs from 'dayjs';
 import { BackDropStyle } from '../common/UI/modal/styles/modal.styles';
-import { Button, ModalWrapper } from '../common/UI/modal/Modal';
+import { Button, Content, ModalWrapper } from '../common/UI/modal/ModalWrapper';
 
 export type TProps = {
 	closeModal: () => void;
@@ -53,8 +53,8 @@ const CalendarModal = ({
 		<>
 			<BackDropStyle onClick={() => closeModal()} />
 			<ModalStyle>
-				<ModalWrapper closeModal={closeModal}>
-					<InnerBoxStyle>
+				<ModalWrapper>
+					<ModalContent>
 						<Calendar
 							onClick={onClick}
 							minDate={new Date()}
@@ -72,7 +72,7 @@ const CalendarModal = ({
 							placeHolder="시간 선택"
 							filterTime={filterPassedTime}
 						/>
-					</InnerBoxStyle>
+					</ModalContent>
 					<ButtonWrapper>
 						<CancelButton onClick={() => closeModal()}>취소 하기</CancelButton>
 						<ConfirmButton onClick={() => closeModal()} $isSelected={isSelected}>
@@ -87,7 +87,7 @@ const CalendarModal = ({
 
 export default CalendarModal;
 
-const InnerBoxStyle = styled.div`
+const ModalContent = styled(Content)`
 	display: flex;
 	justify-content: center;
 	margin-top: 1rem;

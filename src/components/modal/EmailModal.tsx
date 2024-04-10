@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import { RESULT_VALUES } from '../../@types/faq';
 import { BackDropStyle, ModalStyle } from '../common/UI/modal/styles/modal.styles';
-import { Header, ModalWrapper } from '../common/UI/modal/Modal';
+import { ModalWrapper, Header } from '../common/UI/modal/ModalWrapper';
 
 type EmailModalType = {
 	closeModal: () => void;
@@ -15,7 +15,7 @@ const EmailModal = ({ closeModal, handleSubmitting }: EmailModalType) => {
 		<>
 			<BackDropStyle onClick={() => closeModal()} />
 			<ModalStyle height="30rem" width="26rem" $top="5%">
-				<ModalWrapper closeModal={closeModal}>
+				<ModalWrapper>
 					<ModalHeader>문의 하기</ModalHeader>
 					<ContactUsForm closeEmailModal={closeModal} handleSubmitting={handleSubmitting} />
 				</ModalWrapper>

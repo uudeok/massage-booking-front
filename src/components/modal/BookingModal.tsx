@@ -5,11 +5,11 @@ import { usePostOrderDataMutation } from '../../api/orders/ordersQuery';
 import { TMassageTable } from '../../@types/massage';
 import { WEEK_DAYS } from '../../const/book/time';
 import { BackDropStyle, ModalStyle } from '../common/UI/modal/styles/modal.styles';
-import { Content, Header, Button, ModalWrapper } from '../common/UI/modal/Modal';
 
 import styled from 'styled-components';
 import LoadingBar from '../common/UI/loading/LoadingBar';
 import useDebounce from '../../hooks/useDebounce';
+import { ModalWrapper, Header, Content, Button } from '../common/UI/modal/ModalWrapper';
 
 type TBookingModalType = {
 	closeModal: () => void;
@@ -61,7 +61,7 @@ const BookingModal = ({
 		<>
 			<BackDropStyle onClick={() => closeModal()} />
 			<ModalStyle>
-				<ModalWrapper closeModal={closeModal}>
+				<ModalWrapper>
 					<ModalHeader>
 						<FcOk />
 					</ModalHeader>

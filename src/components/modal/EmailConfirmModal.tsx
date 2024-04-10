@@ -4,8 +4,8 @@ import { CiCircleInfo } from 'react-icons/ci';
 import { FAQ_ERROR } from '../../const/faq';
 
 import { BackDropStyle, ModalStyle } from '../common/UI/modal/styles/modal.styles';
-import { Button, Content, Header, ModalWrapper } from '../common/UI/modal/Modal';
 import styled from 'styled-components';
+import { ModalWrapper, Header, Button, Content } from '../common/UI/modal/ModalWrapper';
 
 type ConfirmModalType = {
 	closeModal: () => void;
@@ -32,7 +32,7 @@ const ConfirmModal = ({ closeModal, result }: ConfirmModalType) => {
 		<>
 			<BackDropStyle onClick={() => closeModal()} />
 			<ModalStyle height="15rem">
-				<ModalWrapper closeModal={closeModal}>
+				<ModalWrapper>
 					<ModalHeader>
 						<CiCircleInfo />
 					</ModalHeader>
