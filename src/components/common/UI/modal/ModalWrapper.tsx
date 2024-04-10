@@ -1,4 +1,4 @@
-import React, { ReactNode, useEffect } from 'react';
+import { ReactNode, useEffect } from 'react';
 import { Header } from './Modal.Header';
 import { Content } from './Modal.Content';
 import { Button } from './Modal.Button';

@@ -4,7 +4,6 @@ import emailjs from '@emailjs/browser';
 import styled from 'styled-components';
 import ErrorDisplay from '../common/error/ErrorDisplay';
 import LoadingBar from '../common/UI/loading/LoadingBar';
-import { RESULT_VALUES } from '../../@types/faq';
 
 type FormValue = {
 	title: string;
@@ -14,14 +13,14 @@ type FormValue = {
 
 type TProps = {
 	closeEmailModal: () => void;
-	handleSubmitting: (result: RESULT_VALUES) => void;
+	setResult: React.Dispatch<React.SetStateAction<boolean | null>>;
 };
 
 const service_id = `${process.env.REACT_APP_SERVICE_ID}`;
 const template_id = `${process.env.REACT_APP_TEMPLATE_ID}`;
 const public_key = `${process.env.REACT_APP_PUBLIC_KEY}`;
 
-const ContactUsForm = ({ closeEmailModal, handleSubmitting }: TProps) => {
+const ContactUsForm = ({ closeEmailModal, setResult }: TProps) => {
 	const form = useRef<HTMLFormElement>(null);
 	const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -31,27 +30,27 @@ const ContactUsForm = ({ closeEmailModal, handleSubmitting }: TProps) => {
 		formState: { errors },
 	} = useForm<FormValue>();
 
-	const onSubmit = async (data: FormValue) => {
+	const onSubmit = async () => {
 		if (!form.current) {
 			console.log('form error');
 			return;
 		}
 		try {
 			if (!isSubmitting) {
-				// 디바운싱 체크
 				setIsSubmitting(true); // 클릭되면 버튼을 비활성화
 				await emailjs.sendForm(service_id, template_id, form.current, {
 					publicKey: public_key,
 				});
-				handleSubmitting('SUCCESS');
+
+				setResult(true); // 비동기 결과 전달
 
 				setTimeout(() => {
 					setIsSubmitting(false); // 지정된 시간 후에 버튼을 다시 활성화
 				}, 2000);
 			}
-		} catch (error: any) {
-			console.log('FAILED...', error.text);
-			handleSubmitting('FAILED');
+		} catch (error) {
+			console.log('error', error);
+			setResult(false);
 		} finally {
 			setIsSubmitting(false);
 			closeEmailModal();

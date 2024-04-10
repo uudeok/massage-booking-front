@@ -42,4 +42,8 @@ export const ModalStyle = styled.div<ModalStyleType>`
 			transform: translateY(0);
 		}
 	}
+
+	@media only screen and (max-width: ${(props) => props.theme.devise.tabletWidth}) {
+		width: 22rem;
+	}
 `;

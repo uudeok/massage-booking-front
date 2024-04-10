@@ -1,23 +1,24 @@
 import ContactUsForm from '../FAQ/ContactUsForm';
 import styled from 'styled-components';
 
-import { RESULT_VALUES } from '../../@types/faq';
 import { BackDropStyle, ModalStyle } from '../common/UI/modal/styles/modal.styles';
-import { ModalWrapper, Header } from '../common/UI/modal/ModalWrapper';
+import { ModalWrapper, Header, Content } from '../common/UI/modal/ModalWrapper';
 
 type EmailModalType = {
 	closeModal: () => void;
-	handleSubmitting: (result: RESULT_VALUES) => void;
+	setResult: React.Dispatch<React.SetStateAction<boolean | null>>;
 };
 
-const EmailModal = ({ closeModal, handleSubmitting }: EmailModalType) => {
+const EmailModal = ({ closeModal, setResult }: EmailModalType) => {
 	return (
 		<>
 			<BackDropStyle onClick={() => closeModal()} />
 			<ModalStyle height="30rem" width="26rem" $top="5%">
 				<ModalWrapper>
 					<ModalHeader>문의 하기</ModalHeader>
-					<ContactUsForm closeEmailModal={closeModal} handleSubmitting={handleSubmitting} />
+					<ModalContent>
+						<ContactUsForm closeEmailModal={closeModal} setResult={setResult} />
+					</ModalContent>
 				</ModalWrapper>
 			</ModalStyle>
 		</>
@@ -28,13 +29,13 @@ export default EmailModal;
 
 const ModalHeader = styled(Header)`
 	text-align: center;
-	font-size: 30px;
-	margin-bottom: 1.3rem;
+	font-size: 33px;
+
 	color: ${(props) => props.theme.palette.fluorGreen};
 	font-family: ${(props) => props.theme.fonts.gmarket};
 	padding: 1rem;
+`;
 
-	@media only screen and (max-width: ${(props) => props.theme.devise.tabletWidth}) {
-		padding: 0.3rem;
-	}
+const ModalContent = styled(Content)`
+	padding: 0.5rem;
 `;

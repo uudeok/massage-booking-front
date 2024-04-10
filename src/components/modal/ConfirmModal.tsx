@@ -1,33 +1,16 @@
-import { RESULT_VALUES } from '../../@types/faq';
-import { useState, useEffect } from 'react';
 import { CiCircleInfo } from 'react-icons/ci';
-import { FAQ_ERROR } from '../../const/faq';
 
 import { BackDropStyle, ModalStyle } from '../common/UI/modal/styles/modal.styles';
-import styled from 'styled-components';
 import { ModalWrapper, Header, Button, Content } from '../common/UI/modal/ModalWrapper';
+import styled from 'styled-components';
+import { MessageType } from '../FAQ/ContactUs';
 
 type ConfirmModalType = {
 	closeModal: () => void;
-	result: RESULT_VALUES | null;
+	contents: MessageType;
 };
 
-type MessageState = {
-	message: string;
-	subMessage: string;
-};
-
-const ConfirmModal = ({ closeModal, result }: ConfirmModalType) => {
-	const [messageState, setMessageState] = useState<MessageState>({ message: '', subMessage: '' });
-
-	useEffect(() => {
-		if (result === 'SUCCESS') {
-			setMessageState({ message: FAQ_ERROR.success, subMessage: FAQ_ERROR.success_sub });
-		} else if (result === 'FAILED') {
-			setMessageState({ message: FAQ_ERROR.failed, subMessage: FAQ_ERROR.failed_sub });
-		}
-	}, [result]);
-
+const ConfirmModal = ({ closeModal, contents }: ConfirmModalType) => {
 	return (
 		<>
 			<BackDropStyle onClick={() => closeModal()} />
@@ -37,8 +20,8 @@ const ConfirmModal = ({ closeModal, result }: ConfirmModalType) => {
 						<CiCircleInfo />
 					</ModalHeader>
 					<ModalContent>
-						<p>{messageState.message}</p>
-						<p>{messageState.subMessage}</p>
+						<p>{contents.message}</p>
+						<p>{contents.subMessage}</p>
 					</ModalContent>
 					<ModalButton onClick={() => closeModal()}>확인</ModalButton>
 				</ModalWrapper>

@@ -1,2 +1,5 @@
-export type valueOf<T> = T[keyof T];
-export type Nullable<T> = T | undefined | null;
+// <!-- ConfirmModal 메시지 타입 --!>
+export type MessageType = {
+	message: string;
+	subMessage: string;
+};
