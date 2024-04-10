@@ -2,8 +2,8 @@ import { Time } from '../calendar/timePicker/Dropdown';
 import styled, { css } from 'styled-components';
 import Calendar from '../calendar';
 import dayjs from 'dayjs';
-import { BackDropStyle } from '../common/UI/modal/styles/modal.styles';
-import { Button, Content, ModalWrapper } from '../common/UI/modal/ModalWrapper';
+import { BackDropStyle } from '../common/UI/Modal/styles/modal.styles';
+import { Button, Content, ModalWrapper } from '../common/UI/Modal/ModalWrapper';
 
 export type TProps = {
 	closeModal: () => void;

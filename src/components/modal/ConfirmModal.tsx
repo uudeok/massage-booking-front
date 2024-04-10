@@ -1,7 +1,7 @@
 import { CiCircleInfo } from 'react-icons/ci';
 
-import { BackDropStyle, ModalStyle } from '../common/UI/modal/styles/modal.styles';
-import { ModalWrapper, Header, Button, Content } from '../common/UI/modal/ModalWrapper';
+import { BackDropStyle, ModalStyle } from '../common/UI/Modal/styles/modal.styles';
+import { ModalWrapper, Header, Button, Content } from '../common/UI/Modal/ModalWrapper';
 import styled from 'styled-components';
 import { MessageType } from '../FAQ/ContactUs';
 

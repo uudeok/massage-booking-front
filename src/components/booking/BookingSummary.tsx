@@ -10,7 +10,7 @@ import BookingModal from '../modal/BookingModal';
 import styled from 'styled-components';
 import RenderList from '../common/map/DynamicRender';
 import theme from '../../styles/theme';
-import CommonButton from '../common/UI/button/CommonButton';
+import CommonButton from '../common/UI/Button/CommonButton';
 
 type TProps = {
 	selectedDate: string;

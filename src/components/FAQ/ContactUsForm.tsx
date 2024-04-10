@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import emailjs from '@emailjs/browser';
 import styled from 'styled-components';
 import ErrorDisplay from '../common/error/ErrorDisplay';
-import LoadingBar from '../common/UI/loading/LoadingBar';
+import LoadingBar from '../common/UI/Loading/LoadingBar';
 
 type FormValue = {
 	title: string;

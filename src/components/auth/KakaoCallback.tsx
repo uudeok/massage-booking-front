@@ -1,5 +1,5 @@
 import { useEffect, useCallback } from 'react';
-import LoadingBar from '../common/UI/loading/LoadingBar';
+import LoadingBar from '../common/UI/Loading/LoadingBar';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { useGetTokenMutation } from '../../api/auth/authQuery';

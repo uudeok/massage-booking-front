@@ -9,7 +9,7 @@ import { addFewMinutes, isTimeOverlaps, splitTimeArrays } from '../../util/time'
 import { getMassageDetail } from '../../stores/massageSlice';
 import { ORDER_ERROR_MESSAGE } from '../../const/book/errorMessage';
 import styled from 'styled-components';
-import CommonButton from '../common/UI/button/CommonButton';
+import CommonButton from '../common/UI/Button/CommonButton';
 import ConditionalDisplay from '../common/maybe/ConditionalDisplay';
 import CalendarModal from '../modal/CalendarModal';
 import BookingNotice from './BookingNotice';

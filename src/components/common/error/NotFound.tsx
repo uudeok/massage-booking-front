@@ -1,7 +1,7 @@
 import { useRouteError, Link } from 'react-router-dom';
 
 import styled from 'styled-components';
-import CommonButton from '../UI/button/CommonButton';
+import CommonButton from '../UI/Button/CommonButton';
 
 type TError = {
 	status: number;

@@ -3,9 +3,9 @@ import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../stores/store';
 import { setSelectedMassageItem } from '../../stores/massageSlice';
 import { addTabNum } from '../../stores/tabSlice';
-import CardImage from '../common/UI/card/CardImage';
-import CardContent from '../common/UI/card/CardContent';
-import CommonButton from '../common/UI/button/CommonButton';
+import CardImage from '../common/UI/Card/CardImage';
+import CardContent from '../common/UI/Card/CardContent';
+import CommonButton from '../common/UI/Button/CommonButton';
 import theme from '../../styles/theme';
 
 type TProps = {

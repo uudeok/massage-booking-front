@@ -4,12 +4,12 @@ import { FcOk } from 'react-icons/fc';
 import { usePostOrderDataMutation } from '../../api/orders/ordersQuery';
 import { TMassageTable } from '../../@types/massage';
 import { WEEK_DAYS } from '../../const/book/time';
-import { BackDropStyle, ModalStyle } from '../common/UI/modal/styles/modal.styles';
+import { BackDropStyle, ModalStyle } from '../common/UI/Modal/styles/modal.styles';
 
 import styled from 'styled-components';
-import LoadingBar from '../common/UI/loading/LoadingBar';
+import LoadingBar from '../common/UI/Loading/LoadingBar';
 import useDebounce from '../../hooks/useDebounce';
-import { ModalWrapper, Header, Content, Button } from '../common/UI/modal/ModalWrapper';
+import { ModalWrapper, Header, Content, Button } from '../common/UI/Modal/ModalWrapper';
 
 type TBookingModalType = {
 	closeModal: () => void;

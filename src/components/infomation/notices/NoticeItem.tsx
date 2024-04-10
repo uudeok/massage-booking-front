@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { makeSimpleDate } from '../../../util/date';
 import NoticeHeader from './NoticeHeader';
 import RenderList from '../../common/map/DynamicRender';
-import FetchWithLoading from '../../common/UI/loading/FetchWithLoading';
+import FetchWithLoading from '../../common/UI/Loading/FetchWithLoading';
 
 type TProps = {
 	notice: TNoticeDetail[];

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
-import Banner from '../common/UI/banner/Banner';
+import Banner from '../common/UI/Banner/Banner';
 import RenderList from '../common/map/DynamicRender';
 
 type ContactInfo = {
