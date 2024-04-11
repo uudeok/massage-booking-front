@@ -1,6 +1,6 @@
 import { FAQ_LIST } from '../../const/faq';
 import { useState } from 'react';
-import { paginateFAQList } from '../../util/page';
+import { generatePaginate } from '../../util/page';
 import styled from 'styled-components';
 import FaqList from './FaqList';
 import theme from '../../styles/theme';
@@ -16,7 +16,7 @@ const Faq = () => {
 		setPage(page);
 	};
 
-	const list = paginateFAQList(FAQ_LIST, PAGE_SIZE, page);
+	const list = generatePaginate(FAQ_LIST, PAGE_SIZE, page);
 
 	return (
 		<>

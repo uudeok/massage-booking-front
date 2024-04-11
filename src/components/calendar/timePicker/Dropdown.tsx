@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 import RenderList from '../../common/map/DynamicRender';
 import theme from '../../../styles/theme';
+
+import { Dropdown, DropdownMenu, DropdownToggle, Option } from '../../common/UI/Dropdown/Dropdown';
 
 export type Time = {
 	label: string;
@@ -26,38 +27,28 @@ const DropDown = ({
 	selectable = false,
 	filterTime,
 }: TDropDownProps) => {
-	const [isFolded, setIsFolded] = useState(true);
-
-	const handleClick = () => {
-		setIsFolded((prev) => !prev);
-	};
-
 	const handleClickTime = (value: string) => {
 		handleTimePicker(value);
-		setIsFolded(true);
 	};
 
-	const renderLisItem = (time: Time) => {
+	const renderOption = (time: Time) => {
 		const result = filterTime ? filterTime(time) : true;
 
 		return (
-			<Option key={time.value} onClick={() => handleClickTime(time.value)} disabled={!time.selectable || !result}>
-				{time.label}
-			</Option>
+			<div key={time.value} onClick={() => handleClickTime(time.value)}>
+				<DropdownOption value={time.label} disabled={!time.selectable || !result} />
+			</div>
 		);
 	};
 
 	return (
 		<Self>
-			<TopListItem $isFolded={isFolded} onClick={handleClick} disabled={!selectable}>
-				{currentValue ? currentValue : placeHolder}
-			</TopListItem>
-
-			{selectable && !isFolded && (
-				<List>
-					<RenderList data={list} renderItem={renderLisItem} />
-				</List>
-			)}
+			<Dropdown>
+				<Toggle disabled={!selectable}>{currentValue ? currentValue : placeHolder}</Toggle>
+				<Menu>
+					<RenderList data={list} renderItem={renderOption} />
+				</Menu>
+			</Dropdown>
 		</Self>
 	);
 };
@@ -70,7 +61,7 @@ const Self = styled.div`
 	position: relative;
 `;
 
-const TopListItem = styled.ul<{ $isFolded: boolean; disabled: boolean }>`
+const Toggle = styled(DropdownToggle)<{ disabled: boolean }>`
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -87,16 +78,7 @@ const TopListItem = styled.ul<{ $isFolded: boolean; disabled: boolean }>`
 	user-select: none;
 	border-radius: 4px;
 	font-family: ${theme.fonts.pretend};
-
-	${({ disabled, $isFolded }) =>
-		$isFolded && disabled
-			? css`
-					border-radius: 4px;
-				`
-			: css`
-					border-top-left-radius: 4px;
-					border-top-right-radius: 4px;
-				`}
+	cursor: pointer;
 
 	${({ disabled }) =>
 		disabled &&
@@ -105,7 +87,7 @@ const TopListItem = styled.ul<{ $isFolded: boolean; disabled: boolean }>`
 		`}
 `;
 
-const List = styled.ul`
+const Menu = styled(DropdownMenu)`
 	position: absolute;
 	width: 100%;
 	overflow-y: auto;
@@ -119,7 +101,7 @@ const List = styled.ul`
 	font-family: ${theme.fonts.pretend};
 `;
 
-const Option = styled.li<{ disabled: boolean }>`
+const DropdownOption = styled(Option)<{ disabled: boolean }>`
 	height: 3rem;
 	font-size: 1.2rem;
 	background-color: #f8f8f8;

@@ -29,12 +29,15 @@ const ContactUs = () => {
 
 	return (
 		<Self>
-			{isOpenConfirmModal && <ConfirmModal closeModal={closeConfirmModal} contents={message} />}
+			<ConditionalDisplay condition={isOpenConfirmModal}>
+				<ConfirmModal closeModal={closeConfirmModal} contents={message} />
+			</ConditionalDisplay>
 			<ConditionalDisplay condition={isOpen}>
 				<EmailModal closeModal={closeModal} setResult={setResult} />
 			</ConditionalDisplay>
 
 			<p>찾으시는 내용이 없다면 문의하기를 이용해주세요</p>
+
 			<CommonButton
 				width="11rem"
 				$padding="0.8rem"
@@ -63,6 +66,7 @@ const Self = styled.div`
 	font-size: 20px;
 	font-weight: bold;
 	gap: 2rem;
+	width: 100%;
 
 	@media only screen and (max-width: ${(props) => props.theme.devise.tabletWidth}) {
 		font-size: 15px;

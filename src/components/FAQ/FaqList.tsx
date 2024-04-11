@@ -40,6 +40,7 @@ export default FaqList;
 
 const ContainerStyle = styled.div`
 	width: 60rem;
+
 	margin: 3rem auto;
 	font-family: ${(props) => props.theme.fonts.pretend};
 

@@ -69,11 +69,6 @@ export const FAQ_LIST = [
 		question: '예약 내역을 어디서 볼 수 있나요?',
 		answer: '로그인 후 내정보 > 나의 예약에서 예약 내역을 볼 수 있습니다. ',
 	},
-	{
-		id: 15,
-		question: '자연치유 쉼은 어디에 위치해있나요?',
-		answer: '자연치유 쉼은 경기도 파주시 가람로에 위치해있습니다.',
-	},
 ];
 
 export const FAQ_ERROR = {
