@@ -1,11 +1,9 @@
 import styled, { css } from 'styled-components';
-import React from 'react';
-import theme from '../../../styles/theme';
 import RenderList from '../../common/map/DynamicRender';
 import { calculateMaxTime, calculateMinTime, adjustSelectability, generateTimeArray } from '../../../util/time';
 
 import { Dropdown, DropdownMenu, DropdownToggle, Option } from '../../common/UI/Dropdown/Dropdown';
-import { Time } from './Dropdown';
+import { Time } from '../../../@types/calendar';
 
 export type TimePickerType = {
 	handleTimePicker: (value: string) => void;
@@ -67,15 +65,6 @@ const TimePicker = ({
 					<RenderList data={timeList} renderItem={renderOption} />
 				</Menu>
 			</Dropdown>
-
-			{/* <StyleTimePicker
-				list={timeList}
-				placeHolder={placeHolder}
-				handleTimePicker={handleTimePicker}
-				currentValue={selectedTime}
-				selectable={selectable}
-				filterTime={filterTime}
-			/> */}
 		</Self>
 	);
 };
@@ -86,12 +75,8 @@ const Self = styled.div`
 	padding: 0.5rem;
 	position: absolute;
 	width: 100%;
+	font-family: ${(props) => props.theme.fonts.pretend};
 `;
-
-// const StyleTimePicker = styled(DropDown)`
-// 	font-family: ${theme.fonts.pretend};
-// 	background-color: aliceblue;
-// `;
 
 const Toggle = styled(DropdownToggle)<{ disabled: boolean }>`
 	display: flex;
@@ -109,7 +94,7 @@ const Toggle = styled(DropdownToggle)<{ disabled: boolean }>`
 	line-height: 22px;
 	user-select: none;
 	border-radius: 4px;
-	font-family: ${theme.fonts.pretend};
+
 	cursor: pointer;
 
 	${({ disabled }) =>
@@ -130,7 +115,6 @@ const Menu = styled(DropdownMenu)`
 	box-sizing: border-box;
 	border-bottom-left-radius: 4px;
 	border-bottom-right-radius: 4px;
-	font-family: ${theme.fonts.pretend};
 `;
 
 const DropdownOption = styled(Option)<{ disabled: boolean }>`
@@ -153,4 +137,8 @@ const DropdownOption = styled(Option)<{ disabled: boolean }>`
 			opacity: 0.6;
 			background-color: #dddddd;
 		`}
+
+	&:hover {
+		background-color: #dddddd;
+	}
 `;

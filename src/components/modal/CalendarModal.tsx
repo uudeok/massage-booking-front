@@ -1,4 +1,4 @@
-import { Time } from '../calendar/timePicker/Dropdown';
+import { Time } from '../../@types/calendar';
 import styled, { css } from 'styled-components';
 import Calendar from '../calendar';
 import dayjs from 'dayjs';
