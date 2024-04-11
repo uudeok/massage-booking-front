@@ -3,11 +3,15 @@ import { CiCircleInfo } from 'react-icons/ci';
 import { BackDropStyle, ModalStyle } from '../common/UI/Modal/styles/modal.styles';
 import { ModalWrapper, Header, Button, Content } from '../common/UI/Modal/ModalWrapper';
 import styled from 'styled-components';
-import { MessageType } from '../FAQ/ContactUs';
 
 type ConfirmModalType = {
 	closeModal: () => void;
 	contents: MessageType;
+};
+
+export type MessageType = {
+	message: string;
+	subMessage: string;
 };
 
 const ConfirmModal = ({ closeModal, contents }: ConfirmModalType) => {

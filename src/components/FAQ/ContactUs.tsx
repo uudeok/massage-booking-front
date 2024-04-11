@@ -9,28 +9,21 @@ import ConditionalDisplay from '../common/maybe/ConditionalDisplay';
 import EmailModal from '../modal/EmailModal';
 import ConfirmModal from '../modal/ConfirmModal';
 
-export type MessageType = {
-	message: string;
-	subMessage: string;
-};
-
 const ContactUs = () => {
 	const { isOpen, showModal, closeModal } = useModal();
 	const { isOpen: isOpenConfirmModal, showModal: showConfirmModal, closeModal: closeConfirmModal } = useModal();
 	const [result, setResult] = useState<boolean | null>(null);
-	const [message, setMessage] = useState<MessageType>({ message: '', subMessage: '' });
+	const [message, setMessage] = useState({ message: '', subMessage: '' });
 
 	useEffect(() => {
 		if (result === null) return;
 
 		if (result) {
 			setMessage({ message: FAQ_ERROR.success, subMessage: FAQ_ERROR.success_sub });
-			showConfirmModal();
 		} else {
 			setMessage({ message: FAQ_ERROR.failed, subMessage: FAQ_ERROR.failed_sub });
-			showConfirmModal();
 		}
-
+		showConfirmModal();
 		setResult(null);
 	}, [result]);
 
