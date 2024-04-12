@@ -1,9 +1,10 @@
 import { Link, useNavigate } from 'react-router-dom';
-import HeaderDropMenu from './HeaderDropMenu';
-import RenderList from '../common/map/DynamicRender';
 import { getUserName } from '../../util/auth';
 import { useEffect, useState } from 'react';
 import { useLogoutMutation } from '../../api/users/usersQuery';
+
+import HeaderDropMenu from './HeaderDropMenu';
+import RenderList from '../common/map/DynamicRender';
 import ConditionalDisplay from '../common/maybe/ConditionalDisplay';
 import styled from 'styled-components';
 
