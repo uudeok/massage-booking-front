@@ -19,7 +19,7 @@ export const DropdownContext = createContext<DropdownContextType>({
 	selectOption: () => {},
 });
 
-// Dropdown 컴포넌트 정의
+// Dropdown 컴포넌트로 감싸서 사용
 const Dropdown: React.FC<{ children: ReactNode }> = ({ children }) => {
 	const [isOpen, setIsOpen] = useState(false);
 	const [selectedOption, setSelectedOption] = useState<string | null>(null); // 선택된 옵션 상태
