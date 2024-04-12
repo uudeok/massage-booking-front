@@ -1,4 +1,7 @@
-import React, { useContext, createContext, useState, ReactNode } from 'react';
+import React, { createContext, useState, ReactNode } from 'react';
+import { DropdownOption } from './Dropdown.Option';
+import { DropdownToggle } from './Dropdown.Toggle';
+import { DropdownMenu } from './Dropdown.Menu';
 
 // Dropdown 컴포넌트에서 사용할 Context 타입 정의
 type DropdownContextType = {
@@ -15,32 +18,6 @@ export const DropdownContext = createContext<DropdownContextType>({
 	selectedOption: null,
 	selectOption: () => {},
 });
-
-// DropdownToggle 컴포넌트 정의
-const DropdownToggle: React.FC<{ children: ReactNode }> = ({ children, ...props }) => {
-	const { toggleDropdown, selectedOption } = useContext(DropdownContext);
-	return (
-		<button onClick={toggleDropdown} {...props}>
-			{selectedOption || children}
-		</button>
-	);
-};
-
-// DropdownMenu 컴포넌트 정의
-const DropdownMenu: React.FC<{ children: ReactNode }> = ({ children, ...props }) => {
-	const { isOpen } = useContext(DropdownContext);
-	return isOpen ? <div {...props}>{children}</div> : null;
-};
-
-// Option 컴포넌트 정의
-const Option: React.FC<{ value: string }> = ({ value, ...props }) => {
-	const { selectOption } = useContext(DropdownContext);
-	return (
-		<div onClick={() => selectOption(value)} {...props}>
-			{value}
-		</div>
-	);
-};
 
 // Dropdown 컴포넌트 정의
 const Dropdown: React.FC<{ children: ReactNode }> = ({ children }) => {
@@ -63,4 +40,4 @@ const Dropdown: React.FC<{ children: ReactNode }> = ({ children }) => {
 	);
 };
 
-export { Dropdown, DropdownToggle, DropdownMenu, Option };
+export { Dropdown, DropdownToggle, DropdownMenu, DropdownOption };

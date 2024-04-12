@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components';
 import RenderList from '../../common/map/DynamicRender';
 import { calculateMaxTime, calculateMinTime, adjustSelectability, generateTimeArray } from '../../../util/time';
 
-import { Dropdown, DropdownMenu, DropdownToggle, Option } from '../../common/UI/Dropdown/Dropdown';
+import { Dropdown, DropdownMenu, DropdownToggle, DropdownOption } from '../../common/UI/Dropdown/Dropdown';
 import { Time } from '../../../@types/calendar';
 
 export type TimePickerType = {
@@ -52,7 +52,7 @@ const TimePicker = ({
 
 		return (
 			<div key={time.value} onClick={() => handleClickTime(time.value)}>
-				<DropdownOption value={time.label} disabled={!time.selectable || !result} />
+				<Option value={time.label} disabled={!time.selectable || !result} />
 			</div>
 		);
 	};
@@ -117,7 +117,7 @@ const Menu = styled(DropdownMenu)`
 	border-bottom-right-radius: 4px;
 `;
 
-const DropdownOption = styled(Option)<{ disabled: boolean }>`
+const Option = styled(DropdownOption)<{ disabled: boolean }>`
 	height: 3rem;
 	font-size: 1.2rem;
 	background-color: #f8f8f8;
