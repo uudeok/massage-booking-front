@@ -1,14 +1,8 @@
 import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+
 import styled from 'styled-components';
 
 const Booking = () => {
-	const navigate = useNavigate();
-
-	const handleRedirect = () => {
-		navigate('/book');
-	};
-
 	return (
 		<ContainerStyle>
 			<ImgBoxStyle>
@@ -17,7 +11,9 @@ const Booking = () => {
 					<Link to="/information/contact">
 						<ButtonBoxStyle>오시는 길</ButtonBoxStyle>
 					</Link>
-					<ButtonBoxStyle onClick={handleRedirect}>예약하기</ButtonBoxStyle>
+					<Link to="/book">
+						<ButtonBoxStyle>예약하기</ButtonBoxStyle>
+					</Link>
 				</InnerBoxStyle>
 			</ImgBoxStyle>
 		</ContainerStyle>

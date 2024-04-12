@@ -98,4 +98,5 @@ const ContentContainerStyle = styled.div`
 	flex-direction: column;
 	width: 100%;
 	margin-top: 3rem;
+	height: 100%;
 `;

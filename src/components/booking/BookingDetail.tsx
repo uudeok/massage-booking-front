@@ -7,6 +7,7 @@ import { addComma } from '../../util/price';
 import CardImage from '../common/UI/Card/CardImage';
 import CardContent from '../common/UI/Card/CardContent';
 import CommonButton from '../common/UI/Button/CommonButton';
+import Card from '../common/UI/Card/Card';
 
 type TProps = {
 	detail: TMassageDetail;
@@ -22,7 +23,7 @@ const BookingDetail = ({ detail, massage }: TProps) => {
 	};
 
 	return (
-		<>
+		<Card>
 			<CardImage image={massage.image} alt={massage.displayItem} />
 			<CardContent
 				title={massage.displayItem}
@@ -39,7 +40,7 @@ const BookingDetail = ({ detail, massage }: TProps) => {
 			>
 				선택하기
 			</CommonButton>
-		</>
+		</Card>
 	);
 };
 

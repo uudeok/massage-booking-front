@@ -36,40 +36,39 @@ export const oauthButtonStyle = css<ButtonType>`
 	${({ $oauth }) => {
 		if ($oauth === 'kakao') {
 			return css`
-        font-family: ${(props) => props.theme.fonts.pretend};
-        background: url(//storage.keepgrow.com/admin/campaign/20200611043456590.svg)
-          no-repeat center;
-        background-position: 28px;
-        background-color: ${(props) => props.theme.palette.kakaoColor}
-        font-size: 1rem;
-        cursor: pointer;
-        margin-top: 1rem;
-        width: 100%;
-        color: black;
-        border-radius: 10px;
-        text-align: center;
-        border: none;
-        padding: 1rem;
-      `;
+				font-family: ${(props) => props.theme.fonts.pretend};
+				background: url(//storage.keepgrow.com/admin/campaign/20200611043456590.svg) no-repeat center;
+				background-position: 28px;
+				background-color: ${(props) => props.theme.palette.kakaoColor};
+				font-size: 1rem;
+				cursor: pointer;
+				margin-top: 1rem;
+				width: 100%;
+				color: black;
+				border-radius: 10px;
+				text-align: center;
+				border: none;
+				padding: 1rem;
+			`;
 		}
 
 		if ($oauth === 'naver') {
 			return css`
-        font-family: ${(props) => props.theme.fonts.pretend};
-        background: url("/naverIcon.png") no-repeat center;
-        background-position: 18px;
-        background-size: 40px;
-        text-align: center;
-        font-size: 1rem;
-        cursor: pointer;
-        width: 100%;
-        color: #fff;
-        background-color: ${(props) => props.theme.palette.naverColor}
-        border-radius: 10px;
-        text-align: center;
-        border: none;
-        padding: 1rem;
-      `;
+				font-family: ${(props) => props.theme.fonts.pretend};
+				background: url('/naverIcon.png') no-repeat center;
+				background-position: 18px;
+				background-size: 40px;
+				text-align: center;
+				font-size: 1rem;
+				cursor: pointer;
+				width: 100%;
+				color: #fff;
+				background-color: ${(props) => props.theme.palette.naverColor};
+				border-radius: 10px;
+				text-align: center;
+				border: none;
+				padding: 1rem;
+			`;
 		}
 	}}
 `;
