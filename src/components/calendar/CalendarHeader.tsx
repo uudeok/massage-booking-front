@@ -1,6 +1,6 @@
 import { SlArrowLeft, SlArrowRight } from 'react-icons/sl';
-
 import { makeSimpleMonth } from '../../util/date';
+
 import React from 'react';
 import theme from '../../styles/theme';
 import styled from 'styled-components';
