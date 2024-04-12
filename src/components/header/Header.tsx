@@ -98,7 +98,7 @@ const MenuStyle = styled.div`
 	width: 60%;
 	display: flex;
 	font-size: 1.2rem;
-	justify-content: space-around;
+	justify-content: space-evenly;
 
 	@media only screen and (max-width: ${(props) => props.theme.devise.bigNotebookWidth}) {
 		width: 50%;
