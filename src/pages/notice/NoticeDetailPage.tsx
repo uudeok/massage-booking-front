@@ -1,7 +1,7 @@
-import NoticeDetail from "../../components/infomation/notices/NoticeDetail";
+import NoticeDetail from '../../components/Notice/notices/NoticeDetail';
 
 const NoticeDetailPage = () => {
-  return <NoticeDetail />;
+	return <NoticeDetail />;
 };
 
 export default NoticeDetailPage;
