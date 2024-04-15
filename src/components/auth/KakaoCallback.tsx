@@ -1,5 +1,5 @@
 import { useEffect, useCallback } from 'react';
-import LoadingBar from '../common/UI/Loading/LoadingBar';
+import LoadingBar from '../Common/UI/Loading/LoadingBar';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { useGetTokenMutation } from '../../api/auth/authQuery';
@@ -13,9 +13,9 @@ const KakaoCallback = () => {
 
 	const getTokenHandler = useCallback(async () => {
 		const code = new URL(window.location.href).searchParams.get('code');
-
+		if (!code) return;
 		try {
-			const userInfo = await getToken(code!).unwrap();
+			const userInfo = await getToken(code).unwrap();
 
 			localStorage.setItem('nickname', userInfo.nickname);
 			localStorage.setItem('token', userInfo.accessToken);

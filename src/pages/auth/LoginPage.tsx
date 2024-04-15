@@ -1,6 +1,6 @@
 import Layout from '../../layout/Layout';
 import styled from 'styled-components';
-import OauthLogin from '../../components/auth/OauthLogin';
+import OauthLogin from '../../components/Auth/OauthLogin';
 
 const LoginPage = () => {
 	return (

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Banner from '../common/UI/Banner/Banner';
+import Banner from '../Common/UI/Banner/Banner';
 import theme from '../../styles/theme';
 
 const MembershipList = () => {
@@ -9,7 +9,6 @@ const MembershipList = () => {
 			<ContainerStyle>
 				<InnerBoxStyle>
 					<TitleStyle>회원권 안내</TitleStyle>
-					<h2>Update soon...😉</h2>
 					<h2>Update soon...😉</h2>
 				</InnerBoxStyle>
 			</ContainerStyle>

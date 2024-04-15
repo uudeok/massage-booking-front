@@ -5,12 +5,12 @@ import { TMassageDetail } from '../../@types/massage';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../stores/store';
 import { subTabNum } from '../../stores/tabSlice';
-import ErrorDisplay from '../common/error/ErrorDisplay';
+import ErrorDisplay from '../Common/error/ErrorDisplay';
 import styled from 'styled-components';
-import CommonButton from '../common/UI/Button/CommonButton';
-import RenderList from '../common/map/DynamicRender';
+import CommonButton from '../Common/UI/Button/CommonButton';
+import RenderList from '../Common/map/DynamicRender';
 import BookingDetail from './BookingDetail';
-import LoadingBar from '../common/UI/Loading/LoadingBar';
+import LoadingBar from '../Common/UI/Loading/LoadingBar';
 
 const BookingDetailList = () => {
 	const dispatch = useDispatch<AppDispatch>();
@@ -42,9 +42,9 @@ const BookingDetailList = () => {
 
 export default BookingDetailList;
 
-const ContentBoxStyle = styled.div`
-	display: flex;
-`;
+// const ContentBoxStyle = styled.div`
+// 	display: flex;
+// `;
 
 const ListBoxStyle = styled.ul`
 	display: flex;

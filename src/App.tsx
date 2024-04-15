@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom';
 import { errorStatus, clearError } from './stores/errorSlice';
 import { useEffect, useState } from 'react';
 
-import ErrorModal from './components/modal/ErrorModal';
+import ErrorModal from './components/Modal/ErrorModal';
 import styled from 'styled-components';
 import useApiError from './hooks/useApiError';
 

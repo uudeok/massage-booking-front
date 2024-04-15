@@ -1,6 +1,6 @@
-import MyOrderList from "../../components/user/orders/MyOrderList";
+import MyOrderList from '../../components/User/orders/MyOrderList';
 
 const MyOrderPage = () => {
-  return <MyOrderList />;
+	return <MyOrderList />;
 };
 export default MyOrderPage;

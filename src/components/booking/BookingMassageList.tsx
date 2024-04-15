@@ -2,9 +2,9 @@ import { useGetMassageListQuery } from '../../api/massage/massageQuery';
 import { TMassageTable } from '../../@types/massage';
 import styled from 'styled-components';
 import BookingMassageItem from './BookingMassageItem';
-import RenderList from '../common/map/DynamicRender';
-import Card from '../common/UI/Card/Card';
-import FetchWithLoading from '../common/UI/Loading/FetchWithLoading';
+import RenderList from '../Common/map/DynamicRender';
+import Card from '../Common/UI/Card/Card';
+import FetchWithLoading from '../Common/UI/Loading/FetchWithLoading';
 
 const BookingMassageList = () => {
 	const { data: massageList = [], isLoading } = useGetMassageListQuery();

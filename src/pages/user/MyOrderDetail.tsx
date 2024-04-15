@@ -1,6 +1,6 @@
-import MyOrderDetail from "../../components/user/orders/MyOrderDetail";
+import MyOrderDetail from '../../components/User/orders/MyOrderDetail';
 
 const MyOrderDetailPage = () => {
-  return <MyOrderDetail />;
+	return <MyOrderDetail />;
 };
 export default MyOrderDetailPage;

@@ -3,7 +3,7 @@ import { TfiAlignJustify, TfiClose } from 'react-icons/tfi';
 import { useState } from 'react';
 import styled from 'styled-components';
 import theme from '../../styles/theme';
-import RenderList from '../common/map/DynamicRender';
+import RenderList from '../Common/map/DynamicRender';
 
 type HeaderDrop = {
 	key: string;

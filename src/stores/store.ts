@@ -11,10 +11,10 @@ import timeSlice from './timeSlice';
 import massageSlice from './massageSlice';
 import tabSlice from './tabSlice';
 
-import { Middleware, MiddlewareAPI, isRejected } from '@reduxjs/toolkit';
+import { Middleware, isRejected } from '@reduxjs/toolkit';
 import errorSlice, { setError } from './errorSlice';
 
-export const rtkQueryErrorHandler: Middleware = (api: MiddlewareAPI) => (next) => (action) => {
+export const rtkQueryErrorHandler: Middleware = () => (next) => (action) => {
 	if (isRejected(action)) {
 		console.log('error logger : ', action.payload.originalStatus);
 		next(setError(action.payload.originalStatus));

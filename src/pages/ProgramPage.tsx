@@ -1,12 +1,12 @@
-import ProgramList from "../components/program/ProgramList";
-import Layout from "../layout/Layout";
+import ProgramList from '../components/Program/ProgramList';
+import Layout from '../layout/Layout';
 
 const ProgramPage = () => {
-  return (
-    <Layout>
-      <ProgramList />
-    </Layout>
-  );
+	return (
+		<Layout>
+			<ProgramList />
+		</Layout>
+	);
 };
 
 export default ProgramPage;

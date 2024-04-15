@@ -1,12 +1,12 @@
-import ContactList from "../components/contact/ContactList";
-import Layout from "../layout/Layout";
+import ContactList from '../components/Contact/ContactList';
+import Layout from '../layout/Layout';
 
 const ContactPage = () => {
-  return (
-    <Layout>
-      <ContactList />
-    </Layout>
-  );
+	return (
+		<Layout>
+			<ContactList />
+		</Layout>
+	);
 };
 
 export default ContactPage;

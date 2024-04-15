@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Membership from '../introduction/Membership';
+import Membership from '../Membership/Membership';
 import NoticeMain from './notices/main/NoticeMain';
 
 const Information = () => {

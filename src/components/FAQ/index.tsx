@@ -4,7 +4,7 @@ import { generatePaginate } from '../../util/page';
 import styled from 'styled-components';
 import FaqList from './FaqList';
 import theme from '../../styles/theme';
-import Paging from '../pagination/Paging';
+import Paging from '../Common/pagination/Paging';
 import ContactUs from './ContactUs';
 
 const PAGE_SIZE = 7;

@@ -1,12 +1,12 @@
-import BookingTab from "../components/booking/BookingTab";
-import Layout from "../layout/Layout";
+import BookingTab from '../components/Booking/BookingTab';
+import Layout from '../layout/Layout';
 
 const BookPage = () => {
-  return (
-    <Layout>
-      <BookingTab />
-    </Layout>
-  );
+	return (
+		<Layout>
+			<BookingTab />
+		</Layout>
+	);
 };
 
 export default BookPage;

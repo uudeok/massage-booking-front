@@ -3,8 +3,8 @@ import { TNoticeDetail } from '../../../../@types/notice';
 import { Link } from 'react-router-dom';
 import { makeSimpleDate } from '../../../../util/date';
 import styled from 'styled-components';
-import LoadingBar from '../../../common/UI/Loading/LoadingBar';
-import RenderList from '../../../common/map/DynamicRender';
+import LoadingBar from '../../../Common/UI/Loading/LoadingBar';
+import RenderList from '../../../Common/map/DynamicRender';
 
 const NoticesMainList = () => {
 	const { data } = useGetNoticeListQuery({

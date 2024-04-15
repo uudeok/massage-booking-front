@@ -4,10 +4,10 @@ import { FAQ_ERROR } from '../../const/faq';
 
 import styled from 'styled-components';
 import theme from '../../styles/theme';
-import CommonButton from '../common/UI/Button/CommonButton';
-import ConditionalDisplay from '../common/maybe/ConditionalDisplay';
-import EmailModal from '../modal/EmailModal';
-import ConfirmModal from '../modal/ConfirmModal';
+import CommonButton from '../Common/UI/Button/CommonButton';
+import ConditionalDisplay from '../Common/maybe/ConditionalDisplay';
+import EmailModal from '../Modal/EmailModal';
+import ConfirmModal from '../Modal/ConfirmModal';
 
 const ContactUs = () => {
 	const { isOpen, showModal, closeModal } = useModal();

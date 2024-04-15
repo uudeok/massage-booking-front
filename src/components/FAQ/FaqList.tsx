@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import DynamicRender from '../common/map/DynamicRender';
-import ConditionalDisplay from '../common/maybe/ConditionalDisplay';
+import DynamicRender from '../Common/map/DynamicRender';
+import ConditionalDisplay from '../Common/maybe/ConditionalDisplay';
 import { FAQ_TYPE } from '../../@types/faq';
 import { CiSquarePlus, CiSquareMinus } from 'react-icons/ci';
 import { useState } from 'react';

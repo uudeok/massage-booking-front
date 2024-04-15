@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import NoticeItem from './NoticeItem';
-import Paging from '../../pagination/Paging';
-import RenderList from '../../common/map/DynamicRender';
+import Paging from '../../Common/pagination/Paging';
+import RenderList from '../../Common/map/DynamicRender';
 import { NOTICE_CATEGORIES } from '../../../const/notices';
 import { useState } from 'react';
 import { NOTICE_CATEGORY_KEYS } from '../../../@types/notice';

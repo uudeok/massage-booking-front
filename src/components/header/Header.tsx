@@ -4,8 +4,8 @@ import { useEffect, useState } from 'react';
 import { useLogoutMutation } from '../../api/users/usersQuery';
 
 import HeaderDropMenu from './HeaderDropMenu';
-import RenderList from '../common/map/DynamicRender';
-import ConditionalDisplay from '../common/maybe/ConditionalDisplay';
+import RenderList from '../Common/map/DynamicRender';
+import ConditionalDisplay from '../Common/maybe/ConditionalDisplay';
 import styled from 'styled-components';
 
 type MenuType = {
