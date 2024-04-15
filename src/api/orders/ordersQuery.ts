@@ -43,7 +43,7 @@ export const ordersApi = createApi({
 			},
 			providesTags: [{ type: 'orders' }],
 		}),
-		postOrderData: builder.mutation<any, TPostType>({
+		postOrderData: builder.mutation<TOrderType, TPostType>({
 			query: (arg) => {
 				const { event, order } = arg;
 				return {
