@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Membership from '../membership/Membership';
-import NoticeMain from './notices/main/NoticeMain';
+import NoticeMain from './NoticeMain';
 
 const Information = () => {
 	return (

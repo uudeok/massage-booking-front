@@ -1,8 +1,8 @@
 import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import Notice from './Notice';
-import { useGetNoticeDetailQuery } from '../../../api/notice/noticeQuery';
-import theme from '../../../styles/theme';
+import { useGetNoticeDetailQuery } from '../../api/notice/noticeQuery';
+import theme from '../../styles/theme';
 
 const NoticeDetail = () => {
 	const { id } = useParams();

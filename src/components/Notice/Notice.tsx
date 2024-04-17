@@ -1,9 +1,9 @@
-import { TNoticeDetail } from '../../../@types/notice';
+import { TNoticeDetail } from '../../@types/notice';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
-import { makeSimpleDate } from '../../../util/date';
-import CommonButton from '../../common/UI/button/CommonButton';
-import RenderList from '../../common/map/DynamicRender';
+import { makeSimpleDate } from '../../util/date';
+import CommonButton from '../common/UI/button/CommonButton';
+import RenderList from '../common/map/DynamicRender';
 
 type NoticeType = {
 	key: string;

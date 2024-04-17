@@ -4,6 +4,10 @@ phases:
     install:
         runtime-versions:
             nodejs: 20
+        commands:
+            - echo node version check
+            - node -v
+            - npm -v
     pre_build:
         commands:
             - echo Installing source NPM dependencies...

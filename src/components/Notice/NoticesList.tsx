@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 import NoticeItem from './NoticeItem';
-import Paging from '../../common/pagination/Paging';
-import RenderList from '../../common/map/DynamicRender';
-import { NOTICE_CATEGORIES } from '../../../const/notices';
+import Paging from '../common/pagination/Paging';
+import RenderList from '../common/map/DynamicRender';
+import { NOTICE_CATEGORIES } from '../../const/notices';
 import { useState } from 'react';
-import { NOTICE_CATEGORY_KEYS } from '../../../@types/notice';
-import { useGetNoticeListQuery } from '../../../api/notice/noticeQuery';
-import { TNoticeCategory } from '../../../@types/notice';
+import { NOTICE_CATEGORY_KEYS } from '../../@types/notice';
+import { useGetNoticeListQuery } from '../../api/notice/noticeQuery';
+import { TNoticeCategory } from '../../@types/notice';
 
 const NOTICE_LIST_PAGE_SIZE = 10;
 
