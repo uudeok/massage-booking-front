@@ -1,4 +1,4 @@
-import KakaoCallback from '../../components/Auth/KakaoCallback';
+import KakaoCallback from '../../components/auth/KakaoCallback';
 
 const KakaoLoginPage = () => {
 	return <KakaoCallback />;
