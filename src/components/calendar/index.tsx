@@ -1,12 +1,13 @@
 import { MONTH_NAME } from '../../const/calendar';
 import { MONTH_NAME_VALUES } from '../../@types/calendar';
 import { getMonthInfo, getDateLabel } from '../../util/date';
-import { TimePickerType } from './timePicker/index';
 import { Time } from '../../@types/calendar';
+import { TimePickerType } from './timePicker/TimePicker';
+
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import DateCell from './DateCell';
-import TimePicker from './timePicker/index';
+import TimePicker from './timePicker/TimePicker';
 import dayjs from 'dayjs';
 import DayOfWeek from './DayOfWeek';
 import CalendarHeader from './CalendarHeader';

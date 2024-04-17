@@ -1,4 +1,4 @@
-import BookingTab from '../components/Booking/BookingTab';
+import BookingTab from '../components/booking/BookingTab';
 import Layout from '../layout/Layout';
 
 const BookPage = () => {

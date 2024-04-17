@@ -1,6 +1,6 @@
-import Booking from '../components/Booking/Booking';
-import Information from '../components/Notice';
-import Massage from '../components/Program/Massage';
+import Booking from '../components/booking/Booking';
+import Information from '../components/notice';
+import Massage from '../components/program/Massage';
 import Layout from '../layout/Layout';
 
 const HomePage = () => {

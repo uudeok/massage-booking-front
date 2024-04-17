@@ -5,12 +5,12 @@ import { addFewMinutes } from '../../util/time';
 import { BOOKING_ITEM_VALUE } from '../../@types/massage';
 import { makeSimpleDate } from '../../util/date';
 import { useModal } from '../../hooks/useModal';
-import ConditionalDisplay from '../Common/maybe/ConditionalDisplay';
-import BookingModal from '../Modal/BookingModal';
+import ConditionalDisplay from '../common/maybe/ConditionalDisplay';
+import BookingModal from '../modal/BookingModal';
 import styled from 'styled-components';
-import RenderList from '../Common/map/DynamicRender';
+import RenderList from '../common/map/DynamicRender';
 import theme from '../../styles/theme';
-import CommonButton from '../Common/UI/Button/CommonButton';
+import CommonButton from '../common/UI/button/CommonButton';
 
 type TProps = {
 	selectedDate: string;

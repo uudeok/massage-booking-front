@@ -5,12 +5,12 @@ import { TMassageDetail } from '../../@types/massage';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../stores/store';
 import { subTabNum } from '../../stores/tabSlice';
-import ErrorDisplay from '../Common/error/ErrorDisplay';
+import ErrorDisplay from '../common/error/ErrorDisplay';
 import styled from 'styled-components';
-import CommonButton from '../Common/UI/Button/CommonButton';
-import RenderList from '../Common/map/DynamicRender';
+import CommonButton from '../common/UI/button/CommonButton';
+import RenderList from '../common/map/DynamicRender';
 import BookingDetail from './BookingDetail';
-import LoadingBar from '../Common/UI/Loading/LoadingBar';
+import LoadingBar from '../common/UI/loading/LoadingBar';
 
 const BookingDetailList = () => {
 	const dispatch = useDispatch<AppDispatch>();

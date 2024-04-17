@@ -1,4 +1,4 @@
-import MyInformation from '../../components/User/personal/MyInformation';
+import MyInformation from '../../components/user/personal/MyInformation';
 
 const MyInformationPage = () => {
 	return <MyInformation />;

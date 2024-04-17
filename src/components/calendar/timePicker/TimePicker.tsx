@@ -1,8 +1,8 @@
 import styled, { css } from 'styled-components';
-import RenderList from '../../Common/map/DynamicRender';
+import RenderList from '../../common/map/DynamicRender';
 import { calculateMaxTime, calculateMinTime, adjustSelectability, generateTimeArray } from '../../../util/time';
 
-import { Dropdown, DropdownMenu, DropdownToggle, DropdownOption } from '../../Common/UI/Dropdown/Dropdown';
+import { Dropdown, DropdownMenu, DropdownToggle, DropdownOption } from '../../common/UI/dropdown/Dropdown';
 import { Time } from '../../../@types/calendar';
 
 export type TimePickerType = {

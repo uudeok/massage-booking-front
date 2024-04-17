@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { makeSimpleDate } from '../../../util/date';
 import NoticeHeader from './NoticeHeader';
-import RenderList from '../../Common/map/DynamicRender';
-import FetchWithLoading from '../../Common/UI/Loading/FetchWithLoading';
+import RenderList from '../../common/map/DynamicRender';
+import FetchWithLoading from '../../common/UI/loading/FetchWithLoading';
 
 type TProps = {
 	notice: TNoticeDetail[];

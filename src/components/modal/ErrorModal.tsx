@@ -1,7 +1,7 @@
-import { BackDropStyle } from '../Common/UI/Modal/styles/modal.styles';
+import { BackDropStyle } from '../common/UI/modal/styles/modal.styles';
 import { FcHighPriority } from 'react-icons/fc';
 import styled from 'styled-components';
-import { ModalWrapper, Header, Content, Button } from '../Common/UI/Modal/ModalWrapper';
+import { ModalWrapper, Header, Content, Button } from '../common/UI/modal/ModalWrapper';
 
 type ErrorModalProps = {
 	closeModal: () => void;

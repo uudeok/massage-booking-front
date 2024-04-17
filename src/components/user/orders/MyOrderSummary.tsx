@@ -1,15 +1,15 @@
 import { useDeleteOrderDataMutation, useGetOrderDetailQuery } from '../../../api/orders/ordersQuery';
 import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import CommonButton from '../../Common/UI/Button/CommonButton';
+import CommonButton from '../../common/UI/button/CommonButton';
 import theme from '../../../styles/theme';
-import RenderList from '../../Common/map/DynamicRender';
-import LoadingBar from '../../Common/UI/Loading/LoadingBar';
+import RenderList from '../../common/map/DynamicRender';
+import LoadingBar from '../../common/UI/loading/LoadingBar';
 import { makeSimpleDate } from '../../../util/date';
 import { addComma } from '../../../util/price';
 import { makeSimpleTime } from '../../../util/time';
 import OrderStatus from './OrderStatus';
-import ConditionalDisplay from '../../Common/maybe/ConditionalDisplay';
+import ConditionalDisplay from '../../common/maybe/ConditionalDisplay';
 
 type OrderDetailType = {
 	key: string;

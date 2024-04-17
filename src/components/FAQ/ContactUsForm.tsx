@@ -2,8 +2,8 @@ import React, { useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import emailjs from '@emailjs/browser';
 import styled from 'styled-components';
-import ErrorDisplay from '../Common/error/ErrorDisplay';
-import LoadingBar from '../Common/UI/Loading/LoadingBar';
+import ErrorDisplay from '../common/error/ErrorDisplay';
+import LoadingBar from '../common/UI/loading/LoadingBar';
 
 type FormValue = {
 	title: string;

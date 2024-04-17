@@ -3,7 +3,7 @@ import { useHover } from '../../../hooks/useHover';
 import { ORDER_STATUS_TYPE_KEYS, ORDER_STATUS_TYPE_VALUES } from '../../../@types/mypage/orders';
 
 import styled from 'styled-components';
-import ConditionalDisplay from '../../Common/maybe/ConditionalDisplay';
+import ConditionalDisplay from '../../common/maybe/ConditionalDisplay';
 
 type OrderStatusType = {
 	status: ORDER_STATUS_TYPE_KEYS;

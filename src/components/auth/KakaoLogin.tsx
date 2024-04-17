@@ -1,4 +1,4 @@
-import CommonButton from '../Common/UI/Button/CommonButton';
+import CommonButton from '../common/UI/button/CommonButton';
 
 const Rest_api_key = `${process.env.REACT_APP_KAKAO_REST_KEY}`;
 const redirect_uri = `${process.env.REACT_APP_KAKAO_API_URL}/auth/kakao/callback`;

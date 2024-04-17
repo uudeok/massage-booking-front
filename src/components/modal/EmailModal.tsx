@@ -1,8 +1,8 @@
 import ContactUsForm from '../FAQ/ContactUsForm';
 import styled from 'styled-components';
 
-import { BackDropStyle, ModalStyle } from '../Common/UI/Modal/styles/modal.styles';
-import { ModalWrapper, Header, Content } from '../Common/UI/Modal/ModalWrapper';
+import { BackDropStyle, ModalStyle } from '../common/UI/modal/styles/modal.styles';
+import { ModalWrapper, Header, Content } from '../common/UI/modal/ModalWrapper';
 
 type EmailModalType = {
 	closeModal: () => void;

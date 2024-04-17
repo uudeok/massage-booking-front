@@ -1,4 +1,4 @@
-import MemberWithdrawal from '../../components/User/setting/withdraw/MemberWithdrawal';
+import MemberWithdrawal from '../../components/user/setting/withdraw/MemberWithdrawal';
 
 const UserWithdrawalPage = () => {
 	return <MemberWithdrawal />;

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { BOOKING_NOTICE } from '../../const/book/massage';
-import RenderList from '../Common/map/DynamicRender';
+import RenderList from '../common/map/DynamicRender';
 import theme from '../../styles/theme';
 import React from 'react';
 

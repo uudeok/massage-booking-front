@@ -1,7 +1,7 @@
 import { CiCircleInfo } from 'react-icons/ci';
 
-import { BackDropStyle, ModalStyle } from '../Common/UI/Modal/styles/modal.styles';
-import { ModalWrapper, Header, Button, Content } from '../Common/UI/Modal/ModalWrapper';
+import { BackDropStyle, ModalStyle } from '../common/UI/modal/styles/modal.styles';
+import { ModalWrapper, Header, Button, Content } from '../common/UI/modal/ModalWrapper';
 import styled from 'styled-components';
 
 type ConfirmModalType = {

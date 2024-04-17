@@ -1,4 +1,4 @@
-import MyOrderList from '../../components/User/orders/MyOrderList';
+import MyOrderList from '../../components/user/orders/MyOrderList';
 
 const MyOrderPage = () => {
 	return <MyOrderList />;

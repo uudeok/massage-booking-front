@@ -15,7 +15,7 @@ import MyOrderDetailPage from '../../pages/user/MyOrderDetail';
 import UserWithdrawalPage from '../../pages/user/UserWithdrawalPage';
 import KakaoLoginPage from '../../pages/auth/KakaoLoginPage';
 import MyInformationPage from '../../pages/user/MyInfomationPage';
-import NotFound from '../../components/Common/error/NotFound';
+import NotFound from '../../components/common/error/NotFound';
 import AuthLayout from '../../layout/AuthLayout';
 import QuestionPage from '../../pages/QuestionPage';
 

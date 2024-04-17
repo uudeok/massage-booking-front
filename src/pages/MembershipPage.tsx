@@ -1,4 +1,4 @@
-import MembershipList from '../components/Membership/MembershipList';
+import MembershipList from '../components/membership/MembershipList';
 import Layout from '../layout/Layout';
 
 const MembershipPage = () => {

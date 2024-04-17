@@ -5,9 +5,9 @@ import { TOrderType } from '../../../@types/mypage/orders';
 import styled from 'styled-components';
 import MyOrderItem from './MyOrderItem';
 import MyOrderHeader from './MyOrderHeader';
-import Paging from '../../Common/pagination/Paging';
-import LoadingBar from '../../Common/UI/Loading/LoadingBar';
-import RenderList from '../../Common/map/DynamicRender';
+import Paging from '../../common/pagination/Paging';
+import LoadingBar from '../../common/UI/loading/LoadingBar';
+import RenderList from '../../common/map/DynamicRender';
 
 const MY_ORDER_LIST_PAGESIZE = 5;
 

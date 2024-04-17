@@ -1,10 +1,10 @@
 import { Outlet, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import styled from 'styled-components';
-import Header from '../../components/Header/Header';
-import Footer from '../../components/Footer/Footer';
-import MyPageSide from '../../components/User/layout/MyPageSide';
-import MyPageHeader from '../../components/User/layout/MyPageHeader';
+import Header from '../../components/header/Header';
+import Footer from '../../components/footer/Footer';
+import MyPageSide from '../../components/user/layout/MyPageSide';
+import MyPageHeader from '../../components/user/layout/MyPageHeader';
 import { getUserName } from '../../util/auth';
 
 const RootLayoutPage = () => {

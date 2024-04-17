@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import CommonButton from '../../../Common/UI/Button/CommonButton';
+import CommonButton from '../../../common/UI/button/CommonButton';
 
 const MemberWithdrawal = () => {
 	return (

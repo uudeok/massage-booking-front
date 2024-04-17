@@ -1,7 +1,7 @@
 import { useGetMassageListQuery } from '../../api/massage/massageQuery';
 import styled from 'styled-components';
 import MassageSlide from './MassageSlide';
-import LoadingBar from '../Common/UI/Loading/LoadingBar';
+import LoadingBar from '../common/UI/loading/LoadingBar';
 import theme from '../../styles/theme';
 
 const Massage = () => {
