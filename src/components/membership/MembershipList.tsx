@@ -10,6 +10,8 @@ const MembershipList = () => {
 				<InnerBoxStyle>
 					<TitleStyle>회원권 안내</TitleStyle>
 					<h2>Update soon...😉</h2>
+					<h2>Update soon...😉</h2>
+					<h2>Update soon...😉</h2>
 				</InnerBoxStyle>
 			</ContainerStyle>
 		</>
