@@ -7,10 +7,9 @@ import { makeSimpleDate } from '../../util/date';
 import { useModal } from '../../hooks/useModal';
 import ConditionalDisplay from '../common/maybe/ConditionalDisplay';
 import BookingModal from '../modal/BookingModal';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import RenderList from '../common/map/DynamicRender';
 import theme from '../../styles/theme';
-import CommonButton from '../common/UI/button/CommonButton';
 
 type TProps = {
 	selectedDate: string;
@@ -78,22 +77,35 @@ const BookingSummary = ({ selectedDate, selectedTime, showModal }: TProps) => {
 			<SummaryListStyle>
 				<RenderList data={SUMMARY_LIST} renderItem={renderSummaryItem} />
 			</SummaryListStyle>
-
-			<CommonButton
-				type="rectangle"
-				$border="2px solid grey"
-				onClickButton={handleReservation}
-				$padding="0.6rem"
-				disabled={!selectedTime}
-				$borderRadius="10px"
-			>
+			<ConfirmButton onClick={handleReservation} disabled={!selectedTime}>
 				예약하기
-			</CommonButton>
+			</ConfirmButton>
 		</SummaryBoxStyle>
 	);
 };
 
 export default BookingSummary;
+
+const ConfirmButton = styled.button<{ disabled: boolean }>`
+	padding: 0.6rem;
+	border: none;
+	background-color: #819977;
+	border-radius: 15px;
+	color: white;
+	font-size: 15px;
+
+	&:hover {
+		background-color: #97a393;
+	}
+
+	${({ disabled }) =>
+		disabled &&
+		css`
+			cursor: default;
+			color: rgba(38, 45, 57, 0.16);
+			background-color: whitesmoke;
+		`}
+`;
 
 const Button = styled.button`
 	border: 1px solid lightgrey;

@@ -92,7 +92,7 @@ const ViewDetails = styled.span`
 const OrderItem = styled.div`
 	width: 20%;
 
-	@media only screen and (max-width: $${(props) => props.theme.devise.tabletWidth}) {
+	@media only screen and (max-width: ${(props) => props.theme.devise.tabletWidth}) {
 		padding: 0.5rem;
 		width: 100%;
 	}

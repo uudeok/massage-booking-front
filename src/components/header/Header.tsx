@@ -128,6 +128,10 @@ const ButtonStyle = styled.div`
 		@media only screen and (max-width: ${(props) => props.theme.devise.tabletWidth}) {
 			font-size: 15px;
 		}
+
+		@media only screen and (max-width: ${(props) => props.theme.devise.mobileWidth}) {
+			font-size: 13px;
+		}
 	}
 
 	@media only screen and (max-width: ${(props) => props.theme.devise.bigNotebookWidth}) {

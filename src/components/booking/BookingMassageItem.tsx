@@ -42,6 +42,8 @@ const Layout = styled(Card)`
 	flex-direction: column;
 	background-color: whitesmoke;
 	box-shadow: 0px 2px 10px 5px rgba(0, 0, 0, 0.1);
+	font-family: ${(props) => props.theme.fonts.gmarket};
+	line-height: 1.2;
 
 	@media only screen and (max-width: ${(props) => props.theme.devise.tabletWidth}) {
 		width: 360px;
@@ -52,7 +54,7 @@ const Layout = styled(Card)`
 
 	@media only screen and (max-width: ${(props) => props.theme.devise.mobileWidth}) {
 		width: 335px;
-		height: 400px;
+		height: 380px;
 		margin: 15px;
 		margin-top: 3rem;
 	}

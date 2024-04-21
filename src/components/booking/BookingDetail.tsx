@@ -56,7 +56,7 @@ const Layout = styled(Card)`
 
 	@media only screen and (max-width: ${(props) => props.theme.devise.mobileWidth}) {
 		width: 335px;
-		height: 400px;
+		height: 380px;
 		margin: 15px;
 		margin-top: 3rem;
 	}

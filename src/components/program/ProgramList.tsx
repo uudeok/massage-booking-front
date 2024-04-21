@@ -95,7 +95,7 @@ export default ProgramList;
 const ContainerStyle = styled.div`
 	display: flex;
 	flex-direction: column;
-	font-family: 'GmarketSansMedium';
+	font-family: ${(props) => props.theme.fonts.gmarket};
 `;
 
 const Wrapper = styled.div`
@@ -108,6 +108,7 @@ const Wrapper = styled.div`
 
 const Item = styled.li<{ $isCurrent: boolean }>`
 	cursor: pointer;
+	font-size: 18px;
 
 	${({ $isCurrent }) =>
 		$isCurrent &&
@@ -117,6 +118,10 @@ const Item = styled.li<{ $isCurrent: boolean }>`
 
 	&:hover {
 		color: ${(props) => props.theme.palette.greenDk};
+	}
+
+	@media only screen and (max-width: ${(props) => props.theme.devise.bigMobileWidth}) {
+		font-size: 15px;
 	}
 `;
 
@@ -128,6 +133,10 @@ const Header = styled.div`
 
 	@media only screen and (max-width: ${(props) => props.theme.devise.bigNotebookWidth}) {
 		font-size: 18px;
+	}
+
+	@media only screen and (max-width: ${(props) => props.theme.devise.tabletWidth}) {
+		font-size: 16px;
 	}
 `;
 
@@ -147,9 +156,8 @@ const Layout = styled(Card)`
 
 	@media only screen and (max-width: ${(props) => props.theme.devise.bigNotebookWidth}) {
 		height: 100%;
-		width: 80%;
 		margin: auto;
-		margin-top: 1rem;
+		margin-top: 0.5rem;
 	}
 `;
 
@@ -161,6 +169,11 @@ const Image = styled(CardImage)`
 const Content = styled(CardContent)`
 	flex: 1;
 	padding: 1rem;
+	line-height: 1.2;
+
+	@media only screen and (max-width: ${(props) => props.theme.devise.bigMobileWidth}) {
+		font-size: 14px;
+	}
 `;
 
 const Title = styled.div`
@@ -214,6 +227,11 @@ const TitleStyle = styled.h1`
 
 	@media only screen and (max-width: ${(props) => props.theme.devise.tabletWidth}) {
 		font-size: 1.5rem;
+	}
+
+	@media only screen and (max-width: ${(props) => props.theme.devise.bigMobileWidth}) {
+		margin-top: 2rem;
+		margin-bottom: 1rem;
 	}
 `;
 

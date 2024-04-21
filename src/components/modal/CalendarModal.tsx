@@ -159,6 +159,11 @@ export const ModalStyle = styled.div`
 	}
 
 	@media only screen and (max-width: ${(props) => props.theme.devise.tabletWidth}) {
-		width: 22rem;
+		width: 24rem;
+	}
+
+	@media only screen and (max-width: ${(props) => props.theme.devise.bigMobileWidth}) {
+		width: 100%;
+		left: 0;
 	}
 `;
