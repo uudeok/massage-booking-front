@@ -32,19 +32,20 @@ const BookingDetailList = () => {
 					뒤로가기
 				</CommonButton>
 			</ButtonBoxStyle>
-
-			<ListBoxStyle>
-				<RenderList data={selectedMassage.detail} renderItem={renderDetailItem} />
-			</ListBoxStyle>
+			<ContentBoxStyle>
+				<ListBoxStyle>
+					<RenderList data={selectedMassage.detail} renderItem={renderDetailItem} />
+				</ListBoxStyle>
+			</ContentBoxStyle>
 		</>
 	);
 };
 
 export default BookingDetailList;
 
-// const ContentBoxStyle = styled.div`
-// 	display: flex;
-// `;
+const ContentBoxStyle = styled.div`
+	display: flex;
+`;
 
 const ListBoxStyle = styled.ul`
 	display: flex;
@@ -60,4 +61,5 @@ const ButtonBoxStyle = styled.div`
 	margin-left: 2rem;
 	width: 1100px;
 	margin: auto;
+	/* border: 1px solid black; */
 `;

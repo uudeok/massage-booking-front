@@ -124,6 +124,10 @@ const ButtonStyle = styled.div`
 		font-size: 1rem;
 		cursor: pointer;
 		color: black;
+
+		@media only screen and (max-width: ${(props) => props.theme.devise.tabletWidth}) {
+			font-size: 15px;
+		}
 	}
 
 	@media only screen and (max-width: ${(props) => props.theme.devise.bigNotebookWidth}) {

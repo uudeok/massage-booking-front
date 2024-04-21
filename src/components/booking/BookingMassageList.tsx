@@ -3,17 +3,12 @@ import { TMassageTable } from '../../@types/massage';
 import styled from 'styled-components';
 import BookingMassageItem from './BookingMassageItem';
 import RenderList from '../common/map/DynamicRender';
-import Card from '../common/UI/card/Card';
 import FetchWithLoading from '../common/UI/loading/FetchWithLoading';
 
 const BookingMassageList = () => {
 	const { data: massageList = [], isLoading } = useGetMassageListQuery();
 
-	const renderBookingItem = (massage: TMassageTable) => (
-		<Card key={massage.id}>
-			<BookingMassageItem massage={massage} />
-		</Card>
-	);
+	const renderBookingItem = (massage: TMassageTable) => <BookingMassageItem massage={massage} key={massage.id} />;
 
 	return (
 		<ContentBoxStyle>
