@@ -40,21 +40,17 @@ export default FaqList;
 
 const ContainerStyle = styled.div`
 	width: 60rem;
-
 	margin: 3rem auto;
 	font-family: ${(props) => props.theme.fonts.pretend};
 
-	@media only screen and (max-width: ${(props) => props.theme.devise.notebookWidth}) {
-		width: 80%;
-	}
-
-	@media only screen and (max-width: $${(props) => props.theme.devise.tabletWidth}) {
-		width: 100%;
+	@media only screen and (max-width: ${(props) => props.theme.devise.tabletWidth}) {
+		width: 95%;
 	}
 `;
 
 const Self = styled.div`
 	margin-bottom: 2rem;
+	color: black;
 `;
 
 const ArticleStyle = styled.article`
@@ -69,6 +65,7 @@ const QuestionStyle = styled.p`
 	display: flex;
 	align-items: center;
 	justify-content: left;
+	line-height: 1.2;
 
 	@media only screen and (max-width: ${(props) => props.theme.devise.tabletWidth}) {
 		font-size: 16px;

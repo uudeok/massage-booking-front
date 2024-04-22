@@ -57,7 +57,7 @@ const MyOrderList = () => {
 export default MyOrderList;
 
 const LayoutStyle = styled.div`
-	padding: 1rem;
+	padding: 0.5rem;
 	width: 100%;
 `;
 

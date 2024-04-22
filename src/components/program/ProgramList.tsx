@@ -215,6 +215,7 @@ const InnerBoxStyle = styled.ul`
 
 	@media only screen and (max-width: ${(props) => props.theme.devise.tabletWidth}) {
 		width: 100%;
+		padding: 1rem;
 	}
 `;
 

@@ -139,7 +139,7 @@ const ButtonStyle = styled.div`
 	}
 
 	@media only screen and (max-width: ${(props) => props.theme.devise.tabletWidth}) {
-		width: 40%;
+		width: 45%;
 		padding: 0;
 	}
 `;
