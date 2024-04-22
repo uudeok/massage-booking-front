@@ -78,6 +78,10 @@ const ButtonStyle = styled.button`
 	background-color: transparent;
 	cursor: pointer;
 	transition: transform 0.8s ease;
+
+	.svg {
+		color: black;
+	}
 `;
 
 const AnswerStyle = styled.div`
