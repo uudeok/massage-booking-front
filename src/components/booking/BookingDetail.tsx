@@ -8,6 +8,7 @@ import CardImage from '../common/UI/card/CardImage';
 import CardContent from '../common/UI/card/CardContent';
 import Card from '../common/UI/card/Card';
 import styled from 'styled-components';
+import Button from '../common/UI/button/Button';
 
 type TProps = {
 	detail: TMassageDetail;
@@ -31,7 +32,9 @@ const BookingDetail = ({ detail, massage }: TProps) => {
 				</Title>
 				<Price>{addComma(detail.price)}</Price>
 			</Contents>
-			<Button onClick={() => setAvailableTime(detail.time)}>선택하기</Button>
+			<Button size="lg" role="plain" onClick={() => setAvailableTime(detail.time)}>
+				선택하기
+			</Button>
 		</Layout>
 	);
 };
@@ -71,22 +74,6 @@ const Title = styled.div`
 	font-size: 23px;
 	font-weight: bold;
 	margin-bottom: 1.5rem;
-`;
-
-const Button = styled.button`
-	padding: 0.6rem;
-	font-size: 15px;
-	width: 100%;
-	background-color: ${(props) => props.theme.palette.greenDk};
-	color: white;
-	border: none;
-	min-height: 45px;
-
-	&:hover {
-		background-color: ${(props) => props.theme.palette.greenLg};
-
-		color: white;
-	}
 `;
 
 const Price = styled.div`

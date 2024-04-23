@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import CardImage from '../common/UI/card/CardImage';
 import CardContent from '../common/UI/card/CardContent';
 import Card from '../common/UI/card/Card';
+import Button from '../common/UI/button/Button';
 
 type TProps = {
 	massage: TMassageTable;
@@ -27,7 +28,9 @@ const BookingMassageItem = ({ massage }: TProps) => {
 				<Title>{massage.displayItem}</Title>
 				<div>{massage.content}</div>
 			</Contents>
-			<Button onClick={() => selectMassageItem(massage.item)}>선택하기</Button>
+			<Button size="lg" role="plain" onClick={() => selectMassageItem(massage.item)}>
+				선택하기
+			</Button>
 		</Layout>
 	);
 };
@@ -68,21 +71,5 @@ const Contents = styled(CardContent)`
 const Title = styled.div`
 	font-size: 23px;
 	font-weight: bold;
-	margin-bottom: 1.5rem;
-`;
-
-const Button = styled.button`
-	padding: 0.6rem;
-	font-size: 15px;
-	width: 100%;
-	background-color: ${(props) => props.theme.palette.greenDk};
-	color: white;
-	border: none;
-	min-height: 45px;
-
-	&:hover {
-		background-color: ${(props) => props.theme.palette.greenLg};
-
-		color: white;
-	}
+	margin-bottom: 1.2rem;
 `;

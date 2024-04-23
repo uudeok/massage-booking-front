@@ -73,7 +73,7 @@ const ButtonBoxStyle = styled.div`
 	text-align: center;
 	margin-right: 3.2rem;
 	color: white;
-	background-color: ${(props) => props.theme.palette.greenDk};
+	background-color: ${(props) => props.theme.palette.iconic};
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -81,7 +81,7 @@ const ButtonBoxStyle = styled.div`
 	cursor: pointer;
 
 	&:hover {
-		background-color: ${(props) => props.theme.palette.greenLg};
+		background-color: ${(props) => props.theme.palette.combi};
 	}
 
 	@media only screen and (max-width: ${(props) => props.theme.devise.bigNotebookWidth}) {

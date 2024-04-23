@@ -1,7 +1,7 @@
 import { BackDropStyle } from '../common/UI/modal/styles/modal.styles';
 import { FcHighPriority } from 'react-icons/fc';
 import styled from 'styled-components';
-import { ModalWrapper, Header, Content, Button } from '../common/UI/modal/ModalWrapper';
+import { ModalWrapper, Header, Content, ModalButton } from '../common/UI/modal/ModalWrapper';
 
 type ErrorModalProps = {
 	closeModal: () => void;
@@ -18,7 +18,7 @@ const ErrorModal = ({ closeModal, message }: ErrorModalProps) => {
 						<FcHighPriority />
 					</ModalHeader>
 					<ModalContent>{message}</ModalContent>
-					<ModalButton onClick={() => closeModal()}>확인</ModalButton>
+					<Button onClick={() => closeModal()}>확인</Button>
 				</ModalWrapper>
 			</ModalStyle>
 		</>
@@ -45,14 +45,15 @@ const ModalContent = styled(Content)`
 	align-items: center;
 `;
 
-const ModalButton = styled(Button)`
+const Button = styled(ModalButton)`
 	border: none;
-	padding: 1rem;
 	width: 100%;
 	height: 25%;
-	background-color: ${(props) => props.theme.palette.warn};
 	color: white;
 	cursor: pointer;
+	font-size: 17px;
+	font-family: ${(props) => props.theme.fonts.pretend};
+	background-color: ${(props) => props.theme.palette.warn};
 
 	&:hover {
 		background-color: orangered;

@@ -1,0 +1,58 @@
+import styled from 'styled-components';
+import { ButtonHTMLAttributes, Ref, forwardRef, useId } from 'react';
+import { Role, Size, buttonRoleStyle, buttonSizeStyle } from './ButtonBase';
+
+interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
+	fullWidth?: boolean;
+	role: Role;
+	size: Size;
+}
+
+const StyledButton = styled.button<{ fullWidth?: boolean; role: Role; size: Size }>`
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: ${(props) => (props.fullWidth ? '100%' : 'auto')};
+	border: 0 solid transparent;
+	background-color: ${(props) => props.theme.palette.iconic};
+	color: white;
+	cursor: pointer;
+	font-size: 17px;
+	white-space: nowrap;
+	user-select: none;
+	-webkit-font-smoothing: antialiased;
+	font-family: ${(props) => props.theme.fonts.pretend};
+	font-weight: 600;
+	transition:
+		color 0.1s ease-in-out,
+		background-color 0.1s ease-in-out;
+
+	&:focus {
+		outline: none;
+	}
+
+	&:disabled {
+		opacity: 0.26;
+		cursor: not-allowed;
+	}
+
+	&:hover {
+		background-color: ${(props) => props.theme.palette.combi};
+	}
+
+	${buttonRoleStyle};
+	${buttonSizeStyle}
+`;
+
+const Button = forwardRef(function Button(props: Props, forwardedRef: Ref<HTMLButtonElement>) {
+	const { fullWidth = true, size, role, children, ...rest } = props;
+	const buttonId = useId();
+
+	return (
+		<StyledButton ref={forwardedRef} id={buttonId} fullWidth={fullWidth} size={size} role={role} {...rest}>
+			<span>{children}</span>
+		</StyledButton>
+	);
+});
+
+export default Button;

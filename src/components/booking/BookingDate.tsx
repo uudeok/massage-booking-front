@@ -9,11 +9,11 @@ import { addFewMinutes, isTimeOverlaps, splitTimeArrays } from '../../util/time'
 import { getMassageDetail } from '../../stores/massageSlice';
 import { ORDER_ERROR_MESSAGE } from '../../const/book/errorMessage';
 import styled from 'styled-components';
-import CommonButton from '../common/UI/button/CommonButton';
 import ConditionalDisplay from '../common/maybe/ConditionalDisplay';
 import CalendarModal from '../modal/CalendarModal';
 import BookingNotice from './BookingNotice';
 import BookingSummary from './BookingSummary';
+import Button from '../common/UI/button/Button';
 
 const BookingDate = () => {
 	const dispatch = useDispatch<AppDispatch>();
@@ -100,9 +100,9 @@ const BookingDate = () => {
 			</ConditionalDisplay>
 
 			<ContainerStyle>
-				<CommonButton type="plain" onClickButton={() => dispatch(subTabNum())}>
+				<Button role="none" size="sm" onClick={() => dispatch(subTabNum())}>
 					뒤로가기
-				</CommonButton>
+				</Button>
 				<TitleStyle>날짜와 시간을 선택해주세요</TitleStyle>
 				<InnerBoxStyle>
 					<LeftBoxStyle>

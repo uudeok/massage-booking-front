@@ -2,7 +2,6 @@ import { TNoticeDetail } from '../../@types/notice';
 import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { makeSimpleDate } from '../../util/date';
-import CommonButton from '../common/UI/button/CommonButton';
 import RenderList from '../common/map/DynamicRender';
 
 type NoticeType = {
@@ -36,9 +35,7 @@ const Notice = ({ detail }: { detail: TNoticeDetail }) => {
 				<p>{detail.content}</p>
 			</ContentStyle>
 			<ButtonStyle>
-				<CommonButton type="rectangle" onClickButton={() => navigate('..')} width="5rem">
-					목록
-				</CommonButton>
+				<button onClick={() => navigate('..')}>목록</button>
 			</ButtonStyle>
 		</>
 	);
@@ -85,4 +82,16 @@ const ContentStyle = styled.div`
 const ButtonStyle = styled.div`
 	text-align: right;
 	padding: 1rem;
+
+	button {
+		cursor: pointer;
+		width: 5rem;
+		border: 1px solid lightgrey;
+		background-color: transparent;
+		padding: 0.3rem;
+
+		&:hover {
+			color: grey;
+		}
+	}
 `;

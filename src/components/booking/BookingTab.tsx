@@ -2,32 +2,22 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { currTabNum, resetTabNum } from '../../stores/tabSlice';
 import BookingDate from './BookingDate';
-import RenderList from '../common/map/DynamicRender';
 import styled from 'styled-components';
 import BookingMassageList from './BookingMassageList';
 import BookingDetailList from './BookingDetailList';
-
-type TabType = {
-	key: string;
-	content: JSX.Element;
-	index: number;
-};
 
 const TAB_LIST = [
 	{
 		key: '마사지 선택',
 		content: <BookingMassageList />,
-		index: 0,
 	},
 	{
 		key: '종류 선택',
 		content: <BookingDetailList />,
-		index: 1,
 	},
 	{
 		key: '날짜 선택',
 		content: <BookingDate />,
-		index: 2,
 	},
 ];
 
@@ -41,16 +31,14 @@ const BookingTab = () => {
 		};
 	}, [dispatch]);
 
-	const renderTabItem = (item: TabType) => (
-		<TabButtonStyle key={item.index} disabled={item.index !== tabNum} $isActive={item.index === tabNum}>
-			{item.key}
-		</TabButtonStyle>
-	);
-
 	return (
 		<>
 			<TabListStyle>
-				<RenderList data={TAB_LIST} renderItem={renderTabItem} />
+				{TAB_LIST.map((tab, index) => (
+					<TabButtonStyle key={index} disabled={index !== tabNum} $isActive={index === tabNum}>
+						{tab.key}
+					</TabButtonStyle>
+				))}
 			</TabListStyle>
 
 			<ContentContainerStyle>{TAB_LIST[tabNum].content}</ContentContainerStyle>
@@ -78,7 +66,7 @@ const TabButtonStyle = styled.button<{ $isActive: boolean }>`
 	font-size: 1.5rem;
 	font-family: ${(props) => props.theme.fonts.gmarket};
 
-	background-color: ${({ $isActive }) => ($isActive ? '#819977' : 'whitesmoke')};
+	background-color: ${({ $isActive }) => ($isActive ? '#5aaf77' : 'whitesmoke')};
 	color: ${({ $isActive }) => ($isActive ? 'white' : 'grey')};
 	font-weight: ${({ $isActive }) => ($isActive ? 'bold' : '')};
 	box-shadow: ${({ $isActive }) => ($isActive ? '0 0 0.3rem 0 rgba(0, 0, 0, 0.2)' : '')};

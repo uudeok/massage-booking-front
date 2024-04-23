@@ -3,11 +3,10 @@ import { useEffect, useState } from 'react';
 import { FAQ_ERROR } from '../../const/faq';
 
 import styled from 'styled-components';
-import theme from '../../styles/theme';
-import CommonButton from '../common/UI/button/CommonButton';
 import ConditionalDisplay from '../common/maybe/ConditionalDisplay';
 import EmailModal from '../modal/EmailModal';
 import ConfirmModal from '../modal/ConfirmModal';
+import Button from '../common/UI/button/Button';
 
 const ContactUs = () => {
 	const { isOpen, showModal, closeModal } = useModal();
@@ -36,19 +35,14 @@ const ContactUs = () => {
 				<EmailModal closeModal={closeModal} setResult={setResult} />
 			</ConditionalDisplay>
 
-			<p>찾으시는 내용이 없다면 문의하기를 이용해주세요</p>
-
-			<CommonButton
-				width="11rem"
-				$padding="0.8rem"
-				$backgroundColor={`${theme.palette.greenDk}`}
-				color="white"
-				$border="none"
-				fontSize="14px"
-				onClickButton={() => showModal()}
-			>
-				문의하기
-			</CommonButton>
+			<Wrapper>
+				<p>찾으시는 내용이 없다면 문의하기를 이용해주세요</p>
+				<ButtonWrapper>
+					<Button onClick={() => showModal()} size="lg" role="plain">
+						문의하기
+					</Button>
+				</ButtonWrapper>
+			</Wrapper>
 		</Self>
 	);
 };
@@ -71,4 +65,16 @@ const Self = styled.div`
 	@media only screen and (max-width: ${(props) => props.theme.devise.tabletWidth}) {
 		font-size: 15px;
 	}
+`;
+
+const Wrapper = styled.div`
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	padding: 1rem;
+`;
+
+const ButtonWrapper = styled.div`
+	margin: 0 auto;
+	width: 50%;
 `;

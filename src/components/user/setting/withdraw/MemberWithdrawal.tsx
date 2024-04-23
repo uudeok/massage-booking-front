@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import CommonButton from '../../../common/UI/button/CommonButton';
 
 const MemberWithdrawal = () => {
 	return (
@@ -8,9 +7,7 @@ const MemberWithdrawal = () => {
 			<CardBoxStyle>
 				<TitleBoxStyle>
 					<h2>회원탈퇴</h2>
-					<CommonButton type="round" width="3rem" $padding="0.5rem" $border="1px solid lightgrey">
-						탈퇴
-					</CommonButton>
+					<button>탈퇴</button>
 				</TitleBoxStyle>
 				<p>자연치유 쉼 회원 탈퇴하기</p>
 			</CardBoxStyle>
@@ -37,6 +34,15 @@ const TitleBoxStyle = styled.div`
 	h2 {
 		flex: 1;
 		font-size: 1.2rem;
+	}
+
+	button {
+		border-radius: 50px;
+		width: 3rem;
+		padding: 0.5rem;
+		border: 1px solid lightgrey;
+		background-color: transparent;
+		cursor: pointer;
 	}
 `;
 const CardBoxStyle = styled.div`

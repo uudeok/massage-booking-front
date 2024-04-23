@@ -1,8 +1,9 @@
+import { ReactNode } from 'react';
 import LoadingBar from './LoadingBar';
 
 type TProps = {
 	isLoading: boolean;
-	children: JSX.Element;
+	children: ReactNode;
 };
 
 const FetchWithLoading = ({ isLoading, children }: TProps) => {

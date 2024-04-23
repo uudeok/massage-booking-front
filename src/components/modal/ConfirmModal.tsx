@@ -1,8 +1,9 @@
 import { CiCircleInfo } from 'react-icons/ci';
 
 import { BackDropStyle, ModalStyle } from '../common/UI/modal/styles/modal.styles';
-import { ModalWrapper, Header, Button, Content } from '../common/UI/modal/ModalWrapper';
+import { ModalWrapper, Header, Content } from '../common/UI/modal/ModalWrapper';
 import styled from 'styled-components';
+import Button from '../common/UI/button/Button';
 
 type ConfirmModalType = {
 	closeModal: () => void;
@@ -27,7 +28,11 @@ const ConfirmModal = ({ closeModal, contents }: ConfirmModalType) => {
 						<p>{contents.message}</p>
 						<p>{contents.subMessage}</p>
 					</ModalContent>
-					<ModalButton onClick={() => closeModal()}>확인</ModalButton>
+					<ButtonWrapper>
+						<Button onClick={() => closeModal()} size="sm" role="round">
+							확인
+						</Button>
+					</ButtonWrapper>
 				</ModalWrapper>
 			</ModalStyle>
 		</>
@@ -36,10 +41,15 @@ const ConfirmModal = ({ closeModal, contents }: ConfirmModalType) => {
 
 export default ConfirmModal;
 
+const ButtonWrapper = styled.div`
+	width: 25%;
+	margin: auto;
+`;
+
 const ModalHeader = styled(Header)`
 	font-size: 40px;
 	height: 5rem;
-	background-color: ${(props) => props.theme.palette.fluorGreen};
+	background-color: ${(props) => props.theme.palette.iconic};
 	color: white;
 	font-family: ${(props) => props.theme.fonts.gmarket};
 	display: flex;
@@ -55,15 +65,4 @@ const ModalContent = styled(Content)`
 	padding: 0.5rem;
 	text-align: center;
 	line-height: 2;
-`;
-
-const ModalButton = styled(Button)`
-	text-align: center;
-	padding: 0.5rem;
-	border: none;
-	color: white;
-	background-color: ${(props) => props.theme.palette.fluorGreen};
-	width: 5rem;
-	cursor: pointer;
-	border-radius: 50px;
 `;

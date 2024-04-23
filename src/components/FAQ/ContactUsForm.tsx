@@ -4,6 +4,7 @@ import emailjs from '@emailjs/browser';
 import styled from 'styled-components';
 import ErrorDisplay from '../common/error/ErrorDisplay';
 import LoadingBar from '../common/UI/loading/LoadingBar';
+import Button from '../common/UI/button/Button';
 
 type FormValue = {
 	title: string;
@@ -96,7 +97,14 @@ const ContactUsForm = ({ closeEmailModal, setResult }: TProps) => {
 				{...register('content', { required: true, minLength: 3 })}
 				placeholder="문의하실 내용을 작성해주세요"
 			/>
-			<ButtonStyle type="submit">{isSubmitting ? <LoadingBar /> : '제출하기'}</ButtonStyle>
+			<ButtonWrapper>
+				<Button onClick={() => closeEmailModal()} size="lg" role="cancel">
+					취소하기
+				</Button>
+				<Button type="submit" size="lg" role="round">
+					{isSubmitting ? <LoadingBar /> : '보내기'}
+				</Button>
+			</ButtonWrapper>
 		</Self>
 	);
 };
@@ -112,7 +120,6 @@ const Self = styled.form`
 const Wrapper = styled.div`
 	display: flex;
 	flex-direction: column;
-	padding: 0.5rem;
 	align-items: center;
 	height: 4rem;
 	justify-content: center;
@@ -121,7 +128,7 @@ const Wrapper = styled.div`
 const InputWrapper = styled.div`
 	display: flex;
 	width: 100%;
-	margin-bottom: 0.5rem;
+	align-items: center;
 `;
 
 const LabelStyle = styled.label`
@@ -129,8 +136,9 @@ const LabelStyle = styled.label`
 `;
 const InputStyle = styled.input`
 	width: 100%;
-	padding: 0.5rem;
+	height: 30px;
 	border-radius: 10px;
+	font-size: 15px;
 	outline-style: none;
 	background-color: whitesmoke;
 	border: none;
@@ -141,23 +149,18 @@ const ContentStyle = styled.textarea`
 	border: none;
 	border-radius: 10px;
 	width: 100%;
-	height: 10rem;
+	height: 11rem;
 	resize: none;
 	outline-style: none;
+	padding: 0.5rem;
+	font-size: 15px;
 `;
 
-const ButtonStyle = styled.button`
-	padding: 0.7rem;
-	background-color: ${(props) => props.theme.palette.fluorGreen};
-	color: white;
-	border: none;
-	border-radius: 10px;
-	cursor: pointer;
-	margin-top: 1rem;
-
-	&:hover {
-		background-color: ${(props) => props.theme.palette.fluorGreenHover};
-	}
+const ButtonWrapper = styled.div`
+	display: flex;
+	gap: 1rem;
+	justify-content: center;
+	margin-top: 0.5rem;
 `;
 
 const ContentLabelStyle = styled.div`

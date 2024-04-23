@@ -1,7 +1,5 @@
 import { useRouteError, Link } from 'react-router-dom';
-
 import styled from 'styled-components';
-import CommonButton from '../UI/button/CommonButton';
 
 type TError = {
 	status: number;
@@ -18,9 +16,7 @@ const NotFound = () => {
 		<ErrorScreen>
 			<MessageStyle>존재하지 않는 페이지입니다</MessageStyle>
 			<Link to="/">
-				<CommonButton type="round" width="15rem" $padding="1rem" fontSize="1rem" $border="1px solid grey">
-					홈으로
-				</CommonButton>
+				<ButtonStyle>홈으로</ButtonStyle>
 			</Link>
 		</ErrorScreen>
 	);
@@ -41,4 +37,14 @@ const ErrorScreen = styled.div`
 const MessageStyle = styled.h2`
 	font-weight: bold;
 	font-size: 3rem;
+`;
+
+const ButtonStyle = styled.button`
+	width: 15rem;
+	padding: 1rem;
+	font-size: 1rem;
+	border: 1px solid grey;
+	border-radius: 50px;
+	background-color: transparent;
+	cursor: pointer;
 `;

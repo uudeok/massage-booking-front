@@ -7,9 +7,9 @@ import { makeSimpleDate } from '../../util/date';
 import { useModal } from '../../hooks/useModal';
 import ConditionalDisplay from '../common/maybe/ConditionalDisplay';
 import BookingModal from '../modal/BookingModal';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import RenderList from '../common/map/DynamicRender';
-import theme from '../../styles/theme';
+import Button from '../common/UI/button/Button';
 
 type TProps = {
 	selectedDate: string;
@@ -44,7 +44,11 @@ const BookingSummary = ({ selectedDate, selectedTime, showModal }: TProps) => {
 		{ key: '받으실 날짜', value: makeSimpleDate(selectedDate) },
 		{
 			key: '받으실 시간',
-			value: <Button onClick={() => showModal()}>{selectedTime ? timeLabel : '시간 선택 🕒'}</Button>,
+			value: (
+				<Button size="sm" role="round" onClick={() => showModal()}>
+					{selectedTime ? timeLabel : '시간 선택 🕒'}
+				</Button>
+			),
 		},
 		{ key: '금액', value: addComma(selectedMassagePrice) },
 	];
@@ -77,52 +81,14 @@ const BookingSummary = ({ selectedDate, selectedTime, showModal }: TProps) => {
 			<SummaryListStyle>
 				<RenderList data={SUMMARY_LIST} renderItem={renderSummaryItem} />
 			</SummaryListStyle>
-			<ConfirmButton onClick={handleReservation} disabled={!selectedTime}>
+			<Button size="lg" role="round" onClick={handleReservation} disabled={!selectedTime}>
 				예약하기
-			</ConfirmButton>
+			</Button>
 		</SummaryBoxStyle>
 	);
 };
 
 export default BookingSummary;
-
-const ConfirmButton = styled.button<{ disabled: boolean }>`
-	padding: 0.6rem;
-	border: none;
-	background-color: #819977;
-	border-radius: 15px;
-	color: white;
-	font-size: 15px;
-
-	&:hover {
-		background-color: #97a393;
-	}
-
-	${({ disabled }) =>
-		disabled &&
-		css`
-			cursor: default;
-			color: rgba(38, 45, 57, 0.16);
-			background-color: whitesmoke;
-		`}
-`;
-
-const Button = styled.button`
-	border: 1px solid lightgrey;
-	padding: 0.4rem;
-	border-radius: 10px;
-	width: 100%;
-	cursor: pointer;
-	background-color: transparent;
-	font-family: ${theme.fonts.pretend};
-	font-size: 1rem;
-	color: black;
-
-	&:hover {
-		background-color: ${theme.palette.greenDk};
-		color: ${theme.palette.white};
-	}
-`;
 
 const SummaryBoxStyle = styled.div`
 	display: flex;
@@ -130,13 +96,13 @@ const SummaryBoxStyle = styled.div`
 	width: 100%;
 	margin-right: 1rem;
 
-	@media only screen and (max-width: ${theme.devise.tabletWidth}) {
+	@media only screen and (max-width: ${(props) => props.theme.devise.tabletWidth}) {
 		width: 85%;
 		margin: auto;
 		margin-top: 1rem;
 	}
 
-	@media only screen and (max-width: ${theme.devise.bigMobileWidth}) {
+	@media only screen and (max-width: ${(props) => props.theme.devise.bigMobileWidth}) {
 		width: 100%;
 	}
 `;
@@ -150,7 +116,7 @@ const SummaryItemStyle = styled.div`
 	padding: 1rem;
 	display: flex;
 
-	@media only screen and (max-width: ${theme.devise.bigMobileWidth}) {
+	@media only screen and (max-width: ${(props) => props.theme.devise.bigMobileWidth}) {
 		font-size: 0.9rem;
 		padding: 0.5rem;
 	}

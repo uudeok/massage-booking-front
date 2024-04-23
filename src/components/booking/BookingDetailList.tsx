@@ -7,10 +7,10 @@ import { AppDispatch } from '../../stores/store';
 import { subTabNum } from '../../stores/tabSlice';
 import ErrorDisplay from '../common/error/ErrorDisplay';
 import styled from 'styled-components';
-import CommonButton from '../common/UI/button/CommonButton';
 import RenderList from '../common/map/DynamicRender';
 import BookingDetail from './BookingDetail';
 import LoadingBar from '../common/UI/loading/LoadingBar';
+import Button from '../common/UI/button/Button';
 
 const BookingDetailList = () => {
 	const dispatch = useDispatch<AppDispatch>();
@@ -28,9 +28,9 @@ const BookingDetailList = () => {
 	return (
 		<>
 			<ButtonBoxStyle>
-				<CommonButton type="plain" onClickButton={() => dispatch(subTabNum())}>
+				<Button size="sm" role="none" onClick={() => dispatch(subTabNum())}>
 					뒤로가기
-				</CommonButton>
+				</Button>
 			</ButtonBoxStyle>
 			<ContentBoxStyle>
 				<ListBoxStyle>
@@ -61,5 +61,4 @@ const ButtonBoxStyle = styled.div`
 	margin-left: 2rem;
 	width: 1100px;
 	margin: auto;
-	/* border: 1px solid black; */
 `;

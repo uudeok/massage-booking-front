@@ -113,11 +113,11 @@ const Item = styled.li<{ $isCurrent: boolean }>`
 	${({ $isCurrent }) =>
 		$isCurrent &&
 		css`
-			color: ${(props) => props.theme.palette.greenDk};
+			color: ${(props) => props.theme.palette.iconic};
 		`}
 
 	&:hover {
-		color: ${(props) => props.theme.palette.greenDk};
+		color: ${(props) => props.theme.palette.combi};
 	}
 
 	@media only screen and (max-width: ${(props) => props.theme.devise.bigMobileWidth}) {
@@ -196,7 +196,7 @@ const Detail = styled.ul`
 const Option = styled.li`
 	padding: 0.5rem;
 	border-radius: 50px;
-	background-color: ${(props) => props.theme.palette.greenDk};
+	background-color: ${(props) => props.theme.palette.iconic};
 	color: white;
 
 	span {

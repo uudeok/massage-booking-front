@@ -10,8 +10,10 @@ const palette = {
 	fluorGreenHover: '#28a25b',
 	blue: '#3581ff',
 	bluehover: '#5f98f7',
+	iconic: '#5aaf77',
 	warn: '#F65656',
 	confirm: '#4BAF50',
+	combi: '#4c9d68',
 };
 
 const devise = {

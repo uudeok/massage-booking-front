@@ -1,8 +1,6 @@
 import { useDeleteOrderDataMutation, useGetOrderDetailQuery } from '../../../api/orders/ordersQuery';
 import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
-import CommonButton from '../../common/UI/button/CommonButton';
-import theme from '../../../styles/theme';
 import RenderList from '../../common/map/DynamicRender';
 import LoadingBar from '../../common/UI/loading/LoadingBar';
 import { makeSimpleDate } from '../../../util/date';
@@ -66,16 +64,7 @@ const MyOrderSummary = () => {
 			<HeaderStyle>
 				<OrderedDateStyle>{makeSimpleDate(orderDetail.createdAt)} 예약</OrderedDateStyle>
 				<ConditionalDisplay condition={orderDetail.status === 'PENDING'}>
-					<CommonButton
-						type="rectangle"
-						onClickButton={cancelOrderHandler}
-						width="6.5rem"
-						color="grey"
-						fontFamily={theme.fonts.pretend}
-						$hoverColor="black"
-					>
-						예약 취소하기
-					</CommonButton>
+					<ButtonStyle onClick={cancelOrderHandler}>예약 취소하기</ButtonStyle>
 				</ConditionalDisplay>
 			</HeaderStyle>
 
@@ -129,4 +118,15 @@ const ErrorStyle = styled.div`
 	margin: 2rem auto;
 	font-size: 24px;
 	text-align: center;
+`;
+
+const ButtonStyle = styled.button`
+	width: 6.5rem;
+	background-color: transparent;
+	cursor: pointer;
+	border: none;
+
+	&:hover {
+		color: grey;
+	}
 `;

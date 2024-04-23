@@ -3,7 +3,7 @@ import styled, { css } from 'styled-components';
 import Calendar from '../calendar';
 import dayjs from 'dayjs';
 import { BackDropStyle } from '../common/UI/modal/styles/modal.styles';
-import { Button, Content, ModalWrapper } from '../common/UI/modal/ModalWrapper';
+import { ModalButton, Content, ModalWrapper } from '../common/UI/modal/ModalWrapper';
 
 export type TProps = {
 	closeModal: () => void;
@@ -95,29 +95,33 @@ const ModalContent = styled(Content)`
 `;
 
 const ButtonWrapper = styled.div`
-	padding: 1rem;
 	display: flex;
 	justify-content: center;
 	gap: 1rem;
-	height: 12%;
 `;
 
-const CancelButton = styled(Button)`
+const CancelButton = styled(ModalButton)`
 	width: 40%;
-	border-radius: 8px;
+	height: 45px;
+	border-radius: 10px;
 	cursor: pointer;
 	background-color: whitesmoke;
-	color: black;
+	color: grey;
 	border: none;
+	font-size: 17px;
+	font-family: ${(props) => props.theme.fonts.pretend};
 `;
 
-const ConfirmButton = styled(Button)<ConfirmButtonStyleProps>`
+const ConfirmButton = styled(ModalButton)<ConfirmButtonStyleProps>`
+	font-family: ${(props) => props.theme.fonts.pretend};
 	width: 40%;
-	border-radius: 8px;
+	height: 45px;
+	border-radius: 10px;
 	cursor: pointer;
 	background-color: ${(props) => props.theme.palette.blue};
 	color: white;
 	border: none;
+	font-size: 17px;
 
 	&:hover {
 		background-color: ${(props) => props.theme.palette.bluehover};

@@ -5,7 +5,7 @@ type ButtonProps = {
 	children: ReactNode;
 };
 
-export const Button: React.FC<ButtonProps> = ({ onClick, children, ...props }) => {
+export const ModalButton: React.FC<ButtonProps> = ({ onClick, children, ...props }) => {
 	return (
 		<button onClick={onClick} {...props}>
 			{children}

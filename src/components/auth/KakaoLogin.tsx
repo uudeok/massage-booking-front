@@ -1,4 +1,4 @@
-import CommonButton from '../common/UI/button/CommonButton';
+import Button from '../common/UI/button/Button';
 
 const Rest_api_key = `${process.env.REACT_APP_KAKAO_REST_KEY}`;
 const redirect_uri = `${process.env.REACT_APP_KAKAO_API_URL}/auth/kakao/callback`;
@@ -11,9 +11,9 @@ const KakaoLogin = () => {
 	};
 
 	return (
-		<CommonButton onClickButton={handleLogin} $oauth="kakao">
+		<Button role="kakao" size="lg" onClick={handleLogin}>
 			카카오톡 계정 로그인
-		</CommonButton>
+		</Button>
 	);
 };
 

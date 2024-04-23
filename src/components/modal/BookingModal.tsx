@@ -9,7 +9,8 @@ import { BackDropStyle, ModalStyle } from '../common/UI/modal/styles/modal.style
 import styled from 'styled-components';
 import LoadingBar from '../common/UI/loading/LoadingBar';
 import useDebounce from '../../hooks/useDebounce';
-import { ModalWrapper, Header, Content, Button } from '../common/UI/modal/ModalWrapper';
+import { ModalWrapper, Header, Content } from '../common/UI/modal/ModalWrapper';
+import Button from '../common/UI/button/Button';
 
 type TBookingModalType = {
 	closeModal: () => void;
@@ -66,10 +67,14 @@ const BookingModal = ({
 						<FcOk />
 					</ModalHeader>
 					<ModalContent>예약을 진행하시겠습니까?</ModalContent>
-					<CancelButton onClick={() => closeModal()}>취소하기</CancelButton>
-					<ConfirmButton onClick={bookMassageHandler}>
-						{isLoading ? <LoadingBar /> : '예약하기'}
-					</ConfirmButton>
+					<ButtonWrapper>
+						<Button onClick={() => closeModal()} size="lg" role="cancel">
+							취소하기
+						</Button>
+						<Button onClick={bookMassageHandler} size="lg" role="round">
+							{isLoading ? <LoadingBar /> : '예약하기'}
+						</Button>
+					</ButtonWrapper>
 				</ModalWrapper>
 			</ModalStyle>
 		</>
@@ -97,25 +102,9 @@ const ModalContent = styled(Content)`
 	font-size: 1.3rem;
 `;
 
-const CancelButton = styled(Button)`
-	border: none;
-	padding: 1rem;
-	color: black;
-	cursor: pointer;
-	width: 40%;
-	border-radius: 5px;
-	margin-right: 1rem;
-`;
-
-const ConfirmButton = styled(Button)`
-	border: none;
-	padding: 1rem;
-	background-color: ${(props) => props.theme.palette.confirm};
-	color: white;
-	cursor: pointer;
-	width: 40%;
-
-	&:hover {
-		background-color: ${(props) => props.theme.palette.fluorGreen};
-	}
+const ButtonWrapper = styled.div`
+	display: flex;
+	justify-content: center;
+	gap: 1rem;
+	padding: 0.5rem;
 `;
