@@ -23,19 +23,13 @@ const BookingDate = () => {
 	const { isOpen, showModal, closeModal } = useModal();
 
 	const [date, setDate] = useState(new Date().toString());
-	const [selectedTime, setSelectedTime] = useState('');
-	const [isSelected, setIsSelected] = useState(false);
+	const [selectedTime, setSelectedTime] = useState<string>('');
 
 	const targetDate = makeSimpleDate(date);
 	const timeInterval = 30;
 	const { data: bookedData = [] } = useGetBookedTimeListQuery(targetDate);
 
 	const spreadData = splitTimeArrays(bookedData, timeInterval);
-
-	const handleReset = () => {
-		setSelectedTime('');
-		setIsSelected(false);
-	};
 
 	const isValidSelectedTime = (selectedTime: string) => {
 		const fullDate = `${date}T${selectedTime}`;
@@ -44,25 +38,26 @@ const BookingDate = () => {
 
 		if (result.length) {
 			alert(ORDER_ERROR_MESSAGE.notice_overlap_time);
-			handleReset();
+			return false;
 		}
+		return true;
 	};
 
 	const isInvalidBusinessHour = (value: string) => {
 		if (value === '19:30' && 90 < selectedMassageTime) {
 			alert(ORDER_ERROR_MESSAGE.notice_over_time);
-			handleReset();
+			return false;
 		} else if (value === '20:00' && 60 < selectedMassageTime) {
 			alert(ORDER_ERROR_MESSAGE.notice_over_time);
-			handleReset();
+			return false;
 		} else if (value === '20:30') {
 			alert(ORDER_ERROR_MESSAGE.notice_available_time);
-			handleReset();
+			return false;
 		} else if (value === '21:00') {
 			alert(ORDER_ERROR_MESSAGE.notice_business_time);
-			handleReset();
+			return false;
 		} else {
-			return;
+			return true;
 		}
 	};
 
@@ -72,16 +67,11 @@ const BookingDate = () => {
 	};
 
 	const handleTimePicker = (value: string) => {
+		const isOverlap = isValidSelectedTime(value);
+		if (!isOverlap) return;
+		const isOpen = isInvalidBusinessHour(value);
+		if (!isOpen) return;
 		setSelectedTime(value);
-
-		// <--! 날짜 바뀔때마다 selectedTime 초기화하므로 handleTimePicker 함수가 실행됨 !-->
-		if (value) {
-			setIsSelected(true);
-			isValidSelectedTime(value);
-			isInvalidBusinessHour(value);
-		} else {
-			setIsSelected(false);
-		}
 	};
 
 	return (
@@ -94,7 +84,6 @@ const BookingDate = () => {
 					bookedData={spreadData}
 					handleTimePicker={handleTimePicker}
 					selectedTime={selectedTime}
-					isSelected={isSelected}
 					timeInterval={timeInterval}
 				/>
 			</ConditionalDisplay>

@@ -13,7 +13,6 @@ export type TProps = {
 	bookedData?: string[];
 	handleTimePicker: (value: string) => void;
 	selectedTime: string;
-	isSelected: boolean;
 	timeInterval: number;
 };
 
@@ -26,7 +25,6 @@ const CalendarModal = ({
 	bookedData,
 	handleTimePicker,
 	selectedTime,
-	isSelected,
 	timeInterval,
 }: TProps) => {
 	const isOffDay = (date: string) => {
@@ -74,7 +72,7 @@ const CalendarModal = ({
 						<Button onClick={() => closeModal()} size="lg" role="cancel">
 							취소 하기
 						</Button>
-						<Button onClick={() => closeModal()} size="lg" role="round" disabled={!isSelected}>
+						<Button onClick={() => closeModal()} size="lg" role="round" disabled={!selectedTime}>
 							선택 완료
 						</Button>
 					</ButtonWrapper>

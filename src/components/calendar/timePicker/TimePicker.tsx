@@ -60,7 +60,7 @@ const TimePicker = ({
 	return (
 		<Self>
 			<Dropdown>
-				<Toggle disabled={!selectable}>{selectedTime ? selectedTime : placeHolder}</Toggle>
+				<Toggle disabled={!selectable}>{selectedTime || placeHolder}</Toggle>
 				<Menu>
 					<RenderList data={timeList} renderItem={renderOption} />
 				</Menu>
