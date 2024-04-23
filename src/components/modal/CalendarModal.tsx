@@ -1,9 +1,10 @@
 import { Time } from '../../@types/calendar';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import Calendar from '../calendar';
 import dayjs from 'dayjs';
 import { BackDropStyle } from '../common/UI/modal/styles/modal.styles';
-import { ModalButton, Content, ModalWrapper } from '../common/UI/modal/ModalWrapper';
+import { Content, ModalWrapper } from '../common/UI/modal/ModalWrapper';
+import Button from '../common/UI/button/Button';
 
 export type TProps = {
 	closeModal: () => void;
@@ -14,10 +15,6 @@ export type TProps = {
 	selectedTime: string;
 	isSelected: boolean;
 	timeInterval: number;
-};
-
-type ConfirmButtonStyleProps = {
-	$isSelected?: boolean;
 };
 
 const SUNDAY = 0 as const;
@@ -74,10 +71,12 @@ const CalendarModal = ({
 						/>
 					</ModalContent>
 					<ButtonWrapper>
-						<CancelButton onClick={() => closeModal()}>취소 하기</CancelButton>
-						<ConfirmButton onClick={() => closeModal()} $isSelected={isSelected}>
+						<Button onClick={() => closeModal()} size="lg" role="cancel">
+							취소 하기
+						</Button>
+						<Button onClick={() => closeModal()} size="lg" role="round" disabled={!isSelected}>
 							선택 완료
-						</ConfirmButton>
+						</Button>
 					</ButtonWrapper>
 				</ModalWrapper>
 			</ModalStyle>
@@ -90,7 +89,7 @@ export default CalendarModal;
 const ModalContent = styled(Content)`
 	display: flex;
 	justify-content: center;
-	margin-top: 1rem;
+	margin-top: 1.5rem;
 	height: 85%;
 `;
 
@@ -98,43 +97,7 @@ const ButtonWrapper = styled.div`
 	display: flex;
 	justify-content: center;
 	gap: 1rem;
-`;
-
-const CancelButton = styled(ModalButton)`
-	width: 40%;
-	height: 45px;
-	border-radius: 10px;
-	cursor: pointer;
-	background-color: whitesmoke;
-	color: grey;
-	border: none;
-	font-size: 17px;
-	font-family: ${(props) => props.theme.fonts.pretend};
-`;
-
-const ConfirmButton = styled(ModalButton)<ConfirmButtonStyleProps>`
-	font-family: ${(props) => props.theme.fonts.pretend};
-	width: 40%;
-	height: 45px;
-	border-radius: 10px;
-	cursor: pointer;
-	background-color: ${(props) => props.theme.palette.blue};
-	color: white;
-	border: none;
-	font-size: 17px;
-
-	&:hover {
-		background-color: ${(props) => props.theme.palette.bluehover};
-	}
-
-	${({ $isSelected }) =>
-		!$isSelected &&
-		css`
-			pointer-events: none;
-			opacity: 0.6;
-			background-color: #dddddd;
-			border: none !important;
-		`}
+	padding: 0.5rem;
 `;
 
 export const ModalStyle = styled.div`

@@ -1,7 +1,6 @@
 import { ReactNode, useEffect } from 'react';
 import { Header } from './Modal.Header';
 import { Content } from './Modal.Content';
-import { ModalButton } from './Modal.Button';
 
 const ModalWrapper = ({ children, ...props }: { children: ReactNode }) => {
 	useEffect(() => {
@@ -18,4 +17,4 @@ const ModalWrapper = ({ children, ...props }: { children: ReactNode }) => {
 	);
 };
 
-export { ModalWrapper, Header, Content, ModalButton };
+export { ModalWrapper, Header, Content };

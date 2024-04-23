@@ -1,7 +1,7 @@
 import { BackDropStyle } from '../common/UI/modal/styles/modal.styles';
 import { FcHighPriority } from 'react-icons/fc';
 import styled from 'styled-components';
-import { ModalWrapper, Header, Content, ModalButton } from '../common/UI/modal/ModalWrapper';
+import { ModalWrapper, Header, Content } from '../common/UI/modal/ModalWrapper';
 
 type ErrorModalProps = {
 	closeModal: () => void;
@@ -45,7 +45,7 @@ const ModalContent = styled(Content)`
 	align-items: center;
 `;
 
-const Button = styled(ModalButton)`
+const Button = styled.button`
 	border: none;
 	width: 100%;
 	height: 25%;

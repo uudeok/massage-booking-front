@@ -103,7 +103,7 @@ const Self = styled.td<{
 			&:hover {
 				button {
 					color: white;
-					background-color: #3581ff;
+					background-color: #3ab96f;
 					border-radius: 50%;
 					border: none;
 				}
@@ -118,7 +118,7 @@ const Self = styled.td<{
 
 			button {
 				color: white !important;
-				background-color: #3581ff;
+				background-color: #3ab96f;
 				border-radius: 50%;
 			}
 		`}

@@ -86,7 +86,7 @@ const Toggle = styled(DropdownToggle)<{ disabled: boolean }>`
 	height: 4.5rem;
 	max-height: 56px;
 	padding: 16px 12px 16px 16px;
-	background-color: #3581ff;
+	background-color: #3ab96f;
 	color: white;
 	border: 1px solid rgba(38, 45, 57, 0.08);
 	font-size: 1.2rem;

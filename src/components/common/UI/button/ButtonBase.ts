@@ -40,12 +40,12 @@ export const buttonRoleStyle = css<{ role: Role }>`
 		if (role === 'cancel') {
 			return css`
 				background-color: whitesmoke;
-				color: black;
+				color: grey;
 				border-radius: 10px;
 
 				&:hover {
 					background-color: whitesmoke;
-					color: grey;
+					color: black;
 				}
 			`;
 		}
