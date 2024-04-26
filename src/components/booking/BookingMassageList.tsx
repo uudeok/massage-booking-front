@@ -1,19 +1,37 @@
-import { useGetMassageListQuery } from '../../api/massage/massageQuery';
-import { TMassageTable } from '../../@types/massage';
 import styled from 'styled-components';
 import BookingMassageItem from './BookingMassageItem';
 import FetchWithLoading from '../common/UI/loading/FetchWithLoading';
+import DynamicRender from '../common/map/DynamicRender';
+
+import { useGetMassageListQuery } from '../../api/massage/massageQuery';
+import { BOOKING_ITEM_KEYS, TMassageTable } from '../../@types/massage';
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '../../stores/store';
+import { setSelectedMassageItem } from '../../stores/massageSlice';
+import { addTabNum } from '../../stores/tabSlice';
 
 const BookingMassageList = () => {
+	const dispatch = useDispatch<AppDispatch>();
 	const { data: massageList = [], isLoading } = useGetMassageListQuery();
+
+	const handleMassageItemSelection = (massageItem: BOOKING_ITEM_KEYS) => {
+		dispatch(setSelectedMassageItem(massageItem));
+		dispatch(addTabNum());
+	};
+
+	const renderMassageItem = (massage: TMassageTable) => (
+		<BookingMassageItem
+			key={massage.id}
+			massage={massage}
+			handleMassageItemSelection={handleMassageItemSelection}
+		/>
+	);
 
 	return (
 		<ContentBoxStyle>
 			<ListBoxStyle>
 				<FetchWithLoading isLoading={isLoading}>
-					{massageList.map((massage: TMassageTable) => (
-						<BookingMassageItem massage={massage} key={massage.id} />
-					))}
+					<DynamicRender data={massageList} renderItem={renderMassageItem} />
 				</FetchWithLoading>
 			</ListBoxStyle>
 		</ContentBoxStyle>

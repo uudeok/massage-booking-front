@@ -5,12 +5,14 @@ import { TMassageDetail } from '../../@types/massage';
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../stores/store';
 import { subTabNum } from '../../stores/tabSlice';
+import { setSelectedMassageType } from '../../stores/massageSlice';
+import { addTabNum } from '../../stores/tabSlice';
 import ErrorDisplay from '../common/error/ErrorDisplay';
 import styled from 'styled-components';
-import RenderList from '../common/map/DynamicRender';
 import BookingDetail from './BookingDetail';
 import LoadingBar from '../common/UI/loading/LoadingBar';
 import Button from '../common/UI/button/Button';
+import DynamicRender from '../common/map/DynamicRender';
 
 const BookingDetailList = () => {
 	const dispatch = useDispatch<AppDispatch>();
@@ -21,8 +23,18 @@ const BookingDetailList = () => {
 	if (!selectedMassage) return <LoadingBar />;
 	if (selectedMassage === null) return <ErrorDisplay errorMessage="일시적인 오류가 발생했습니다" />;
 
-	const renderDetailItem = (detail: TMassageDetail) => (
-		<BookingDetail detail={detail} massage={selectedMassage} key={detail.time} />
+	const setAvailableTime = (time: number) => {
+		dispatch(setSelectedMassageType(time));
+		dispatch(addTabNum());
+	};
+
+	const renderDetail = (detail: TMassageDetail) => (
+		<BookingDetail
+			detail={detail}
+			massage={selectedMassage}
+			key={detail.time}
+			handleAvailableTime={setAvailableTime}
+		/>
 	);
 
 	return (
@@ -34,7 +46,7 @@ const BookingDetailList = () => {
 			</ButtonBoxStyle>
 			<ContentBoxStyle>
 				<ListBoxStyle>
-					<RenderList data={selectedMassage.detail} renderItem={renderDetailItem} />
+					<DynamicRender data={selectedMassage.detail} renderItem={renderDetail} />
 				</ListBoxStyle>
 			</ContentBoxStyle>
 		</>

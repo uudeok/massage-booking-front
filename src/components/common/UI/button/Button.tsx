@@ -4,11 +4,11 @@ import { Role, Size, buttonRoleStyle, buttonSizeStyle } from './ButtonBase';
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
 	fullWidth?: boolean;
-	role: Role;
+	role?: Role;
 	size: Size;
 }
 
-const StyledButton = styled.button<{ fullWidth?: boolean; role: Role; size: Size }>`
+const StyledButton = styled.button<{ fullWidth?: boolean; role?: Role; size: Size }>`
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
@@ -18,8 +18,11 @@ const StyledButton = styled.button<{ fullWidth?: boolean; role: Role; size: Size
 	color: white;
 	cursor: pointer;
 	font-size: 17px;
+	// 요소 내의 텍스트가 줄바꿈 되지 않고 한 줄에 계속 표시
 	white-space: nowrap;
+	// 요소 내의 텍스트를 선택할 수 없도록 지정 (드래그방지)
 	user-select: none;
+	// 브라우저에서 폰트를 부드럽게 렌더링
 	-webkit-font-smoothing: antialiased;
 	font-family: ${(props) => props.theme.fonts.pretend};
 	font-weight: 600;

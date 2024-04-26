@@ -1,18 +1,14 @@
 import { css } from 'styled-components';
 
-export type Role = 'round' | 'plain' | 'kakao' | 'cancel' | 'none';
+export type Role = 'round' | 'kakao' | 'cancel' | 'none';
 export type Size = 'sm' | 'lg';
 
-export const buttonRoleStyle = css<{ role: Role }>`
+export const buttonRoleStyle = css<{ role?: Role }>`
 	${({ role }) => {
 		if (role === 'round') {
 			return css`
 				border-radius: 10px;
 			`;
-		}
-
-		if (role === 'plain') {
-			return css``;
 		}
 
 		if (role === 'kakao') {

@@ -1,8 +1,4 @@
 import { BOOKING_ITEM_KEYS, TMassageTable } from '../../@types/massage';
-import { useDispatch } from 'react-redux';
-import { AppDispatch } from '../../stores/store';
-import { setSelectedMassageItem } from '../../stores/massageSlice';
-import { addTabNum } from '../../stores/tabSlice';
 import styled from 'styled-components';
 import CardImage from '../common/UI/card/CardImage';
 import CardContent from '../common/UI/card/CardContent';
@@ -11,16 +7,10 @@ import Button from '../common/UI/button/Button';
 
 type TProps = {
 	massage: TMassageTable;
+	handleMassageItemSelection: (massage: BOOKING_ITEM_KEYS) => void;
 };
 
-const BookingMassageItem = ({ massage }: TProps) => {
-	const dispatch = useDispatch<AppDispatch>();
-
-	const selectMassageItem = (massageItem: BOOKING_ITEM_KEYS) => {
-		dispatch(setSelectedMassageItem(massageItem));
-		dispatch(addTabNum());
-	};
-
+const BookingMassageItem = ({ massage, handleMassageItemSelection }: TProps) => {
 	return (
 		<Layout>
 			<CardImage image={massage.image} alt={massage.displayItem} />
@@ -28,7 +18,7 @@ const BookingMassageItem = ({ massage }: TProps) => {
 				<Title>{massage.displayItem}</Title>
 				<div>{massage.content}</div>
 			</Contents>
-			<Button size="lg" role="plain" onClick={() => selectMassageItem(massage.item)}>
+			<Button size="lg" onClick={() => handleMassageItemSelection(massage.item)}>
 				선택하기
 			</Button>
 		</Layout>

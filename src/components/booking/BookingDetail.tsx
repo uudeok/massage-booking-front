@@ -1,8 +1,4 @@
 import { TMassageDetail, TMassageTable } from '../../@types/massage';
-import { useDispatch } from 'react-redux';
-import { AppDispatch } from '../../stores/store';
-import { setSelectedMassageType } from '../../stores/massageSlice';
-import { addTabNum } from '../../stores/tabSlice';
 import { addComma } from '../../util/price';
 import CardImage from '../common/UI/card/CardImage';
 import CardContent from '../common/UI/card/CardContent';
@@ -13,16 +9,10 @@ import Button from '../common/UI/button/Button';
 type TProps = {
 	detail: TMassageDetail;
 	massage: TMassageTable;
+	handleAvailableTime: (time: number) => void;
 };
 
-const BookingDetail = ({ detail, massage }: TProps) => {
-	const dispatch = useDispatch<AppDispatch>();
-
-	const setAvailableTime = (time: number) => {
-		dispatch(setSelectedMassageType(time));
-		dispatch(addTabNum());
-	};
-
+const BookingDetail = ({ detail, massage, handleAvailableTime }: TProps) => {
 	return (
 		<Layout>
 			<CardImage image={massage.image} alt={massage.displayItem} />
@@ -32,7 +22,7 @@ const BookingDetail = ({ detail, massage }: TProps) => {
 				</Title>
 				<Price>{addComma(detail.price)}</Price>
 			</Contents>
-			<Button size="lg" role="plain" onClick={() => setAvailableTime(detail.time)}>
+			<Button size="lg" onClick={() => handleAvailableTime(detail.time)}>
 				선택하기
 			</Button>
 		</Layout>

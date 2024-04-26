@@ -9,6 +9,7 @@ import useApiError from './hooks/useApiError';
 
 function App() {
 	const error = useSelector(errorStatus);
+
 	const dispatch = useDispatch();
 
 	const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);

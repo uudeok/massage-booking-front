@@ -38,7 +38,7 @@ const ContactUs = () => {
 			<Wrapper>
 				<p>찾으시는 내용이 없다면 문의하기를 이용해주세요</p>
 				<ButtonWrapper>
-					<Button onClick={() => showModal()} size="lg" role="plain">
+					<Button onClick={() => showModal()} size="lg">
 						문의하기
 					</Button>
 				</ButtonWrapper>
