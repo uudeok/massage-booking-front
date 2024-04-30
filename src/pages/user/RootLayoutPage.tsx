@@ -1,8 +1,8 @@
 import { Outlet, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import styled from 'styled-components';
-import Header from '../../components/header/Header';
-import Footer from '../../components/footer/Footer';
+import Header from '../../components/Layout/header/Header';
+import Footer from '../../components/Layout/footer/Footer';
 import MyPageSide from '../../components/user/layout/MyPageSide';
 import MyPageHeader from '../../components/user/layout/MyPageHeader';
 import { getUserName } from '../../util/auth';

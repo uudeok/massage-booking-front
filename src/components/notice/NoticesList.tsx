@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 import NoticeItem from './NoticeItem';
 import Paging from '../common/pagination/Paging';
-import RenderList from '../common/map/DynamicRender';
 import { NOTICE_CATEGORIES } from '../../const/notices';
 import { useState } from 'react';
 import { NOTICE_CATEGORY_KEYS } from '../../@types/notice';
 import { useGetNoticeListQuery } from '../../api/notice/noticeQuery';
 import { TNoticeCategory } from '../../@types/notice';
+import DynamicRender from '../common/map/DynamicRender';
 
 const NOTICE_LIST_PAGE_SIZE = 10;
 
@@ -42,11 +42,13 @@ const NoticesList = () => {
 			<InnerBoxStyle>
 				<HeaderStyle>
 					<TitleStyle>📢공지사항</TitleStyle>
+
 					<CategoryListStyle onChange={changeCategoryHandler}>
 						<option value="">전체</option>
-						<RenderList data={NOTICE_CATEGORIES} renderItem={renderCategoryItem} />
+						<DynamicRender data={NOTICE_CATEGORIES} renderItem={renderCategoryItem} />
 					</CategoryListStyle>
 				</HeaderStyle>
+
 				<NoticeItem notice={noticeList} isLoading={isLoading} />
 				<Paging
 					page={page}

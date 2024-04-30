@@ -1,4 +1,4 @@
-import RenderList from '../common/map/DynamicRender';
+import RenderList from '../../common/map/DynamicRender';
 import {
 	FooterContainerStyle,
 	FooterInnerContainerStyle,

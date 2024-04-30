@@ -2,8 +2,8 @@ import { Link } from 'react-router-dom';
 import { TfiAlignJustify, TfiClose } from 'react-icons/tfi';
 import { useState } from 'react';
 import styled from 'styled-components';
-import theme from '../../styles/theme';
-import RenderList from '../common/map/DynamicRender';
+import theme from '../../../styles/theme';
+import RenderList from '../../common/map/DynamicRender';
 
 type HeaderDrop = {
 	key: string;
