@@ -2,12 +2,13 @@ import { useGetOrderListQuery } from '../../../api/orders/ordersQuery';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { TOrderType } from '../../../@types/mypage/orders';
+import { MY_ORDER_TABLE_HEADER } from '../../../const/mypage';
+
 import styled from 'styled-components';
 import MyOrderItem from './MyOrderItem';
-import MyOrderHeader from './MyOrderHeader';
 import Paging from '../../common/pagination/Paging';
-import LoadingBar from '../../common/UI/loading/LoadingBar';
-import RenderList from '../../common/map/DynamicRender';
+import FetchWithLoading from '../../common/UI/loading/FetchWithLoading';
+import DynamicRender from '../../common/map/DynamicRender';
 
 const MY_ORDER_LIST_PAGESIZE = 5;
 
@@ -24,44 +25,48 @@ const MyOrderList = () => {
 		return <ErrorStyle>{error.message}</ErrorStyle>;
 	}
 
-	if (!data || isLoading) return <LoadingBar />;
+	const orderList = data?.orders || [];
+	const meta = data?.meta || { currentPage: 0, nextPage: 0, prevPage: 0, totalCount: 0 };
 
-	const orderList = data.orders;
-	const meta = data.meta;
-
-	const changePageHandler = (page: number) => {
+	const handlerMenuPage = (page: number) => {
 		setPage(page);
 		navigate(`/mypage/order/?page=${page}`);
 	};
 
 	const renderOrderItem = (item: TOrderType) => <MyOrderItem key={item.id} order={item} />;
+	const renderTableHeader = (title: string) => <TableHeader key={title}>{title}</TableHeader>;
 
 	return (
-		<LayoutStyle>
-			<HeaderStyle>‖ 예약 내역</HeaderStyle>
-			<MyOrderHeader />
+		<Self>
+			<TitleStyle>‖ 예약 내역</TitleStyle>
+
+			<HeaderLayoutStyle>
+				<DynamicRender data={MY_ORDER_TABLE_HEADER} renderItem={renderTableHeader} />
+			</HeaderLayoutStyle>
 
 			<ContentLayoutStyle>
-				<RenderList data={orderList} renderItem={renderOrderItem} />
+				<FetchWithLoading isLoading={isLoading}>
+					<DynamicRender data={orderList} renderItem={renderOrderItem} />
+				</FetchWithLoading>
 			</ContentLayoutStyle>
 			<Paging
 				count={meta.totalCount}
-				changePageHandler={changePageHandler}
+				changePageHandler={handlerMenuPage}
 				page={page}
 				pageSize={MY_ORDER_LIST_PAGESIZE}
 			/>
-		</LayoutStyle>
+		</Self>
 	);
 };
 
 export default MyOrderList;
 
-const LayoutStyle = styled.div`
+const Self = styled.div`
 	padding: 0.5rem;
 	width: 100%;
 `;
 
-const HeaderStyle = styled.h2`
+const TitleStyle = styled.h2`
 	font-family: ${(props) => props.theme.fonts.pretend};
 	font-size: 1.5rem;
 `;
@@ -75,4 +80,23 @@ const ErrorStyle = styled.div`
 	margin: 2rem auto;
 	font-size: 24px;
 	text-align: center;
+`;
+
+const HeaderLayoutStyle = styled.div`
+	display: flex;
+	flex-direction: row;
+	border-top: 2px solid black;
+	border-bottom: 1px solid lightgrey;
+	padding: 1rem;
+	margin-top: 1rem;
+	text-align: center;
+	justify-content: space-between;
+
+	@media only screen and (max-width: ${(props) => props.theme.devise.tabletWidth}) {
+		display: none;
+	}
+`;
+
+const TableHeader = styled.div`
+	width: 100%;
 `;

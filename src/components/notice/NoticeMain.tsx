@@ -19,6 +19,8 @@ const NoticeMain = () => {
 export default NoticeMain;
 
 const ContainerStyle = styled.div`
+	border: 1px solid black;
+
 	@media only screen and (max-width: ${(props) => props.theme.devise.tabletWidth}) {
 		padding: 0.5rem;
 		width: 90%;

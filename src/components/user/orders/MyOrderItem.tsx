@@ -46,6 +46,7 @@ const Self = styled.div`
 	padding: 1rem;
 	text-align: center;
 	font-family: 'Pretendard-Regular';
+	justify-content: space-between;
 
 	@media only screen and (max-width: ${(props) => props.theme.devise.tabletWidth}) {
 		flex-direction: column;
@@ -55,10 +56,11 @@ const Self = styled.div`
 `;
 
 const OrderDateBoxStyle = styled.div`
-	width: 20%;
+	/* width: 20%; */
 	gap: 0.5rem;
 	display: flex;
 	flex-direction: column;
+	width: 100%;
 
 	@media only screen and (max-width: ${(props) => props.theme.devise.tabletWidth}) {
 		width: 100%;
@@ -90,7 +92,8 @@ const ViewDetails = styled.span`
 `;
 
 const OrderItem = styled.div`
-	width: 20%;
+	/* width: 20%; */
+	width: 100%;
 
 	@media only screen and (max-width: ${(props) => props.theme.devise.tabletWidth}) {
 		padding: 0.5rem;
@@ -99,23 +102,25 @@ const OrderItem = styled.div`
 `;
 
 const OrderDetail = styled.div`
-	width: 30%;
+	/* width: 30%; */
 	display: flex;
 	flex-direction: column;
-	justify-content: center;
-	gap: 0.5rem;
+	/* justify-content: center; */
+	/* gap: 0.5rem; */
+	width: 100%;
+	line-height: 1.2;
 
 	@media only screen and (max-width: ${(props) => props.theme.devise.tabletWidth}) {
 		padding: 0.5rem;
 		width: 100%;
-		flex-direction: row;
-		justify-content: left;
+		/* flex-direction: row; */
+		gap: 1rem;
 	}
 `;
 
 const OrderPrice = styled.div`
-	width: 15%;
-
+	/* width: 15%; */
+	width: 100%;
 	@media only screen and (max-width: ${(props) => props.theme.devise.tabletWidth}) {
 		padding: 0.5rem;
 		width: 100%;
@@ -123,10 +128,10 @@ const OrderPrice = styled.div`
 `;
 
 const OrderStatus = styled.div`
-	width: 15%;
+	/* width: 15%; */
 	display: flex;
 	justify-content: center;
-
+	width: 100%;
 	@media only screen and (max-width: ${(props) => props.theme.devise.tabletWidth}) {
 		padding: 0.5rem;
 		flex-direction: row;

@@ -13,9 +13,7 @@ const NoticesMainList = () => {
 		// 최신순 5개 글만 가져옴
 	});
 
-	if (!data) return <LoadingBar />;
-
-	const noticeList = data.notices;
+	const noticeList = data?.notices || [];
 
 	const renderNoticeItem = (item: TNoticeDetail) => (
 		<Self key={item.id}>

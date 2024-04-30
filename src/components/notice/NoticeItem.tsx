@@ -3,9 +3,9 @@ import { NOTICE_CATEGORY } from '../../const/notices';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { makeSimpleDate } from '../../util/date';
-import NoticeHeader from './NoticeHeader';
-import RenderList from '../common/map/DynamicRender';
 import FetchWithLoading from '../common/UI/loading/FetchWithLoading';
+import DynamicRender from '../common/map/DynamicRender';
+import NoticeHeader from './NoticeHeader';
 
 type TProps = {
 	notice: TNoticeDetail[];
@@ -27,9 +27,10 @@ const NoticeItem = ({ notice, isLoading }: TProps) => {
 	return (
 		<>
 			<NoticeHeader />
+
 			<ContentBoxStyle>
 				<FetchWithLoading isLoading={isLoading}>
-					<RenderList data={notice} renderItem={renderNoticeItem} />
+					<DynamicRender data={notice} renderItem={renderNoticeItem} />
 				</FetchWithLoading>
 			</ContentBoxStyle>
 		</>
@@ -89,9 +90,28 @@ const ContentDateStyle = styled.div`
 
 const ContentViewStyle = styled.div`
 	width: 10%;
+
 	font-size: 0.8rem;
 
 	@media only screen and (max-width: ${(props) => props.theme.devise.tabletWidth}) {
 		display: none;
 	}
+`;
+
+const HeaderStyle = styled.div`
+	display: flex;
+	text-align: center;
+	padding: 1rem;
+	border-bottom: 1px solid black;
+	background-color: aliceblue;
+	justify-content: space-between;
+
+	@media only screen and (max-width: ${(props) => props.theme.devise.tabletWidth}) {
+		display: none;
+	}
+`;
+
+const TableHeader = styled.div`
+	width: 100%;
+	border: 1px solid black;
 `;
