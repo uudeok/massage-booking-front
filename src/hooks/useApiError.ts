@@ -1,5 +1,6 @@
 const useApiError = () => {
 	const errorHandler = (status: number) => {
+		console.log('status', status);
 		switch (status) {
 			case 404:
 				return '페이지를 찾을 수 없습니다';

@@ -8,7 +8,7 @@ import { useModal } from '../../hooks/useModal';
 import ConditionalDisplay from '../common/maybe/ConditionalDisplay';
 import BookingModal from '../modal/BookingModal';
 import styled from 'styled-components';
-import RenderList from '../common/map/DynamicRender';
+import DynamicRender from '../common/map/DynamicRender';
 import Button from '../common/UI/button/Button';
 
 type TProps = {
@@ -79,7 +79,7 @@ const BookingSummary = ({ selectedDate, selectedTime, showModal }: TProps) => {
 
 			<TitleStyle>※ 예약 내역</TitleStyle>
 			<SummaryListStyle>
-				<RenderList data={SUMMARY_LIST} renderItem={renderSummaryItem} />
+				<DynamicRender data={SUMMARY_LIST} renderItem={renderSummaryItem} />
 			</SummaryListStyle>
 			<Button size="lg" role="round" onClick={handleReservation} disabled={!selectedTime}>
 				예약하기

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
 import Banner from '../common/UI/banner/Banner';
-import RenderList from '../common/map/DynamicRender';
+import DynamicRender from '../common/map/DynamicRender';
 
 type ContactInfo = {
 	key: string;
@@ -31,7 +31,7 @@ const ContactList = () => {
 					<h4>오시는 길</h4>
 				</LeftBoxStyle>
 				<RightBoxStyle>
-					<RenderList data={CONTACT_INFO} renderItem={renderContactItem} />
+					<DynamicRender data={CONTACT_INFO} renderItem={renderContactItem} />
 				</RightBoxStyle>
 				<MapBoxStyle>
 					<MapStyle center={{ lat: 37.737494352893385, lng: 126.76590421100259 }}>

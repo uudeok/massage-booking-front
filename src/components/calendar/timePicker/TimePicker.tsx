@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import RenderList from '../../common/map/DynamicRender';
+import DynamicRender from '../../common/map/DynamicRender';
 import { calculateMaxTime, calculateMinTime, adjustSelectability, generateTimeArray } from '../../../util/time';
 
 import { Dropdown, DropdownMenu, DropdownToggle, DropdownOption } from '../../common/UI/dropdown/Dropdown';
@@ -62,7 +62,7 @@ const TimePicker = ({
 			<Dropdown>
 				<Toggle disabled={!selectable}>{selectedTime || placeHolder}</Toggle>
 				<Menu>
-					<RenderList data={timeList} renderItem={renderOption} />
+					<DynamicRender data={timeList} renderItem={renderOption} />
 				</Menu>
 			</Dropdown>
 		</Self>

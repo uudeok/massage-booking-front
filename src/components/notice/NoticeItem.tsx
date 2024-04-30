@@ -97,21 +97,3 @@ const ContentViewStyle = styled.div`
 		display: none;
 	}
 `;
-
-const HeaderStyle = styled.div`
-	display: flex;
-	text-align: center;
-	padding: 1rem;
-	border-bottom: 1px solid black;
-	background-color: aliceblue;
-	justify-content: space-between;
-
-	@media only screen and (max-width: ${(props) => props.theme.devise.tabletWidth}) {
-		display: none;
-	}
-`;
-
-const TableHeader = styled.div`
-	width: 100%;
-	border: 1px solid black;
-`;

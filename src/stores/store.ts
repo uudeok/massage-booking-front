@@ -16,6 +16,7 @@ import errorSlice, { setError } from './errorSlice';
 
 export const rtkQueryErrorHandler: Middleware = () => (next) => (action) => {
 	if (isRejected(action)) {
+		console.log(action.payload.data.error);
 		console.log('error logger : ', action.payload.originalStatus);
 		next(setError(action.payload.originalStatus));
 	}

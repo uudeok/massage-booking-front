@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { BOOKING_NOTICE } from '../../const/book/massage';
-import RenderList from '../common/map/DynamicRender';
+import DynamicRender from '../common/map/DynamicRender';
 import theme from '../../styles/theme';
 import React from 'react';
 
@@ -16,7 +16,7 @@ const BookingNotice = () => {
 
 	return (
 		<NoticeBoxStyle>
-			<RenderList data={BOOKING_NOTICE} renderItem={renderNoticeItem} />
+			<DynamicRender data={BOOKING_NOTICE} renderItem={renderNoticeItem} />
 		</NoticeBoxStyle>
 	);
 };
