@@ -4,7 +4,8 @@ import { MyOrderType, TOrderType, TPostType } from '../../@types/mypage/orders';
 export const ordersApi = createApi({
 	reducerPath: 'ordersApi',
 	baseQuery: fetchBaseQuery({
-		baseUrl: `${process.env.REACT_APP_API_URL}/orders`,
+		// baseUrl: `${process.env.REACT_APP_API_URL}/orders`,
+		baseUrl: 'https://api.naturalhealingspa.xyz/orders',
 		prepareHeaders: (headers) => {
 			const token = localStorage.getItem('token');
 			if (token) {

@@ -17,9 +17,13 @@ type TProps = {
 	setResult: React.Dispatch<React.SetStateAction<boolean | null>>;
 };
 
-const service_id = `${process.env.REACT_APP_SERVICE_ID}`;
-const template_id = `${process.env.REACT_APP_TEMPLATE_ID}`;
-const public_key = `${process.env.REACT_APP_PUBLIC_KEY}`;
+// const service_id = `${process.env.REACT_APP_SERVICE_ID}`;
+// const template_id = `${process.env.REACT_APP_TEMPLATE_ID}`;
+// const public_key = `${process.env.REACT_APP_PUBLIC_KEY}`;
+
+const service_id = 'service_0vpblui';
+const template_id = 'template_jbwr0qy';
+const public_key = 'WhKgnXIjiP8nDPNZt';
 
 const ContactUsForm = ({ closeEmailModal, setResult }: TProps) => {
 	const form = useRef<HTMLFormElement>(null);
