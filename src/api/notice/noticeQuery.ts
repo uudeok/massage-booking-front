@@ -4,8 +4,8 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 export const noticeApi = createApi({
 	reducerPath: 'noticeApi',
 	baseQuery: fetchBaseQuery({
-		// baseUrl: `${process.env.REACT_APP_API_URL}/notices`,
-		baseUrl: 'https://api.naturalhealingspa.xyz/notices',
+		baseUrl: `${process.env.REACT_APP_API_URL}/notices`,
+		// baseUrl: 'https://api.naturalhealingspa.xyz/notices',
 	}),
 	tagTypes: ['notice'],
 

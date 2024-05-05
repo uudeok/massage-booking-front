@@ -3,8 +3,8 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 export const bookApi = createApi({
 	reducerPath: 'bookApi',
 	baseQuery: fetchBaseQuery({
-		// baseUrl: `${process.env.REACT_APP_API_URL}/events`,
-		baseUrl: 'https://api.naturalhealingspa.xyz/events',
+		baseUrl: `${process.env.REACT_APP_API_URL}/events`,
+		// baseUrl: 'https://api.naturalhealingspa.xyz/events',
 	}),
 	tagTypes: ['book'],
 	endpoints: (builder) => ({

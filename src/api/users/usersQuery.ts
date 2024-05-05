@@ -3,8 +3,8 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 export const userApi = createApi({
 	reducerPath: 'userApi',
 	baseQuery: fetchBaseQuery({
-		// baseUrl: `${process.env.REACT_APP_API_URL}/users`,
-		baseUrl: 'https://api.naturalhealingspa.xyz/users',
+		baseUrl: `${process.env.REACT_APP_API_URL}/users`,
+		// baseUrl: 'https://api.naturalhealingspa.xyz/users',
 		prepareHeaders: (headers) => {
 			const token = localStorage.getItem('token');
 			if (token) {

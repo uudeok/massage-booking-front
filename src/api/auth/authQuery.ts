@@ -4,8 +4,8 @@ import { UserType } from '../../@types/user';
 export const authApi = createApi({
 	reducerPath: 'authApi',
 	baseQuery: fetchBaseQuery({
-		// baseUrl: `${process.env.REACT_APP_API_URL}`,
-		baseUrl: 'https://api.naturalhealingspa.xyz',
+		baseUrl: `${process.env.REACT_APP_API_URL}`,
+		// baseUrl: 'https://api.naturalhealingspa.xyz',
 	}),
 	tagTypes: ['login'],
 	endpoints: (builder) => ({

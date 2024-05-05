@@ -5,6 +5,7 @@ export const massageApi = createApi({
 	reducerPath: 'massageApi',
 	baseQuery: fetchBaseQuery({
 		baseUrl: `${process.env.REACT_APP_API_URL}/items`,
+		// baseUrl: 'https://api.naturalhealingspa.xyz/items',
 	}),
 	tagTypes: ['massage'],
 	endpoints: (builder) => ({
